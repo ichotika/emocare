@@ -3,8 +3,9 @@ import Users from "@/models/Users";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
+  await connectMongoDB();
   const { id } = params;
-  const { 
+  const {
     newUid: uid,
     newIsEmployee: isEmployee,
     newFirstName: firstName,
@@ -13,9 +14,18 @@ export async function PUT(request, { params }) {
     newPhone: phone,
     newAge: age,
     newOrganization: organization,
-    } = await request.json();
-  await connectMongoDB();
-  await Users.findByIdAndUpdate(id, {uid,isEmployee,firstName,lastName,email,phone,age,organization});
+  } = await request.json();
+
+  await Users.findByIdAndUpdate(id, {
+    uid,
+    isEmployee,
+    firstName,
+    lastName,
+    email,
+    phone,
+    age,
+    organization,
+  });
   return NextResponse.json({ message: "User updated" }, { status: 200 });
 }
 

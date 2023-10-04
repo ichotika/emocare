@@ -1,9 +1,9 @@
-import UsersLists from '@/components/UsersLists'
+import UsersLists from "@/components/UsersLists";
 
 export default function Home() {
   return (
     <>
-      <UsersLists/>
+      <UsersLists />
     </>
-  )
+  );
 }
