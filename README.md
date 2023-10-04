@@ -19,6 +19,14 @@ Adhere to the following folder structure:
 
 -The api folder is meant for creating your own APIs, e.g., GET/POST requests to MongoDB. To set up an API endpoint like localhost/api/result, create a result folder within the api directory and add a route.js file to define the API. If you wish to customize the ID of the API route, create a folder named [id] and add a route.js file to customize that specific API.
 
+-The components folder is intended for individual components. Please avoid coding components directly within pages. As the project grows, this can make the codebase harder to read.
+
+-The lib folder is designated for defining calculations and functionalities of our app.
+
+-The models folder is used to set up data structures and define how our data collections appear (e.g., setting the 'name' field as a string type).
+
+-The styles folder is for styling our app. It's compatible with Tailwind CSS as well.
+
 Next instruction
 First, run the development server:
 
