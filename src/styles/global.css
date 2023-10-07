@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.notification {
+    top: -35%;
+    left: 40%;
+}
