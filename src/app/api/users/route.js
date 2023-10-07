@@ -3,6 +3,7 @@ import Users from "@/models/Users";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
+  await connectMongoDB();
   try {
     const {
       uid,
@@ -14,8 +15,6 @@ export async function POST(request) {
       age,
       organization,
     } = await request.json();
-    
-    await connectMongoDB();
 
     const user = new Users({
       uid,
@@ -33,7 +32,10 @@ export async function POST(request) {
     return NextResponse.json({ message: "User Created" }, { status: 201 });
   } catch (error) {
     console.error("Error creating user:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -44,7 +46,10 @@ export async function GET() {
     return NextResponse.json({ users });
   } catch (error) {
     console.error("Error fetching users:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -56,6 +61,9 @@ export async function DELETE(request) {
     return NextResponse.json({ message: "User deleted" }, { status: 200 });
   } catch (error) {
     console.error("Error deleting user:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
