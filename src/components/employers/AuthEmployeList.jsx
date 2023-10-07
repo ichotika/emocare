@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
-import { useState } from "react";
 import MainBtn from "../MainBtn";
 const AuthEmployeList = () => {
   function testConfirm() {

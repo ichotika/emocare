@@ -1,13 +1,13 @@
 import Main from "@/components/employers/Main";
 import Header from "@/components/employers/Header";
-import AuthEmployeList from "@/components/employers/AuthEmployeList";
-
+import AuthEmployee from "@/components/employers/AuthEmployee";
+import EmployeeTable from "@/components/employers/EmployeeTable";
 export default function Home() {
   return (
     <>
       <Header headertext={"Management"} />
-      <AuthEmployeList />
-      <AuthEmployeList />
+      <AuthEmployee />
+      <EmployeeTable />
     </>
   );
 }

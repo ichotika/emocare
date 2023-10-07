@@ -29,7 +29,7 @@ const Notification = () => {
               : "absolute notification hidden"
           }>
           <div className="flex rounded-full bg-red-600 w-5 h-5 justify-center items-center">
-            <span className=" text-xs text-white font-semibold text-center rounded-full">
+            <span className=" text-sm text-white font-semibold text-center rounded-full">
               {notificationCount}
             </span>
           </div>
