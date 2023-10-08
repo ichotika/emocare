@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styled from "styled-components";
-function EmployeeRow({ profilePic, name, title, id, joinDate }) {
+function OrganizationRow({ profilePic, name, title, id, joinDate }) {
   const TableRow = styled.div`
     display: grid;
     grid-template-columns: 30% 25% 20% 25%;
@@ -39,4 +39,4 @@ function EmployeeRow({ profilePic, name, title, id, joinDate }) {
   );
 }
 
-export default EmployeeRow;
+export default OrganizationRow;

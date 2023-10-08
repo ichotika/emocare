@@ -2,7 +2,7 @@
 import Image from "next/image";
 import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../MainBtn";
-const AuthEmployeList = () => {
+const AuthOrganizationList = () => {
   function testConfirm() {
     alert("confirm");
   }
@@ -37,4 +37,4 @@ const AuthEmployeList = () => {
   );
 };
 
-export default AuthEmployeList;
+export default AuthOrganizationList;
