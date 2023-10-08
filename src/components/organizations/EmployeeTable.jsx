@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
 import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
-import EmployeeRow from "./EmployeeRow";
+import OrganizationRow from "./OrganizationRow";
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
 
@@ -26,18 +26,18 @@ const TableHeader = styled.header`
   padding: 1.6rem 2.4rem;
 `;
 
-function EmployeeTable() {
+function OrganizationTable() {
   return (
     <div className="mt-12">
       <h2 className="mb-6 text-lg font-semibold">Manage Employees</h2>
-      <Table role="table" className="mb-12">
+      <Table role="table" className="mb-12 overflow-x-auto">
         <TableHeader role="row">
           <div>Employee Name</div>
           <div></div>
           <div>Employee ID</div>
           <div>Joined EmoCare</div>
         </TableHeader>
-        <EmployeeRow
+        <OrganizationRow
           profilePic={Profile}
           name={"Krisana Arunyamitanon"}
           title={"Frontend developer"}
@@ -46,7 +46,7 @@ function EmployeeTable() {
           id={"emp123@emocare.com"}
           key={"emp123@emocare.com"}
         />
-        <EmployeeRow
+        <OrganizationRow
           profilePic={Profile}
           name={"Akiko Kato"}
           title={"UX Designer"}
@@ -55,7 +55,7 @@ function EmployeeTable() {
           id={"emp523@emocare.com"}
           key={"emp723@emocare.com"}
         />
-        <EmployeeRow
+        <OrganizationRow
           profilePic={Profile}
           name={"Krisana Arunyamitanon"}
           title={"Frontend developer"}
@@ -69,4 +69,4 @@ function EmployeeTable() {
   );
 }
 
-export default EmployeeTable;
+export default OrganizationTable;
