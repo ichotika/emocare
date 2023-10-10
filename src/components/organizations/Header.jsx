@@ -1,5 +1,5 @@
 "use client";
-import Notification from "@/components/Notification";
+import Notification from "@/components/base/Notification";
 const Header = ({ headertext }) => {
   return (
     <header className="flex justify-between mb-12 mt-12">

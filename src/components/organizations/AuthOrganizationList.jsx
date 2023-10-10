@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
-import MainBtn from "../MainBtn";
+import MainBtn from "../base/MainBtn";
 const AuthOrganizationList = () => {
   function testConfirm() {
     alert("confirm");
