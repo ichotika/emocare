@@ -1,36 +1,54 @@
+"use client"
+import { useState } from 'react'
+
 const Questionnaire = () => {
+    const [selected, setSelected] = useState('null');
+    const handleRadioChange = (event) => {
+        // console.log(event.target.value);
+        setSelected(event.target.value);
+    }
+
+    const options = [
+        {label: "Not At All", value: "1"},
+        {label: "Several Days", value: "2"},
+        {label: "More than half the day", value: "3"},
+        {label: "Nearly everyday", value: "4"}
+    ]
+
     return (
         <>
             <form action="">
                 <table style={{ width: "100%" }}>
-                    <tr style={{ backgroundColor: "aliceBlue" }}>
-                        <th>No</th>
-                        <th colspan="4">Questions</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td colspan="4">Little pleasure and in doing things</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <label htmlFor="">Not At All</label>
-                            <input type="radio" name="q1" value="1" />
-                        </td>
-                        <td>
-                            <label htmlFor="">Several Days</label>
-                            <input type="radio" name="q1" value="2" />
-                        </td>
-                        <td>
-                            <label htmlFor="">More than half the day</label>
-                            <input type="radio" name="q1" value="3" />
-                        </td>
-                        <td>
-                            <label htmlFor="">Nearly everyday</label>
-                            <input type="radio" name="q1" value="4" />
-                        </td>
-                    </tr>
-                    <tr>
+                    <thead>
+                        <tr style={{ backgroundColor: "aliceBlue" }}>
+                            <th>No</th>
+                            <th colSpan="4">Questions</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td colSpan="4">Little pleasure and in doing things</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            {options.map((option) => (
+                                <td key={option.value}>
+                                    <label htmlFor={`q1_${option.value}`}>{option.label}</label>
+                                    <input
+                                        type="radio"
+                                        name="q1"
+                                        id={`q1_${option.value}`}
+                                        value={option.value}
+                                        checked={selected=option.value}
+                                        onChange={handleRadioChange}
+                                    />
+                                </td>
+                            )
+                            )}
+
+                        </tr>
+                        {/* <tr>
                         <td>2</td>
                         <td colspan="4">Little pleasure and in doing things</td>
                     </tr>
@@ -282,12 +300,13 @@ const Questionnaire = () => {
                             <label htmlFor="">Nearly everyday</label>
                             <input type="radio" name="q12" value="4" />
                         </td>
-                    </tr>
+                    </tr> */}
+                    </tbody>
                 </table>
 
                 <button>Submit</button>
             </form>
-
+            <p>TOTAL IS  </p>
         </>
     );
 }
