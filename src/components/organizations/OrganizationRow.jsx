@@ -1,22 +1,22 @@
 "use client";
 import Image from "next/image";
 import styled from "styled-components";
+const TableRow = styled.div`
+  display: grid;
+  grid-template-columns: 30% 25% 20% 25%;
+  column-gap: 1.6rem;
+  align-items: start;
+
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-grey-200);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  color: var(--color-grey-600);
+  padding: 0.8rem 2.4rem;
+`;
+
 function OrganizationRow({ profilePic, name, title, id, joinDate }) {
-  const TableRow = styled.div`
-    display: grid;
-    grid-template-columns: 30% 25% 20% 25%;
-    column-gap: 1.6rem;
-    align-items: start;
-
-    background-color: var(--color-white);
-    border-bottom: 1px solid var(--color-grey-200);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    font-weight: 600;
-    color: var(--color-grey-600);
-    padding: 0.8rem 2.4rem;
-  `;
-
   return (
     <TableRow>
       <div className="flex items-center gap-3">

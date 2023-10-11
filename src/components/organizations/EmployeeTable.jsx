@@ -1,7 +1,8 @@
 "use client";
 import styled from "styled-components";
 import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
-import OrganizationRow from "./OrganizationRow";
+import OrganizationRow from "@/components/organizations/OrganizationRow";
+import HeaderTab from "@/components/base/HeaderTab";
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
 
@@ -30,7 +31,8 @@ function OrganizationTable() {
   return (
     <div className="mt-12">
       <h2 className="mb-6 text-lg font-semibold">Manage Employees</h2>
-      <Table role="table" className="mb-12 overflow-x-auto">
+      <HeaderTab tabNames={["ALL", "Designer", "Developper"]} />
+      <Table role="table" className="mt-6 mb-12 overflow-x-auto">
         <TableHeader role="row">
           <div>Employee Name</div>
           <div></div>
