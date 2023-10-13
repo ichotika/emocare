@@ -9,7 +9,7 @@ const inter = Inter({subsets: ["latin"]});
 export const metadata = {
     title: "EmoCare",
     description:
-        "Web App to mange mental health in your company for better organization",
+        "Web App to manage mental health in your company for better organization",
 };
 
 export default function RootLayout({children}) {
