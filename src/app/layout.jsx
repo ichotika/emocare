@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
 import {Inter} from "next/font/google";
-import {ClerkProvider} from '@clerk/nextjs';
+// import {ClerkProvider} from '@clerk/nextjs';
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -13,8 +13,9 @@ export const metadata = {
 };
 
 export default function RootLayout({children}) {
+    // Uncomment <ClerkProvider> to enable user account system
     return (
-        <ClerkProvider>
+        // <ClerkProvider>
             <html lang="en">
             <body className={inter.className}>
             <div className="max-w-screen-lg mx-auto p-4">
@@ -25,6 +26,6 @@ export default function RootLayout({children}) {
             </div>
             </body>
             </html>
-        </ClerkProvider>
+        // </ClerkProvider>
     );
 }
