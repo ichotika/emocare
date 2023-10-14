@@ -6,9 +6,7 @@ function PersonalityForm({ createResponse }) {
   const [questionaires, setQuestionaires] = useState([]);
   useEffect(() => {
     const fetchQuestionaire = async () => {
-      const res = await fetch(
-        "http://localhost:3000/api/personality/questionaire"
-      );
+      const res = await fetch("/api/personality/questionaire");
       const data = await res.json();
       setQuestionaires(data);
     };
@@ -102,7 +100,9 @@ function PersonalityForm({ createResponse }) {
                 <RadioQ key={question.Question} question={question} />
               ))}
 
-            <button className="bg-yellow-200 rounded-xl p-3" type="submit">
+            <button
+              className="bg-yellow-200 rounded-xl p-3 mb-4 mt-4"
+              type="submit">
               Submit
             </button>
           </Form>

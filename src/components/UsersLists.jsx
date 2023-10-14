@@ -1,24 +1,29 @@
+"use client";
 import UserRemoveBtn from "./UserRemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
-const getUsers = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/users", {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch topics");
+export default function UsersLists() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(`api/users`, {
+          cache: "no-store",
+        });
+        if (!res.ok) {
+          throw new Error("Failed to fetch topics");
+        }
+        const data = await res.json();
+        setUsers(data.users);
+      } catch (error) {
+        console.log("Error loading topics: ", error);
+      }
     }
-    return res.json();
-  } catch (error) {
-    console.log("Error loading topics: ", error);
-  }
-};
 
-export default async function UsersLists() {
-  const { users } = await getUsers();
+    fetchData();
+  }, []);
 
   return (
     <>
