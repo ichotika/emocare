@@ -2,28 +2,23 @@
 import { useState, useEffect } from 'react'
 
 const Questionnaire = () => {
-
     const questions = [
-        { No: "1", question: "Q1" },
-        { No: "2", question: "Q2" },
-        { No: "3", question: "Q3" },
-        { No: "4", question: "Q4" },
-        { No: "5", question: "Q5" },
-        { No: "6", question: "Q6" },
-        { No: "7", question: "Little 8pleasure and in doing things" },
-        { No: "8", question: "Little p9leasure and n doing things" },
-        { No: "9", question: "Litte ple0asure and in doing things" },
-        { No: "10", question: "Litle ple8asure and in doing things" },
-        { No: "11", question: "ittle plea54sure and in doing things" },
-        { No: "12", question: "Little pleas32ure and in doing thing" },
-        { No: "13", question: "Little pleasur231e and in doing ings" },
+        { No: "1", question: "Little interest or pleasure in doing things" },
+        { No: "2", question: "Feeling down, depressed, or hopeless " },
+        { No: "3", question: "Trouble falling or staying asleep, or sleeping too much " },
+        { No: "4", question: "Feeling tired or having little energy " },
+        { No: "5", question: "Poor appetite or overeating " },
+        { No: "6", question: "Feeling bad about yourself — or that you are a failure or have let yourself or your family down" },
+        { No: "7", question: "Trouble concentrating on things, such as reading the newspaper or watching television" },
+        { No: "8", question: "Moving or speaking so slowly that other people could have noticed?  Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual " },
+        { No: "9", question: "Thoughts that you would be better off dead or of hurting yourself in some way " }
     ]
 
     const options = [
-        { label: "Not At All", value: 1 },
-        { label: "Several Days", value: 2 },
-        { label: "More than half the day", value: 3 },
-        { label: "Nearly everyday", value: 4 }
+        { label: "Not At All", value: 0 },
+        { label: "Several Days", value: 1 },
+        { label: "More than half the day", value: 2 },
+        { label: "Nearly everyday", value: 3 }
     ]
 
     const [value, setValue] = useState(
@@ -47,18 +42,47 @@ const Questionnaire = () => {
     const handleRadioChange = (event) => {
         setValue({ ...value, [event.target.name]: Number(event.target.value) })
     }
-    
+
     const totalScore = Object.values(value).reduce((score, total) => {
-        // console.log(typeof score);
-        // console.log(typeof total);
-        
-        if (total !== null){
+        if (total !== null) {
             return score + total;
         }
 
         return "You are missing some questions"
-    },0
+    }, 0
     );
+
+    const depressionLevel = [
+        {level: "Non-minimal", description: "Patient may not need depression treatment." },
+        {level: "Mild", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
+        {level: "Moderate", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
+        {level: "Moderate severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."},
+        {level: "Severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."}
+    ]
+
+    const [level, setLevel] = useState("")
+
+    const getDepressionLevel = (toalScore) => {
+        switch (true) {
+            case totalScore <= 4:
+            return depressionLevel[0][level];
+            break;
+            case totalScore <= 9:
+            return depressionLevel[1][level];
+            break
+            case totalScore <= 14:
+            return depressionLevel[2][level];
+            break;
+            case totalScore <= 19:
+            return depressionLevel[3][level];
+            break
+            default:
+            return depressionLevel[4][level];
+            break;
+        }
+    }
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
     }
@@ -101,7 +125,6 @@ const Questionnaire = () => {
                                             id={`q${question.No}_${option.value}`}
                                             value={Number(option.value)}
                                             onChange={handleRadioChange}
-
                                         />
                                     </td>
                                 ))}
@@ -109,20 +132,12 @@ const Questionnaire = () => {
                         ))}
                     </tbody>
                 </table>
-                <button>Submit</button>
+                <button>Save</button>
+                <button>Submit Anonymously</button>
             </form>
 
-            {/* // // 合計値を表示
-            各質問の回答の値を取得し、合計値を計算
-            const totalScore = Object.values(value).reduce((acc, answer) => {
-            // 回答が "null" 以外の場合に値を加算
-            if (answer !== "null") {
-            return acc + parseInt(answer, 10);
-            }
-            return acc;
-            }, 0); */}
-
             <p>Your total mental score is {totalScore}</p>
+            <p>Your mental health level is setLevel({getDepressionLevel})</p>
 
 
             {/* <p>Your total mental score is {setValue}</p> */}

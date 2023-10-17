@@ -1,5 +1,5 @@
-import Questionnaire from "@/components/assessment/Questionnaire";
-import Instruction from "@/components/assessment/Instruction";
+import Questionnaire from "@/components/assessment/mentalassessment/Questionnaire";
+import Instruction from "@/components/assessment/mentalassessment/Instruction";
 
 const Assessment = () => {
     return (
