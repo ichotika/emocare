@@ -53,33 +53,44 @@ const Questionnaire = () => {
     );
 
     const depressionLevel = [
-        {level: "Non-minimal", description: "Patient may not need depression treatment." },
-        {level: "Mild", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
-        {level: "Moderate", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
-        {level: "Moderate severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."},
-        {level: "Severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."}
+        {dlevel: "Non-minimal", description: "Patient may not need depression treatment." },
+        {dlevel: "Mild", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
+        {dlevel: "Moderate", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
+        {dlevel: "Moderate severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."},
+        {dlevel: "Severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."}
     ]
 
-    const [level, setLevel] = useState("")
+    // const [level, setLevel] = useState("")
 
-    const getDepressionLevel = (toalScore) => {
+    const getDepressionLevel = (totalScore) => {
+
+        const result = {
+            dlevel: "",
+            description: ""
+        }
+
         switch (true) {
             case totalScore <= 4:
-            return depressionLevel[0][level];
+            result.dlevel =  depressionLevel[0].dlevel;
+            result.description = depressionLevel[0].description;
             break;
             case totalScore <= 9:
-            return depressionLevel[1][level];
+                result.dlevel =  depressionLevel[1].dlevel;
+                result.description = depressionLevel[1].description;
             break
             case totalScore <= 14:
-            return depressionLevel[2][level];
+                result.dlevel =  depressionLevel[2].dlevel;
+                result.description = depressionLevel[2].description;
             break;
             case totalScore <= 19:
-            return depressionLevel[3][level];
+                result.dlevel =  depressionLevel[3].dlevel;
+                result.description = depressionLevel[3].description;
             break
             default:
-            return depressionLevel[4][level];
+            return depressionLevel[4].dlevel;
             break;
         }
+        return result
     }
 
 
@@ -132,15 +143,18 @@ const Questionnaire = () => {
                         ))}
                     </tbody>
                 </table>
+
+                
+
+
                 <button>Save</button>
                 <button>Submit Anonymously</button>
             </form>
 
+
             <p>Your total mental score is {totalScore}</p>
-            <p>Your mental health level is setLevel({getDepressionLevel})</p>
-
-
-            {/* <p>Your total mental score is {setValue}</p> */}
+            <p>Your mental health level is Your mental health level is {getDepressionLevel(totalScore).dlevel}</p>
+            <p>Your mental health level is Your mental health level is "{getDepressionLevel(totalScore).description}"</p>
         </>
     );
 }
