@@ -11,13 +11,13 @@ const OrganizationSidebar = () => {
                     <h1>Emocare</h1>
                     <nav>
                         <ul>
-                            <li><Link href="#">Dashboard </Link></li>
-                            <li><Link href="/assessmentRerd">Assessment Record</Link></li>
+                            <li><Link href="/organization">Dashboard </Link></li>
+                            <li><Link href="/organization/assessmentRecord">Assessment Record</Link></li>
                             <li><Link href="/organization/management">Management</Link></li>
-                            {/* <li><Link href={`/dashboard`}><Image src={Dashboard}  width={24} height={24} alt="dashboard icon" />Dashboard</Link></li>
-                        <li><Link href={`/assessment`}><Image src={Assessment} width={24} height={24} alt="assessment icon" />Assessment Records</Link></li>
-                        <li><Link href={`/education`}><Image src={Education} width={24} height={24} alt="education icon" />Education</Link></li>
-    <li><Link href={`/emergencysupport`}><Image src={EmergencySupport} width={24} height={24} alt="emergency support icon" />Emergency Support</Link></li> */}
+                            {/* <Image src={Dashboard}  width={24} height={24} alt="dashboard icon" />
+                                <Image src={Assessment} width={24} height={24} alt="assessment icon" />
+                                <Image src={Education} width={24} height={24} alt="education icon" />
+                                <Image src={EmergencySupport} width={24} height={24} alt="emergency support icon" />*/}
                         </ul>
                     </nav>
                 </header>
@@ -25,7 +25,7 @@ const OrganizationSidebar = () => {
                 <footer>
                     <nav>
                         <ul>
-                            <li><button><Link href={`singin`}>Log Out</Link></button></li>
+                            <button className="bg-red-700"><Link href="/sign-in">Log Out</Link></button>
                         </ul>
                     </nav>
                 </footer>
