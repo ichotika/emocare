@@ -2,17 +2,17 @@
 import { useState, useEffect } from 'react'
 
 const Questionnaire = () => {
-    const questions = [
-        { No: "1", question: "Little interest or pleasure in doing things" },
-        { No: "2", question: "Feeling down, depressed, or hopeless " },
-        { No: "3", question: "Trouble falling or staying asleep, or sleeping too much " },
-        { No: "4", question: "Feeling tired or having little energy " },
-        { No: "5", question: "Poor appetite or overeating " },
-        { No: "6", question: "Feeling bad about yourself — or that you are a failure or have let yourself or your family down" },
-        { No: "7", question: "Trouble concentrating on things, such as reading the newspaper or watching television" },
-        { No: "8", question: "Moving or speaking so slowly that other people could have noticed?  Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual " },
-        { No: "9", question: "Thoughts that you would be better off dead or of hurting yourself in some way " }
-    ]
+    // const questions = [
+    //     { No: "1", question: "Little interest or pleasure in doing things" },
+    //     { No: "2", question: "Feeling down, depressed, or hopeless" },
+    //     { No: "3", question: "Trouble falling or staying asleep, or sleeping too much " },
+    //     { No: "4", question: "Feeling tired or having little energy " },
+    //     { No: "5", question: "Poor appetite or overeating " },
+    //     { No: "6", question: "Feeling bad about yourself — or that you are a failure or have let yourself or your family down" },
+    //     { No: "7", question: "Trouble concentrating on things, such as reading the newspaper or watching television" },
+    //     { No: "8", question: "Moving or speaking so slowly that other people could have noticed?  Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual " },
+    //     { No: "9", question: "Thoughts that you would be better off dead or of hurting yourself in some way " }
+    // ]
 
     const options = [
         { label: "Not At All", value: 0 },
@@ -82,7 +82,7 @@ const Questionnaire = () => {
                 result.dlevel =  depressionLevel[2].dlevel;
                 result.description = depressionLevel[2].description;
             break;
-            case totalScore <= 19:
+            case totalScore >= 15:
                 result.dlevel =  depressionLevel[3].dlevel;
                 result.description = depressionLevel[3].description;
             break
@@ -98,17 +98,20 @@ const Questionnaire = () => {
         event.preventDefault();
     }
 
+
+    const [ depressionQustionnaire, setDepressionQuestionnaire] = useState([]);
+
     // Get the questionnaire from server.
-    // useEffect(()=> {
-    //     const fetchQuestionnaire = async() => {
-    //         const res = await fetch("http://locatlhost:3000/api/depressionquestionnaire/questionnaire");
-    //         const data = await res.json();
-    //         setQuestionnaire(data);
-    //     };
-    //     fetchQuestionnaire();
-    // }, []);
-
-
+    useEffect(()=> {
+  
+        const fetchDepressionQuestionnaire = async() => {
+            const res = await fetch("http://localhost:3000/api/questionnaires/depression");
+            const data = await res.json();
+            console.log("depression questionnaire", data);
+            setDepressionQuestionnaire(data);
+        };
+        fetchDepressionQuestionnaire();
+    }, []);
 
     return (
         <>
@@ -122,7 +125,7 @@ const Questionnaire = () => {
                     </thead>
 
                     <tbody>
-                        {questions.map((question) => (
+                        {depressionQustionnaire.map((question) => (
                             <tr key={question.No}>
                                 <td>{question.No}</td>
                                 <td colSpan="4">{question.question}</td>
