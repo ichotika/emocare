@@ -38,6 +38,7 @@ export async function POST(request) {
       Q30,
       Q31,
       Q32,
+      userId
     } = await request.json();
     const extroversionType =
       30 - Q3 - Q7 - Q11 + Q15 - Q19 + Q23 + Q27 - Q31 > 24 ? "E" : "I";
@@ -51,6 +52,7 @@ export async function POST(request) {
       extroversionType + SensingType + ThinkingType + PerceivingType;
     console.log(personalityType);
     const personalityResponse = new PersonalityResponses({
+      userId,
       personalityType,
       Q1,
       Q2,

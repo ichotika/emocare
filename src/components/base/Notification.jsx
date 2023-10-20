@@ -1,42 +1,45 @@
 "use client";
 import Image from "next/image";
-
 import { useState } from "react";
-import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
 import Bell from "@/public/assets/Wireframes/bell.svg";
+import { UserButton } from "@clerk/nextjs";
+
 const Notification = () => {
-  const [notificationCount, setnNotificationCount] = useState(2);
-  const [clearNotification, setClearNotification] = useState(true);
-  function handleShowNotification() {
-    setClearNotification(() => !clearNotification);
-    setnNotificationCount(() => "");
-  }
-  return (
-    <div className="flex justify-center items-center gap-4">
-      <Image
-        className="rounded-full"
-        src={Profile}
-        width={48}
-        height={48}
-        alt="Profile picture"
-      />
-      <div className="relative cursor-pointer" onClick={handleShowNotification}>
-        <Image src={Bell} width={24} height={24} alt="Bell Notification" />
-        <div
-          className={
-            clearNotification === true
-              ? "absolute notification"
-              : "absolute notification hidden"
-          }>
-          <div className="flex rounded-full bg-red-600 w-5 h-5 justify-center items-center">
-            <span className=" text-sm text-white font-semibold text-center rounded-full">
-              {notificationCount}
-            </span>
-          </div>
+    const [notificationCount, setnNotificationCount] = useState(2);
+    const [clearNotification, setClearNotification] = useState(true);
+    function handleShowNotification() {
+        setClearNotification(() => !clearNotification);
+        setnNotificationCount(() => "");
+    }
+    return (
+        <div className="flex items-center justify-center gap-4">
+            <UserButton afterSignOutUrl="/" />
+            <div
+                className="relative cursor-pointer"
+                onClick={handleShowNotification}
+            >
+                <Image
+                    src={Bell}
+                    width={24}
+                    height={24}
+                    alt="Bell Notification"
+                />
+                <div
+                    className={
+                        clearNotification === true
+                            ? "notification absolute"
+                            : "notification absolute hidden"
+                    }
+                >
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600">
+                        <span className=" rounded-full text-center text-sm font-semibold text-white">
+                            {notificationCount}
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Notification;
