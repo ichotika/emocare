@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
+
 import { Inter } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import OrganizationSidebar from "@/components/base/OrganizationSidebar";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
