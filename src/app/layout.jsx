@@ -15,7 +15,11 @@ export const metadata = {
 export default function RootLayout({children}) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <ClerkProvider>
+        <ClerkProvider appearance={{
+            layout: {
+                socialButtonsPlacement: 'bottom',
+            }
+        }}>
             <html lang="en">
             <body className={inter.className}>
             <div className="max-w-screen-lg mx-auto p-4">
