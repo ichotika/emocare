@@ -1,16 +1,43 @@
-const Tests = () => {
-    return
-    <>
-        <h1>Assessment</h1>
-        <div className="card">
+import AssessmentCard from "./AssessmentCard";
+import Link from "next/link"
 
-            <h4>Depression test</h4>
-            <p className="qustions">Questions: 10</p>
-            <p className="duration">Duration: 3 min</p>
-            <p className="description">Patient Health Questionnaire-9 (PHQ-9) is an assessment to evaluate your depression level.</p>
-            <button><Link>Take Assessment</Link></button>
-        </div>
-    </>
+const Tests = () => {
+
+    const assessments = [
+        {
+            title: "Depression Assessment",
+            questions: 10,
+            duration: 3,
+            description: "Patient Health Questionnaire-9 (PHQ-9) is an assessment to evaluate your depression level.",
+            link: "/assessment/mental"
+        },
+        {
+            title: "Axiety Assessment",
+            questions: 7,
+            duration: 2,
+            description: "Generalized Anxiety Disorder Assessment (GAD-7) is an assessment to evaluate your anxiety level",
+            link: "/assessment/mental"
+        },
+        {
+            title: "Burnout Assessment",
+            questions: 15,
+            duration: 5,
+            description: "This assessment helps you look at the way you feel about your job and your experiences at work, so that you can get a feel for whether you are at risk of burnout.",
+            link: "/assessment/mental"
+        }
+    ]
+
+    return (
+        <>
+
+            <div className="flex">
+                {assessments.map((assessment, index) => (
+                    <AssessmentCard key={index} {...assessment} />
+                )
+                )}
+            </div>
+        </>
+    )
 }
 
 export default Tests;
