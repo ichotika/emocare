@@ -39,7 +39,7 @@ export default function OverallSatisfactionChart() {
   }
 
   return (
-    <div className="block max-w-sm flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow ">
+    <div className="basis-2/4 flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow ">
       <h2>Overall Satisfaction</h2>
       <Doughnut data={data} options={options} plugins={[gaugeText]}/>
     </div>

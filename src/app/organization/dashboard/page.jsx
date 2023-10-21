@@ -5,7 +5,6 @@ import MonthlyAssessment from "@/components/organizations/dashboard/MonthlyAsses
 import AssessmentTrendsChart from "@/components/organizations/dashboard/AssessmentTrendsChart";
 import Feedbacks from "@/components/organizations/dashboard/Feedbacks";
 import ConditionAnalysis from "@/components/organizations/dashboard/ConditionAnalysis";
-import Silder from "@/components/organizations/dashboard/Silder";
 
 
 export default function Home() {
@@ -16,18 +15,17 @@ export default function Home() {
     <>
       <WelcomePanel />
       <OverallCard/>
-      <div className="flex">
+      <div className="flex max-w-full">
         <OverallSatisfactionChart value={gaugeValue} maxValue={gaugeMaxValue}/>
         <MonthlyAssessment/>
       </div>
-      <div className="flex">
+      <div className="flex max-w-full">
         <AssessmentTrendsChart/>
         <Feedbacks/>
       </div> 
       <div className="mobile">
         <ConditionAnalysis/>
       </div>
-      <Silder/>
     </>
   );
 }

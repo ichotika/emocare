@@ -42,7 +42,7 @@ export default function AssessmentTrendsChart() {
   };
 
   return (
-    <div className="block rounded-lg border border-gray-200 bg-white p-6 shadow ">
+    <div className="basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
        <h2>Assessment Trends</h2>
       <Bar data={data} options={options} />
     </div>
