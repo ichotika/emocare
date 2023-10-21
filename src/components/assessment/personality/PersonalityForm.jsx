@@ -1,14 +1,17 @@
 "use client";
+import { useUser } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import RadioQ from "./RadioQ";
 function PersonalityForm({ createResponse }) {
   const [questionaires, setQuestionaires] = useState([]);
+  const { user} = useUser();
   useEffect(() => {
     const fetchQuestionaire = async () => {
       const res = await fetch("/api/personality/questionaire");
       const data = await res.json();
       setQuestionaires(data);
+      
     };
     fetchQuestionaire();
   }, []);
@@ -52,6 +55,7 @@ function PersonalityForm({ createResponse }) {
         }}
         onSubmit={async (values) => {
           let responseObj = {
+            userId: user.id,
             Q1: Number(values.q1),
             Q2: Number(values.q2),
             Q3: Number(values.q3),
@@ -85,7 +89,7 @@ function PersonalityForm({ createResponse }) {
             Q31: Number(values.q31),
             Q32: Number(values.q32),
           };
-
+          console.log(responseObj)
           createResponse(responseObj);
         }}>
         {({ values }) => (

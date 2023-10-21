@@ -2,9 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 const PersonalityResponsesSchema = new Schema(
   {
-    creator: {
+    sessionId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+    },
+    userId:{
+      type: String,
     },
     personalityType: {
       type: String,
