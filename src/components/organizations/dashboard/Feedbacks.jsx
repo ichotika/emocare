@@ -5,7 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import FeedbackCard from "@/components/organizations/dashboard/FeedbackCard";
 
 export default function Feedbacks() {
-    const [emblaRef, emblaApi] = useEmblaCarousel({loop:true});
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -16,11 +16,14 @@ export default function Feedbacks() {
     }, [emblaApi]);
 
     return (
-        <div className="basis-2/4 relative rounded-lg border border-gray-200 bg-white p-6 shadow">
+        <div className="relative basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
             <p>Feedbacks</p>
 
             <div className="embla">
-                <button className="embla__prev absolute top-1/2 left-0 z-10" onClick={scrollPrev}>
+                <button
+                    className="embla__prev absolute left-0 top-1/2 z-10"
+                    onClick={scrollPrev}
+                >
                     &lt;
                 </button>
                 <div className="embla__viewport" ref={emblaRef}>
@@ -69,7 +72,10 @@ export default function Feedbacks() {
                         </div>
                     </div>
                 </div>
-                <button className="embla__next absolute top-1/2 right-0 z-10" onClick={scrollNext}>
+                <button
+                    className="embla__next absolute right-0 top-1/2 z-10"
+                    onClick={scrollNext}
+                >
                     &gt;
                 </button>
             </div>
