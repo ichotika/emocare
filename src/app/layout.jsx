@@ -2,11 +2,6 @@ import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
 
-import { Inter } from "next/font/google";
-import { ClerkProvider } from '@clerk/nextjs';
-import OrganizationSidebar from "@/components/base/OrganizationSidebar";
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -20,16 +15,13 @@ export default function RootLayout({ children }) {
     return (
         <ClerkProvider>
             <html lang="en">
-                <body /*className="flex"*/>
-                        {/* <div>
-                            <OrganizationSidebar></OrganizationSidebar>
-                        </div> */}
-                        <div className="max-w-screen-lg mx-auto p-4">
-                            <Navbar />
-                            <StyledComponentsRegistry className="mt-8">
-                                {children}
-                            </StyledComponentsRegistry>
-                        </div>
+                <body className={inter.className}>
+                    <div className="mx-auto max-w-screen-xl p-4">
+                        <Navbar />
+                        <StyledComponentsRegistry className="mt-8">
+                            {children}
+                        </StyledComponentsRegistry>
+                    </div>
                 </body>
             </html>
         </ClerkProvider>
