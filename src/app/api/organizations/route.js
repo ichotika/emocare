@@ -6,8 +6,8 @@ export async function GET() {
         await connectMongoDB();
         console.log("Connected to MongoDB");
         let res = mongoose.connection.db.collection("organizations");
-        let emplist = await res.find({}).toArray();
-        return NextResponse.json({ emplist });
+        let orgList = await res.find({}).toArray();
+        return NextResponse.json({ orgList });
     } catch (error) {
         console.error("Error connecting to MongoDB: ", error);
     }
