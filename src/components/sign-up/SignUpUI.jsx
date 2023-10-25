@@ -1,6 +1,5 @@
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
 import { Combobox, Tab } from "@headlessui/react";
 import { useState } from "react";
 import {HiChevronUpDown} from "react-icons/hi2";
