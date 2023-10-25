@@ -1,21 +1,8 @@
 "use client";
 
 import { Combobox, Tab } from "@headlessui/react";
-import { useState } from "react";
-import {HiChevronUpDown} from "react-icons/hi2";
-
-export default function SignUpUI() {
-    return (
-        <div className="grid justify-center">
-            <h1>Organizations</h1>
-            <h2>I want to</h2>
-            <MyTabs></MyTabs>
-            <button className="bg-blue-800 text-white">
-                Create Account with Organization
-            </button>
-        </div>
-    );
-}
+import { useEffect, useState } from "react";
+import { HiChevronUpDown } from "react-icons/hi2";
 
 const orgs = [
     "Acme Corporation",
@@ -30,10 +17,40 @@ const orgs = [
     "Blue Sky Marketing",
 ];
 
+export default function SignUpUI() {
+    return (
+        <div className="grid justify-center">
+            <h1>Organizations</h1>
+            <h2>I want to</h2>
+            <MyTabs></MyTabs>
+        </div>
+    );
+}
+
+// First Tab UI
 function SelectOrg() {
+    const [orgs, setOrgs] = useState([]);
     const [selectedOrg, setSelectedOrg] = useState("");
     const [query, setQuery] = useState("");
 
+    useEffect(() => {
+        const fetchOrgs = async () => {
+            try {
+                const response = await fetch("/api/organizations");
+                if (response.ok) {
+                    const data = await response.json();
+                    setOrgs(data.orgList.map(({ orgName }) => orgName));
+                } else {
+                    console.error(
+                        "Failed to fetch data from /api/organizations"
+                    );
+                }
+            } catch (error) {
+                console.error("An error occurred while fetching data:", error);
+            }
+        };
+        fetchOrgs();
+    }, []);
     const filteredOrg =
         query === ""
             ? orgs
@@ -60,21 +77,34 @@ function SelectOrg() {
                     ))}
                 </Combobox.Options>
             </Combobox>
+            <button className="block bg-blue-800 text-white" disabled={!selectedOrg}>
+                {selectedOrg? `Create Account with ${selectedOrg}`:`Please select your Organization`}
+            </button>
         </div>
     );
 }
 
+// Second Tab UI
 function CreateOrg() {
+    const [createdOrg, setCreatedOrg] = useState("");
+
     return (
         <div>
             <span>
-                My organization is named{" "}
-                <input type="text" className="bg-amber-400 p-2" />
+                My organization will be named{" "}
+                <input
+                    type="text"
+                    className="bg-amber-400 p-2"
+                    value={createdOrg}
+                    onChange={(e) => setCreatedOrg(e.target.value)}
+                />
             </span>
+            <button className="block bg-blue-800 text-white" disabled={!createdOrg}>
+                {createdOrg? `Create Account with ${createdOrg}`:`Please name your Organization`}
+            </button>
         </div>
     );
 }
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
