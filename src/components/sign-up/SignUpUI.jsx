@@ -3,19 +3,7 @@
 import { Combobox, Tab } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";
-
-const orgs = [
-    "Acme Corporation",
-    "Tech Solutions Inc.",
-    "Global Innovations Group",
-    "Green Energy Foundation",
-    "Data Science Co.",
-    "Rainbow Charity Network",
-    "Xenon Industries",
-    "EcoTech Systems",
-    "Sunshine Healthcare Services",
-    "Blue Sky Marketing",
-];
+import { useRouter } from "next/navigation";
 
 export default function SignUpUI() {
     return (
@@ -32,6 +20,8 @@ function SelectOrg() {
     const [orgs, setOrgs] = useState([]);
     const [selectedOrg, setSelectedOrg] = useState("");
     const [query, setQuery] = useState("");
+
+    const router = useRouter();
 
     useEffect(() => {
         const fetchOrgs = async () => {
@@ -77,8 +67,17 @@ function SelectOrg() {
                     ))}
                 </Combobox.Options>
             </Combobox>
-            <button className="block bg-blue-800 text-white" disabled={!selectedOrg}>
-                {selectedOrg? `Create Account with ${selectedOrg}`:`Please select your Organization`}
+            <button
+                className="block bg-blue-800 text-white"
+                disabled={!selectedOrg}
+                onClick={() => {
+                    console.log(encodeURI(selectedOrg));
+                    router.push(`/sign-up/${encodeURI(selectedOrg)}`);
+                }}
+            >
+                {selectedOrg
+                    ? `Create Account with ${selectedOrg}`
+                    : `Please select your Organization`}
             </button>
         </div>
     );
@@ -87,6 +86,8 @@ function SelectOrg() {
 // Second Tab UI
 function CreateOrg() {
     const [createdOrg, setCreatedOrg] = useState("");
+
+    const router = useRouter();
 
     return (
         <div>
@@ -99,8 +100,17 @@ function CreateOrg() {
                     onChange={(e) => setCreatedOrg(e.target.value)}
                 />
             </span>
-            <button className="block bg-blue-800 text-white" disabled={!createdOrg}>
-                {createdOrg? `Create Account with ${createdOrg}`:`Please name your Organization`}
+            <button
+                className="block bg-blue-800 text-white"
+                disabled={!createdOrg}
+                onClick={() => {
+                    console.log(encodeURI(createdOrg));
+                    router.push(`/sign-up/${encodeURI(createdOrg)}`);
+                }}
+            >
+                {createdOrg
+                    ? `Create Account with ${createdOrg}`
+                    : `Please name your Organization`}
             </button>
         </div>
     );
