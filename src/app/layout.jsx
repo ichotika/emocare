@@ -1,6 +1,9 @@
 import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
+import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import OrganizationSidebar from "@/components/base/OrganizationSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +18,11 @@ export default function RootLayout({ children }) {
     return (
         <ClerkProvider>
             <html lang="en">
-                <body className={inter.className}>
-                    <div className="mx-auto max-w-screen-xl p-4">
+                <body /*className="flex"*/>
+                    {/* <div>
+                            <OrganizationSidebar></OrganizationSidebar>
+                        </div> */}
+                    <div className="mx-auto max-w-screen-lg p-4">
                         <Navbar />
                         <StyledComponentsRegistry className="mt-8">
                             {children}

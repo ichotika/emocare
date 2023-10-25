@@ -28,7 +28,7 @@ const TableHeader = styled.header`
     padding: 1.6rem 2.4rem;
 `;
 
-function OrganizationTable({ employeeList, fetchData }) {
+function OrganizationTable({ employeeList }) {
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
