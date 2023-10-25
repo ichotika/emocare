@@ -18,11 +18,8 @@ export default function RootLayout({ children }) {
     return (
         <ClerkProvider>
             <html lang="en">
-                <body /*className="flex"*/>
-                        {/* <div>
-                            <OrganizationSidebar></OrganizationSidebar>
-                        </div> */}
-                        <div className="max-w-screen-lg mx-auto p-4">
+                <body>
+                        <div className="max-w-screen-lg min-h-full mx-auto p-4">
                             <Navbar />
                             <StyledComponentsRegistry className="mt-8">
                                 {children}
