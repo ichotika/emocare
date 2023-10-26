@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 
-export default function SignUpUI() {
+export default function SignUpUI({onOrgDecide}) {
     return (
         <div className="grid justify-center">
             <h1>Organizations</h1>
             <h2>I want to</h2>
-            <MyTabs></MyTabs>
+            <MyTabs onOrgDecide={onOrgDecide}></MyTabs>
         </div>
     );
 }
 
 // First Tab UI
-function SelectOrg() {
+function SelectOrg({onOrgDecide}) {
     const [orgs, setOrgs] = useState([]);
     const [selectedOrg, setSelectedOrg] = useState("");
     const [query, setQuery] = useState("");
@@ -71,8 +71,8 @@ function SelectOrg() {
                 className="block bg-blue-800 text-white"
                 disabled={!selectedOrg}
                 onClick={() => {
-                    console.log(encodeURI(selectedOrg));
-                    router.push(`/sign-up/${encodeURI(selectedOrg)}`);
+                    console.log(selectedOrg);
+                    onOrgDecide(selectedOrg);
                 }}
             >
                 {selectedOrg
@@ -84,7 +84,7 @@ function SelectOrg() {
 }
 
 // Second Tab UI
-function CreateOrg() {
+function CreateOrg({onOrgDecide}) {
     const [createdOrg, setCreatedOrg] = useState("");
 
     const router = useRouter();
@@ -104,8 +104,31 @@ function CreateOrg() {
                 className="block bg-blue-800 text-white"
                 disabled={!createdOrg}
                 onClick={() => {
-                    console.log(encodeURI(createdOrg));
-                    router.push(`/sign-up/${encodeURI(createdOrg)}`);
+                    const checkOrgs = async () => {
+                        try {
+                            const response = await fetch("/api/organizations");
+                            if (response.ok) {
+                                const data = await response.json();
+                                const orgNames = data.orgList.map(({ orgName }) => orgName);
+                                // Name matches an existing org => Bad!
+                                if (orgNames.includes(createdOrg)) {
+                                    console.error("Your organization already exists!");
+                                }
+                                // New org name => OK!
+                                else {
+                                    onOrgDecide(createdOrg);
+                                }
+                            } else {
+                                console.error(
+                                    "Failed to fetch data from /api/organizations"
+                                );
+                            }
+                        } catch (error) {
+                            console.error("An error occurred while checking data:", error);
+                        }
+                    };
+                    console.log(createdOrg);
+                    checkOrgs();
                 }}
             >
                 {createdOrg
@@ -120,7 +143,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-function MyTabs() {
+function MyTabs({onOrgDecide}) {
     return (
         <Tab.Group>
             <Tab.List className="flex space-x-5 rounded-xl p-1">
@@ -153,10 +176,10 @@ function MyTabs() {
             </Tab.List>
             <Tab.Panels>
                 <Tab.Panel>
-                    <SelectOrg></SelectOrg>
+                    <SelectOrg onOrgDecide={onOrgDecide}></SelectOrg>
                 </Tab.Panel>
                 <Tab.Panel>
-                    <CreateOrg></CreateOrg>
+                    <CreateOrg onOrgDecide={onOrgDecide}></CreateOrg>
                 </Tab.Panel>
             </Tab.Panels>
         </Tab.Group>
