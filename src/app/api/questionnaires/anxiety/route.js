@@ -1,14 +1,12 @@
 import connectMongoDB from "@/libs/mongodb";
-// import Personalitylist from "@/models/PersonalityList";
+import anxietyAssessment from "@/models/anxietyAssessment";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     await connectMongoDB();
-
-    const personalityData = await Personalitylist.find({});
-
-    return NextResponse.json(personalityData);
+    const burnoutAssessmentData = await anxietyAssessment.find({});
+    return NextResponse.json(anxietyAssessmentData);
   } catch (error) {
     console.error("Error fetching users:", error);
     return NextResponse.json(

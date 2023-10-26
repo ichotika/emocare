@@ -4,13 +4,16 @@ import OrganizationSidebar from "@/components/base/OrganizationSidebar";
 export default function Home() {
   return (
     <>
-    {/* Organization Sidebar */}
-      <div className="">
-        <OrganizationSidebar>
-        </OrganizationSidebar>
-      </div>
+      <div className="flex min-h-full">
 
-      <Main />
+        {/* Organization Sidebar */}
+        <div className="min-h-full">
+          <OrganizationSidebar></OrganizationSidebar>
+        </div>
+        <div>
+          <Main />
+        </div>
+      </div>
     </>
   );
 }
