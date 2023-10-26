@@ -4,7 +4,7 @@ import Image from "next/image";
 import BadCondition from "@/public/assets/organization/badConditionIcon.svg";
 import GoodCondition from "@/public/assets/organization/goodConditionIcon.svg";
 import MedCondition from "@/public/assets/organization/medConditionIcon.svg";
-import EmployeeTable from "@/components/organizations/EmployeeTable";
+import RecordTable from "@/components/organizations/RecordTable";
 function AssessmentRecords({ emplist }) {
     const [employeeList, setEmployeeList] = useState([emplist]);
     async function fetchData() {
@@ -58,7 +58,7 @@ function AssessmentRecords({ emplist }) {
                     </div>
                 </div>
             </div>
-            <EmployeeTable employeeList={employeeList} />
+            <RecordTable employeeList={employeeList} />
         </div>
     );
 }
