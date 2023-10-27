@@ -5,22 +5,24 @@ import BadCondition from "@/public/assets/organization/badConditionIcon.svg";
 import GoodCondition from "@/public/assets/organization/goodConditionIcon.svg";
 import MedCondition from "@/public/assets/organization/medConditionIcon.svg";
 import RecordTable from "@/components/organizations/RecordTable";
-function AssessmentRecords({ emplist }) {
-    const [employeeList, setEmployeeList] = useState([emplist]);
-    async function fetchData() {
-        const response = await fetch("/api/organization/temp-employees");
-        if (!response.ok) {
-            console.error("Error fetching data.");
-            return;
-        }
-
-        const data = await response.json();
-        setEmployeeList(data.emplist);
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+function AssessmentRecords({ emplist, prevObj, curObj }) {
+    console.log(prevObj);
+    console.log(curObj);
+    const compareObj = {
+        difGood: (
+            (curObj.good / curObj.total - prevObj.good / prevObj.total) *
+            100
+        ).toFixed(2),
+        difDecent: (
+            (curObj.decent / curObj.total - prevObj.decent / prevObj.total) *
+            100
+        ).toFixed(2),
+        difCritical: (
+            (curObj.critical / curObj.total -
+                prevObj.critical / prevObj.total) *
+            100
+        ).toFixed(2),
+    };
     return (
         <div>
             <div className="flex gap-5">
@@ -28,7 +30,7 @@ function AssessmentRecords({ emplist }) {
                     <Image src={GoodCondition} alt="good condition" />
                     <div className="flex flex-col gap-1">
                         <h3 className="block text-start text-2xl font-bold">
-                            67%
+                            {((curObj.good / curObj.total) * 100).toFixed(1)}%
                         </h3>
                         <p className="block text-start text-xl font-bold">
                             Good Condition
@@ -39,7 +41,7 @@ function AssessmentRecords({ emplist }) {
                     <Image src={MedCondition} alt="decent condition" />
                     <div className="flex flex-col gap-1">
                         <h3 className="block text-start text-2xl font-bold">
-                            23%
+                            {((curObj.decent / curObj.total) * 100).toFixed(1)}%
                         </h3>
                         <p className="block text-start text-xl font-bold">
                             Decent Condition
@@ -50,7 +52,10 @@ function AssessmentRecords({ emplist }) {
                     <Image src={BadCondition} alt="critical condition" />
                     <div className="flex flex-col gap-1">
                         <h3 className="block text-start text-2xl font-bold">
-                            10%
+                            {((curObj.critical / curObj.total) * 100).toFixed(
+                                1
+                            )}
+                            %
                         </h3>
                         <p className="block text-start text-xl font-bold">
                             Critical Condition
@@ -58,7 +63,7 @@ function AssessmentRecords({ emplist }) {
                     </div>
                 </div>
             </div>
-            <RecordTable employeeList={employeeList} />
+            <RecordTable employeeList={emplist.emplist} />
         </div>
     );
 }
