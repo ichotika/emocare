@@ -2,17 +2,6 @@
 import { useState, useEffect } from 'react'
 
 const Questionnaire = () => {
-    // const questions = [
-    //     { No: "1", question: "Little interest or pleasure in doing things" },
-    //     { No: "2", question: "Feeling down, depressed, or hopeless" },
-    //     { No: "3", question: "Trouble falling or staying asleep, or sleeping too much " },
-    //     { No: "4", question: "Feeling tired or having little energy " },
-    //     { No: "5", question: "Poor appetite or overeating " },
-    //     { No: "6", question: "Feeling bad about yourself — or that you are a failure or have let yourself or your family down" },
-    //     { No: "7", question: "Trouble concentrating on things, such as reading the newspaper or watching television" },
-    //     { No: "8", question: "Moving or speaking so slowly that other people could have noticed?  Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual " },
-    //     { No: "9", question: "Thoughts that you would be better off dead or of hurting yourself in some way " }
-    // ]
 
     const options = [
         { label: "Not At All", value: 0 },
@@ -157,8 +146,8 @@ const Questionnaire = () => {
                 
 
 
-                <button>Save</button>
-                <button>Submit Anonymously</button>
+                <button className="rounded-lg border-neutral-950 p-3 m-3">Save</button>
+                <button className="bg-blue-600 rounded-lg p-3 text-white m-3">Submit Anonymously</button>
             </form>
 
 
