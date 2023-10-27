@@ -6,8 +6,8 @@ const OrgSchema = new Schema (
         owner: String
     },
     {
-        timestamps: true,
+        collection: 'organizations'
     }
 )
 
-export default mongoose.models.Orgs || mongoose.model("Orgs",OrgSchema);
+export default mongoose.models.Organization || mongoose.model("Organization",OrgSchema);
