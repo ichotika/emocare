@@ -112,7 +112,7 @@ function CreateOrg({onOrgDecide}) {
                                 const orgNames = data.orgList.map(({ orgName }) => orgName);
                                 // Name matches an existing org => Bad!
                                 if (orgNames.includes(createdOrg)) {
-                                    console.error("Your organization already exists!");
+                                    alert("Your organization already exists!");
                                 }
                                 // New org name => OK!
                                 else {
