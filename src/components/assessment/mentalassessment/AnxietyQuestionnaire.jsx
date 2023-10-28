@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useUser } from "@clerk/nextjs";
 
-const Questionnaire = () => {
+const AnxietyQuestionnaire = () => {
 
     const { user } = useUser();
 
