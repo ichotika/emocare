@@ -1,6 +1,8 @@
 import connectMongoDB from "@/libs/mongodb";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
+
+
 export async function GET() {
     try {
         await connectMongoDB();
