@@ -4,7 +4,7 @@ import React, { useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import FeedbackCard from "@/components/organizations/dashboard/FeedbackCard";
 
-export default function Feedbacks() {
+export default function Feedbacks({ feedbacks }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
     const scrollPrev = useCallback(() => {
@@ -28,48 +28,17 @@ export default function Feedbacks() {
                 </button>
                 <div className="embla__viewport" ref={emblaRef}>
                     <div className="embla__container">
-                        <div className="embla__slide">
-                            <FeedbackCard
-                                imgSrc="https://picsum.photos/id/236/200/300"
-                                author="Anonymous"
-                                title="Burnout"
-                            >
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Quibusdam, minus. Veniam
-                                    consectetur consequatur libero, officia
-                                    cumque a adipisci reiciendis id.
-                                </p>
-                            </FeedbackCard>
-                        </div>
-                        <div className="embla__slide">
-                            <FeedbackCard
-                                imgSrc="https://picsum.photos/id/237/200/300"
-                                author="John Doe"
-                                title="Happiness"
-                            >
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Quibusdam, minus. Veniam
-                                    consectetur consequatur libero, officia
-                                    cumque a adipisci reiciendis id.
-                                </p>
-                            </FeedbackCard>
-                        </div>
-                        <div className="embla__slide">
-                            <FeedbackCard
-                                imgSrc="https://picsum.photos/id/239/200/300"
-                                author="Jane Smith"
-                                title="Productivity"
-                            >
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Quibusdam, minus. Veniam
-                                    consectetur consequatur libero, officia
-                                    cumque a adipisci reiciendis id.
-                                </p>
-                            </FeedbackCard>
-                        </div>
+                        {feedbacks.map((feedback, index) => (
+                            <div className="embla__slide" key={index}>
+                                <FeedbackCard
+                                    imgSrc={feedback.img}
+                                    author={feedback.author}
+                                    title={feedback.title}
+                                >
+                                    <p>{feedback.description}</p>
+                                </FeedbackCard>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <button
