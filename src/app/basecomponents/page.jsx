@@ -4,28 +4,28 @@ import RoundedBtn from "@/components/base/RoundedBtn";
 import HeaderTab from "@/components/base/HeaderTab";
 
 export default function Basecomponent() {
-  return (
-    <>
-      <h2>HeaderTab</h2>
-      <HeaderTab />
-      <br />
-      <h2>MainBtn</h2>
-      <MainBtn
-        buttontext={"Confirm"}
-        bgColor={"bg-blue-700"}
-        textColor={"text-white"}
-      />
-      <br />
-      <br />
-      <h2>Notification</h2>
-      <Notification />
-      <br />
-      <h2>RoundedBtn</h2>
-      <RoundedBtn
-        buttontext={"Notify"}
-        bgColor={"bg-blue-700"}
-        textColor={"text-white"}
-      />
-    </>
-  );
+    return (
+        <>
+            <h2>HeaderTab</h2>
+            <HeaderTab tabNames={["ALL", "Designer", "Developper"]} />
+            <br />
+            <h2>MainBtn</h2>
+            <MainBtn
+                buttontext={"Confirm"}
+                bgColor={"bg-blue-700"}
+                textColor={"text-white"}
+            />
+            <br />
+            <br />
+            <h2>Notification</h2>
+            <Notification />
+            <br />
+            <h2>RoundedBtn</h2>
+            <RoundedBtn
+                buttontext={"Notify"}
+                bgColor={"bg-blue-700"}
+                textColor={"text-white"}
+            />
+        </>
+    );
 }

@@ -1,12 +1,21 @@
-import { SignUp } from "@clerk/nextjs";
+"use client";
+import SignUpUI from "@/components/sign-up/SignUpUI";
+import FinalSignUpPage from "@/components/sign-up/FinalSignUpPage";
+import { useState } from "react";
+import { usePathname } from 'next/navigation'
 
 export default function Page() {
-    return (
-        <div className="grid lg:grid-cols-3">
-            <div className="col-span-2 hidden rounded-2xl bg-[url('https://images.unsplash.com/photo-1560249956-b3731ecf3153')] bg-cover bg-center lg:block"></div>
-            <div className="col-start-3 col-end-3 -ml-16">
-                <SignUp />
-            </div>
-        </div>
-    );
+    const [finalOrg,setFinalOrg] = useState("");
+    const pathname = usePathname();
+    
+    console.log(pathname);
+
+    const handleOrgDecide = (orgName) => {
+        setFinalOrg(orgName);
+    }
+
+    console.log("equals sign-up", pathname==="/sign-up");
+    return pathname!=="/sign-up" || finalOrg?<FinalSignUpPage orgName={finalOrg}></FinalSignUpPage>:<SignUpUI onOrgDecide={handleOrgDecide}></SignUpUI>;
 }
+
+
