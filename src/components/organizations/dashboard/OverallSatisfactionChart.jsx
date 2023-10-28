@@ -5,18 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 export default function OverallSatisfactionChart({ satisfaction }) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  // cannot fetch data
-  console.log("satisfaction", satisfaction)
-  console.log("satisfaction", satisfaction.satisfactionScore)
-
-  const firstSatisfactionData = satisfaction[0];
-    
-    
-  // const satisfactionScore = firstSatisfactionData.satisfactionScore;
-  console.log("satisfaction--------------", typeof firstSatisfactionData)
-    
-
-  const totalSatisfactionScore = 64
+  const totalSatisfactionScore = satisfaction[0]?.satisfactionScore
 
   const data = {
     labels: ["Satisfaction", "Remaining"],

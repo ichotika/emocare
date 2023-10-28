@@ -88,9 +88,12 @@ export default function Home() {
     useEffect(() => {
         const getOrganizations = async () => {
             const organizations = await fetchOrganizations();
+            
             setOrganizations(organizations.organizations);
         };
+        
         getOrganizations();
+
     }, []);
 
 
