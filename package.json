@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.25.3",
     "chart.js": "^4.4.0",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "dayjs": "^1.11.10",
     "embla-carousel-autoplay": "^8.0.0-rc14",
     "embla-carousel-react": "^8.0.0-rc14",
     "formik": "^2.4.5",

@@ -1,0 +1,162 @@
+[
+  {
+    "userid": "1",
+    "assessment_id": "A1",
+    "score": 26,
+    "assessment_type": "Depression",
+    "timestamp": "2023-10-20T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "2",
+    "assessment_id": "A2",
+    "score": 47,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-10-21T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "3",
+    "assessment_id": "A3",
+    "score": 42,
+    "assessment_type": "Depression",
+    "timestamp": "2023-10-20T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "4",
+    "assessment_id": "A4",
+    "score": 11,
+    "assessment_type": "Depression",
+    "timestamp": "2023-09-20T12:00:00Z",
+    "score_description": "Critical"
+  },
+  {
+    "userid": "5",
+    "assessment_id": "A5",
+    "score": 7,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-10-09T12:00:00Z",
+    "score_description": "Critical"
+  },
+  {
+    "userid": "6",
+    "assessment_id": "A6",
+    "score": 10,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-10-24T12:00:00Z",
+    "score_description": "Critical"
+  },
+  {
+    "userid": "7",
+    "assessment_id": "A7",
+    "score": 18,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-10-19T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "8",
+    "assessment_id": "A8",
+    "score": 40,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-09-02T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "9",
+    "assessment_id": "A9",
+    "score": 1,
+    "assessment_type": "Depression",
+    "timestamp": "2023-09-06T12:00:00Z",
+    "score_description": "Critical"
+  },
+  {
+    "userid": "10",
+    "assessment_id": "A10",
+    "score": 36,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-08-19T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "11",
+    "assessment_id": "A11",
+    "score": 35,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-10-19T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "12",
+    "assessment_id": "A12",
+    "score": 37,
+    "assessment_type": "Depression",
+    "timestamp": "2023-09-03T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "13",
+    "assessment_id": "A13",
+    "score": 23,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-10-26T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "14",
+    "assessment_id": "A14",
+    "score": 14,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-08-26T12:00:00Z",
+    "score_description": "Critical"
+  },
+  {
+    "userid": "15",
+    "assessment_id": "A15",
+    "score": 22,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-09-15T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "16",
+    "assessment_id": "A16",
+    "score": 17,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-10-25T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "17",
+    "assessment_id": "A17",
+    "score": 30,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-10-05T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "18",
+    "assessment_id": "A18",
+    "score": 50,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-08-09T12:00:00Z",
+    "score_description": "Good"
+  },
+  {
+    "userid": "19",
+    "assessment_id": "A19",
+    "score": 18,
+    "assessment_type": "Anxiety",
+    "timestamp": "2023-09-03T12:00:00Z",
+    "score_description": "Decent"
+  },
+  {
+    "userid": "20",
+    "assessment_id": "A20",
+    "score": 13,
+    "assessment_type": "Burn out",
+    "timestamp": "2023-09-21T12:00:00Z",
+    "score_description": "Critical"
+  }
+]
