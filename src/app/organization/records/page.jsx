@@ -28,7 +28,7 @@ function calculateRatio(arr) {
         },
         { good: 0, decent: 0, critical: 0, total: 0 }
     );
-
+    console.log(countObj);
     return countObj;
 }
 
