@@ -7,7 +7,7 @@ export default function Home() {
             <div className="flex min-h-full">
                 {/* Organization Sidebar */}
                 <div className="min-h-full">
-                    <OrganizationSidebar></OrganizationSidebar>
+                    <OrganizationSidebar />
                 </div>
                 <div>
                     <Main />

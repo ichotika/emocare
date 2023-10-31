@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react'
 import { useUser } from "@clerk/nextjs";
+import EmployeeSidebar from '@/components/base/EmployeeSidebar';
 
 const Questionnaire = () => {
 
@@ -45,11 +46,11 @@ const Questionnaire = () => {
     );
 
     const depressionLevel = [
-        {dlevel: "Non-minimal", description: "Patient may not need depression treatment." },
-        {dlevel: "Mild", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
-        {dlevel: "Moderate", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment."},
-        {dlevel: "Moderate severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."},
-        {dlevel: "Severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment."}
+        { dlevel: "Non-minimal", description: "Patient may not need depression treatment." },
+        { dlevel: "Mild", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment." },
+        { dlevel: "Moderate", description: "Use clinical judgment about treatment, based on patient's duration of symptoms and functional impairment." },
+        { dlevel: "Moderate severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment." },
+        { dlevel: "Severe", description: "Treat using antidepressants, psychotherapy or a combination of treatment." }
     ]
 
     // const [level, setLevel] = useState("")
@@ -63,27 +64,27 @@ const Questionnaire = () => {
 
         switch (true) {
             case totalScore <= 4:
-            result.dlevel =  depressionLevel[0].dlevel;
-            result.description = depressionLevel[0].description;
-            break;
+                result.dlevel = depressionLevel[0].dlevel;
+                result.description = depressionLevel[0].description;
+                break;
 
             case totalScore <= 9:
-                result.dlevel =  depressionLevel[1].dlevel;
+                result.dlevel = depressionLevel[1].dlevel;
                 result.description = depressionLevel[1].description;
-            break;
+                break;
 
             case totalScore <= 14:
-                result.dlevel =  depressionLevel[2].dlevel;
+                result.dlevel = depressionLevel[2].dlevel;
                 result.description = depressionLevel[2].description;
-            break;
+                break;
 
             case totalScore >= 15:
-                result.dlevel =  depressionLevel[3].dlevel;
+                result.dlevel = depressionLevel[3].dlevel;
                 result.description = depressionLevel[3].description;
-            break;
+                break;
 
             default:
-            return depressionLevel[4].dlevel;
+                return depressionLevel[4].dlevel;
         }
         return result
     }
@@ -113,11 +114,11 @@ const Questionnaire = () => {
         }
     }
 
-    const [ depressionQustionnaire, setDepressionQuestionnaire] = useState([]);
+    const [depressionQustionnaire, setDepressionQuestionnaire] = useState([]);
 
     // Get the questionnaire from server.
-    useEffect(()=> {
-        const fetchDepressionQuestionnaire = async() => {
+    useEffect(() => {
+        const fetchDepressionQuestionnaire = async () => {
             const res = await fetch("http://localhost:3000/api/questionnaires/depression");
             const data = await res.json();
             console.log("depression questionnaire", data);
@@ -131,46 +132,53 @@ const Questionnaire = () => {
 
     return (
         <>
-            <form method="POST" onSubmit={handleSubmit}>
-                <table style={{ width: "100%" }}>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th colSpan="4">Questions</th>
-                        </tr>
-                    </thead>
+            <div className="flex">
+                <EmployeeSidebar />
+                <div>
 
-                    <tbody>
-                        {depressionQustionnaire.map((question) => (
-                            <tr key={question.No}>
-                                <td>{question.No}</td>
-                                <td colSpan="4">{question.question}</td>
-                                {options.map((option) => (
-                                    <td>
-                                        <label
-                                            htmlFor={`q${question.No}_${option.value}`}>{option.label}</label>
-                                        <input
-                                            type="radio"
-                                            name={`q${question.No}`}
-                                            id={`q${question.No}_${option.value}`}
-                                            value={Number(option.value)}
-                                            onChange={handleRadioChange}
-                                        />
-                                    </td>
-                                ))}
+                </div>
+
+                <form method="POST" onSubmit={handleSubmit}>
+                    <table style={{ width: "100%" }}>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th colSpan="4">Questions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
 
-                <button className="rounded-lg border-neutral-950 p-3 m-3">Save</button>
-                <button onClick={(handleSubmit)}className="bg-blue-600 rounded-lg p-3 text-white m-3">Submit Anonymously</button>
-            </form>
+                        <tbody>
+                            {depressionQustionnaire.map((question) => (
+                                <tr key={question.No}>
+                                    <td>{question.No}</td>
+                                    <td colSpan="4">{question.question}</td>
+                                    {options.map((option) => (
+                                        <td>
+                                            <label
+                                                htmlFor={`q${question.No}_${option.value}`}>{option.label}</label>
+                                            <input
+                                                type="radio"
+                                                name={`q${question.No}`}
+                                                id={`q${question.No}_${option.value}`}
+                                                value={Number(option.value)}
+                                                onChange={handleRadioChange}
+                                            />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
+                    <button className="rounded-lg border-neutral-950 p-3 m-3">Save</button>
+                    <button onClick={(handleSubmit)} className="bg-blue-600 rounded-lg p-3 text-white m-3">Submit Anonymously</button>
+                </form>
+                {/* 
 
             <p>Your total mental score is {totalScore}</p>
             <p>Your mental health level is Your mental health level is {getDepressionLevel(totalScore).dlevel}</p>
-            <p>Your mental health level is Your mental health level is "{getDepressionLevel(totalScore).description}"</p>
+            <p>Your mental health level is Your mental health level is "{getDepressionLevel(totalScore).description}"</p> */}
+            </div>
         </>
     );
 }

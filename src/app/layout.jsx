@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         }}>
             <html lang="en">
                 <body>
-                        <div className="max-w-screen-lg min-h-full mx-auto p-4">
+                        <div className="min-h-full mx-auto p-4">
                             <Navbar />
                             <StyledComponentsRegistry className="mt-8">
                                 {children}
