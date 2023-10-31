@@ -17,8 +17,8 @@ function AssessmentHistory({ assessment }) {
                 <div className="w-1/5 text-center">Burnout</div>
             </div>
             <>
-                {assessment.map((assess) => (
-                    <div key={assess.aid}>
+                {assessment.map((assess, index) => (
+                    <div key={index}>
                         <AssessmentRecord
                             date={assess.assessDate}
                             anonymous={assess.anonymous}
