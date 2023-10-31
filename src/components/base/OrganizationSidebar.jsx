@@ -13,10 +13,10 @@ const OrganizationSidebar = () => {
                     <nav>
                         <ul>
                             <li>
-                                <Link href="/organization">Dashboard </Link>
+                                <Link href="/organization/dashboard">Dashboard </Link>
                             </li>
                             <li>
-                                <Link href="/organization/assessmentRecord">
+                                <Link href="/organization/records">
                                     Assessment Record
                                 </Link>
                             </li>

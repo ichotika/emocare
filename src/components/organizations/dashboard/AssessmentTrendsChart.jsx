@@ -11,7 +11,64 @@ import {
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-export default function AssessmentTrendsChart() {
+export default function AssessmentTrendsChart({employee}) {
+    const targetYear = 2023;
+
+    // find employee take assessment
+    const assessmentCountsByMonth = Array(12).fill(0);
+    employee.forEach(employee => {
+    const assessmentTakenDate = new Date(employee.assessmentTakenDate);
+    if (employee.status === "active") {
+        const month = assessmentTakenDate.getMonth();
+        if (assessmentTakenDate.getFullYear() === targetYear) {
+        assessmentCountsByMonth[month]++;
+        } 
+    }
+    });
+
+    console.log("Counts of active employees with assessments by month:");
+    console.log("#assessments", assessmentCountsByMonth);
+
+   
+
+
+    // find active employee
+    const activeEmployeesByMonth = Array(12).fill(0);
+    employee.forEach(employee => {
+    if (employee.status === "active" && !employee.resignDate) {
+        const joinDate = new Date(employee.joinDate);
+        const joinMonth = joinDate.getMonth();
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
+        const monthsInYear = 12;
+
+        if (joinDate.getFullYear() === currentYear) {
+        for (let month = joinMonth; month <= currentMonth; month++) {
+            activeEmployeesByMonth[month]++;
+        }
+        } else if (joinDate.getFullYear() < currentYear) {
+        for (let month = joinMonth; month < monthsInYear; month++) {
+            activeEmployeesByMonth[month]++;
+        }
+        if (joinDate.getFullYear() === currentYear - 1) {
+            for (let month = 0; month <= currentMonth; month++) {
+            activeEmployeesByMonth[month]++;
+            }
+        }
+        }
+    }
+    });
+    console.log("#active employee",activeEmployeesByMonth);
+
+
+    // the remaining
+    const remainingByMonth = activeEmployeesByMonth.map((activeCount, index) => {
+        return activeCount - assessmentCountsByMonth[index];
+    });
+    console.log("remainingByMonth",remainingByMonth);
+
+
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -40,19 +97,13 @@ export default function AssessmentTrendsChart() {
         datasets: [
             {
                 label: "Achieved",
-                data: [
-                    100, 200, 300, 400, 500, 600, 700, 100, 200, 300, 400, 500,
-                    600,
-                ],
+                data: assessmentCountsByMonth,
                 backgroundColor: "grey",
                 // rgba(255, 99, 132, 0.5)
             },
             {
                 label: "Remaining",
-                data: [
-                    700, 600, 500, 400, 300, 200, 100, 200, 300, 400, 500, 600,
-                    700,
-                ],
+                data: remainingByMonth,
                 backgroundColor: "lightgrey",
             },
         ],

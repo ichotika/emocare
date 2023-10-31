@@ -1,49 +1,45 @@
-"use client"
-import { useState, useEffect } from 'react'
+"use client";
+import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import EmployeeSidebar from '@/components/base/EmployeeSidebar';
 
 const Questionnaire = () => {
-
     const { user } = useUser();
 
     const options = [
         { label: "Not At All", value: 0 },
         { label: "Several Days", value: 1 },
         { label: "More than half the day", value: 2 },
-        { label: "Nearly everyday", value: 3 }
-    ]
+        { label: "Nearly everyday", value: 3 },
+    ];
 
-    const [value, setValue] = useState(
-        {
-            q1: 0,
-            q2: 0,
-            q3: 0,
-            q4: 0,
-            q5: 0,
-            q6: 0,
-            q7: 0,
-            q8: 0,
-            q9: 0,
-            q10: 0,
-            q11: 0,
-            q12: 0,
-            q13: 0
-        }
-    )
+    const [value, setValue] = useState({
+        q1: 0,
+        q2: 0,
+        q3: 0,
+        q4: 0,
+        q5: 0,
+        q6: 0,
+        q7: 0,
+        q8: 0,
+        q9: 0,
+        q10: 0,
+        q11: 0,
+        q12: 0,
+        q13: 0,
+    });
 
     const handleRadioChange = (event) => {
-        setValue({ ...value, [event.target.name]: Number(event.target.value) })
-    }
+        setValue({ ...value, [event.target.name]: Number(event.target.value) });
+    };
 
     const totalScore = Object.values(value).reduce((score, total) => {
         if (total !== null) {
             return score + total;
         }
 
-        return "You are missing some questions"
-    }, 0
-    );
+        return "You are missing some questions";
+    }, 0);
 
     const depressionLevel = [
         { dlevel: "Non-minimal", description: "Patient may not need depression treatment." },
@@ -56,11 +52,10 @@ const Questionnaire = () => {
     // const [level, setLevel] = useState("")
 
     const getDepressionLevel = (totalScore) => {
-
         const result = {
             dlevel: "",
-            description: ""
-        }
+            description: "",
+        };
 
         switch (true) {
             case totalScore <= 4:
@@ -86,33 +81,32 @@ const Questionnaire = () => {
             default:
                 return depressionLevel[4].dlevel;
         }
-        return result
-    }
+        return result;
+    };
 
-
-    // post data to assessHistory collection in MongoDB. 
+    // post data to assessHistory collection in MongoDB.
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch('/api/questionnaires/depression', {
+        const response = await fetch("/api/questionnaires/depression", {
             method: "POST",
             body: JSON.stringify({
                 emailID: "kimi.saigooon@gmail.com",
                 assessDate: new Date(),
                 depressionLevel: getDepressionLevel(totalScore).dlevel,
-                depressionPercent: totalScore
+                depressionPercent: totalScore,
             }),
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
 
         if (response.ok) {
-            console.log("Data sunbmitted successfuly.")
+            console.log("Data sunbmitted successfuly.");
         } else {
             console.error(`Failed to submit data`);
         }
-    }
+    };
 
     const [depressionQustionnaire, setDepressionQuestionnaire] = useState([]);
 
@@ -126,9 +120,6 @@ const Questionnaire = () => {
         };
         fetchDepressionQuestionnaire();
     }, []);
-
-
-
 
     return (
         <>
@@ -181,6 +172,6 @@ const Questionnaire = () => {
             </div>
         </>
     );
-}
+};
 
 export default Questionnaire;
