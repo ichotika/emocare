@@ -79,6 +79,7 @@ function DoughnutChart({ healthPercent, categoryTitle, percentCompleted }) {
 
     return (
         <div style={{ width: "100%", height: "100%" }}>
+            <h3 className="text-center font-bold">{categoryTitle}</h3>
             <Doughnut
                 data={data}
                 options={[options]}
