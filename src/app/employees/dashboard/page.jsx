@@ -69,7 +69,10 @@ export default function page() {
                             }
                         />
                     ) : (
-                        <><h1>{deprData.depr}</h1><NoResultChart mainTitle={"Depression"} /></>
+                        <><h1>{deprData.depr}</h1>
+                        <NoResultChart 
+                            mainTitle={"Depression"} 
+                            link="/assessment/mental" /></>
                     )}
                     {anxietyData ? (
                         <HalfDoughnutChart
@@ -90,7 +93,9 @@ export default function page() {
                             }
                         />
                     ) : (
-                        <NoResultChart mainTitle={"Anxiety"} />
+                        <NoResultChart 
+                            mainTitle={"Anxiety"} 
+                            link="/assessment/mental"/>
                     )}
                     {burnoutData ? (
                         <HalfDoughnutChart
@@ -111,7 +116,9 @@ export default function page() {
                             }
                         />
                     ) : (
-                        <NoResultChart mainTitle={"Burnout"} />
+                        <NoResultChart 
+                            mainTitle={"Burnout"}
+                            link="/assessment/mental" />
                     )}
                 </div>
                 <div className="m-2 rounded-lg bg-white p-5">

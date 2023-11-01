@@ -4,6 +4,7 @@ import Image from "next/image";
 import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
+
 const AuthOrganizationList = ({ employeeList, fetchData }) => {
     async function updateData(userId) {
         const response = await fetch(`/api/organization/temp-employees`, {
