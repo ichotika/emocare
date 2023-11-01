@@ -1,8 +1,7 @@
 "use client";
-
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 const OverallCard = ({assessmentData, employee}) => {
-    // Calculate the net change in employees in month 10 of 2023
     const targetYear = 2023; 
     const targetMonth = 9; // Month 10 
 
@@ -14,19 +13,14 @@ const OverallCard = ({assessmentData, employee}) => {
             change += 1; // Employee joined in month 10
         }
 
-        if (resignDate.getMonth() === targetMonth && resignDate.getFullYear() === targetYear) {
-            change -= 1; // Employee resigned in month 10
-        }
-
         return change;
     }, 0);
 
 
 
-    // calculate %diff : need to fix formula
+    // calculate %diff 
     const activeEmployees = employee.filter(emp => emp.status === "active");
 
-    // Filter active employees with assessmentTakenDate in month 10 of 2023
     const activeEmployeesInMonth10Year2023 = activeEmployees.filter(emp => {
         const assessmentDate = new Date(emp.assessmentTakenDate);
         return (
@@ -34,7 +28,7 @@ const OverallCard = ({assessmentData, employee}) => {
         );
     });
 
-    // Calculate the percentage difference
+  
     const percentageDifference = ((activeEmployeesInMonth10Year2023.length / activeEmployees.length) * 100).toFixed(0);
 
 
@@ -67,62 +61,84 @@ const OverallCard = ({assessmentData, employee}) => {
     
     return (
         <div className="mb-7 mt-7 flex">
-            <div className="flex w-3/4 gap-8">
+            <div className="flex flex-col xl:flex-row xl:w-4/5 gap-4">
                 <div className="flex flex-grow p-1">
-                    <a
-                        href="#"
-                        className="block max-w-sm flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                    >
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Total Employees
-                        </p>
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+                        <p className="text-xl">Total Employees</p>
                         <div className="mt-3 flex flex-grow justify-between">
-                            <h4 className="text-5xl font-bold text-white">
-                                {employee.length}
-                            </h4>
-                            <p className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                {changeInEmployeesMonth10Year2023}
-                            </p>
+                            <div className="flex-grow flex flex-col justify-between">
+                                <h4 className="text-5xl font-bold flex-grow">{employee.length}</h4>                         
+                        
+                                <div className="text-sm flex">
+                                {changeInEmployeesMonth10Year2023 > 0 ? (
+                                    <>
+                                    <div style={{ color: 'green' }}>
+                                        <FaArrowUp />
+                                    </div>
+                                    <p style={{ color: 'green', marginLeft: '5px', marginRight: '5px' }}>
+                                        +{changeInEmployeesMonth10Year2023}
+                                    </p>
+                                    </>
+                                ) : changeInEmployeesMonth10Year2023 < 0 ? (
+                                    <>
+                                    <div style={{ color: 'red' }}>
+                                        <FaArrowDown />
+                                    </div>
+                                    <p style={{ color: 'red', marginLeft: '5px', marginRight: '5px' }}>
+                                        -{Math.abs(changeInEmployeesMonth10Year2023)}
+                                    </p>
+                                    </>
+                                ) :  (
+                                    <div style={{ color: 'black', marginLeft: '5px', marginRight: '5px' }}>
+                                    {changeInEmployeesMonth10Year2023}
+                                    </div>
+                                )}
+                                <div>vs last month</div>
+                            </div>
+                            </div>
+                            <svg className='w-1/2' height="auto" viewBox="0 0 2000 1400" xmlns="http://www.w3.org/2000/svg"><path d="M0 1387.275c21-5.86 63-16.554 105-29.296 42-12.743 63-7.085 105-34.416 42-27.33 63-61.513 105-102.236 42-40.722 63-96.672 105-101.377 42-4.705 63 83.506 105 77.85 42-5.655 63-65.3 105-106.129 42-40.83 63-68.964 105-98.018 42-29.054 63-27.774 105-47.25s63-32.486 105-50.131c42-17.645 63-56.424 105-38.092s63 114.066 105 129.754c42 15.688 63 4.17 105-51.314s63-164.235 105-226.109c42-61.874 63-106.503 105-83.26 42 23.242 63 245.89 105 199.472 42-46.416 63-337.502 105-431.556 42-94.054 63 11.87 105-38.714 42-50.584 63-246.98 105-214.21 42 32.77 84 302.45 105 378.061l5 879.696H0Z" fill="#5bd32f1a"/><path d="M0 1387.275c21-5.86 63-16.554 105-29.296 42-12.743 63-7.085 105-34.416 42-27.33 63-61.513 105-102.236 42-40.722 63-96.672 105-101.377 42-4.705 63 83.506 105 77.85 42-5.655 63-65.3 105-106.129 42-40.83 63-68.964 105-98.018 42-29.054 63-27.774 105-47.25s63-32.486 105-50.131c42-17.645 63-56.424 105-38.092s63 114.066 105 129.754c42 15.688 63 4.17 105-51.314s63-164.235 105-226.109c42-61.874 63-106.503 105-83.26 42 23.242 63 245.89 105 199.472 42-46.416 63-337.502 105-431.556 42-94.054 63 11.87 105-38.714 42-50.584 63-246.98 105-214.21 42 32.77 84 302.45 105 378.061" fill="none" stroke="#5bd32f" stroke-width="6"/></svg>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
+                {/* active employee */}
                 <div className="flex flex-grow p-1">
-                    <a
-                        href="#"
-                        className="block max-w-sm flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                    >
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Active Employee
-                        </p>
-                        <div className="mt-3 flex justify-between">
-                            <h4 className="text-5xl font-bold text-white">
-                                {activeEmployees.length}
-                            </h4>
-                            <p className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                +{percentageDifference}%
-                            </p>
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+                        <p className="text-xl">Active Employee</p>
+                        <div className="mt-3 flex flex-grow justify-between">
+                            <div className="flex-grow flex flex-col justify-between">
+                                <h4 className="text-5xl font-bold flex-grow">{activeEmployees.length/employee.length*100}%</h4>                         
+                        
+                                <div className="text-sm flex items-center">
+                                {percentageDifference > 0 ? (
+                                    <>
+                                    <div style={{ color: 'green' }}>
+                                        <FaArrowUp />
+                                    </div>
+                                    <p style={{ color: 'green', marginLeft: '5px', marginRight: '5px' }}>
+                                        {percentageDifference}%
+                                    </p>
+                                    </>
+                                ) : percentageDifference < 0 ? (
+                                    <>
+                                    <div style={{ color: 'red' }}>
+                                        <FaArrowDown />
+                                    </div>
+                                    <p style={{ color: 'red', marginLeft: '5px', marginRight: '5px' }}>
+                                        {Math.abs(percentageDifference)}%
+                                    </p>
+                                    </>
+                                ) : (
+                                    <div style={{ color: 'black', marginLeft: '5px', marginRight: '5px'  }}>
+                                    {percentageDifference}%
+                                    </div>
+                                )}
+                                <div>vs last month</div>
+                            </div>
+                            </div>
+                            <svg className='w-1/2' height="auto" viewBox="0 0 2000 1400" xmlns="http://www.w3.org/2000/svg"><path d="M0 1387.275c21-5.86 63-16.554 105-29.296 42-12.743 63-7.085 105-34.416 42-27.33 63-61.513 105-102.236 42-40.722 63-96.672 105-101.377 42-4.705 63 83.506 105 77.85 42-5.655 63-65.3 105-106.129 42-40.83 63-68.964 105-98.018 42-29.054 63-27.774 105-47.25s63-32.486 105-50.131c42-17.645 63-56.424 105-38.092s63 114.066 105 129.754c42 15.688 63 4.17 105-51.314s63-164.235 105-226.109c42-61.874 63-106.503 105-83.26 42 23.242 63 245.89 105 199.472 42-46.416 63-337.502 105-431.556 42-94.054 63 11.87 105-38.714 42-50.584 63-246.98 105-214.21 42 32.77 84 302.45 105 378.061l5 879.696H0Z" fill="#5bd32f1a"/><path d="M0 1387.275c21-5.86 63-16.554 105-29.296 42-12.743 63-7.085 105-34.416 42-27.33 63-61.513 105-102.236 42-40.722 63-96.672 105-101.377 42-4.705 63 83.506 105 77.85 42-5.655 63-65.3 105-106.129 42-40.83 63-68.964 105-98.018 42-29.054 63-27.774 105-47.25s63-32.486 105-50.131c42-17.645 63-56.424 105-38.092s63 114.066 105 129.754c42 15.688 63 4.17 105-51.314s63-164.235 105-226.109c42-61.874 63-106.503 105-83.26 42 23.242 63 245.89 105 199.472 42-46.416 63-337.502 105-431.556 42-94.054 63 11.87 105-38.714 42-50.584 63-246.98 105-214.21 42 32.77 84 302.45 105 378.061" fill="none" stroke="#5bd32f" stroke-width="6"/></svg>
                         </div>
-                    </a>
-                </div>
-
-                <div className="flex flex-grow p-1">
-                    <a
-                        href="#"
-                        className="block max-w-sm flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                    >
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Total Assessments
-                        </p>
-                        <div className="mt-3 flex justify-between">
-                            <h4 className="text-5xl font-bold text-white">
-                                {assessmentData.length}
-                            </h4>
-                            <p className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                {assessmentDifference}%
-                            </p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>

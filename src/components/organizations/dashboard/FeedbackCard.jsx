@@ -1,20 +1,11 @@
 "use client";
 
-import Image from "next/image";
-export default function FeedbackCard({ imgSrc, author, title, children }) {
+export default function FeedbackCard({ imgSrc, author, title, description, children }) {
     return (
       <div>
-        <div className="flex flex-col items-center justify-items-center">
-          <div>
-            <img
-              className="rounded-full"
-              src={imgSrc}
-              alt=""
-              style={{ width: "100px", height: "100px" }}
-            />
-            <p>{author}</p>
-          </div>
-          <p>{title}</p>
+        <div className="flex flex-col ">
+          <p style={{color:"#0A285D"}} className="font-semibold text-3xl mt-6 mb-3">{title}</p>
+          <p className="text-2xl">{description}</p>
           {children}
         </div>
       </div>
