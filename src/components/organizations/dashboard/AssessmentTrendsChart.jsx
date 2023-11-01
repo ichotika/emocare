@@ -1,131 +1,105 @@
-"use client";
+import React from "react";
+import { Line } from "react-chartjs-2";
 import {
-    Chart as ChartJS,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+export default function AssessmentTrendsChart({ assessmentData }) {
+  ChartJS.register(
     CategoryScale,
     LinearScale,
-    BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
-    Legend,
-} from "chart.js";
-import React from "react";
-import { Bar } from "react-chartjs-2";
+    Legend
+  );
+  
+  const assessmentsByYear = {};
 
-export default function AssessmentTrendsChart({employee}) {
-    const targetYear = 2023;
+  assessmentData.forEach((assessment) => {
+    const timestamp = new Date(assessment.timestamp);
+    const year = timestamp.getFullYear();
+    const month = timestamp.getMonth();
+    const key = `${year}-${month}`;
 
-    // find employee take assessment
-    const assessmentCountsByMonth = Array(12).fill(0);
-    employee.forEach(employee => {
-    const assessmentTakenDate = new Date(employee.assessmentTakenDate);
-    if (employee.status === "active") {
-        const month = assessmentTakenDate.getMonth();
-        if (assessmentTakenDate.getFullYear() === targetYear) {
-        assessmentCountsByMonth[month]++;
-        } 
+    if (!assessmentsByYear[year]) {
+      assessmentsByYear[year] = new Array(12).fill(0);
     }
-    });
 
-    console.log("Counts of active employees with assessments by month:");
-    console.log("#assessments", assessmentCountsByMonth);
+    assessmentsByYear[year][month]++;
+  });
 
-   
+  
+  const assessmentArrayByYear = Object.entries(assessmentsByYear).map(
+    ([year, counts]) => ({
+      year: Number(year),
+      counts,
+    })
+  );
 
+  
+  const labels = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
 
-    // find active employee
-    const activeEmployeesByMonth = Array(12).fill(0);
-    employee.forEach(employee => {
-    if (employee.status === "active" && !employee.resignDate) {
-        const joinDate = new Date(employee.joinDate);
-        const joinMonth = joinDate.getMonth();
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-        const monthsInYear = 12;
+  const colors = ["#2469F6", "#0A285D", "#ACC8F3"]; 
 
-        if (joinDate.getFullYear() === currentYear) {
-        for (let month = joinMonth; month <= currentMonth; month++) {
-            activeEmployeesByMonth[month]++;
-        }
-        } else if (joinDate.getFullYear() < currentYear) {
-        for (let month = joinMonth; month < monthsInYear; month++) {
-            activeEmployeesByMonth[month]++;
-        }
-        if (joinDate.getFullYear() === currentYear - 1) {
-            for (let month = 0; month <= currentMonth; month++) {
-            activeEmployeesByMonth[month]++;
-            }
-        }
-        }
-    }
-    });
-    console.log("#active employee",activeEmployeesByMonth);
+  const data = {
+    labels,
+    datasets: assessmentArrayByYear.map((yearData, index) => ({
+      label: yearData.year.toString(),
+      data: yearData.counts,
+      backgroundColor: colors[index % colors.length],
+      borderColor: colors[index % colors.length],
+      pointRadius: 0, 
+      pointHitRadius: 0, 
+    })),
+  };
 
-
-    // the remaining
-    const remainingByMonth = activeEmployeesByMonth.map((activeCount, index) => {
-        return activeCount - assessmentCountsByMonth[index];
-    });
-    console.log("remainingByMonth",remainingByMonth);
-
-
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        BarElement,
-        Title,
-        Tooltip,
-        Legend
-    );
-    const labels = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ];
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: "Achieved",
-                data: assessmentCountsByMonth,
-                backgroundColor: "grey",
-                // rgba(255, 99, 132, 0.5)
-            },
-            {
-                label: "Remaining",
-                data: remainingByMonth,
-                backgroundColor: "lightgrey",
-            },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: "top",
-                display: false,
-            },
-            datalabels: {
-                display: false,
-            },
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+        align: 'end',
+        display: true,
+        labels: {
+          usePointStyle: true, 
         },
-    };
+      },
+      datalabels: {
+        display: false, 
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          color: "#F2F4F7", 
+          display: true, 
+        },
+      },
+    }
+  };
 
-    return (
-        <div className="basis-2/4 rounded-lg  border border-gray-200 bg-white p-6 shadow ">
-            <h2>Assessment Trends</h2>
-            <Bar data={data} options={options} />
-        </div>
-    );
+  return (
+    <div className="basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
+      <h2 className="text-xl mb-5">Assessment Trends</h2>
+      <Line options={options} data={data} />
+    </div>
+  );
 }
