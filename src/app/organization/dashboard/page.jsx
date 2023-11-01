@@ -6,12 +6,16 @@ import WorkplaceWellbeing from "@/components/organizations/dashboard/WorkplaceWe
 import MonthlyAssessment from "@/components/organizations/dashboard/MonthlyAssessment";
 import AssessmentTrendsChart from "@/components/organizations/dashboard/AssessmentTrendsChart";
 import Feedbacks from "@/components/organizations/dashboard/Feedbacks";
+import NotiOrganization from "@/components/notification/NotiOrganization";
+
+
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [organizations, setOrganizations] = useState([]);
+    const [notification, setNotification] = useState([]);
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -79,17 +83,41 @@ export default function Home() {
 
     }, []);
 
+    // fetch notification
+    const fetchNotification = async () => {
+        const res = await fetch("http://localhost:3000/api/notification/organization");
+        const data = await res.json();
+        return data;
+    };
+
+    useEffect(() => {
+        const getNotification = async () => {
+            const notification = await fetchNotification();
+            setNotification(notification.notification);
+        };
+        
+        getNotification();
+    }, []);
+
+
+
 
     const gaugeValue = 70;
     const gaugeMaxValue = 100;
 
     return (
         <div>
+            
+            {/* <Notification /> */}
               {/* {assessmentData.length > 0 ? (
                 <OverallCard assessmentData={assessmentData}/>
             ): ('no data') } */}
-
-            <WelcomePanel organizations={organizations}/>
+            
+            <div className="flex">
+                <WelcomePanel organizations={organizations}/>
+                <NotiOrganization notification={notification}/>
+            </div>
+            
             <OverallCard assessmentData={assessmentData} employee={employee}/>
             
           
