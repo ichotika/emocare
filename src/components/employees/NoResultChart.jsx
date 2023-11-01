@@ -1,6 +1,6 @@
 import MainBtn from "../base/MainBtn";
 
-function NoResultChart({ mainTitle }) {
+function NoResultChart({ mainTitle, link }) {
     return (
         <div className="grid-row-2 grid gap-4 rounded-lg bg-white text-center text-lg">
             <h1 className="m-1 font-bold">{mainTitle}</h1>
@@ -10,6 +10,7 @@ function NoResultChart({ mainTitle }) {
                     buttontext={"Take Assessment"}
                     bgColor={"bg-blue-700"}
                     textColor={"text-white"}
+                    link = {link}
                 />
             </div>
         </div>

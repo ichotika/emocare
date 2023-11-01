@@ -14,19 +14,15 @@ const Questionnaire = () => {
     ];
 
     const [value, setValue] = useState({
-        q1: 0,
-        q2: 0,
-        q3: 0,
-        q4: 0,
-        q5: 0,
-        q6: 0,
-        q7: 0,
-        q8: 0,
-        q9: 0,
-        q10: 0,
-        q11: 0,
-        q12: 0,
-        q13: 0,
+        q1: -1,
+        q2: -1,
+        q3: -1,
+        q4: -1,
+        q5: -1,
+        q6: -1,
+        q7: -1,
+        q8: -1,
+        q9: -1
     });
 
     const handleRadioChange = (event) => {
@@ -87,6 +83,24 @@ const Questionnaire = () => {
     // post data to assessHistory collection in MongoDB.
     const handleSubmit = async (event) => {
         event.preventDefault();
+        let i = []
+
+        for (const eachValue in value) {
+            console.log(eachValue);
+            if (value[eachValue] === -1) {
+                console.log(eachValue, value[eachValue])
+                // alert("Please input every button.")
+                i.push(eachValue)
+            }
+        }
+        if (i.length===0) {
+            // fetching
+        } else {
+            for (let index = 0; index < i.length; index++) {
+                alert("please enter value for "+ i[index])
+                
+            }
+        }
 
         const response = await fetch("/api/questionnaires/depression", {
             method: "POST",
