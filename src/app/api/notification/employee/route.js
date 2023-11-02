@@ -1,0 +1,14 @@
+import connectMongoDB from "@/libs/mongodb";
+import mongoose from "mongoose";
+import { NextResponse } from "next/server";
+export async function GET() {
+    try {
+        await connectMongoDB();
+        console.log("Connected to MongoDB");
+        let res = mongoose.connection.db.collection("temp-notification-employee");
+        let notiEmp = await res.find({}).toArray();
+        return NextResponse.json({ notiEmp });
+    } catch (error) {
+        console.error("Error connecting to MongoDB: ", error);
+    }
+}

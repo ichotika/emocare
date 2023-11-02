@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Header from "@/components/organizations/Header";
 import WelcomePanel from "@/components/organizations/dashboard/WelcomePanel";
 import OverallCard from "@/components/organizations/dashboard/OverallCard";
 import WorkplaceWellbeing from "@/components/organizations/dashboard/WorkplaceWellbeing";
@@ -7,11 +8,15 @@ import MonthlyAssessment from "@/components/organizations/dashboard/MonthlyAsses
 import AssessmentTrendsChart from "@/components/organizations/dashboard/AssessmentTrendsChart";
 import Feedbacks from "@/components/organizations/dashboard/Feedbacks";
 
+
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [organizations, setOrganizations] = useState([]);
+    const [notification, setNotification] = useState([]);
+    const [notiAssesment, setNotiAssesment]  = useState([]);
+ 
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -24,6 +29,7 @@ export default function Home() {
         const getAssessmentData = async () => {
             const assessData = await fetchAssessment();
             setAssessmentData(assessData.randAsessment);
+            setNotiAssesment(assessData);
         };
         getAssessmentData();
     }, []);
@@ -79,17 +85,43 @@ export default function Home() {
 
     }, []);
 
+    // fetch notification
+    const fetchNotification = async () => {
+        const res = await fetch("http://localhost:3000/api/notification/organization");
+        const data = await res.json();
+        return data;
+    };
+
+    useEffect(() => {
+        const getNotification = async () => {
+            const notification = await fetchNotification();
+            setNotification(notification);
+        };
+        
+        getNotification();
+    }, []);
+
 
     const gaugeValue = 70;
     const gaugeMaxValue = 100;
 
     return (
         <div>
+            
+            {/* <Notification /> */}
               {/* {assessmentData.length > 0 ? (
                 <OverallCard assessmentData={assessmentData}/>
             ): ('no data') } */}
 
-            <WelcomePanel organizations={organizations}/>
+            {notification?.notification?.length >= 0 ?
+            <Header headertext={""} notification={notification} assessment={notiAssesment}/>:<></>}
+            
+            
+            <div className="flex">
+                <WelcomePanel organizations={organizations}/>
+                {/* <NotiOrganization notification={notification}/> */}
+            </div>
+            
             <OverallCard assessmentData={assessmentData} employee={employee}/>
             
           
