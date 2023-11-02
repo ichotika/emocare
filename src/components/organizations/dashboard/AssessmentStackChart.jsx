@@ -120,13 +120,16 @@ export default function AssessmentStackChart({
             },
             datalabels: {
                 color: "black",
-                font: {
-                    weight: "bold",
-                },
                 display: true,
                 align: "center",
                 anchor: "center",
-            },
+                formatter: function(value, context) {
+                    if (value < 1) {
+                      return '';
+                    }
+                    return value + "%";
+                  },
+            }
         },
 
         responsive: true,
@@ -150,17 +153,26 @@ export default function AssessmentStackChart({
             {
                 label: "Good",
                 data: [depressionGoodPercent],
-                backgroundColor: "green",
+                backgroundColor: "#F7FDFB",
+                borderColor: "#58BD98", 
+                borderWidth: 1,  
+                borderSkipped: false, 
             },
             {
                 label: "Decent",
                 data: [depressionDecentPercent],
-                backgroundColor: "yellow",
+                backgroundColor: "#FFFDF6",
+                borderColor: "#EFC242", 
+                borderWidth: 1,   
+                borderSkipped: false, 
             },
             {
                 label: "Critical",
                 data: [depressionCriticalPercent],
-                backgroundColor: "red",
+                backgroundColor: "#FDF5F7",
+                borderColor: "#D72E41", 
+                borderWidth: 1,   
+                borderSkipped: false,
             },
         ],
     };
@@ -172,17 +184,26 @@ export default function AssessmentStackChart({
             {
                 label: "Good",
                 data: [burnoutGoodPercent],
-                backgroundColor: "green",
+                backgroundColor: "#F7FDFB",
+                borderColor: "#58BD98", 
+                borderWidth: 1,  
+                borderSkipped: false, 
             },
             {
                 label: "Decent",
                 data: [burnoutDecentPercent],
-                backgroundColor: "yellow",
+                backgroundColor: "#FFFDF6",
+                borderColor: "#EFC242", 
+                borderWidth: 1,
+                borderSkipped: false, 
             },
             {
                 label: "Critical",
                 data: [burnoutCriticalPercent],
-                backgroundColor: "red",
+                backgroundColor: "#FDF5F7",
+                borderColor: "#D72E41", 
+                borderWidth: 1,   
+                borderSkipped: false,
             },
         ],
     };
@@ -194,25 +215,41 @@ export default function AssessmentStackChart({
             {
                 label: "Good",
                 data: [anxietyGoodPercent],
-                backgroundColor: "green",
+                backgroundColor: "#F7FDFB",
+                borderColor: "#58BD98", 
+                borderWidth: 1,  
+                borderSkipped: false, 
             },
             {
                 label: "Decent",
                 data: [anxietyDecentPercent],
-                backgroundColor: "yellow",
+                backgroundColor: "#FFFDF6",
+                borderColor: "#EFC242", 
+                borderWidth: 1,
+                borderSkipped: false, 
             },
             {
                 label: "Critical",
                 data: [anxietyCriticalPercent],
-                backgroundColor: "red",
+                backgroundColor: "#FDF5F7",
+                borderColor: "#D72E41", 
+                borderWidth: 1,   
+                borderSkipped: false,
             },
         ],
     };
 
+
     return (
-        <div className="mt-3 max-w-lg">
+        <div className="flex flex-col max-w-lg">
             <div>
-                <p>Depression</p>
+                <div className="flex justify-between">
+                    <div className="flex items-center">
+                        <div style={{ backgroundColor: "#2469F6" }} class="w-4 h-4 mr-2"></div>
+                        <p>Depression</p>
+                    </div>
+                    <p style={{ backgroundColor: "#F6F9FE" , padding:"5px", borderRadius: "10%", color: "#387AF6"}}>{depressionAssessments.length} emp</p>
+                </div>
                 <Bar
                     width={width}
                     height={height}
@@ -222,7 +259,14 @@ export default function AssessmentStackChart({
             </div>
 
             <div>
-                <p>Axiety</p>
+                <div className="flex justify-between">
+                    <div className="flex items-center">
+                        <div style={{ backgroundColor: "#ACC8F3" }} class="w-4 h-4 mr-2"></div>
+                        <p>Anxiety</p>
+                    </div>
+                    <p style={{ backgroundColor: "#F6F9FE" , padding:"5px", borderRadius: "10%", color: "#387AF6"}}>{anxietyAssessments.length} emp</p>
+                </div>
+
                 <Bar
                     width={width}
                     height={height}
@@ -232,7 +276,13 @@ export default function AssessmentStackChart({
             </div>
 
             <div>
-                <p>Burnout</p>
+                <div className="flex justify-between">
+                    <div className="flex items-center">
+                        <div style={{ backgroundColor: "#0A285D" }} class="w-4 h-4 mr-2"></div>
+                        <p>Burnout</p>
+                    </div>
+                    <p style={{ backgroundColor: "#F6F9FE" , padding:"5px", borderRadius: "10%", color: "#387AF6"}}>{burnoutAssessments.length} emp</p>
+                </div>
                 <Bar
                     width={width}
                     height={height}

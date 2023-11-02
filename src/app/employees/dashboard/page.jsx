@@ -116,9 +116,10 @@ export default function Home() {
                         <NoResultChart
                             mainTitle={"Depression"}
                             assessLink={
-                                "http://localhost:3000/assessment/mental"
+                                "/assessment/mental"
                             }
                         />
+
                     )}
                     {anxietyData.length > 0 ? (
                         <HalfDoughnutChart
@@ -141,7 +142,7 @@ export default function Home() {
                     ) : (
                         <NoResultChart
                             mainTitle={"Anxiety"}
-                            assessLink={"http://localhost:3000/assessment/mental"}
+                            assessLink={"/assessment/mental"}
                         />
                     )}
                     {burnoutData.length > 0 ? (
@@ -165,7 +166,7 @@ export default function Home() {
                     ) : (
                         <NoResultChart
                             mainTitle={"Burnout"}
-                            assessLink={"http://localhost:3000/assessment/mental"}
+                            assessLink={"/assessment/mental"}
                         />
                     )}
                 </div>

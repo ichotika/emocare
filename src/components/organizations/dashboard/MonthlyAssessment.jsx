@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import AssessmentPieChart from "./AssessmentPieChart";
+import AssessmentDonutChart from "./AssessmentDonutChart";
 import AssessmentStackChart from "./AssessmentStackChart";
 
 export default function MonthlyAssessment({assessmentData}) {
@@ -44,17 +44,17 @@ export default function MonthlyAssessment({assessmentData}) {
     return (
         <div className="flex-grow basis-4/5 rounded-lg border border-gray-200 bg-white p-6 shadow ">
             <div className="flex max-w-full flex-wrap gap-x-10 gap-y-6">
-                <h2 className="block w-full">Monthly Assessment</h2>
+                {/* <h2 className="block w-full">Monthly Assessment</h2> */}
                 <div className="flex grow">
-                    <div className="flex grow-[2] basis-2/3 gap-3">
-                        <AssessmentPieChart 
+                    <div className="flex grow-[2] basis-1/2 gap-3 w-1/2">
+                        <AssessmentDonutChart 
                         assessmentsInMonthYearCount = {assessmentsInMonthYearCount}
                         depressionCount = {depressionCount}
                         burnoutCount = {burnoutCount}
                         anxietyCount = {anxietyCount}
                         assessmentData={assessmentData}/>
                     </div>
-                    <div className="grow-[1] basis-1/3">
+                    <div className="grow-[1] basis-1/2 w-1/2">
                         <AssessmentStackChart 
                         depressionAssessments = {depressionAssessments}
                         burnoutAssessments = {burnoutAssessments}
