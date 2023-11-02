@@ -12,6 +12,17 @@ async function getRecords() {
     const data = (await res.GET()).json();
     return data;
 }
+async function getNoti() {
+    const res = await import("../../api/notification/organization/route");
+    const data = (await res.GET()).json();
+    return data;
+}
+async function getAssessment() {
+    const res = await import("../../api/notification/assessment/route");
+    const data = (await res.GET()).json();
+    return data;
+}
+
 
 function calculateRatio(arr) {
     const countObj = arr.reduce(
@@ -45,9 +56,12 @@ export default async function Records() {
     );
     const prevObj = calculateRatio(prevRecords);
     const curObj = calculateRatio(curRecords);
+
+    const notification = await getNoti();
+    const assessment = await getAssessment();
     return (
         <>
-            <Header headertext={"Assessment Record"} />
+            <Header headertext={"Assessment Record"} notification={notification} assessment={assessment}/>
             <AssessmentRecords
                 emplist={emplist}
                 prevObj={prevObj}

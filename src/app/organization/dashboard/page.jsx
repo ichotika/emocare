@@ -1,13 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
+import Header from "@/components/organizations/Header";
 import WelcomePanel from "@/components/organizations/dashboard/WelcomePanel";
 import OverallCard from "@/components/organizations/dashboard/OverallCard";
 import WorkplaceWellbeing from "@/components/organizations/dashboard/WorkplaceWellbeing";
 import MonthlyAssessment from "@/components/organizations/dashboard/MonthlyAssessment";
 import AssessmentTrendsChart from "@/components/organizations/dashboard/AssessmentTrendsChart";
 import Feedbacks from "@/components/organizations/dashboard/Feedbacks";
-import NotiOrganization from "@/components/notification/NotiOrganization";
-
 
 
 export default function Home() {
@@ -16,6 +15,8 @@ export default function Home() {
     const [feedbacks, setFeedbacks] = useState([]);
     const [organizations, setOrganizations] = useState([]);
     const [notification, setNotification] = useState([]);
+    const [notiAssesment, setNotiAssesment]  = useState([]);
+ 
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -28,6 +29,7 @@ export default function Home() {
         const getAssessmentData = async () => {
             const assessData = await fetchAssessment();
             setAssessmentData(assessData.randAsessment);
+            setNotiAssesment(assessData);
         };
         getAssessmentData();
     }, []);
@@ -93,13 +95,11 @@ export default function Home() {
     useEffect(() => {
         const getNotification = async () => {
             const notification = await fetchNotification();
-            setNotification(notification.notification);
+            setNotification(notification);
         };
         
         getNotification();
     }, []);
-
-
 
 
     const gaugeValue = 70;
@@ -112,10 +112,14 @@ export default function Home() {
               {/* {assessmentData.length > 0 ? (
                 <OverallCard assessmentData={assessmentData}/>
             ): ('no data') } */}
+
+            {notification?.notification?.length >= 0 ?
+            <Header headertext={""} notification={notification} assessment={notiAssesment}/>:<></>}
+            
             
             <div className="flex">
                 <WelcomePanel organizations={organizations}/>
-                <NotiOrganization notification={notification}/>
+                {/* <NotiOrganization notification={notification}/> */}
             </div>
             
             <OverallCard assessmentData={assessmentData} employee={employee}/>
