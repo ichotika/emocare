@@ -24,13 +24,13 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
     }
 
     return (
-        <div className="m-4 bg-slate-100">
-            <div className="p-4 font-bold text-lg">
+        <div className="m-4 p-4 bg-slate-100">
+            <div className="m-2 p-4 font-bold text-lg rounded-lg bg-slate-200">
                 <h1>{eduModule.length > 0 ? eduModule[0].topic : ""}</h1>
             </div>
             <div className="grid grid-cols-4 gap-2">
                 <div className="col-span-1 border-e-2 border-current">
-                    <h2 className="pl-4">Recommendations</h2>
+                    <h2 className="pl-4 font-bold">Recommendations</h2>
                     {recList.length > 0
                         ? recList.map((detail, index) => (
                             <div className="m-4" key={index}>

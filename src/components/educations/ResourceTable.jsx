@@ -19,7 +19,7 @@ const TableHeader = styled.div`
     color: var(--color-grey-600);
 `;
 
-function ResourceTable({ educationList }) {
+function ResourceTable({ educationList, userEdu }) {
     return (
         <div>
             <Table
@@ -36,6 +36,7 @@ function ResourceTable({ educationList }) {
                             topic={elist.topic}
                             category={elist.category}
                             id={elist.topicId}
+                            userRead={userEdu.filter((user) => user.topicId === elist.topicId)}
                         />
                     </div>
                 ))}
