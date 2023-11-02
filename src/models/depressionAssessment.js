@@ -1,8 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const depressionAssessmentSchema = new mongoose.Schema({});
-const depressionAssessment =
-  mongoose.models.depressionAssessment ||
-  mongoose.model("depressionAssessment", depressionAssessmentSchema, "depressionAssessment");
+const DepressionAssessmentSchema = new Schema(
+    {
+        No: String,
+        question: String,
+    },
+    {
+        timestamps: true,
+    }
+);
 
-export default depressionAssessment;
+export default mongoose.models.DepressionAssessment ||
+    mongoose.model("DepressionAssessment", DepressionAssessmentSchema, "depressionAssessment");
