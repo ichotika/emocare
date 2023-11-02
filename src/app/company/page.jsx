@@ -26,7 +26,7 @@ export default function Page() {
     return (
         <>
             <HeroBanner></HeroBanner>
-            <div className={"p-10"}>
+            <div className={"p-10 flex flex-col gap-24"}>
                 {featuresContent.map((feature,index) => <MediaAndText key={index} src={baseImageURL+feature.src} body={feature.body} heading={feature.heading} textRight={index%2!==0}></MediaAndText>)}
             </div>
         </>
