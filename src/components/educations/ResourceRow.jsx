@@ -13,12 +13,12 @@ const TableRow = styled.div`
     padding: 0.5rem;
 `;
 
-function ResourceRow({ topic, category, id }) {
+function ResourceRow({ topic, category, id, userRead }) {
     return (
         <TableRow>
             <div>
-                <input type="checkbox" name="eduDone" id="eduDone" />{" "}
-                <Link
+                <input type="checkbox" name="eduDone" id="eduDone" checked={userRead.length > 0} readOnly />
+                <Link className="pl-4"
                     href={{
                         pathname: `education/module`,
                         query: { topicId: id },

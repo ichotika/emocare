@@ -22,7 +22,6 @@ export default function Home() {
 
             if (res.ok) {
                 const resData = await res.json();
-                console.log("result:", resData);
             }
         } catch (error) {
             console.log(error);
@@ -32,7 +31,6 @@ export default function Home() {
     // fetching current user Id from clerk
     const { user } = useUser();
     const currentUser = user ? user.id : "no user";
-    console.log(currentUser);
 
     // fetching the edu module id
     const searchParam = useSearchParams();

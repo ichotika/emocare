@@ -22,7 +22,7 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent }) {
         plugins: {
             legend: {
                 title: {
-                    display: true,
+                    display: false,
                     text: headtitle,
                 },
             },
@@ -55,7 +55,8 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent }) {
     };
 
     return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className="bg-white rounded-lg p-2" style={{ width: "100%", height: "100%" }}>
+            <h3 className="font-bold text-center">{headtitle}</h3>
             <Doughnut
                 data={data}
                 options={options}

@@ -1,21 +1,16 @@
-import MainBtn from "../base/MainBtn";
-import Image from "next/image";
-import Profile from "@/public/assets/Wireframes/bell.svg";
+import Link from "next/link";
 
-function NoPersonalityResult() {
+function NoPersonalityResult({ personalityLink }) {
     return (
-        <div className="m-1 rounded-lg bg-white p-1 text-center">
-            <h1>Your Personality Type</h1>
-            <Image src={Profile} width={100} height={100} alt="Picture" />
-            <div className="grid gap-2 p-2 font-bold">
+        <div className="m-2 flex h-[20vw] flex-col justify-between gap-4 rounded-lg bg-white p-4">
+            <h1 className="font-bold">Your Personality Type</h1>
+            <div className="flex h-[20vw] flex-col justify-between gap-2 p-2 text-center font-bold">
                 <p className="text-slate-400">
                     You have not taken personality test yet.
                 </p>
-                <MainBtn
-                    buttontext={"Take Test"}
-                    bgColor={"bg-blue-700"}
-                    textColor={"text-white"}
-                />
+                <button className="rounded-lg bg-blue-700 p-2 text-white hover:bg-blue-500">
+                    <Link href={personalityLink}>Take Test</Link>
+                </button>
             </div>
         </div>
     );
