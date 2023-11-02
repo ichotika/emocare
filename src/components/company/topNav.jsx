@@ -48,7 +48,7 @@ function HamburgerNav({routes, tuckedAway, onClose}) {
 
     return (
         <nav
-            className={`bg-blue-600 text-white flex flex-col gap-4 items-center fixed top-0 left-0 right-0 transition-all ${tuckedAway ? "translate-x-full" : "translate-x-0"}`}>
+            className={`bg-blue-600 text-white flex flex-col gap-4 items-center fixed inset-0 transition-all ${tuckedAway ? "translate-x-full" : "translate-x-0"}`}>
             <ul className={"flex flex-col gap-4"}>
                 {routes.map((route, index) =>
                     <li key={index}>
