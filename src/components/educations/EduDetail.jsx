@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Recommendations from "./Recommendation";
 import EduModule from "./EduModule";
 
+
 function EduDetail({ recList, eduModule, userId, newEduResponse }) {
     const [eduRes, setEduRes] = useState([]);
 
@@ -24,23 +25,23 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
     }
 
     return (
-        <div className="m-4 p-4 bg-slate-100">
-            <div className="m-2 p-4 font-bold text-lg rounded-lg bg-slate-200">
-                <h1>{eduModule.length > 0 ? eduModule[0].topic : ""}</h1>
+        <div className="m-4 bg-slate-100 p-4">
+            <div className="m-2 rounded-lg bg-slate-200 p-4 text-lg font-bold">
+                <h1>{eduModule.length > 0 ? eduModule[0].fields.topic : ""}</h1>
             </div>
             <div className="grid grid-cols-4 gap-2">
                 <div className="col-span-1 border-e-2 border-current">
                     <h2 className="pl-4 font-bold">Recommendations</h2>
                     {recList.length > 0
                         ? recList.map((detail, index) => (
-                            <div className="m-4" key={index}>
-                                <Recommendations
-                                    category={detail.category}
-                                    topic={detail.topic}
-                                    topicId={detail.topicId}
-                                />
-                            </div>
-                        ))
+                              <div className="m-4" key={index}>
+                                  <Recommendations
+                                      category={detail.category}
+                                      topic={detail.topic}
+                                      topicId={detail.topicId}
+                                  />
+                              </div>
+                          ))
                         : "No data"}
                 </div>
 
@@ -51,6 +52,7 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
                             eduRes={eduRes}
                             userId={userId}
                             newEduResponse={newEduResponse}
+                            richContent={eduModule[0].fields.richContent}
                         />
                     ) : (
                         "No data"
