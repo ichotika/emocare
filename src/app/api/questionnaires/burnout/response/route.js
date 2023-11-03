@@ -1,36 +1,35 @@
 import connectMongoDB from "@/libs/mongodb";
 import BurnoutResponse from "@/models/BurnoutResponse";
 import { NextResponse } from "next/server";
-import mongoose from 'mongoose'
 
-// Get a user's this month DepressionResponse data from MongoDB.
-export async function GET() {
+// Get a user's this month BurnoutResponse data from MongoDB.
+export async function GET(request) {
     try {
         await connectMongoDB();
 
-        const { userId } = BurnoutResponse.userId;
-        const today = new Date();
-        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1)
-        const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+        const { searchParams } = new URL(request.url);
+        const userId = searchParams.get("search")
 
         if (!userId) {
-            return NextResponse.json(
-                { error: "UserID is required." },
-                { status: 400 }
-            )
+            console.error("You can't access this page.");
         }
+        
+        const findLatestUserData = await BurnoutResponse
+            .find({ userId })
+            .sort({ createdAt: -1 })
+            .limit(1)
+            .exec()
 
-        const userBurnoutResponse = await BurnoutResponse.findOne({
-            userId: userId,
-            createdAt: {
-                $gte: startOfMonth,
-                $lte: endOfMonth
-            }
-        })
+        console.log(findLatestUserData)
 
-        console.log("thisMonthBurnoutResponse", userBurnoutResponse);
-        return NextResponse.json(userBurnoutResponse);
+        if (findLatestUserData.length > 0) {
+            // const latestData = findLatestUserData[0];
+            // const { score, level, level_description } = latestData;
 
+            return NextResponse.json(findLatestUserData);
+        } else {
+            return NextResponse.json("There is no result for Burnout Test");
+        }
     } catch (error) {
         console.error("Error fetching users:", error);
         return NextResponse.json(
@@ -40,30 +39,35 @@ export async function GET() {
     }
 }
 
-
 // POST the answer in MONGODB.
 export async function POST(request) {
 
     await connectMongoDB();
     try {
         const newBurnoutResponse = await request.json();
-        const { userId, assessment_id, assessment_type, assess_date, score, level, level_description } = newBurnoutResponse;
+        const { userId, assessment_id, assessment_type, assess_date, score, level_description } = newBurnoutResponse;
+
+        console.log(newBurnoutResponse);
 
         // search for existing data with emailID and assessData
-        const existingData = await BurnoutResponse.findOne({ userId, assess_date });
-
+        const existingData = await BurnoutResponse.findOne({ userId });
 
         if (existingData) {
 
-            // check if there is the same month existing assessment data.
-            if (existingData.assess_date.getMonth() === assess_date.getMonth()) {
+            const newAssessMonth = new Date(newBurnoutResponse.assess_date).getMonth();
+            // console.log("newAssessMonth", newAssessMonth);
+            const existingAssessMonth = new Date(existingData.assess_date).getMonth()
 
+            // console.log("existing data",newAssessDay.getMonth());
+
+            // check if there is the same month existing assessment data.
+            if (newAssessMonth === existingAssessMonth) {
                 await BurnoutResponse.findOneAndUpdate(
-                    { emailID, assess_date },
+                    { userId },
                     {
                         $set: {
                             assess_date,
-                            level,
+                            // level,
                             score,
                             level_description
                         }
@@ -72,18 +76,20 @@ export async function POST(request) {
                 return NextResponse.json({ message: "Burnout Assessment data updated" });
             } else {
                 await BurnoutResponse.create(newBurnoutResponse);
-                return NextResponse.json({ message: "New document included in burnout data added." })
+
+                return NextResponse.json({ message: "New document included in Burnout data added." })
             }
         }
 
         // create a new document if no existing data.
-        await newBurnoutResponse.save();
+        await BurnoutResponse.create(newBurnoutResponse);
+
         return NextResponse.json(
-            { message: "New document included in burnout data added." },
+            { message: "New document included in Burnout data added." },
             { status: 201 }
         );
     } catch (error) {
-        console.error("Error submitting burnout assessment: ", error);
+        console.error("Error submitting Burnout assessment: ", error);
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }

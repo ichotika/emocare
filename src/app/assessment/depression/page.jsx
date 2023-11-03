@@ -1,7 +1,8 @@
+"use client";
 import Instruction from "@/components/assessment/mentalassessment/Instruction";
-import Questionnaire from "@/components/assessment/mentalassessment/Questionnaire";
+import Questionnaire from "@/components/assessment/mentalassessment/DepressionQuestionnaire";
 
-const MentalHealthQuestionnaires = () => {
+const DepressionQuestionnairesPage = () => {
     return (
         <>
             <Instruction></Instruction>
@@ -10,4 +11,4 @@ const MentalHealthQuestionnaires = () => {
     );
 }
 
-export default MentalHealthQuestionnaires;
+export default DepressionQuestionnairesPage;

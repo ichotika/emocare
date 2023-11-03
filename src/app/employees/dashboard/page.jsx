@@ -113,13 +113,10 @@ export default function Home() {
                             }
                         />
                     ) : (
-                        <NoResultChart
-                            mainTitle={"Depression"}
-                            assessLink={
-                                "/assessment/mental"
-                            }
-                        />
-
+                        <><h1>{deprData.depr}</h1>
+                        <NoResultChart 
+                            mainTitle={"Depression"} 
+                            link="/assessment/depression" /></>
                     )}
                     {anxietyData.length > 0 ? (
                         <HalfDoughnutChart
@@ -140,10 +137,9 @@ export default function Home() {
                             }
                         />
                     ) : (
-                        <NoResultChart
-                            mainTitle={"Anxiety"}
-                            assessLink={"/assessment/mental"}
-                        />
+                        <NoResultChart 
+                            mainTitle={"Anxiety"} 
+                            link="/assessment/anxiety"/>
                     )}
                     {burnoutData.length > 0 ? (
                         <HalfDoughnutChart
@@ -166,8 +162,7 @@ export default function Home() {
                     ) : (
                         <NoResultChart
                             mainTitle={"Burnout"}
-                            assessLink={"/assessment/mental"}
-                        />
+                            link="/assessment/burnout" />
                     )}
                 </div>
                 

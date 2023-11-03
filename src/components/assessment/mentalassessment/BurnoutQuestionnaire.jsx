@@ -4,15 +4,16 @@ import { useUser } from "@clerk/nextjs";
 import EmployeeSidebar from '@/components/base/EmployeeSidebar';
 import { useRouter } from "next/navigation";
 
-const AnxietyQuestionnaire = () => {
+const BurnoutQuestionnaire = () => {
     const { user } = useUser();
     const router = useRouter();
 
     const options = [
-        { label: "Not At All", value: 0 },
-        { label: "Several Days", value: 1 },
-        { label: "More than half the day", value: 2 },
-        { label: "Nearly everyday", value: 3 },
+        { label: "Not At All", value: 1 },
+        { label: "Rarely", value: 2 },
+        { label: "Sometimes", value: 3 },
+        { label: "Often", value: 4 },
+        { label: "Very Often", value: 5 },
     ];
 
     const [value, setValue] = useState({
@@ -22,7 +23,15 @@ const AnxietyQuestionnaire = () => {
         q4: -1,
         q5: -1,
         q6: -1,
-        q7: -1
+        q7: -1,
+        q8: -1,
+        q9: -1,
+        q10: -1,
+        q11: -1,
+        q12: -1,
+        q13: -1,
+        q14: -1,
+        q15: -1,
     });
 
     const handleRadioChange = (event) => {
@@ -37,44 +46,40 @@ const AnxietyQuestionnaire = () => {
         return "You are missing some questions";
     }, 0);
 
-    const anxietyLevel = [
-        { alevel: "Non-minimal", description: "No follow-up is warranted at this time." },
-        { alevel: "Mild", description: "Repeat administration of the GAD-7 every 4 weeks to monitor symptoms. Follow up to determine if current symptoms warrant a referral to a mental health professional." },
-        { alevel: "Moderate", description: "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended." },
-        { alevel: "Severe", description: "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended." }
+    const burnoutLevel = [
+        { description: "No sign of burnout here." },
+        { description: "Little sign of burnout here, unless some factors are particularly severe." },
+        { description: "Be careful - you may be at risk of burnout, particularly if several scores are high." },
+        { description: "You are at severe risk of burnout - do something about this urgently." },
+        { description: "You are at very severe risk of burnout - do something about this urgently." }
     ]
 
     // const [level, setLevel] = useState("")
 
-    const getAnxietyLevel = (totalScore) => {
+    const getBurnoutLevel = (totalScore) => {
         const result = {
-            alevel: "",
             description: "",
         };
 
         switch (true) {
-            case totalScore <= 4:
-                result.alevel = anxietyLevel[0].alevel;
-                result.description = anxietyLevel[0].description;
+            case totalScore <= 18:
+                result.description = burnoutLevel[0].description;
                 break;
 
-            case totalScore <= 9:
-                result.alevel = anxietyLevel[1].alevel;
-                result.description = anxietyLevel[1].description;
+            case totalScore <= 32:
+                result.description = burnoutLevel[1].description;
                 break;
 
-            case totalScore <= 14:
-                result.alevel = anxietyLevel[2].alevel;
-                result.description = anxietyLevel[2].description;
+            case totalScore <= 49:
+                result.description = burnoutLevel[2].description;
                 break;
 
-            case totalScore >= 15:
-                result.alevel = anxietyLevel[3].alevel;
-                result.description = anxietyLevel[3].description;
+            case totalScore >= 59:
+                result.description = burnoutLevel[3].description;
                 break;
 
             default:
-                return anxietyLevel[4].alevel;
+                return burnoutLevel[4].dlevel;
         }
         return result;
     };
@@ -85,22 +90,21 @@ const AnxietyQuestionnaire = () => {
         let i = []
 
         async function response() {
-            await fetch("/api/questionnaires/anxiety/response", {
+            await fetch("/api/questionnaires/burnout/response", {
                 method: "POST",
                 body: JSON.stringify({
                     userId: user.id,
-                    assessment_id: 1,
-                    assessment_type: "Anxiety",
+                    assessment_id: 2,
+                    assessment_type: "burnout",
                     assess_date: new Date(),
                     score: totalScore,
-                    level: getAnxietyLevel(totalScore).alevel,
-                    level_description: getAnxietyLevel(totalScore).description,
+                    level_description: getBurnoutLevel(totalScore).description,
                 }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             }).then(()=> {
-                router.push('/assessment/anxiety/anxietyresult')
+                router.push('/assessment/burnout/burnoutresult')
             }).catch((error)=> {
                 console.error("Failed to submit data", error);
             });
@@ -124,24 +128,23 @@ const AnxietyQuestionnaire = () => {
         } else {
             for (let index = 0; index < i.length; index++) {
                 alert("please enter value for " + i[index])
-
             }
         }
     };
 
-    const [anxietyQustionnaire, setAnxietyQuestionnaire] = useState([]);
+    const [burnoutQustionnaire, setBurnoutQuestionnaire] = useState([]);
 
     // Get the questionnaire from server.
     useEffect(() => {
-        const fetchAnxietyQuestionnaire = async () => {
-            const res = await fetch("http://localhost:3000/api/questionnaires/anxiety");
+        const fetchBurnoutQuestionnaire = async () => {
+            const res = await fetch("http://localhost:3000/api/questionnaires/burnout");
             const data = await res.json();
-            // console.log("Anxiety questionnaire", data);
-            setAnxietyQuestionnaire(data);
+            // console.log("burnout questionnaire", data);
+            setBurnoutQuestionnaire(data);
         };
-        fetchAnxietyQuestionnaire();
+        fetchBurnoutQuestionnaire();
     }, []);
-    // console.log(anxietyQustionnaire.anxietyAssessment)
+    console.log(burnoutQustionnaire)
 
     return (
 
@@ -155,15 +158,15 @@ const AnxietyQuestionnaire = () => {
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th colSpan="4">Questions</th>
+                            <th colSpan="5">Questions</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {anxietyQustionnaire?.anxietyAssessment?.map((question) => (
+                        {burnoutQustionnaire?.map((question) => (
                             <tr key={question.No}>
                                 <td>{question.No}</td>
-                                <td colSpan="4">{question.question}</td>
+                                <td colSpan="5">{question.question}</td>
                                 {options.map((option) => (
                                     <td>
                                         <label
@@ -189,4 +192,4 @@ const AnxietyQuestionnaire = () => {
     );
 };
 
-export default AnxietyQuestionnaire;
+export default BurnoutQuestionnaire;

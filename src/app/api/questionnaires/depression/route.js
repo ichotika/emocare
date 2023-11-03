@@ -1,5 +1,5 @@
 import connectMongoDB from "@/libs/mongodb";
-import DepressionAssessment from "@/models/DepressionAssessment";
+import DepressionAssessment from "@/models/depressionAssessment";
 import { NextResponse } from "next/server";
 
 // Get a Depression questionnaire from MongoDB.
