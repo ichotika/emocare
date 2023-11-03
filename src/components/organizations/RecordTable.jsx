@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import RecordRow from "@/components/organizations/RecordRow";
 import HeaderTab from "@/components/base/HeaderTab";
-
+import { useState } from "react";
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
 
@@ -28,6 +28,8 @@ const TableHeader = styled.div`
 `;
 
 function RecordTable({ employeeList }) {
+    console.log(employeeList);
+    const [activeTab, setActiveTab] = useState("All");
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -38,7 +40,18 @@ function RecordTable({ employeeList }) {
 
     return (
         <div className="mt-12">
-            <HeaderTab tabNames={["ALL", "Designer", "Developper"]} />
+            <HeaderTab
+                tabNames={[
+                    "All",
+                    "IT",
+                    "Designer",
+                    "Developer",
+                    "Finance",
+                    "Marketing",
+                ]}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+            />
             <Table role="table" className="mb-12 mt-6">
                 <TableHeader role="row">
                     <div></div>
@@ -48,17 +61,26 @@ function RecordTable({ employeeList }) {
                     <div className="text-center">Previous Level</div>
                     <div className="text-center">Monthly Asessment</div>
                 </TableHeader>
-                {employeeList.map((list) =>
-                    list.pending === true ? (
-                        <RecordRow
-                            title={list.title}
-                            department={list.department}
-                            joinDate={formatDate(list.joinDate)}
-                            id={list.email}
-                            key={list.userId}
-                        />
-                    ) : null
-                )}
+                {employeeList.map((list, index) => {
+                    if (
+                        list.pending &&
+                        (list.department === activeTab || activeTab === "All")
+                    ) {
+                        return (
+                            <RecordRow
+                                title={list.title}
+                                department={list.department}
+                                joinDate={formatDate(list.joinDate)}
+                                id={list.email}
+                                assessmentType={list.assessment_type}
+                                scoreCur={list.score_description_cur}
+                                scorePrev={list.score_description_prev}
+                                key={index}
+                            />
+                        );
+                    }
+                    return null;
+                })}
             </Table>
         </div>
     );

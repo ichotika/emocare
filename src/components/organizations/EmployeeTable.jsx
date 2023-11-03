@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
 import OrganizationRow from "@/components/organizations/OrganizationRow";
 import HeaderTab from "@/components/base/HeaderTab";
-
+import { useState } from "react";
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
 
@@ -29,6 +29,7 @@ const TableHeader = styled.div`
 `;
 
 function OrganizationTable({ employeeList }) {
+    const [activeTab, setActiveTab] = useState("All");
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -40,7 +41,18 @@ function OrganizationTable({ employeeList }) {
     return (
         <div className="mt-12">
             <h2 className="mb-6 text-lg font-semibold">Manage Employees</h2>
-            <HeaderTab tabNames={["ALL", "Designer", "Developper"]} />
+            <HeaderTab
+                tabNames={[
+                    "All",
+                    "IT",
+                    "Designer",
+                    "Developer",
+                    "Finance",
+                    "Marketing",
+                ]}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+            />
             <Table role="table" className="mb-12 mt-6 overflow-x-auto">
                 <TableHeader role="row">
                     <div>Employee Name</div>
@@ -48,19 +60,25 @@ function OrganizationTable({ employeeList }) {
                     <div>Employee ID</div>
                     <div>Joined EmoCare</div>
                 </TableHeader>
-                {employeeList.map((list) =>
-                    list.pending === true ? (
-                        <OrganizationRow
-                            profilePic={Profile}
-                            name={list.fullname}
-                            title={list.title}
-                            department={list.department}
-                            joinDate={formatDate(list.joinDate)}
-                            id={list.email}
-                            key={list.userId}
-                        />
-                    ) : null
-                )}
+                {employeeList.map((list) => {
+                    if (
+                        list.pending &&
+                        (list.department === activeTab || activeTab === "All")
+                    ) {
+                        return (
+                            <OrganizationRow
+                                profilePic={Profile}
+                                name={list.fullname}
+                                title={list.title}
+                                department={list.department}
+                                joinDate={formatDate(list.joinDate)}
+                                id={list.email}
+                                key={list.userId}
+                            />
+                        );
+                    }
+                    return null;
+                })}
             </Table>
         </div>
     );

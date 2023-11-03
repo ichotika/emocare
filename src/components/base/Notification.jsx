@@ -3,85 +3,113 @@ import Image from "next/image";
 import { useState } from "react";
 import Bell from "@/public/assets/Wireframes/bell.svg";
 import { UserButton } from "@clerk/nextjs";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { AiOutlineUserAdd } from 'react-icons/ai'; 
-import { BsArrowRight, BsEnvelope } from 'react-icons/bs'; 
-import { FaRegBell } from 'react-icons/fa'; 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { BsArrowRight, BsEnvelope } from "react-icons/bs";
+import { FaRegBell } from "react-icons/fa";
+import Link from "next/link";
 
-
-
-const Notification = ({headertext,notification, assessment}) => {
-    const [notificationCount, setnNotificationCount] = useState(notification.notification.length);
+const Notification = ({ headertext, notification, assessment }) => {
+    const [notificationCount, setnNotificationCount] = useState(
+        notification.notification.length
+    );
     const [clearNotification, setClearNotification] = useState(true);
 
     const targetYear = 2023;
-    const month10 = 9; // Month 10 
+    const month10 = 9; // Month 10
 
-    const assessmentsInTargetMY = assessment.assessment?.filter(assessment => {
-        const assessmentTimestamp = new Date(assessment.timestamp);
-        return (
-            assessmentTimestamp.getMonth() === month10 && assessmentTimestamp.getFullYear() === targetYear
-        );
-    });
-
+    const assessmentsInTargetMY = assessment.assessment?.filter(
+        (assessment) => {
+            const assessmentTimestamp = new Date(assessment.timestamp);
+            return (
+                assessmentTimestamp.getMonth() === month10 &&
+                assessmentTimestamp.getFullYear() === targetYear
+            );
+        }
+    );
 
     // function handleShowNotification() {
     //     setClearNotification(() => !clearNotification);
     //     setnNotificationCount(() => "");
     // }
 
+    const notify = () =>
+        toast(
+            <div className="flex flex-col items-center">
+                <div className="border-b pb-5">
+                    <AiOutlineUserAdd size={20} />
+                    <p className="text-2xl">
+                        {notification.notification[0]?.title}
+                    </p>
+                    <p>{notification.notification[0]?.description}</p>
+                    <div className="flex justify-between">
+                        <Link href="http://localhost:3000/">
+                            <button className="flex items-center">
+                                <div className="pr-2">
+                                    {notification.notification[0]?.button}
+                                </div>
+                                <BsArrowRight size={20} />
+                            </button>
+                        </Link>
 
-
-    const notify = () => 
-    toast(
-        <div className="flex flex-col items-center">
-            <div className='border-b pb-5'>
-                <AiOutlineUserAdd size={20} />
-                <p className='text-2xl'>{notification.notification[0]?.title}</p>
-                <p>{notification.notification[0]?.description}</p>
-                <div className='flex justify-between'>
-
-                <a href="http://localhost:3000/">
-                    <button  className='flex items-center'>
-                        <div className='pr-2'>{notification.notification[0]?.button}</div>
-                        <BsArrowRight size={20}/>
-                    </button>
-                </a>
-
-                    <p style={{backgroundColor:"#FEFAF4", borderColor:"#EF7E49", color:"#EF7E49"}} className='px-3 py-1 rounded-full border '>{notification.notification[0]?.time}</p>
+                        <p
+                            style={{
+                                backgroundColor: "#FEFAF4",
+                                borderColor: "#EF7E49",
+                                color: "#EF7E49",
+                            }}
+                            className="rounded-full border px-3 py-1 "
+                        >
+                            {notification.notification[0]?.time}
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div className='pt-5'>
-                <BsEnvelope size={20} />
-                <p className='text-2xl'>{notification.notification[1]?.title}</p>
-                <p>{assessmentsInTargetMY?.length}{notification.notification[1]?.description}</p>
-                <div className='flex justify-between'>
+                <div className="pt-5">
+                    <BsEnvelope size={20} />
+                    <p className="text-2xl">
+                        {notification.notification[1]?.title}
+                    </p>
+                    <p>
+                        {assessmentsInTargetMY?.length}
+                        {notification.notification[1]?.description}
+                    </p>
+                    <div className="flex justify-between">
+                        <Link href="http://localhost:3000/">
+                            <button className="flex items-center">
+                                <div className="pr-2">
+                                    {notification.notification[1]?.button}
+                                </div>
+                                <BsArrowRight size={20} />
+                            </button>
+                        </Link>
 
-                <a href="http://localhost:3000/">
-                    <button className='flex items-center'>
-                        <div className='pr-2'>{notification.notification[1]?.button}</div>
-                        <BsArrowRight size={20}/>
-                    </button>
-                </a>
-
-                    <p style={{backgroundColor:"#CFDEF3", borderColor:"#2469F6", color:"#2469F6"}} className='px-3 py-1 rounded-full border '>{notification.notification[1]?.time}</p>
+                        <p
+                            style={{
+                                backgroundColor: "#CFDEF3",
+                                borderColor: "#2469F6",
+                                color: "#2469F6",
+                            }}
+                            className="rounded-full border px-3 py-1 "
+                        >
+                            {notification.notification[1]?.time}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </div>,
-        
-        {
-        position: "top-right",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-    });
+            </div>,
 
+            {
+                position: "top-right",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            }
+        );
 
     return (
         <div className="flex items-center justify-center gap-4">
@@ -91,13 +119,12 @@ const Notification = ({headertext,notification, assessment}) => {
                 // onClick={handleShowNotification}
                 onClick={notify}
             >
-                {/* <Image
+                <Image
                     src={Bell}
                     width={24}
                     height={24}
                     alt="Bell Notification"
-                /> */}
-                <FaRegBell size={24}/>
+                />
                 <div
                     className={
                         clearNotification === true
