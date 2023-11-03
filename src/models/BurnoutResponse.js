@@ -7,7 +7,7 @@ const BurnoutResponseSchema = new Schema(
     assessment_type: String,
     assess_date: Date,
     score: Number,
-    level: String,
+    // level: String,
     level_description: String,
   }, 
   {

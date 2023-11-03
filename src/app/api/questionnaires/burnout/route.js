@@ -7,7 +7,7 @@ export async function GET () {
     await connectMongoDB();
 
     const burnoutAssessment = await BurnoutAssessment.find();
-    // console.log("Burnout Asssessment->", burnoutAssessment);
+    console.log("Burnout Asssessment->", burnoutAssessment);
 
     return NextResponse.json(burnoutAssessment)
 

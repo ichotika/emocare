@@ -1,36 +1,35 @@
+
 import connectMongoDB from "@/libs/mongodb";
 import AnxietyResponse from "@/models/AnxietyResponse";
 import { NextResponse } from "next/server";
-import mongoose from 'mongoose'
 
-// Get a user's this month DepressionResponse data from MongoDB.
-export async function GET() {
+// Get a user's this month AnxietyResponse data from MongoDB.
+export async function GET(request) {
     try {
         await connectMongoDB();
 
-        const { userId } = AnxietyResponse.userId;
-        const today = new Date();
-        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1)
-        const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+        const { searchParams } = new URL(request.url);
+        const userId = searchParams.get("search")
 
         if (!userId) {
-            return NextResponse.json(
-                { error: "UserID is required." },
-                { status: 400 }
-            )
+            console.error("You can't access this page.");
         }
+        
+        const findLatestUserData = await AnxietyResponse
+            .find({ userId })
+            .sort({ createdAt: -1 })
+            .limit(1)
+            .exec()
 
-        const userAnxietyResponse = await AnxietyResponse.findOne({
-            userId: userId,
-            createdAt: {
-                $gte: startOfMonth,
-                $lte: endOfMonth
-            }
-        })
+        console.log(findLatestUserData)
 
-        console.log("thisMonthAnxietyResponse", userAnxietyResponse);
-        return NextResponse.json(userAnxietyResponse);
-
+        if (findLatestUserData.length > 0) {
+            // const latestData = findLatestUserData[0];
+            // const { score, level, level_description } = latestData;
+            return NextResponse.json(findLatestUserData);
+        } else {
+            return NextResponse.json("There is no result for Anxiety Test");
+        }
     } catch (error) {
         console.error("Error fetching users:", error);
         return NextResponse.json(
@@ -40,7 +39,6 @@ export async function GET() {
     }
 }
 
-
 // POST the answer in MONGODB.
 export async function POST(request) {
 
@@ -49,17 +47,23 @@ export async function POST(request) {
         const newAnxietyResponse = await request.json();
         const { userId, assessment_id, assessment_type, assess_date, score, level, level_description } = newAnxietyResponse;
 
-        // search for existing data with emailID and assessData
-        const existingData = await AnxietyResponse.findOne({ userId, assess_date });
+        console.log(newAnxietyResponse);
 
+        // search for existing data with emailID and assessData
+        const existingData = await AnxietyResponse.findOne({ userId });
 
         if (existingData) {
 
-            // check if there is the same month existing assessment data.
-            if (existingData.assess_date.getMonth() === assess_date.getMonth()) {
+            const newAssessMonth = new Date(newAnxietyResponse.assess_date).getMonth();
+            // console.log("newAssessMonth", newAssessMonth);
+            const existingAssessMonth = new Date(existingData.assess_date).getMonth()
 
+            // console.log("existing data",newAssessDay.getMonth());
+
+            // check if there is the same month existing assessment data.
+            if (newAssessMonth === existingAssessMonth) {
                 await AnxietyResponse.findOneAndUpdate(
-                    { emailID, assess_date },
+                    { userId },
                     {
                         $set: {
                             assess_date,
@@ -72,12 +76,14 @@ export async function POST(request) {
                 return NextResponse.json({ message: "Anxiety Assessment data updated" });
             } else {
                 await AnxietyResponse.create(newAnxietyResponse);
+
                 return NextResponse.json({ message: "New document included in Anxiety data added." })
             }
         }
 
         // create a new document if no existing data.
-        await newAnxietyResponse.save();
+        await AnxietyResponse.create(newAnxietyResponse);
+
         return NextResponse.json(
             { message: "New document included in Anxiety data added." },
             { status: 201 }
