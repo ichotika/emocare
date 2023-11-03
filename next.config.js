@@ -1,18 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ["mongoose"],
+      serverComponentsExternalPackages: ["mongoose"],
   },
   env: {},
   images: {
-    domains: ["lh3.googleusercontent.com"],
+      remotePatterns: [
+          {
+              protocol: "https",
+              hostname: "lh3.googleusercontent.com",
+          },
+          {
+              protocol: "https",
+              hostname: "images.ctfassets.net",
+          },
+      ],
   },
   webpack(config) {
-    config.experiments = {
-      ...config.experiments,
-      topLevelAwait: true,
-    };
-    return config;
+      config.experiments = {
+          ...config.experiments,
+          topLevelAwait: true,
+      };
+      return config;
   },
 };
 
