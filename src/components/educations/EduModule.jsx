@@ -1,5 +1,6 @@
-import { Formik, Form } from "formik";
 import { useState, useEffect } from "react";
+import ModT01 from "./ModT01";
+import Link from "next/link";
 
 function EduModule({ eduModule, eduRes, userId, newEduResponse }) {
     const [edu, setEdu] = useState([]);
@@ -13,7 +14,6 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse }) {
             const userEdu = res.filter(
                 (e) => e.userId === userId && e.topicId === eduModule[0].topicId
             );
-            console.log("res:", userEdu);
             setStatus(userEdu.length > 0 ? userEdu[0].status : "Not Completed");
         };
         getEdu();
@@ -29,27 +29,28 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse }) {
 
     return (
         <div>
-            <p>{userId}</p>
-            <p>{status}</p>
+            {eduModule[0].topicId === "T01" ? <ModT01 /> : ''}
             {status !== "Completed" ? (
-                <button
-                    className="rounded-lg bg-black p-2 text-white"
-                    type="submit"
-                    onClick={() => {
-                        console.log("clicked");
-                        let res = {
-                            topicId: eduModule[0].topicId,
-                            userId: userId,
-                            topic: eduModule[0].topic,
-                            category: eduModule[0].category,
-                            status: "Completed",
-                        };
-                        console.log("result:", res);
-                        newEduResponse(res);
-                    }}
-                >
-                    Mark as Complete
-                </button>
+                <div className="flex justify-end">
+                    <button
+                        className="rounded-lg bg-black p-2 text-white"
+                        type="submit"
+                        onClick={() => {
+                            let res = {
+                                topicId: eduModule[0].topicId,
+                                userId: userId,
+                                topic: eduModule[0].topic,
+                                category: eduModule[0].category,
+                                status: "Completed",
+                            };
+                            newEduResponse(res);
+                        }}
+                    > 
+                    <Link href={"http://localhost:3000/education"}>
+                        Mark as Complete
+                    </Link>
+                    </button>
+                </div>
             ) : null}
         </div>
     );

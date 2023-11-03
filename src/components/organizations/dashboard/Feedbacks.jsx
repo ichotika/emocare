@@ -17,25 +17,7 @@ export default function Feedbacks({ feedbacks }) {
 
     return (
         <div className="relative basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
-            {/* <div className="flex">
-                <p className="text-xl mb-5">Feedbacks</p> */}
-                {/* <div>
-                    <button
-                        className="embla__prev absolute left-0 top-1/2 z-10"
-                        onClick={scrollPrev}
-                    >
-                        &lt;
-                    </button>
 
-                    <button
-                    className="embla__next absolute right-0 top-1/2 z-10"
-                    onClick={scrollNext}
-                    >
-                        &gt;
-                    </button>
-
-                </div> */}
-            {/* </div> */}
 
             <div className="embla">
                 <div className="flex justify-between">

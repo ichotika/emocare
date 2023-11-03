@@ -1,26 +1,26 @@
 "use client";
 import Logo from "@/public/assets/Wireframes/EmoCare_logo 1.svg";
 import Link from "next/link";
-import { Logout, SignOutButton } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 
 const OrganizationSidebar = () => {
     return (
         // display: flex, flex: space between
         <>
-            <div className="flex flex-col min-h-full bg-blue-600 justify-between text-white">
-                <header>
-                    <h1>Emocare</h1>
+            <div className="flex flex-col min-h-full bg-blue-700 justify-between text-white">
+                <header className="p-5">
+                    <h1 className="py-3 px-2 mb-6">Emocare</h1>
                     <nav>
                         <ul>
-                            <li>
+                            <li className="py-3 px-2 rounded-lg hover:bg-blue-700 hover:text-white">
                                 <Link href="/organization/dashboard">Dashboard </Link>
                             </li>
-                            <li>
+                            <li className="py-3 px-2 rounded-lg hover:bg-blue-700 hover:text-white">
                                 <Link href="/organization/records">
                                     Assessment Record
                                 </Link>
                             </li>
-                            <li>
+                            <li className="py-3 px-2 rounded-lg hover:bg-blue-700 hover:text-white">
                                 <Link href="/organization/management">
                                     Management
                                 </Link>
@@ -33,14 +33,10 @@ const OrganizationSidebar = () => {
                     </nav>
                 </header>
 
-                <footer>
-                    <nav>
-                        <ul>
-                            {/* <button className="bg-white border-red-600 text-red-600 rounded-sm px-12 py-2"><Link href="/sign-in">Log Out</Link></button> */}
-                            {/* <Logout></Logout> */}
-                            <SignOutButton />
-                        </ul>
-                    </nav>
+                <footer className="p-5">
+                    <div className="py-3 px-2 rounded-lg hover:bg-blue-700 hover:text-white" >
+                        <SignOutButton />
+                    </div>
                 </footer>
             </div>
         </>

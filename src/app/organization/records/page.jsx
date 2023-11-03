@@ -12,6 +12,16 @@ async function getRecords() {
     const data = (await res.GET()).json();
     return data;
 }
+async function getNoti() {
+    const res = await import("../../api/notification/organization/route");
+    const data = (await res.GET()).json();
+    return data;
+}
+async function getAssessment() {
+    const res = await import("../../api/notification/assessment/route");
+    const data = (await res.GET()).json();
+    return data;
+}
 
 function calculateRatio(arr) {
     const countObj = arr.reduce(
@@ -45,11 +55,47 @@ export default async function Records() {
     );
     const prevObj = calculateRatio(prevRecords);
     const curObj = calculateRatio(curRecords);
+    const mergedEmpList = [];
+
+    emplist.emplist.forEach((item1) => {
+        const item2DataArray = prevRecords.filter(
+            (item2) => item2.userId === item1.userId
+        );
+        const item3DataArray = curRecords.filter(
+            (item3) => item3.userId === item1.userId
+        );
+
+        const getAssessmentData = (dataArray, type) => {
+            const data = dataArray.find(
+                (item) => item.assessment_type === type
+            );
+            return data ? data.score_description : "Not Taken";
+        };
+
+        const assessmentTypes = ["Depression", "Burn out", "Anxiety"];
+
+        assessmentTypes.forEach((type) => {
+            mergedEmpList.push({
+                ...item1,
+                assessment_type: type,
+                score_description_prev: getAssessmentData(item2DataArray, type),
+                score_description_cur: getAssessmentData(item3DataArray, type),
+            });
+        });
+    });
+
+    const notification = await getNoti();
+    const assessment = await getAssessment();
+    console.log(mergedEmpList);
     return (
         <>
-            <Header headertext={"Assessment Record"} />
+            <Header
+                headertext={"Assessment Record"}
+                notification={notification}
+                assessment={assessment}
+            />
             <AssessmentRecords
-                emplist={emplist}
+                emplist={mergedEmpList}
                 prevObj={prevObj}
                 curObj={curObj}
             />
