@@ -1,9 +1,7 @@
-import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import OrganizationSidebar from "@/components/base/OrganizationSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +24,6 @@ export default function RootLayout({ children }) {
             <html lang="en">
                 <body>
                     <div className="mx-auto min-h-full p-4">
-                        <Navbar />
                         <StyledComponentsRegistry className="mt-8">
                             {children}
                         </StyledComponentsRegistry>

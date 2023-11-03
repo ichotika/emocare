@@ -124,7 +124,7 @@ export default function Home() {
                             <h1>{deprData.depr}</h1>
                             <NoResultChart
                                 mainTitle={"Depression"}
-                                link="/assessment/depression"
+                                link="/employees/assessment/depression"
                             />
                         </>
                     )}
@@ -140,7 +140,7 @@ export default function Home() {
                     ) : (
                         <NoResultChart
                             mainTitle={"Anxiety"}
-                            link="/assessment/anxiety"
+                            link="/employees/assessment/anxiety"
                         />
                     )}
                     {burnoutData.length > 0 ? (
@@ -155,7 +155,7 @@ export default function Home() {
                     ) : (
                         <NoResultChart
                             mainTitle={"Burnout"}
-                            link="/assessment/burnout"
+                            link="/employees/assessment/burnout"
                         />
                     )}
                 </div>
@@ -179,7 +179,7 @@ export default function Home() {
                 <div className="m-2 rounded-lg bg-white p-2">
                     <div className="flex justify-between pb-4">
                         <h2 className="font-bold">Education</h2>
-                        <Link href={`/education`}>View all</Link>
+                        <Link href={`/employees/education`}>View all</Link>
                     </div>
                     <EducationProgress currentUser={currentUserId} />
                 </div>
