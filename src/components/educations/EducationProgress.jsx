@@ -1,6 +1,7 @@
 "use client";
 import DoughnutChart from "../employees/DoughnutChart";
 import { useState, useEffect } from "react";
+import NoResultEducation from "./NoResultEducation";
 
 function EducationProgress({ currentUser }) {
     const [alleduPercent, setAllEduPercent] = useState("");
@@ -85,31 +86,31 @@ function EducationProgress({ currentUser }) {
     return (
         <div>
             <div className="flex gap-6 rounded-lg bg-white">
-                <DoughnutChart
-                    healthPercent={alleduPercent}
-                    categoryTitle={"All"}
-                    percentCompleted={alleduPercent}
-                />
-                <DoughnutChart
+                {alleduPercent > 0 ? <DoughnutChart
+                        healthPercent={alleduPercent}
+                        categoryTitle={"All"}
+                        percentCompleted={alleduPercent}
+                    /> : <NoResultEducation categoryTitle={"All"} />}
+                {resourceEdu > 0 ? <DoughnutChart
                     healthPercent={resourceEdu}
                     categoryTitle={"Resources"}
                     percentCompleted={resourceEdu}
-                />
-                <DoughnutChart
+                /> : <NoResultEducation categoryTitle={"Resource"} /> }
+                {deprEdu > 0 ? <DoughnutChart
                     healthPercent={deprEdu}
                     categoryTitle={"Depression"}
                     percentCompleted={deprEdu}
-                />
-                <DoughnutChart
+                /> : <NoResultEducation categoryTitle={"Depression"} />}
+                {anxietyEdu > 0 ? <DoughnutChart
                     healthPercent={anxietyEdu}
                     categoryTitle={"Anxiety"}
                     percentCompleted={anxietyEdu}
-                />
-                <DoughnutChart
+                /> : <NoResultEducation categoryTitle={"Anxiety"} />}
+                {burnoutEdu > 0 ? <DoughnutChart
                     healthPercent={burnoutEdu}
                     categoryTitle={"Burnout"}
                     percentCompleted={burnoutEdu}
-                />
+                /> : <NoResultEducation categoryTitle={"Burnout"} />}
             </div>
         </div>
     );
