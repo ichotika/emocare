@@ -6,7 +6,6 @@ export async function GET() {
     try {
         await connectMongoDB();
         const eduresponse = await EducationResponse.find();
-        console.log(eduresponse);
         return NextResponse.json({ eduresponse });
     } catch (error) {
         console.error("Error fetching responses:", error);

@@ -38,15 +38,23 @@ function calculateRatio(arr) {
         },
         { good: 0, decent: 0, critical: 0, total: 0 }
     );
-    console.log(countObj);
     return countObj;
 }
 
 export default async function Records() {
     const dayjs = require("dayjs");
-    const emplist = await getEmployees();
-    const assessmentRecord = await getRecords();
     const currentMonth = dayjs().month();
+    const emplistPromise = getEmployees();
+    const assessmentRecordPromise = getRecords();
+    const notificationPromise = getNoti();
+    const assessmentPromise = getAssessment();
+    const [emplist, assessmentRecord, notification, assessment] =
+        await Promise.all([
+            emplistPromise,
+            assessmentRecordPromise,
+            notificationPromise,
+            assessmentPromise,
+        ]);
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.timestamp).month() === currentMonth - 1
     );
@@ -84,9 +92,6 @@ export default async function Records() {
         });
     });
 
-    const notification = await getNoti();
-    const assessment = await getAssessment();
-    console.log(mergedEmpList);
     return (
         <>
             <Header

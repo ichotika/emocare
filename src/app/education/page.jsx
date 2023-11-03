@@ -1,6 +1,4 @@
 "use client";
-import DoughnutChart from "@/components/employees/DoughnutChart";
-import HeaderTab from "@/components/base/HeaderTab";
 import ResourceTable from "@/components/educations/ResourceTable";
 import { useEffect, useState } from "react";
 import EducationProgress from "@/components/educations/EducationProgress";
@@ -18,24 +16,28 @@ export default function Home() {
         const getEdu = async () => {
             const list = await fetchEdu();
             setEdulist(list.education);
-
-            const edu = await fetchEduRes();
-            setUserEdulist(edu.length > 0 ? edu.filter((e) => e.userId === currentUserId): [])
-            console.log("edu response:", edu.length > 0 ? edu.filter((e) => e.userId === currentUserId): [])
         };
         getEdu();
+    }, []);
+    useEffect(() => {
+        const getUserEduList = async () => {
+            const edu = await fetchEduRes();
+            setUserEdulist(
+                edu.length > 0
+                    ? edu.filter((e) => e.userId === currentUserId)
+                    : []
+            );
+        };
+        getUserEduList();
     }, [currentUserId]);
 
     async function fetchEdu() {
-        const res = await fetch("http://localhost:3000/api/education");
+        const res = await fetch("/api/education");
         const data = await res.json();
         return data;
     }
-
     async function fetchEduRes() {
-        const res = await fetch(
-            "http://localhost:3000/api/education/responses"
-        );
+        const res = await fetch("/api/education/responses");
         const data = await res.json();
         return data.eduresponse;
     }
@@ -44,7 +46,13 @@ export default function Home() {
         <>
             <div>
                 <EducationProgress currentUser={currentUserId} />
-
+                <button
+                    onClick={() => {
+                        console.log(content);
+                    }}
+                >
+                    Hello
+                </button>
                 <div className="py-6">
                     {/* <div className="pb-4">
                         <HeaderTab
@@ -58,7 +66,10 @@ export default function Home() {
                         />
                     </div> */}
                     <div>
-                        <ResourceTable educationList={edulist} userEdu={userEdulist} />
+                        <ResourceTable
+                            educationList={edulist}
+                            userEdu={userEdulist}
+                        />
                     </div>
                 </div>
             </div>

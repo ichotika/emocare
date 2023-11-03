@@ -3,10 +3,29 @@ import EduDetail from "@/components/educations/EduDetail";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
+import { client } from "@/libs/contentful";
+
+const fetchContent = async (dataId) => {
+    try {
+        const res = await client.getEntries({
+            content_type: "education",
+        });
+        const educationContent = res.items.filter(
+            (item) => item.fields.topicId === dataId
+        );
+        return educationContent;
+    } catch (error) {
+        console.error("Failed to fetch content:", error);
+    }
+};
 
 export default function Home() {
-    const [eduMod, setEduMod] = useState([]);
+    // fetching the edu module id
+    const searchParam = useSearchParams();
+    const dataId = searchParam.get("topicId");
 
+    const [eduMod, setEduMod] = useState([]);
+    const [eduContent, setEducontent] = useState([]);
     const createEduResponse = async (eduResponse) => {
         try {
             const res = await fetch(
@@ -32,10 +51,6 @@ export default function Home() {
     const { user } = useUser();
     const currentUser = user ? user.id : "no user";
 
-    // fetching the edu module id
-    const searchParam = useSearchParams();
-    const dataId = searchParam.get("topicId");
-
     useEffect(() => {
         const getEdu = async () => {
             const list = await fetchEdu();
@@ -43,7 +58,14 @@ export default function Home() {
         };
         getEdu();
     }, []);
+    useEffect(() => {
+        const getContent = async () => {
+            const content = await fetchContent(dataId);
+            setEducontent(content);
+        };
 
+        getContent();
+    }, [dataId]);
     async function fetchEdu() {
         const res = await fetch("http://localhost:3000/api/education");
         const data = await res.json();
@@ -54,9 +76,10 @@ export default function Home() {
         <>
             <EduDetail
                 recList={eduMod.filter((rec) => rec.topicId !== dataId)}
-                eduModule={eduMod.filter((edu) => edu.topicId === dataId)}
+                eduModule={eduContent}
                 userId={currentUser}
                 newEduResponse={createEduResponse}
+                // eduContent[0].fields.topicId
             />
         </>
     );

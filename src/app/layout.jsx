@@ -16,19 +16,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <ClerkProvider appearance={{
-            layout: {
-                socialButtonsPlacement: 'bottom',
-            }
-        }}>
+        <ClerkProvider
+            appearance={{
+                layout: {
+                    socialButtonsPlacement: "bottom",
+                },
+            }}
+        >
             <html lang="en">
                 <body>
-                        <div className="min-h-full mx-auto p-4">
-                            <Navbar />
-                            <StyledComponentsRegistry className="mt-8">
-                                {children}
-                            </StyledComponentsRegistry>
-                        </div>
+                    <div className="mx-auto min-h-full p-4">
+                        <Navbar />
+                        <StyledComponentsRegistry className="mt-8">
+                            {children}
+                        </StyledComponentsRegistry>
+                    </div>
                 </body>
             </html>
         </ClerkProvider>

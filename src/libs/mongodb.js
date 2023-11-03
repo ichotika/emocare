@@ -1,27 +1,36 @@
 import mongoose from "mongoose";
-let isConnected = false; // track the connection
 
-const connectMongoDB = async () => {
-  mongoose.set("strictQuery", true);
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+    throw new Error(
+        "Please define the MONGODB_URI environmental variable inside .env"
+    );
+}
 
-  if (isConnected) {
-    console.log("MongoDB is already connected");
-    return;
-  }
+let cached = global.mongoose;
 
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: "emocare",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null };
+}
 
-    isConnected = true;
+async function connectMongoDB() {
+    if (cached.conn) {
+        return cached.conn;
+    }
 
-    console.log("MongoDB connected");
-  } catch (error) {
-    console.log(error);
-  }
-};
+    if (!cached.promise) {
+        const opts = {
+            bufferCommands: false,
+        };
+
+        cached.promise = mongoose
+            .connect(MONGODB_URI, opts)
+            .then((mongoose) => {
+                return mongoose;
+            });
+    }
+    cached.conn = await cached.promise;
+    return cached.conn;
+}
 
 export default connectMongoDB;
