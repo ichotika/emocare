@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 function NoAssessResult() {
     return (
         <div className="m-8 text-center font-bold text-slate-400">
