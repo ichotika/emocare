@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
-import EmployeeSidebar from '@/components/base/EmployeeSidebar';
 import { useRouter } from "next/navigation";
 
 const BurnoutQuestionnaire = () => {
@@ -48,11 +47,23 @@ const BurnoutQuestionnaire = () => {
 
     const burnoutLevel = [
         { description: "No sign of burnout here." },
-        { description: "Little sign of burnout here, unless some factors are particularly severe." },
-        { description: "Be careful - you may be at risk of burnout, particularly if several scores are high." },
-        { description: "You are at severe risk of burnout - do something about this urgently." },
-        { description: "You are at very severe risk of burnout - do something about this urgently." }
-    ]
+        {
+            description:
+                "Little sign of burnout here, unless some factors are particularly severe.",
+        },
+        {
+            description:
+                "Be careful - you may be at risk of burnout, particularly if several scores are high.",
+        },
+        {
+            description:
+                "You are at severe risk of burnout - do something about this urgently.",
+        },
+        {
+            description:
+                "You are at very severe risk of burnout - do something about this urgently.",
+        },
+    ];
 
     // const [level, setLevel] = useState("")
 
@@ -87,7 +98,7 @@ const BurnoutQuestionnaire = () => {
     // post data to assessHistory collection in MongoDB.
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let i = []
+        let i = [];
 
         async function response() {
             await fetch("/api/questionnaires/burnout/response", {
@@ -103,19 +114,21 @@ const BurnoutQuestionnaire = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-            }).then(()=> {
-                router.push('/assessment/burnout/burnoutresult')
-            }).catch((error)=> {
-                console.error("Failed to submit data", error);
-            });
+            })
+                .then(() => {
+                    router.push("/assessment/burnout/burnoutresult");
+                })
+                .catch((error) => {
+                    console.error("Failed to submit data", error);
+                });
         }
 
         for (const eachValue in value) {
             console.log(eachValue);
             if (value[eachValue] === -1) {
-                console.log(eachValue, value[eachValue])
+                console.log(eachValue, value[eachValue]);
                 // alert("Please input every button.")
-                i.push(eachValue)
+                i.push(eachValue);
             }
         }
 
@@ -124,10 +137,9 @@ const BurnoutQuestionnaire = () => {
             // console.log(response());
 
             response();
-
         } else {
             for (let index = 0; index < i.length; index++) {
-                alert("please enter value for " + i[index])
+                alert("please enter value for " + i[index]);
             }
         }
     };
@@ -137,21 +149,20 @@ const BurnoutQuestionnaire = () => {
     // Get the questionnaire from server.
     useEffect(() => {
         const fetchBurnoutQuestionnaire = async () => {
-            const res = await fetch("http://localhost:3000/api/questionnaires/burnout");
+            const res = await fetch(
+                "http://localhost:3000/api/questionnaires/burnout"
+            );
             const data = await res.json();
             // console.log("burnout questionnaire", data);
             setBurnoutQuestionnaire(data);
         };
         fetchBurnoutQuestionnaire();
     }, []);
-    console.log(burnoutQustionnaire)
+    console.log(burnoutQustionnaire);
 
     return (
-
         <div className="flex">
-            <EmployeeSidebar />
-            <div>
-            </div>
+            <div></div>
 
             <form method="POST" onSubmit={handleSubmit}>
                 <table style={{ width: "100%" }}>
@@ -168,9 +179,12 @@ const BurnoutQuestionnaire = () => {
                                 <td>{question.No}</td>
                                 <td colSpan="5">{question.question}</td>
                                 {options.map((option) => (
-                                    <td>
+                                    <td key={question.No + option.value}>
                                         <label
-                                            htmlFor={`q${question.No}_${option.value}`}>{option.label}</label>
+                                            htmlFor={`q${question.No}_${option.value}`}
+                                        >
+                                            {option.label}
+                                        </label>
                                         <input
                                             type="radio"
                                             name={`q${question.No}`}
@@ -185,8 +199,15 @@ const BurnoutQuestionnaire = () => {
                     </tbody>
                 </table>
 
-                <button className="rounded-lg border-neutral-950 p-3 m-3">Save</button>
-                <button onClick={(handleSubmit)} className="bg-blue-600 rounded-lg p-3 text-white m-3">Submit Anonymously</button>
+                <button className="m-3 rounded-lg border-neutral-950 p-3">
+                    Save
+                </button>
+                <button
+                    onClick={handleSubmit}
+                    className="m-3 rounded-lg bg-blue-600 p-3 text-white"
+                >
+                    Submit Anonymously
+                </button>
             </form>
         </div>
     );

@@ -105,15 +105,13 @@ function PersonalityType({ mypersonality }) {
         allPersonality.filter((p) => p.type === mypersonality).length > 0
             ? allPersonality.filter((p) => p.type === mypersonality)
             : [];
-            
+
     return (
         <>
             {personality.length > 0 ? (
                 <PersonalityDesc personalityDesc={personality[0]} />
             ) : (
-                <NoPersonalityResult
-                    personalityLink={"http://localhost:3000/personality"}
-                />
+                <NoPersonalityResult personalityLink={"/personality/detail"} />
             )}
         </>
     );

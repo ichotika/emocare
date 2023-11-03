@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
-import EmployeeSidebar from '@/components/base/EmployeeSidebar';
 import { useRouter } from "next/navigation";
 
 const AnxietyQuestionnaire = () => {
@@ -22,7 +21,7 @@ const AnxietyQuestionnaire = () => {
         q4: -1,
         q5: -1,
         q6: -1,
-        q7: -1
+        q7: -1,
     });
 
     const handleRadioChange = (event) => {
@@ -38,11 +37,26 @@ const AnxietyQuestionnaire = () => {
     }, 0);
 
     const anxietyLevel = [
-        { alevel: "Non-minimal", description: "No follow-up is warranted at this time." },
-        { alevel: "Mild", description: "Repeat administration of the GAD-7 every 4 weeks to monitor symptoms. Follow up to determine if current symptoms warrant a referral to a mental health professional." },
-        { alevel: "Moderate", description: "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended." },
-        { alevel: "Severe", description: "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended." }
-    ]
+        {
+            alevel: "Non-minimal",
+            description: "No follow-up is warranted at this time.",
+        },
+        {
+            alevel: "Mild",
+            description:
+                "Repeat administration of the GAD-7 every 4 weeks to monitor symptoms. Follow up to determine if current symptoms warrant a referral to a mental health professional.",
+        },
+        {
+            alevel: "Moderate",
+            description:
+                "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended.",
+        },
+        {
+            alevel: "Severe",
+            description:
+                "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended.",
+        },
+    ];
 
     // const [level, setLevel] = useState("")
 
@@ -82,7 +96,7 @@ const AnxietyQuestionnaire = () => {
     // post data to assessHistory collection in MongoDB.
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let i = []
+        let i = [];
 
         async function response() {
             await fetch("/api/questionnaires/anxiety/response", {
@@ -99,19 +113,21 @@ const AnxietyQuestionnaire = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-            }).then(()=> {
-                router.push('/assessment/anxiety/anxietyresult')
-            }).catch((error)=> {
-                console.error("Failed to submit data", error);
-            });
+            })
+                .then(() => {
+                    router.push("/assessment/anxiety/anxietyresult");
+                })
+                .catch((error) => {
+                    console.error("Failed to submit data", error);
+                });
         }
 
         for (const eachValue in value) {
             console.log(eachValue);
             if (value[eachValue] === -1) {
-                console.log(eachValue, value[eachValue])
+                console.log(eachValue, value[eachValue]);
                 // alert("Please input every button.")
-                i.push(eachValue)
+                i.push(eachValue);
             }
         }
 
@@ -120,11 +136,9 @@ const AnxietyQuestionnaire = () => {
             // console.log(response());
 
             response();
-
         } else {
             for (let index = 0; index < i.length; index++) {
-                alert("please enter value for " + i[index])
-
+                alert("please enter value for " + i[index]);
             }
         }
     };
@@ -134,7 +148,9 @@ const AnxietyQuestionnaire = () => {
     // Get the questionnaire from server.
     useEffect(() => {
         const fetchAnxietyQuestionnaire = async () => {
-            const res = await fetch("http://localhost:3000/api/questionnaires/anxiety");
+            const res = await fetch(
+                "http://localhost:3000/api/questionnaires/anxiety"
+            );
             const data = await res.json();
             // console.log("Anxiety questionnaire", data);
             setAnxietyQuestionnaire(data);
@@ -144,12 +160,7 @@ const AnxietyQuestionnaire = () => {
     // console.log(anxietyQustionnaire.anxietyAssessment)
 
     return (
-
         <div className="flex">
-            <EmployeeSidebar />
-            <div>
-            </div>
-
             <form method="POST" onSubmit={handleSubmit}>
                 <table style={{ width: "100%" }}>
                     <thead>
@@ -160,30 +171,42 @@ const AnxietyQuestionnaire = () => {
                     </thead>
 
                     <tbody>
-                        {anxietyQustionnaire?.anxietyAssessment?.map((question) => (
-                            <tr key={question.No}>
-                                <td>{question.No}</td>
-                                <td colSpan="4">{question.question}</td>
-                                {options.map((option) => (
-                                    <td>
-                                        <label
-                                            htmlFor={`q${question.No}_${option.value}`}>{option.label}</label>
-                                        <input
-                                            type="radio"
-                                            name={`q${question.No}`}
-                                            id={`q${question.No}_${option.value}`}
-                                            value={Number(option.value)}
-                                            onChange={handleRadioChange}
-                                        />
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
+                        {anxietyQustionnaire?.anxietyAssessment?.map(
+                            (question) => (
+                                <tr key={question.No}>
+                                    <td>{question.No}</td>
+                                    <td colSpan="4">{question.question}</td>
+                                    {options.map((option) => (
+                                        <td key={question.No + option.value}>
+                                            <label
+                                                htmlFor={`q${question.No}_${option.value}`}
+                                            >
+                                                {option.label}
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                name={`q${question.No}`}
+                                                id={`q${question.No}_${option.value}`}
+                                                value={Number(option.value)}
+                                                onChange={handleRadioChange}
+                                            />
+                                        </td>
+                                    ))}
+                                </tr>
+                            )
+                        )}
                     </tbody>
                 </table>
 
-                <button className="rounded-lg border-neutral-950 p-3 m-3">Save</button>
-                <button onClick={(handleSubmit)} className="bg-blue-600 rounded-lg p-3 text-white m-3">Submit Anonymously</button>
+                <button className="m-3 rounded-lg border-neutral-950 p-3">
+                    Save
+                </button>
+                <button
+                    onClick={handleSubmit}
+                    className="m-3 rounded-lg bg-blue-600 p-3 text-white"
+                >
+                    Submit Anonymously
+                </button>
             </form>
         </div>
     );
