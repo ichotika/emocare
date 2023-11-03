@@ -12,5 +12,6 @@ export async function GET() {
         return NextResponse.json({ orgList });
     } catch (error) {
         console.error("Error connecting to MongoDB: ", error);
+        return NextResponse("Error connecting to MongoDB: ", error);
     }
 }
