@@ -63,7 +63,6 @@ export default function AssessmentStackChart({
 
     
     burnoutAssessments.forEach((assessment) => {
-        console.log("burnoutAssessments", assessment);
         const score_description = assessment.score_description;
         switch (score_description) {
             case "Critical":
