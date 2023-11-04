@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         >
             <html lang="en">
                 <body>
-                    <div className="mx-auto min-h-full p-4">
+                    <div className="mx-auto min-h-full">
                         <StyledComponentsRegistry className="mt-8">
                             {children}
                         </StyledComponentsRegistry>

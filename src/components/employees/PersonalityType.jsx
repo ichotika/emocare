@@ -111,7 +111,9 @@ function PersonalityType({ mypersonality }) {
             {personality.length > 0 ? (
                 <PersonalityDesc personalityDesc={personality[0]} />
             ) : (
-                <NoPersonalityResult personalityLink={"/personality/detail"} />
+                <NoPersonalityResult
+                    personalityLink={"/employees/assessment/personality"}
+                />
             )}
         </>
     );
