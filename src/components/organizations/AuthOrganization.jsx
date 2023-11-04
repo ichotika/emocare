@@ -3,7 +3,7 @@ import AuthOrganizationList from "@/components/organizations/AuthOrganizationLis
 import EmployeeTable from "@/components/organizations/EmployeeTable";
 import { useState, useEffect } from "react";
 function AuthOrganization({ emplist }) {
-    const [employeeList, setEmployeeList] = useState([emplist]);
+    const [employeeList, setEmployeeList] = useState(emplist);
 
     async function fetchData() {
         const response = await fetch("/api/organization/temp-employees");
@@ -13,12 +13,12 @@ function AuthOrganization({ emplist }) {
         }
 
         const data = await response.json();
-        setEmployeeList(data.emplist);
+        setEmployeeList(data);
     }
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     return (
         <>

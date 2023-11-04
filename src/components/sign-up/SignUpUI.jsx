@@ -4,23 +4,39 @@ import { Combobox, Tab } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
-
-export default function SignUpUI({onOrgDecide}) {
+const deptArr = [
+    "Designer",
+    "Developers",
+    "IT",
+    "Finance",
+    "Marketing",
+    "Operation",
+];
+export default function SignUpUI({
+    onOrgDecide,
+    onDeptDeicde,
+    onDesignDecide,
+}) {
     return (
         <div className="grid justify-center">
             <h1>Organizations</h1>
             <h2>I want to</h2>
-            <MyTabs onOrgDecide={onOrgDecide}></MyTabs>
+            <MyTabs
+                onOrgDecide={onOrgDecide}
+                onDeptDeicde={onDeptDeicde}
+                onDesignDecide={onDesignDecide}
+            ></MyTabs>
         </div>
     );
 }
 
 // First Tab UI
-function SelectOrg({onOrgDecide}) {
+function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
     const [orgs, setOrgs] = useState([]);
     const [selectedOrg, setSelectedOrg] = useState("");
     const [query, setQuery] = useState("");
-
+    const [department, setDepartment] = useState("");
+    const [designation, setDesignation] = useState("");
     const router = useRouter();
 
     useEffect(() => {
@@ -49,11 +65,12 @@ function SelectOrg({onOrgDecide}) {
               });
 
     return (
-        <div>
+        <div className="flex flex-col">
             <Combobox value={selectedOrg} onChange={setSelectedOrg}>
-                <div className="relative">
+                <div className=" relative mb-4 border border-slate-800">
                     <Combobox.Input
                         onChange={(event) => setQuery(event.target.value)}
+                        placeholder="Select Organization"
                     />
                     <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                         <HiChevronUpDown></HiChevronUpDown>
@@ -67,12 +84,40 @@ function SelectOrg({onOrgDecide}) {
                     ))}
                 </Combobox.Options>
             </Combobox>
+            <Combobox value={department} onChange={setDepartment}>
+                <div className=" relative mb-4 border border-slate-800">
+                    <Combobox.Input
+                        onChange={(event) => setQuery(event.target.value)}
+                        placeholder="Select Department"
+                    />
+                    <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                        <HiChevronUpDown></HiChevronUpDown>
+                    </Combobox.Button>
+                </div>
+                <Combobox.Options>
+                    {deptArr.map((dept) => (
+                        <Combobox.Option key={dept} value={dept}>
+                            {dept}
+                        </Combobox.Option>
+                    ))}
+                </Combobox.Options>
+            </Combobox>
+            <Combobox value={designation} onChange={setDesignation}>
+                <div className=" relative mb-4 border border-slate-800">
+                    <Combobox.Input
+                        onChange={(event) => setQuery(event.target.value)}
+                        placeholder="Type Designation"
+                    />
+                </div>
+            </Combobox>
             <button
                 className="block bg-blue-800 text-white"
                 disabled={!selectedOrg}
                 onClick={() => {
                     console.log(selectedOrg);
                     onOrgDecide(selectedOrg);
+                    onDeptDeicde(department);
+                    onDesignDecide(designation);
                 }}
             >
                 {selectedOrg
@@ -84,7 +129,7 @@ function SelectOrg({onOrgDecide}) {
 }
 
 // Second Tab UI
-function CreateOrg({onOrgDecide}) {
+function CreateOrg({ onOrgDecide }) {
     const [createdOrg, setCreatedOrg] = useState("");
 
     const router = useRouter();
@@ -109,7 +154,9 @@ function CreateOrg({onOrgDecide}) {
                             const response = await fetch("/api/organizations");
                             if (response.ok) {
                                 const data = await response.json();
-                                const orgNames = data.orgList.map(({ orgName }) => orgName);
+                                const orgNames = data.orgList.map(
+                                    ({ orgName }) => orgName
+                                );
                                 // Name matches an existing org => Bad!
                                 if (orgNames.includes(createdOrg)) {
                                     alert("Your organization already exists!");
@@ -124,7 +171,10 @@ function CreateOrg({onOrgDecide}) {
                                 );
                             }
                         } catch (error) {
-                            console.error("An error occurred while checking data:", error);
+                            console.error(
+                                "An error occurred while checking data:",
+                                error
+                            );
                         }
                     };
                     console.log(createdOrg);
@@ -143,7 +193,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-function MyTabs({onOrgDecide}) {
+function MyTabs({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
     return (
         <Tab.Group>
             <Tab.List className="flex space-x-5 rounded-xl p-1">
@@ -176,7 +226,11 @@ function MyTabs({onOrgDecide}) {
             </Tab.List>
             <Tab.Panels>
                 <Tab.Panel>
-                    <SelectOrg onOrgDecide={onOrgDecide}></SelectOrg>
+                    <SelectOrg
+                        onOrgDecide={onOrgDecide}
+                        onDeptDeicde={onDeptDeicde}
+                        onDesignDecide={onDesignDecide}
+                    ></SelectOrg>
                 </Tab.Panel>
                 <Tab.Panel>
                     <CreateOrg onOrgDecide={onOrgDecide}></CreateOrg>
