@@ -115,7 +115,7 @@ const AnxietyQuestionnaire = () => {
                 },
             })
                 .then(() => {
-                    router.push("/assessment/anxiety/anxietyresult");
+                    router.push("/employees/assessment/anxiety/anxietyresult");
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);
