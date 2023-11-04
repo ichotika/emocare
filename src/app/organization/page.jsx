@@ -100,22 +100,17 @@ export default function Home() {
     return (
         <>
             <div>
-                {/* <Notification /> */}
-                {/* {assessmentData.length > 0 ? (
-                <OverallCard assessmentData={assessmentData}/>
-            ): ('no data') } */}
+                <p style={{top: '2rem'}} className="text-1xl absolute">WELCOME</p>
                 {notification?.notification?.length >= 0 ? (
                     <Header
-                        headertext={""}
+                        headertext={organizations[0]?.orgName}
                         notification={notification}
                         assessment={notiAssesment}
                     />
                 ) : (
                     <></>
                 )}
-                <div className="flex">
-                    <WelcomePanel organizations={organizations} />
-                </div>
+               
                 <OverallCard
                     assessmentData={assessmentData}
                     employee={employee}
