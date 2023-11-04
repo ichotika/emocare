@@ -115,7 +115,6 @@ export default function Home() {
                 )}
                 <div className="flex">
                     <WelcomePanel organizations={organizations} />
-                    {/* <NotiOrganization notification={notification}/> */}
                 </div>
                 <OverallCard
                     assessmentData={assessmentData}
