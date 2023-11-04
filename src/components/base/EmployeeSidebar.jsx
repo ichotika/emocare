@@ -1,7 +1,7 @@
 "use client";
 import Logo from "@/public/icons/logo_white.svg";
 import Link from "next/link";
-import { SignOutButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 const EmployeeSidebar = () => {
     return (
@@ -42,7 +42,7 @@ const EmployeeSidebar = () => {
 
                 <footer className="p-5">
                     <div className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
-                        <SignOutButton />
+                        <UserButton afterSignOutUrl="/"></UserButton>
                     </div>
                 </footer>
             </div>
