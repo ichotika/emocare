@@ -116,7 +116,7 @@ const BurnoutQuestionnaire = () => {
                 },
             })
                 .then(() => {
-                    router.push("/assessment/burnout/burnoutresult");
+                    router.push("/employees/assessment/burnout/burnoutresult");
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);

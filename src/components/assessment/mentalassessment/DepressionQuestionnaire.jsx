@@ -123,7 +123,7 @@ const Questionnaire = () => {
                 },
             })
                 .then(() => {
-                    router.push("/assessment/depression/depressionresult");
+                    router.push("/employees/assessment/depression/depressionresult");
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);
