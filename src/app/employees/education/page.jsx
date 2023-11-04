@@ -46,13 +46,13 @@ export default function Home() {
         <>
             <div>
                 <EducationProgress currentUser={currentUserId} />
-                <button
+                {/* <button
                     onClick={() => {
                         console.log(content);
                     }}
                 >
                     Hello
-                </button>
+                </button> */}
                 <div className="py-6">
                     {/* <div className="pb-4">
                         <HeaderTab

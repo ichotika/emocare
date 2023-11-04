@@ -121,7 +121,6 @@ export default function Home() {
                         />
                     ) : (
                         <>
-                            <h1>{deprData.depr}</h1>
                             <NoResultChart
                                 mainTitle={"Depression"}
                                 link="/employees/assessment/depression"
