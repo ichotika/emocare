@@ -49,19 +49,19 @@ export default function AssessmentStackChart({
 
     const depressionAssessmentsCount = depressionAssessments.length;
     const depressionCriticalPercent =
-        (depressionCriticalAssessments.length / depressionAssessmentsCount) *
-        100;
+       ((depressionCriticalAssessments.length / depressionAssessmentsCount) *
+        100).toFixed(0);
     const depressionDecentPercent =
-        (depressionDecentAssessments.length / depressionAssessmentsCount) * 100;
+        ((depressionDecentAssessments.length / depressionAssessmentsCount) * 100).toFixed(0);
     const depressionGoodPercent =
-        (depressionGoodAssessments.length / depressionAssessmentsCount) * 100;
+        ((depressionGoodAssessments.length / depressionAssessmentsCount) * 100).toFixed(0);
 
     //burnout
     const burnoutCriticalAssessments = [];
     const burnoutDecentAssessments = [];
     const burnoutGoodAssessments = [];
 
-    console.log("burnoutAssessments", burnoutAssessments);
+    
     burnoutAssessments.forEach((assessment) => {
         console.log("burnoutAssessments", assessment);
         const score_description = assessment.score_description;
@@ -80,11 +80,11 @@ export default function AssessmentStackChart({
 
     const burnoutAssessmentsCount = burnoutAssessments.length;
     const burnoutCriticalPercent =
-        (burnoutCriticalAssessments.length / burnoutAssessmentsCount) * 100;
+        ((burnoutCriticalAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
     const burnoutDecentPercent =
-        (burnoutDecentAssessments.length / burnoutAssessmentsCount) * 100;
+        ((burnoutDecentAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
     const burnoutGoodPercent =
-        (burnoutGoodAssessments.length / burnoutAssessmentsCount) * 100;
+        ((burnoutGoodAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
 
     //anxiety
     const anxietyCriticalAssessments = [];
@@ -108,11 +108,11 @@ export default function AssessmentStackChart({
 
     const anxietyAssessmentsCount = anxietyAssessments.length;
     const anxietyCriticalPercent =
-        (anxietyCriticalAssessments.length / anxietyAssessmentsCount) * 100;
+        ((anxietyCriticalAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
     const anxietyDecentPercent =
-        (anxietyDecentAssessments.length / anxietyAssessmentsCount) * 100;
+        ((anxietyDecentAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
     const anxietyGoodPercent =
-        (anxietyGoodAssessments.length / anxietyAssessmentsCount) * 100;
+        ((anxietyGoodAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
 
     const width = 250;
     const height = 40;
