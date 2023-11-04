@@ -5,7 +5,6 @@ import HeaderTab from "@/components/base/HeaderTab";
 import { useState } from "react";
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
-
     font-size: 1rem;
     background-color: var(--color-grey-0);
     border-radius: 7px;
