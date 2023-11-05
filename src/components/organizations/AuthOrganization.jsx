@@ -6,10 +6,17 @@ import getClerkData from "@/utils/fetchClerkUsers";
 
 function AuthOrganization({ emplist }) {
     const [employeeList, setEmployeeList] = useState(emplist);
-
     async function fetchData() {
-        const response = await getClerkData();
-        setEmployeeList(response);
+        try {
+            const response = await fetch("/api/fetchclerk", {
+                method: "GET",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Could not update data", error);
+        }
     }
 
     return (
@@ -23,7 +30,14 @@ function AuthOrganization({ emplist }) {
                     fetchData={fetchData}
                 />
             </div>
-            <EmployeeTable employeeList={employeeList} fetchData={fetchData} />
+            <button
+                onClick={async () => {
+                    fetchData();
+                }}
+            >
+                clickme
+            </button>
+            {/* <EmployeeTable employeeList={employeeList} fetchData={fetchData} /> */}
         </>
     );
 }

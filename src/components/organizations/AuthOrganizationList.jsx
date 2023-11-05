@@ -5,7 +5,6 @@ import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
 const AuthOrganizationList = ({ employeeList, fetchData }) => {
-    console.log(employeeList);
     async function updateData(userId, department, title) {
         const payload = {
             userId: userId,

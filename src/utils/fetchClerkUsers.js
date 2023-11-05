@@ -20,6 +20,7 @@ export default async function getClerkData() {
                     joinDate: user.createdAt,
                 };
             });
+        console.log(newUsers);
         return newUsers;
     } catch (error) {
         console.error("Error fetching data:", error);
