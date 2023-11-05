@@ -3,8 +3,23 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     try {
         const data = await request.json();
-        const { userId, firstName, lastName } = data;
-        const params = { firstName: firstName, lastName: lastName };
+        const {
+            userId,
+            role,
+            approved,
+            department,
+            deisignation,
+            organization,
+        } = data;
+        const params = {
+            unsafeMetadata: {
+                role: role,
+                approved: approved,
+                department: department,
+                deisignation: deisignation,
+                organization: organization,
+            },
+        };
         const updatedUser = await clerkClient.users.updateUser(userId, params);
 
         return NextResponse.json({ updatedUser });

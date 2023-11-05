@@ -5,11 +5,15 @@ import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
 const AuthOrganizationList = ({ employeeList, fetchData }) => {
-    async function updateData() {
+    console.log(employeeList);
+    async function updateData(userId, department, title) {
         const payload = {
-            userId: "user_2Xj6laq466aLOP3JeMBLifmJT3q",
-            firstName: "ABCD",
-            lastName: "Doe",
+            userId: userId,
+            role: "employee",
+            approved: true,
+            department: department,
+            deisignation: title,
+            organization: "WMDD",
         };
         try {
             const response = await fetch("/api/updateclerk", {
@@ -22,15 +26,14 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json();
-            console.log(data);
+            fetchData();
         } catch (error) {
             console.error("Could not update data", error);
         }
     }
 
-    function confirmEmployee(userId) {
-        updateData(userId);
+    function confirmEmployee(userId, department, title) {
+        updateData(userId, department, title);
         alert("confirm");
     }
 
@@ -62,7 +65,11 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
                                 bgColor="bg-blue-700"
                                 textColor="text-white"
                                 handleClick={() => {
-                                    confirmEmployee(list.userId);
+                                    confirmEmployee(
+                                        list.userId,
+                                        list.department,
+                                        list.title
+                                    );
                                 }}
                             />
                             <MainBtn
