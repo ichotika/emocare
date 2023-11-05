@@ -1,24 +1,35 @@
 "use client"
-
 import Link from "next/link";
 import Image from "next/image";
 import emocareLogo from "@/public/assets/Wireframes/EmoCare_logo 1.svg";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {usePathname} from "next/navigation";
 
 
 export default function TopNav({routes}) {
 
+    const pathname = usePathname();
+
     const [hiddenHamburgerNav, setHiddenHamburgerNav] = useState(true);
 
-    const handleToggleVisible = () => {
-        setHiddenHamburgerNav(!hiddenHamburgerNav);
+
+    useEffect(() => {
+        handleClose();
+    }, [pathname]);
+
+    const handleOpen = () => {
+        setHiddenHamburgerNav(false);
+    }
+
+    const handleClose = () => {
+        setHiddenHamburgerNav(true);
     }
 
     return (
         <>
             <nav className={"flex flex-row items-center justify-between"}>
                 <Image src={emocareLogo} height={50} alt="Emocare Logo"/>
-                <button onClick={handleToggleVisible}
+                <button onClick={handleOpen}
                         className={"bg-blue-600 text-white text-3xl rounded-xl p-1 hidden sm:block"}>=
                 </button>
                 <div className={"flex flex-row gap-8 sm:hidden"}>
@@ -38,13 +49,14 @@ export default function TopNav({routes}) {
                     </div>
                 </div>
             </nav>
-            <HamburgerNav routes={routes} tuckedAway={hiddenHamburgerNav} onClose={handleToggleVisible}></HamburgerNav>
+            <HamburgerNav routes={routes} tuckedAway={hiddenHamburgerNav} onClose={handleClose}></HamburgerNav>
         </>
 
     )
 }
 
 function HamburgerNav({routes, tuckedAway, onClose}) {
+
 
     return (
         <nav
