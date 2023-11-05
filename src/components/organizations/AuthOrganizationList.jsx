@@ -5,22 +5,28 @@ import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
 const AuthOrganizationList = ({ employeeList, fetchData }) => {
-    async function updateData(userId) {
-        const response = await fetch(`/api/organization/temp-employees`, {
-            method: "PATCH",
-            body: JSON.stringify({
-                userId: userId,
-                pending: true,
-            }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Error updating user:", errorData.error);
-            alert("Error updating user. Please try again later.");
-            return;
+    async function updateData() {
+        const payload = {
+            userId: "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+            firstName: "ABCD",
+            lastName: "Doe",
+        };
+        try {
+            const response = await fetch("/api/updateclerk", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error("Could not update data", error);
         }
-
-        fetchData();
     }
 
     function confirmEmployee(userId) {
