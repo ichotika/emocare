@@ -1,32 +1,36 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
-
-const AuthOrganizationList = ({ employeeList, fetchData }) => {
-    async function updateData(userId) {
-        const response = await fetch(`/api/organization/temp-employees`, {
-            method: "PATCH",
-            body: JSON.stringify({
-                userId: userId,
-                pending: true,
-            }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Error updating user:", errorData.error);
-            alert("Error updating user. Please try again later.");
-            return;
+const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
+    async function updateData(userId, department, title) {
+        const payload = {
+            userId: userId,
+            role: "employee",
+            approved: true,
+            department: department,
+            designation: title,
+            organization: "WMDD",
+        };
+        try {
+            const response = await fetch("/api/updateclerk", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            onStatusChanged();
+        } catch (error) {
+            console.error("Could not update data", error);
         }
-
-        fetchData();
     }
 
-    function confirmEmployee(userId) {
-        updateData(userId);
+    function confirmEmployee(userId, department, title) {
+        updateData(userId, department, title);
         alert("confirm");
     }
 
@@ -43,7 +47,13 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
                         className="mb-7 flex justify-between rounded-md bg-slate-400 p-5"
                     >
                         <div className="flex justify-between gap-6">
-                            <Image src={ProRequest} alt="Profile of User" />
+                            <Image
+                                src={list.userImg}
+                                alt="Profile of User"
+                                className="h-max rounded-full"
+                                width={48}
+                                height={48}
+                            />
                             <div className="flex flex-col justify-between">
                                 <h3 className="font-semibold">
                                     {list.fullname}
@@ -58,7 +68,11 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
                                 bgColor="bg-blue-700"
                                 textColor="text-white"
                                 handleClick={() => {
-                                    confirmEmployee(list.userId);
+                                    confirmEmployee(
+                                        list.userId,
+                                        list.department,
+                                        list.title
+                                    );
                                 }}
                             />
                             <MainBtn

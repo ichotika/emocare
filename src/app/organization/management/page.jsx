@@ -1,16 +1,6 @@
 import Header from "@/components/organizations/Header";
 import AuthOrganization from "@/components/organizations/AuthOrganization";
-
-async function getData() {
-    try {
-        const res = await import("../../api/organization/temp-employees/route");
-        const data = (await res.GET()).json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return null;
-    }
-}
+import getClerkData from "@/utils/fetchClerkUsers";
 
 async function getNoti() {
     try {
@@ -35,7 +25,7 @@ async function getAssessment() {
 }
 
 export default async function Home() {
-    const emplist = await getData();
+    const emplist = await getClerkData();
     const notification = await getNoti();
     const assessment = await getAssessment();
 

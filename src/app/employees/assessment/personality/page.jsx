@@ -1,8 +1,7 @@
-"use client";
 import { useRouter } from "next/navigation";
 import PersonalityForm from "@/components/assessment/personality/PersonalityForm";
 export default function CreatePersonalityResponse() {
-    const router = useRouter();
+    // const router = useRouter();
 
     const createResponse = async (responseObj) => {
         try {

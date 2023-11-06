@@ -1,6 +1,5 @@
 "use client";
 import styled from "styled-components";
-import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
 import OrganizationRow from "@/components/organizations/OrganizationRow";
 import HeaderTab from "@/components/base/HeaderTab";
 import { useState } from "react";
@@ -28,7 +27,7 @@ const TableHeader = styled.div`
     width: 100%;
 `;
 
-function OrganizationTable({ employeeList }) {
+function EmployeeTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -67,7 +66,7 @@ function OrganizationTable({ employeeList }) {
                     ) {
                         return (
                             <OrganizationRow
-                                profilePic={Profile}
+                                profilePic={list.userImg}
                                 name={list.fullname}
                                 title={list.title}
                                 department={list.department}
@@ -84,4 +83,4 @@ function OrganizationTable({ employeeList }) {
     );
 }
 
-export default OrganizationTable;
+export default EmployeeTable;
