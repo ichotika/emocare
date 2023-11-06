@@ -4,14 +4,14 @@ import Image from "next/image";
 import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
-const AuthOrganizationList = ({ employeeList, fetchData }) => {
+const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
     async function updateData(userId, department, title) {
         const payload = {
             userId: userId,
             role: "employee",
             approved: true,
             department: department,
-            deisignation: title,
+            designation: title,
             organization: "WMDD",
         };
         try {
@@ -25,7 +25,7 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            fetchData();
+            onStatusChanged();
         } catch (error) {
             console.error("Could not update data", error);
         }

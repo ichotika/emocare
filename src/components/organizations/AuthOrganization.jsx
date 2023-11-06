@@ -2,10 +2,10 @@
 import AuthOrganizationList from "@/components/organizations/AuthOrganizationList";
 import EmployeeTable from "@/components/organizations/EmployeeTable";
 import { useState, useEffect } from "react";
-import getClerkData from "@/utils/fetchClerkUsers";
 
 function AuthOrganization({ emplist }) {
     const [employeeList, setEmployeeList] = useState(emplist);
+
     async function fetchData() {
         try {
             const response = await fetch("/api/fetchclerk", {
@@ -14,11 +14,15 @@ function AuthOrganization({ emplist }) {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            const data = await response.json();
+            setEmployeeList(data.emplist);
         } catch (error) {
-            console.error("Could not update data", error);
+            console.error("Could not fetch data", error);
         }
     }
-
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <>
             <div>
@@ -27,17 +31,10 @@ function AuthOrganization({ emplist }) {
                 </h2>
                 <AuthOrganizationList
                     employeeList={employeeList}
-                    fetchData={fetchData}
+                    onStatusChanged={fetchData}
                 />
             </div>
-            <button
-                onClick={async () => {
-                    fetchData();
-                }}
-            >
-                clickme
-            </button>
-            {/* <EmployeeTable employeeList={employeeList} fetchData={fetchData} /> */}
+            <EmployeeTable employeeList={employeeList} />
         </>
     );
 }

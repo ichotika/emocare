@@ -105,11 +105,12 @@ function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
             <Combobox value={designation} onChange={setDesignation}>
                 <div className=" relative mb-4 border border-slate-800">
                     <Combobox.Input
-                        onChange={(event) => setQuery(event.target.value)}
+                        onChange={(event) => setDesignation(event.target.value)}
                         placeholder="Type Designation"
                     />
                 </div>
             </Combobox>
+
             <button
                 className="block bg-blue-800 text-white"
                 disabled={!selectedOrg}

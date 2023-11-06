@@ -8,7 +8,7 @@ export async function POST(request) {
             role,
             approved,
             department,
-            deisignation,
+            designation,
             organization,
         } = data;
         const params = {
@@ -16,7 +16,7 @@ export async function POST(request) {
                 role: role,
                 approved: approved,
                 department: department,
-                deisignation: deisignation,
+                designation: designation,
                 organization: organization,
             },
         };

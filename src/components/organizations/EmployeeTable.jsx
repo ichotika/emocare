@@ -28,7 +28,7 @@ const TableHeader = styled.div`
     padding: 1.6rem 2.4rem;
 `;
 
-function OrganizationTable({ employeeList }) {
+function EmployeeTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -84,4 +84,4 @@ function OrganizationTable({ employeeList }) {
     );
 }
 
-export default OrganizationTable;
+export default EmployeeTable;
