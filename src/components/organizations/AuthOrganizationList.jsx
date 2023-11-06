@@ -1,7 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
 
 const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
@@ -49,7 +47,13 @@ const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
                         className="mb-7 flex justify-between rounded-md bg-slate-400 p-5"
                     >
                         <div className="flex justify-between gap-6">
-                            <Image src={ProRequest} alt="Profile of User" />
+                            <Image
+                                src={list.userImg}
+                                alt="Profile of User"
+                                className="h-max rounded-full"
+                                width={48}
+                                height={48}
+                            />
                             <div className="flex flex-col justify-between">
                                 <h3 className="font-semibold">
                                     {list.fullname}

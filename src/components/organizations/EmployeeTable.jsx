@@ -1,6 +1,5 @@
 "use client";
 import styled from "styled-components";
-import Profile from "@/public/assets/Wireframes/UserProDraft.jpg";
 import OrganizationRow from "@/components/organizations/OrganizationRow";
 import HeaderTab from "@/components/base/HeaderTab";
 import { useState } from "react";
@@ -67,7 +66,7 @@ function EmployeeTable({ employeeList }) {
                     ) {
                         return (
                             <OrganizationRow
-                                profilePic={Profile}
+                                profilePic={list.userImg}
                                 name={list.fullname}
                                 title={list.title}
                                 department={list.department}
