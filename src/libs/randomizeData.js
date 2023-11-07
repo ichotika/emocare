@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const userIDs = [
-    "BDEA122313",
+    "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
     "BDEA133313",
     "A7adju2421",
     "BDEA13213",
@@ -42,6 +42,15 @@ function getRandomDate(month) {
         .toString()
         .padStart(2, "0")}T12:00:00Z`;
 }
+function determineLevel(score) {
+    if (score <= 15) {
+        return "Critical";
+    } else if (score <= 30) {
+        return "Decent";
+    } else {
+        return "Good";
+    }
+}
 
 function generateData() {
     const data = [];
@@ -57,12 +66,15 @@ function generateData() {
                     ? getRandomFromArray(tempUserIDs)
                     : `RandomUser${i + 1}`;
 
+            const level = determineLevel(score);
+
             data.push({
                 userId: userID,
-                score: score,
                 assessmentType: getRandomAssessmentType(),
-                timestamps: getRandomDate(month),
-                scoreDescription: description,
+                score: score,
+                level: level,
+                levelDescription: description,
+                timestamp: getRandomDate(month), // Changed from 'timestamps' to 'timestamp'
             });
         }
     }

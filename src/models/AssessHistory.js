@@ -2,10 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 const AssessHistorySchema = new Schema(
     {
-        userId: string,
-        score: Number,
+        userId: String,
         assessmentType: String,
-        scoreDescription: String,
+        score: Number,
+        level: String,
+        levelDescription: String,
     },
     {
         timestamps: true,
