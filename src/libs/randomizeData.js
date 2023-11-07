@@ -59,11 +59,10 @@ function generateData() {
 
             data.push({
                 userId: userID,
-                assessment_id: `A${month}${i}`, // Made this month-specific to ensure uniqueness
                 score: score,
-                assessment_type: getRandomAssessmentType(),
-                timestamp: getRandomDate(month),
-                score_description: description,
+                assessmentType: getRandomAssessmentType(),
+                timestamps: getRandomDate(month),
+                scoreDescription: description,
             });
         }
     }

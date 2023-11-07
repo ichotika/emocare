@@ -3,6 +3,8 @@ import styled from "styled-components";
 import OrganizationRow from "@/components/organizations/OrganizationRow";
 import HeaderTab from "@/components/base/HeaderTab";
 import { useState } from "react";
+import Pagination from "@/components/base/Pagination";
+
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
 
@@ -79,6 +81,7 @@ function EmployeeTable({ employeeList }) {
                     return null;
                 })}
             </Table>
+            <Pagination dataArr={employeeList} max={5} />
         </div>
     );
 }

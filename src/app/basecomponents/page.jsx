@@ -300,7 +300,7 @@ export default function Basecomponent() {
                 bgColor={"bg-blue-700"}
                 textColor={"text-white"}
             />
-            <Pagination dataArr={dataArr} />
+            <Pagination dataArr={dataArr} max={5} />
         </>
     );
 }
