@@ -11,17 +11,19 @@ function Splash() {
     const { isLoaded, isSignedIn, user } = useUser();
 
     useEffect(() => {
-        if (isSignedIn) {
-            const userRole = user?.unsafeMetadata?.role;
-            if (userRole === "employee") {
-                router.push("/employees");
-            } else if (userRole === "organization") {
-                router.push("/organization");
+        if (isLoaded) {
+            if (isSignedIn) {
+                const userRole = user?.unsafeMetadata?.role;
+                if (userRole === "employee") {
+                    router.push("/employees");
+                } else if (userRole === "organization") {
+                    router.push("/organization");
+                }
+            } else {
+                router.push("/company");
             }
-        } else {
-            router.push("/company");
         }
-    }, [user, router, isSignedIn]);
+    }, [user, isSignedIn,isLoaded]);
 
     return (
         <AnimatePresence mode="wait">
