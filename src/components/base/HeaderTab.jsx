@@ -17,7 +17,7 @@ const Border = styled.span`
     background-color: #1e40af;
 `;
 
-function Tabbed({ tabs, activeTab, setActiveTab }) {
+function Tabbed({ tabs, activeTab, setActiveTab, setCurNumber }) {
     const activeTabRef = useRef(null);
     const [borderStyle, setBorderStyle] = useState({
         width: "0px",
@@ -38,6 +38,7 @@ function Tabbed({ tabs, activeTab, setActiveTab }) {
 
     function handleActiveTab(name) {
         setActiveTab(name);
+        setCurNumber(1);
     }
 
     return (
@@ -76,13 +77,14 @@ function Tab({ name, activeTab, handleActiveTab, forwardedRef }) {
     );
 }
 
-function HeaderTab({ tabNames, activeTab, setActiveTab }) {
+function HeaderTab({ tabNames, activeTab, setActiveTab, setCurNumber }) {
     return (
         <div>
             <Tabbed
                 tabs={tabNames}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                setCurNumber={setCurNumber}
             />
         </div>
     );

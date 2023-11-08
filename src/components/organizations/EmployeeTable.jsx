@@ -31,6 +31,8 @@ const TableHeader = styled.div`
 
 function EmployeeTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
+    const [curNumber, setCurNumber] = useState(1);
+    const max = 5;
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -38,7 +40,6 @@ function EmployeeTable({ employeeList }) {
         const year = date.getFullYear();
         return `${month}/${day}/${year}`;
     };
-
     return (
         <div className="mt-12">
             <h2 className="mb-6 text-lg font-semibold">Manage Employees</h2>
@@ -53,6 +54,7 @@ function EmployeeTable({ employeeList }) {
                 ]}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                setCurNumber={setCurNumber}
             />
             <Table role="table" className="mb-12 mt-6 overflow-x-auto">
                 <TableHeader role="row">
@@ -61,27 +63,62 @@ function EmployeeTable({ employeeList }) {
                     <div>Employee ID</div>
                     <div>Joined EmoCare</div>
                 </TableHeader>
-                {employeeList.map((list) => {
-                    if (
-                        list.pending &&
-                        (list.department === activeTab || activeTab === "All")
-                    ) {
-                        return (
-                            <OrganizationRow
-                                profilePic={list.userImg}
-                                name={list.fullname}
-                                title={list.title}
-                                department={list.department}
-                                joinDate={formatDate(list.joinDate)}
-                                id={list.email}
-                                key={list.userId}
-                            />
-                        );
-                    }
-                    return null;
-                })}
+                {activeTab === "All"
+                    ? employeeList
+                          .slice(
+                              curNumber === 1 ? 0 : (curNumber - 1) * max,
+                              curNumber * max
+                          )
+                          .map((list) => {
+                              return (
+                                  <OrganizationRow
+                                      profilePic={list.userImg}
+                                      name={list.fullname}
+                                      title={list.title}
+                                      department={list.department}
+                                      joinDate={formatDate(list.joinDate)}
+                                      id={list.userId}
+                                      key={list.userId}
+                                  />
+                              );
+                          })
+                    : employeeList
+                          .filter((list) => list.department === activeTab)
+                          .slice(
+                              curNumber === 1 ? 0 : (curNumber - 1) * max,
+                              curNumber * max
+                          )
+                          .map((list) => {
+                              return (
+                                  <OrganizationRow
+                                      profilePic={list.userImg}
+                                      name={list.fullname}
+                                      title={list.title}
+                                      department={list.department}
+                                      joinDate={formatDate(list.joinDate)}
+                                      id={list.userId}
+                                      key={list.userId}
+                                  />
+                              );
+                          })}
             </Table>
-            <Pagination dataArr={employeeList} max={5} />
+            {activeTab === "All" ? (
+                <Pagination
+                    dataArr={employeeList}
+                    max={max}
+                    curNumber={curNumber}
+                    setCurNumber={setCurNumber}
+                />
+            ) : (
+                <Pagination
+                    dataArr={employeeList.filter(
+                        (list) => list.department === activeTab
+                    )}
+                    max={max}
+                    curNumber={curNumber}
+                    setCurNumber={setCurNumber}
+                />
+            )}
         </div>
     );
 }

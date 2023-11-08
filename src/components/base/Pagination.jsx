@@ -4,8 +4,7 @@ import leftIcon from "@/public/icons/left.svg";
 import rightIcon from "@/public/icons/right.svg";
 import Image from "next/image";
 
-function Pagination({ dataArr, max }) {
-    const [curNumber, setCurNumber] = useState(1);
+function Pagination({ dataArr, max, curNumber, setCurNumber }) {
     const lengthArr = [];
     const totalLength = Math.ceil(dataArr.length / max);
     for (let i = 0; i < totalLength; i++) {
