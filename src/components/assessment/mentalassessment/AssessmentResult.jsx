@@ -17,17 +17,34 @@ const AssessmentResult = () => {
     // console.log(splitURL);
     const assessType = splitURL[splitURL.length - 2];
     // console.log(assessType);
-
     const [assessmentData, setAssessmentData] = useState([]);
+
+    let totalQuestions;
 
     useEffect(() => {
         if (user) {
             const getAssessmentResult = async () => {
-                const response = await fetch(`/api/questionnaires/${assessType}/response?search=${user.id}`);
+                const response = await fetch(`/api/questionnaires/${assessType}/resp onse?search=${user.id}`);
                 const data = await response.json();
                 // console.log("this is the assessment data", data);
                 setAssessmentData(data[0]);
-                // console.log("set Assessment",assessmentData);
+
+                switch (assessType) {
+                    case "depression":
+                        totalQuestions = 27;
+                        console.log("de")
+                        break;
+                    
+                    case "burnout":
+                        totalQuestions = 75;
+                        console.log("bo")
+                        break;
+
+                    default: // anxiety
+                        totalQuestions = 21;
+                        console.log("an")
+                        break;     
+                }
             };
             getAssessmentResult();
             // console.log("this is the assessment Data", typeof(assessmentData));
@@ -43,7 +60,7 @@ const AssessmentResult = () => {
                 headtitle={assessType}
                 levelText={assessmentData.level}
                 levelNum={assessmentData.score}
-                levelPercent={(assessmentData.score * 100) /27}
+                levelPercent={(assessmentData.score * 100) / totalQuestions}
             />)}
 
             <h2>Your {assessType} score is {assessmentData.score} , {assessmentData.level} </h2>

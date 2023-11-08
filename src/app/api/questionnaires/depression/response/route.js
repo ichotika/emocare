@@ -45,7 +45,6 @@ export async function GET(request) {
 
 // POST the answer in MONGODB.
 export async function POST(request) {
-
     await connectMongoDB();
     try {
         const newDepressionResponse = await request.json();

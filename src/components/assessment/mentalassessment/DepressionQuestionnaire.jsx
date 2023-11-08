@@ -100,22 +100,23 @@ const Questionnaire = () => {
         return result;
     };
 
+    console.log(user?.id)
+
     // post data to assessHistory collection in MongoDB.
     const handleSubmit = async (event) => {
         event.preventDefault();
         let i = [];
-
         async function response() {
-            await fetch("/api/questionnaires/depression/response", {
+            await fetch(`/api/assessment?search=${user?.id}`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: user.id,
-                    assessment_id: 1,
-                    assessment_type: "depression",
-                    assess_date: new Date(),
+                    userId: user?.id,
+                    // assessment_id: 1,
+                    assessmentType: "depression",
+                    // assess_date: new Date(),
                     score: totalScore,
                     level: getDepressionLevel(totalScore).dlevel,
-                    level_description:
+                    levelDescription:
                         getDepressionLevel(totalScore).description,
                 }),
                 headers: {
@@ -123,7 +124,7 @@ const Questionnaire = () => {
                 },
             })
                 .then(() => {
-                    router.push("/assessment/depression/depressionresult");
+                    router.push("/employees/assessment/depression/depressionresult");
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);
