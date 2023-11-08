@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import RecordRow from "@/components/organizations/RecordRow";
 import HeaderTab from "@/components/base/HeaderTab";
+import Pagination from "../base/Pagination";
 import { useState } from "react";
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
@@ -27,8 +28,9 @@ const TableHeader = styled.div`
 `;
 
 function RecordTable({ employeeList }) {
-    console.log(employeeList);
     const [activeTab, setActiveTab] = useState("All");
+    const [curNumber, setCurNumber] = useState(1);
+    const max = 5;
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -50,6 +52,7 @@ function RecordTable({ employeeList }) {
                 ]}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                setCurNumber={setCurNumber}
             />
             <Table role="table" className="mb-12 mt-6">
                 <TableHeader role="row">
@@ -60,27 +63,65 @@ function RecordTable({ employeeList }) {
                     <div className="text-center">Previous Level</div>
                     <div className="text-center">Monthly Asessment</div>
                 </TableHeader>
-                {employeeList.map((list, index) => {
-                    if (
-                        list.pending &&
-                        (list.department === activeTab || activeTab === "All")
-                    ) {
-                        return (
-                            <RecordRow
-                                title={list.title}
-                                department={list.department}
-                                joinDate={formatDate(list.joinDate)}
-                                id={list.email}
-                                assessmentType={list.assessment_type}
-                                scoreCur={list.score_description_cur}
-                                scorePrev={list.score_description_prev}
-                                key={index}
-                            />
-                        );
-                    }
-                    return null;
-                })}
+
+                {activeTab === "All"
+                    ? employeeList
+                          .slice(
+                              curNumber === 1 ? 0 : (curNumber - 1) * max,
+                              curNumber * max
+                          )
+                          .map((list, index) => {
+                              return (
+                                  <RecordRow
+                                      title={list.title}
+                                      department={list.department}
+                                      joinDate={formatDate(list.joinDate)}
+                                      id={list.email}
+                                      assessmentType={list.assessmentType}
+                                      scoreCur={list.levelCur}
+                                      scorePrev={list.levelPrev}
+                                      key={index}
+                                  />
+                              );
+                          })
+                    : employeeList
+                          .filter((list) => list.department === activeTab)
+                          .slice(
+                              curNumber === 1 ? 0 : (curNumber - 1) * max,
+                              curNumber * max
+                          )
+                          .map((list, index) => {
+                              return (
+                                  <RecordRow
+                                      title={list.title}
+                                      department={list.department}
+                                      joinDate={formatDate(list.joinDate)}
+                                      id={list.email}
+                                      assessmentType={list.assessmentType}
+                                      scoreCur={list.levelCur}
+                                      scorePrev={list.levelPrev}
+                                      key={index}
+                                  />
+                              );
+                          })}
             </Table>
+            {activeTab === "All" ? (
+                <Pagination
+                    dataArr={employeeList}
+                    max={max}
+                    curNumber={curNumber}
+                    setCurNumber={setCurNumber}
+                />
+            ) : (
+                <Pagination
+                    dataArr={employeeList.filter(
+                        (list) => list.department === activeTab
+                    )}
+                    max={max}
+                    curNumber={curNumber}
+                    setCurNumber={setCurNumber}
+                />
+            )}
         </div>
     );
 }

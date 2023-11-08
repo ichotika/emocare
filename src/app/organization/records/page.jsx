@@ -2,7 +2,7 @@ import Header from "@/components/organizations/Header";
 import AssessmentRecords from "@/components/organizations/AssessmentRecords";
 
 async function getEmployees() {
-    const res = await import("../../api/organization/temp-employees/route");
+    const res = await import("../../api/fetchclerk/route");
     const data = (await res.GET()).json();
     return data;
 }
@@ -26,9 +26,9 @@ async function getAssessment() {
 function calculateRatio(arr) {
     const countObj = arr.reduce(
         (totalCount, item) => {
-            if (item.score_description === "Good") {
+            if (item.level === "Good") {
                 totalCount.good = totalCount.good + 1;
-            } else if (item.score_description === "Decent") {
+            } else if (item.level === "Decent") {
                 totalCount.decent = totalCount.decent + 1;
             } else {
                 totalCount.critical = totalCount.critical + 1;
@@ -55,6 +55,7 @@ export default async function Records() {
             notificationPromise,
             assessmentPromise,
         ]);
+
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.timestamp).month() === currentMonth - 1
     );
@@ -72,12 +73,9 @@ export default async function Records() {
         const item3DataArray = curRecords.filter(
             (item3) => item3.userId === item1.userId
         );
-
         const getAssessmentData = (dataArray, type) => {
-            const data = dataArray.find(
-                (item) => item.assessment_type === type
-            );
-            return data ? data.score_description : "Not Taken";
+            const data = dataArray.find((item) => item.assessmentType === type);
+            return data ? data.level : "Not Taken";
         };
 
         const assessmentTypes = ["Depression", "Burn out", "Anxiety"];
@@ -85,9 +83,9 @@ export default async function Records() {
         assessmentTypes.forEach((type) => {
             mergedEmpList.push({
                 ...item1,
-                assessment_type: type,
-                score_description_prev: getAssessmentData(item2DataArray, type),
-                score_description_cur: getAssessmentData(item3DataArray, type),
+                assessmentType: type,
+                levelPrev: getAssessmentData(item2DataArray, type),
+                levelCur: getAssessmentData(item3DataArray, type),
             });
         });
     });

@@ -1,9 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import Header from "@/components/organizations/Header";
 import AssessmentHistory from "@/components/employees/AssessmentHistory";
 import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
-import DoughnutChart from "@/components/employees/DoughnutChart";
 import PersonalityType from "@/components/employees/PersonalityType";
 import NoResultChart from "@/components/employees/NoResultChart";
 import NoAssessResult from "@/components/employees/NoAssessResult";
@@ -22,20 +20,18 @@ export default function Home() {
 
     // current logged in user
     const { user } = useUser();
-    const currentUserEmail = user ? user.emailAddresses[0].emailAddress : null;
     const currentUserId = user ? user.id : null;
-
     const currentDate = new Date().getMonth();
 
     useEffect(() => {
         const getAssessmentData = async () => {
             // Mental assesment data
             const assessData = await fetchAssessment();
-            const userData = await (currentUserEmail
-                ? assessData.filter((user) => user.emailID === currentUserEmail)
+            const userData = await (currentUserId
+                ? assessData.filter((user) => user.userId === currentUserId)
                 : []);
             const sortedUserData = await userData.sort(
-                (a, b) => new Date(b.assessDate) - new Date(a.assessDate)
+                (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
             );
             setAssessmentData(sortedUserData);
 
@@ -44,7 +40,7 @@ export default function Home() {
                 sortedUserData.length > 0
                     ? sortedUserData.filter(
                           (user) =>
-                              new Date(user.assessDate).getMonth() ===
+                              new Date(user.timestamp).getMonth() ===
                               currentDate
                       )
                     : [];
@@ -52,19 +48,17 @@ export default function Home() {
             // fetching data for each category
             setDeprData(
                 dateCheck.length > 0
-                    ? dateCheck.filter((d) =>
-                          d.hasOwnProperty("depressionLevel")
-                      )
+                    ? dateCheck.filter((d) => d.assessmentType === "Depression")
                     : 0
             );
             setAnxietyData(
                 dateCheck.length > 0
-                    ? dateCheck.filter((d) => d.hasOwnProperty("anxietyLevel"))
+                    ? dateCheck.filter((d) => d.assessmentType === "Anxiety")
                     : 0
             );
             setBurnoutData(
                 dateCheck.length > 0
-                    ? dateCheck.filter((d) => d.hasOwnProperty("burnoutLevel"))
+                    ? dateCheck.filter((d) => d.assessmentType === "Burn out")
                     : 0
             );
 
@@ -87,7 +81,7 @@ export default function Home() {
             );
         };
         getAssessmentData();
-    }, [currentDate, currentUserEmail, currentUserId]);
+    }, [currentDate, currentUserId]);
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -113,11 +107,9 @@ export default function Home() {
                     {deprData.length > 0 ? (
                         <HalfDoughnutChart
                             headtitle={"Depression"}
-                            levelText={deprData[0].depressionLevel}
-                            levelNum={deprData[0].depressionPercent}
-                            levelPercent={
-                                (deprData[0].depressionPercent * 100) / 27
-                            }
+                            levelText={deprData[0].level}
+                            levelNum={deprData[0].score}
+                            levelPercent={(deprData[0].score * 100) / 27}
                         />
                     ) : (
                         <>
@@ -130,11 +122,9 @@ export default function Home() {
                     {anxietyData.length > 0 ? (
                         <HalfDoughnutChart
                             headtitle={"Anxiety"}
-                            levelText={anxietyData[0].anxietyLevel}
-                            levelNum={anxietyData[0].anxietyPercent}
-                            levelPercent={
-                                (anxietyData[0].anxietyPercent * 100) / 21
-                            }
+                            levelText={anxietyData[0].level}
+                            levelNum={anxietyData[0].score}
+                            levelPercent={(anxietyData[0].score * 100) / 21}
                         />
                     ) : (
                         <NoResultChart
@@ -145,11 +135,9 @@ export default function Home() {
                     {burnoutData.length > 0 ? (
                         <HalfDoughnutChart
                             headtitle={"Burnout"}
-                            levelText={burnoutData[0].burnoutLevel}
-                            levelNum={burnoutData[0].burnoutPercent}
-                            levelPercent={
-                                (burnoutData[0].burnoutPercent * 100) / 75
-                            }
+                            levelText={burnoutData[0].level}
+                            levelNum={burnoutData[0].score}
+                            levelPercent={(burnoutData[0].score * 100) / 75}
                         />
                     ) : (
                         <NoResultChart
@@ -167,9 +155,7 @@ export default function Home() {
                         <button onClick={() => setPopup(true)}>View all</button>
                     </div>
                     {assessmentData.length > 0 ? (
-                        <AssessmentHistory
-                            assessment={assessmentData.slice(0, 6)}
-                        />
+                        <AssessmentHistory assessment={assessmentData} />
                     ) : (
                         <NoAssessResult />
                     )}
