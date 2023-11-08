@@ -2,14 +2,13 @@ const fs = require("fs");
 
 const userIDs = [
     "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
-    "BDEA133313",
-    "A7adju2421",
-    "BDEA13213",
-    "U005",
-    "U001",
-    "U002",
-    "U003",
-    "U004",
+    "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
+    "user_2Xj10InQPYdmPjOR9VreThe9fic",
+    "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
+    "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+    "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
+    "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
+    "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
 ];
 
 function getRandomFromArray(array) {

@@ -2,7 +2,7 @@ import Header from "@/components/organizations/Header";
 import AssessmentRecords from "@/components/organizations/AssessmentRecords";
 
 async function getEmployees() {
-    const res = await import("../../api/organization/temp-employees/route");
+    const res = await import("../../api/fetchclerk/route");
     const data = (await res.GET()).json();
     return data;
 }

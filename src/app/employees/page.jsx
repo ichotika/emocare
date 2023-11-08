@@ -87,7 +87,6 @@ export default function Home() {
     const fetchAssessment = async () => {
         const res = await fetch("/api/assessment");
         const data = await res.json();
-        console.log(data);
         return data.assessment;
     };
 
@@ -156,9 +155,7 @@ export default function Home() {
                         <button onClick={() => setPopup(true)}>View all</button>
                     </div>
                     {assessmentData.length > 0 ? (
-                        <AssessmentHistory
-                            assessment={assessmentData.slice(0, 6)}
-                        />
+                        <AssessmentHistory assessment={assessmentData} />
                     ) : (
                         <NoAssessResult />
                     )}

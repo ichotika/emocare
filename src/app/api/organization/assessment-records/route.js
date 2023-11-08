@@ -5,7 +5,7 @@ export async function GET() {
     try {
         await connectMongoDB();
         console.log("Connected to MongoDB");
-        let res = mongoose.connection.db.collection("random-assessment-txn");
+        let res = mongoose.connection.db.collection("assessHistory");
         let assessmentArr = await res.find({}).toArray();
         return NextResponse.json({ assessmentArr });
     } catch (error) {
