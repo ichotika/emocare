@@ -26,9 +26,9 @@ async function getAssessment() {
 function calculateRatio(arr) {
     const countObj = arr.reduce(
         (totalCount, item) => {
-            if (item.score_description === "Good") {
+            if (item.level === "Good") {
                 totalCount.good = totalCount.good + 1;
-            } else if (item.score_description === "Decent") {
+            } else if (item.level === "Decent") {
                 totalCount.decent = totalCount.decent + 1;
             } else {
                 totalCount.critical = totalCount.critical + 1;
@@ -55,6 +55,7 @@ export default async function Records() {
             notificationPromise,
             assessmentPromise,
         ]);
+
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.timestamp).month() === currentMonth - 1
     );
