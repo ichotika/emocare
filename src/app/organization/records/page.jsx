@@ -73,12 +73,9 @@ export default async function Records() {
         const item3DataArray = curRecords.filter(
             (item3) => item3.userId === item1.userId
         );
-
         const getAssessmentData = (dataArray, type) => {
-            const data = dataArray.find(
-                (item) => item.assessment_type === type
-            );
-            return data ? data.score_description : "Not Taken";
+            const data = dataArray.find((item) => item.assessmentType === type);
+            return data ? data.level : "Not Taken";
         };
 
         const assessmentTypes = ["Depression", "Burn out", "Anxiety"];
@@ -86,9 +83,9 @@ export default async function Records() {
         assessmentTypes.forEach((type) => {
             mergedEmpList.push({
                 ...item1,
-                assessment_type: type,
-                score_description_prev: getAssessmentData(item2DataArray, type),
-                score_description_cur: getAssessmentData(item3DataArray, type),
+                assessmentType: type,
+                levelPrev: getAssessmentData(item2DataArray, type),
+                levelCur: getAssessmentData(item3DataArray, type),
             });
         });
     });
