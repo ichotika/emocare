@@ -6,7 +6,6 @@ export async function GET() {
     try {
         await connectMongoDB();
         const assessment = await AssessHistory.find();
-        console.log(assessment);
         return NextResponse.json({ assessment });
     } catch (error) {
         console.error("Error fetching assessment results: ", error);

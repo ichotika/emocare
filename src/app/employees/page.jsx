@@ -21,7 +21,6 @@ export default function Home() {
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
-
     const currentDate = new Date().getMonth();
 
     useEffect(() => {
