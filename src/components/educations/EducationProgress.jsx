@@ -84,8 +84,8 @@ function EducationProgress({ currentUser }) {
     }
 
     return (
-        <div>
-            <div className="flex gap-6 rounded-lg bg-white">
+        <>
+            <div className="flex flex-row sm:flex-col gap-6 rounded-lg bg-white">
                 {alleduPercent > 0 ? <DoughnutChart
                         healthPercent={alleduPercent}
                         categoryTitle={"All"}
@@ -112,7 +112,7 @@ function EducationProgress({ currentUser }) {
                     percentCompleted={burnoutEdu}
                 /> : <NoResultEducation categoryTitle={"Burnout"} />}
             </div>
-        </div>
+        </>
     );
 }
 

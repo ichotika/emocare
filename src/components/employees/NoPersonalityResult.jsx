@@ -2,9 +2,9 @@ import Link from "next/link";
 
 function NoPersonalityResult({ personalityLink }) {
     return (
-        <div className="m-2 flex h-[20vw] flex-col justify-between gap-4 rounded-lg bg-white p-4">
+        <div className="m-2 flex flex-col justify-between gap-4 rounded-lg bg-white p-4">
             <h1 className="font-bold">Your Personality Type</h1>
-            <div className="flex h-[20vw] flex-col justify-between gap-2 p-2 text-center font-bold">
+            <div className="flex flex-col justify-between gap-2 p-2 text-center font-bold">
                 <p className="text-slate-400">
                     You have not taken personality test yet.
                 </p>

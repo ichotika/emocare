@@ -98,12 +98,12 @@ export default function Home() {
     };
 
     return (
-        <div className="grid grid-cols-4 gap-1 bg-slate-200">
-            <div className="col-span-4">
-                <h1>Employee Dashboard</h1>
+        <div className="bg-slate-200">
+            <div>
+                <h1 className="font-bold p-2 mx-2">Employee Dashboard</h1>
             </div>
-            <div className="col-span-3">
-                <div className="m-2 grid grid-cols-3 gap-4">
+            <div className="sm:flex sm:flex-col grid grid-cols-3">
+                <div className="m-4 flex sm:flex-col col-span-2 gap-4">
                     {deprData.length > 0 ? (
                         <HalfDoughnutChart
                             headtitle={"Depression"}
@@ -147,7 +147,11 @@ export default function Home() {
                     )}
                 </div>
 
-                <div className="m-2 rounded-lg bg-white p-2">
+                <div className="m-2 row-span-2">
+                    <PersonalityType mypersonality={recentPersonalityType} />
+                </div>
+
+                <div className="m-4 col-span-2 rounded-lg bg-white p-2">
                     <div className="flex justify-between">
                         <h2 className="pb-2 font-bold">
                             Your Assessment History
@@ -161,17 +165,16 @@ export default function Home() {
                     )}
                 </div>
 
-                <div className="m-2 rounded-lg bg-white p-2">
-                    <div className="flex justify-between pb-4">
-                        <h2 className="font-bold">Education</h2>
-                        <Link href={`/employees/education`}>View all</Link>
-                    </div>
-                    <EducationProgress currentUser={currentUserId} />
+            </div>
+
+            <div className="m-4 rounded-lg bg-white p-2">
+                <div className="flex justify-between pb-4">
+                    <h2 className="font-bold">Education</h2>
+                    <Link href={`/employees/education`}>View all</Link>
                 </div>
+                <EducationProgress currentUser={currentUserId} />
             </div>
-            <div>
-                <PersonalityType mypersonality={recentPersonalityType} />
-            </div>
+            
             <PopUpAssessmentHistory
                 isVisible={popup}
                 onClose={() => setPopup(false)}
