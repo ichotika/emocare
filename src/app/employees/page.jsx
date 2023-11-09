@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Header from "@/components/organizations/Header";
+// import Header from "@/components/organizations/Header";
 import AssessmentHistory from "@/components/employees/AssessmentHistory";
 import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
 import DoughnutChart from "@/components/employees/DoughnutChart";
@@ -11,6 +11,7 @@ import EducationProgress from "@/components/educations/EducationProgress";
 import PopUpAssessmentHistory from "@/components/employees/PopUpAssessmentHistory";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import Header from "@/components/employees/Header";
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
@@ -20,16 +21,20 @@ export default function Home() {
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
 
+    const [notification, setNotification] = useState("");
+
     // current logged in user
     const { user } = useUser();
     const currentUserEmail = user ? user.emailAddresses[0].emailAddress : null;
     const currentUserId = user ? user.id : null;
-
     const currentDate = new Date().getMonth();
+
+    console.log("cur", currentUserId)
 
     useEffect(() => {
         const getAssessmentData = async () => {
             // Mental assesment data
+            console.log("asess data", user?.id, currentUserId)
             const assessData = await fetchAssessment();
             const userData = await (currentUserEmail
                 ? assessData.filter((user) => user.emailID === currentUserEmail)
@@ -85,6 +90,26 @@ export default function Home() {
                     ? sortedPersonality[0].personalityType
                     : ""
             );
+
+
+            const notiData = await fetchNoti();
+            console.log("notiDatttaa",notiData,  user?.id, currentUserId)
+            const filteredNoti = await (currentUserId
+                ? notiData.filter(
+                    noti => noti.userid === user?.id && noti.isRead === false)
+                : []);
+
+            // await notiData.filter(
+            //     noti => noti.userid === user?.id && noti.isRead === false
+            // );
+           
+            setNotification(filteredNoti);
+
+
+            // const userData = await (currentUserEmail
+            //     ? assessData.filter((user) => user.emailID === currentUserEmail)
+            //     : []);
+
         };
         getAssessmentData();
     }, [currentDate, currentUserEmail, currentUserId]);
@@ -103,8 +128,51 @@ export default function Home() {
         return data.personality;
     };
 
+
+
+    // fetch noti
+    const fetchNoti = async (id) => {
+        const res = await fetch("/api/notification/employee");
+        const data = await res.json();
+        return data.notiEmp;
+    };
+
+    // useEffect(() => {
+    //     const getNoti = async () => {
+    //         const notiData = await fetchNoti();
+    //         console.log("notiDatttaa",notiData)
+    //         const filteredNoti = await (currentUserId
+    //             ? notiData.filter(
+    //                 noti => noti.userid === user?.id && noti.isRead === false)
+    //             : []);
+
+    //         // await notiData.filter(
+    //         //     noti => noti.userid === user?.id && noti.isRead === false
+    //         // );
+    //         console.log("testttttt",currentUserId)
+    //         console.log("filteredNoti",filteredNoti)
+    //         setNotification(filteredNoti);
+    //     }
+    //     getNoti()
+    // } , [])
+
+    
+    // const assessData = await fetchAssessment();
+    //         const userData = await (currentUserId
+    //             ? assessData.filter((user) => user.userId === currentUserId)
+    //             : []);
+    //         const sortedUserData = await userData.sort(
+    //             (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+    //         );
+    //         setAssessmentData(sortedUserData);
+  
+
     return (
+        <div>
+            <Header  headertext={"employee"} notification={notification} />
+    
         <div className="grid grid-cols-4 gap-1 bg-slate-200">
+            
             <div className="col-span-4">
                 <h1>Employee Dashboard</h1>
             </div>
@@ -191,6 +259,7 @@ export default function Home() {
                 onClose={() => setPopup(false)}
                 assessment={assessmentData}
             />
+        </div>
         </div>
     );
 }

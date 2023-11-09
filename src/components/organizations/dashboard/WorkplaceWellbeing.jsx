@@ -72,7 +72,7 @@ const wellBeingRate = distinctUserIds.length/employee.length*100
   };
 
   return (
-    <div className="h-200 flex flex-col flex-grow basis-2/5 rounded-lg border border-gray-200 bg-white p-6 shadow">
+    <div className="h-200 flex flex-col flex-grow basis-2/5 rounded-lg border border-gray-200 bg-white p-6 shadow sm:max-w-sm xl:max-w-1/4">
       <h2 className="text-xl mb-5">Workplace Wellbeing</h2>
       <Doughnut className="flex-grow"
         width={200}

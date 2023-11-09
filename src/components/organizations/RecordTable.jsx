@@ -28,7 +28,7 @@ const TableHeader = styled.div`
 `;
 
 function RecordTable({ employeeList }) {
-    console.log(employeeList);
+    // console.log(employeeList);
     const [activeTab, setActiveTab] = useState("All");
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -71,7 +71,7 @@ function RecordTable({ employeeList }) {
                                 title={list.title}
                                 department={list.department}
                                 joinDate={formatDate(list.joinDate)}
-                                id={list.email}
+                                id={list.userId}
                                 assessmentType={list.assessment_type}
                                 scoreCur={list.score_description_cur}
                                 scorePrev={list.score_description_prev}

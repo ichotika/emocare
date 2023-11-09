@@ -16,6 +16,26 @@ const TableRow = styled.div`
     padding: 0.75rem 0;
 `;
 
+const handleButtonClick = async (id) => {
+    try {
+
+
+        const response = await fetch(`/api/notification/employee/${id}`, {
+            method: 'POST', 
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                userid: id, 
+                timestamp:new Date().toISOString(),
+                isRead: false }),
+          });
+
+    } catch (error) {
+      console.error('Error updating notification:', error);
+    }
+  };
+
 function OrganizationRow({
     title,
     id,
@@ -49,7 +69,7 @@ function OrganizationRow({
                 {scorePrev}
             </p>
 
-            <button className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white">
+            <button className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white" onClick={() => handleButtonClick(id)}>
                 Notify
             </button>
         </TableRow>

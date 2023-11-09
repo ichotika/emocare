@@ -15,13 +15,16 @@ async function getRecords() {
 async function getNoti() {
     const res = await import("../../api/notification/organization/route");
     const data = (await res.GET()).json();
+    console.log(data)
     return data;
 }
+
 async function getAssessment() {
     const res = await import("../../api/notification/assessment/route");
     const data = (await res.GET()).json();
     return data;
 }
+
 
 function calculateRatio(arr) {
     const countObj = arr.reduce(
@@ -55,6 +58,9 @@ export default async function Records() {
             notificationPromise,
             assessmentPromise,
         ]);
+    
+    console.log("dklsd", notification)
+
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.timestamp).month() === currentMonth - 1
     );
@@ -98,6 +104,7 @@ export default async function Records() {
                 headertext={"Assessment Record"}
                 notification={notification}
                 assessment={assessment}
+               
             />
             <AssessmentRecords
                 emplist={mergedEmpList}
