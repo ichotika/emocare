@@ -10,76 +10,81 @@ import { FaRegBell } from "react-icons/fa";
 import Link from "next/link";
 import Bell from "@/public/assets/Wireframes/bell.svg";
 
-
-
-
-
-const NotificationEmployee = ({headertext, notification}) => {
-
-    const [notificationCount, setNotificationCount] = useState(notification?.length);
+const NotificationEmployee = ({ headertext, notification }) => {
+    const [notificationCount, setNotificationCount] = useState(
+        notification.length
+    );
 
     const [clearNotification, setClearNotification] = useState(true);
     const [clickedNotifications, setClickedNotifications] = useState([]);
 
-
-
-
-
     const handleNotificationButtonClick = async (id, index) => {
         try {
-            const response = await fetch(`/api/notification/organization/${id}`, {
-                method: 'PATCH', 
-                headers: {
-                'Content-Type': 'application/json',
-                },
-            });
+            const response = await fetch(
+                `/api/notification/organization/${id}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
-        const updatedNotification = { ...notification.notification[index], isRead: true };
-        const updatedNotifications = [...notification.notification];
-        updatedNotifications[index] = updatedNotification;
+            const updatedNotification = {
+                ...notification.notification[index],
+                isRead: true,
+            };
+            const updatedNotifications = [...notification.notification];
+            updatedNotifications[index] = updatedNotification;
 
-        // Update the notification count and state
-        setNotificationCount(notificationCount - 1);
-        setClickedNotifications([...clickedNotifications, index]);
-
+            // Update the notification count and state
+            setNotificationCount(notificationCount - 1);
+            setClickedNotifications([...clickedNotifications, index]);
         } catch (error) {
-        console.error('Error updating notification:', error);
+            console.error("Error updating notification:", error);
         }
     };
 
-
-    console.log('lenght', notification.length)
-    console.log('sdnokasdklsd', notification.userid)
+    console.log("obj", notification);
 
     const notify = () => {
         toast(
             <div>
-            <div className="flex flex-col">
-                <div style={{borderColor:  "#2469F6" , color: "#2469F6"}} className="my-3 w-14 h-14 p-2 rounded-full border ">
-                    <div style={{backgroundColor:  "#CFDEF3"}}className="rounded-full w-10 h-10 flex items-center justify-center">
-                    <BsEnvelope size={25}  />
+                <div className="flex flex-col">
+                    <div
+                        style={{ borderColor: "#2469F6", color: "#2469F6" }}
+                        className="my-3 h-14 w-14 rounded-full border p-2 "
+                    >
+                        <div
+                            style={{ backgroundColor: "#CFDEF3" }}
+                            className="flex h-10 w-10 items-center justify-center rounded-full"
+                        >
+                            <BsEnvelope size={25} />
+                        </div>
                     </div>
-                </div>
 
-            {/* dlmfdsl;fm */}
-                <p>{notification?.userid}</p>
-                <p>{notification?.timestamp}</p>
+                    {/* dlmfdsl;fm */}
+                    <p>{notification?.userid}</p>
+                    <p>{notification?.timestamp}</p>
 
-                <p>Please take a moment to complete your assessment this month.</p>
+                    <p>
+                        Please take a moment to complete your assessment this
+                        month.
+                    </p>
 
-                <Link href="" >
-                    {/* <button className="flex items-center" onClick={() => handleNotificationButtonClick(notification.notification[index]?._id, index)}>
+                    <Link href="">
+                        {/* <button className="flex items-center" onClick={() => handleNotificationButtonClick(notification.notification[index]?._id, index)}>
                     <div style={{color: isRead ? "lightgrey" : "#2469F6"}} className="pr-2">{notification.notification[index]?.button}</div>
                     <BsArrowRight size={20} style={{color: isRead ? "lightgrey" : "#2469F6"}}/> */}
-            {/* </button> */}
-                    <button>
-                        <div className="flex items-center mt-5">
-                            <p className=" mr-3">Take Assessment</p>
-                            <BsArrowRight size={20}/>
-                        </div>
-                    </button>
-                </Link>
-            </div>
+                        {/* </button> */}
+                        <button>
+                            <div className="mt-5 flex items-center">
+                                <p className=" mr-3">Take Assessment</p>
+                                <BsArrowRight size={20} />
+                            </div>
+                        </button>
+                    </Link>
+                </div>
             </div>,
             {
                 position: "top-right",
@@ -96,25 +101,29 @@ const NotificationEmployee = ({headertext, notification}) => {
 
     return (
         <div className="flex items-center justify-center gap-4">
-        <UserButton afterSignOutUrl="/" />
-        <div className="relative cursor-pointer" onClick={notify}>
-          <Image src={Bell} width={24} height={24} alt="Bell Notification" />
+            <UserButton afterSignOutUrl="/" />
+            <div className="relative cursor-pointer" onClick={notify}>
+                <Image
+                    src={Bell}
+                    width={24}
+                    height={24}
+                    alt="Bell Notification"
+                />
 
-          {notification?.length > 0 ? (
-            <div className="notification absolute">
-              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600">
-                <span className=" rounded-full text-center text-sm font-semibold text-white">
-                  {notificationCount}
-                </span>
-              </div>
+                {notification?.length > 0 ? (
+                    <div className="notification absolute">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600">
+                            <span className=" rounded-full text-center text-sm font-semibold text-white">
+                                {notificationCount}
+                            </span>
+                        </div>
+                    </div>
+                ) : (
+                    <div className=""></div>
+                )}
             </div>
-          ) : (
-            <div className=""></div>
-          )}
-
+            <ToastContainer />
         </div>
-        <ToastContainer />
-      </div>
     );
 };
 
