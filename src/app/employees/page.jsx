@@ -33,13 +33,11 @@ export default function Home() {
     useEffect(() => {
         async function updateUser() {
             const notiData = await fetchNoti();
-            console.log("notiData", notiData);
 
             const filteredNoti = await notiData.filter(
                 (noti) => noti.userid === currentUserId && noti.isRead === false
             );
-            setUserId(user.id);
-            console.log(filteredNoti);
+            isLoaded && setUserId(user.id);
             setNotification(filteredNoti);
         }
         updateUser();
@@ -158,8 +156,9 @@ export default function Home() {
 
     return (
         <div>
-            <Header headertext={"employee"} notification={notification} />
-
+            {notification.length > 0 && (
+                <Header headertext={"employee"} notification={notification} />
+            )}
             <div className="grid grid-cols-4 gap-1 bg-slate-200">
                 <div className="col-span-4">
                     <h1>Employee Dashboard</h1>

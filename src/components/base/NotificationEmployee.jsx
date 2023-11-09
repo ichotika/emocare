@@ -11,6 +11,7 @@ import Link from "next/link";
 import Bell from "@/public/assets/Wireframes/bell.svg";
 
 const NotificationEmployee = ({ headertext, notification }) => {
+    console.log(notification);
     const [notificationCount, setNotificationCount] = useState(
         notification.length
     );
@@ -44,8 +45,6 @@ const NotificationEmployee = ({ headertext, notification }) => {
             console.error("Error updating notification:", error);
         }
     };
-
-    console.log("obj", notification);
 
     const notify = () => {
         toast(
