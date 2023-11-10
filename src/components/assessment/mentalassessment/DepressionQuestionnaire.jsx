@@ -107,7 +107,19 @@ const Questionnaire = () => {
         event.preventDefault();
         let i = [];
         async function response() {
+            let payload = JSON.stringify({
+                userId: user?.id,
+                // assessment_id: 1,
+                assessmentType: "depression",
+                // assess_date: new Date(),
+                score: totalScore,
+                level: getDepressionLevel(totalScore).dlevel,
+                levelDescription:
+                    getDepressionLevel(totalScore).description,
+            })
+            console.log("payload => ", payload);
             await fetch(`/api/assessment?search=${user?.id}`, {
+
                 method: "POST",
                 body: JSON.stringify({
                     userId: user?.id,
@@ -118,6 +130,7 @@ const Questionnaire = () => {
                     level: getDepressionLevel(totalScore).dlevel,
                     levelDescription:
                         getDepressionLevel(totalScore).description,
+                    timestamp: new Date(),
                 }),
                 headers: {
                     "Content-Type": "application/json",
