@@ -101,15 +101,14 @@ const BurnoutQuestionnaire = () => {
         let i = [];
 
         async function response() {
-            await fetch("/api/questionnaires/burnout/response", {
+            await fetch("/api/assessment", {
                 method: "POST",
                 body: JSON.stringify({
                     userId: user.id,
-                    assessment_id: 2,
-                    assessment_type: "burnout",
-                    assess_date: new Date(),
+                    assessmentType: "burnout",
                     score: totalScore,
-                    level_description: getBurnoutLevel(totalScore).description,
+                    levelDescription: getBurnoutLevel(totalScore).description,
+                    createdAt: new Date(),
                 }),
                 headers: {
                     "Content-Type": "application/json",
