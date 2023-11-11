@@ -27,7 +27,6 @@ export default function Home() {
     useEffect(() => {
         const fetchContent = async () => {
             const content = await fetchPersonality(type);
-            console.log("personality content:", content)
             setPerContent(content);
         };
 
