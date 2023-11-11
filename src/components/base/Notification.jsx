@@ -91,12 +91,21 @@ const Notification = ({ headertext, notification, assessment }) => {
         <p className="text-2xl">{notification.notification[index]?.title}</p>
         <p>{notification.notification[index]?.description}</p>
         <div className="flex justify-between items-center mt-3">
-          <Link href="" >
+        {index === 0 ? (
+          <Link href="../organization/management" >
             <button className="flex items-center" onClick={() => handleNotificationButtonClick(notification.notification[index]?._id, index)}>
               <div style={{color: isRead ? "lightgrey" : "#2469F6"}} className="pr-2">{notification.notification[index]?.button}</div>
               <BsArrowRight size={20} style={{color: isRead ? "lightgrey" : "#2469F6"}}/>
             </button>
           </Link>
+          ) : (
+            <Link href="../organization/records" >
+            <button className="flex items-center" onClick={() => handleNotificationButtonClick(notification.notification[index]?._id, index)}>
+              <div style={{color: isRead ? "lightgrey" : "#2469F6"}} className="pr-2">{notification.notification[index]?.button}</div>
+              <BsArrowRight size={20} style={{color: isRead ? "lightgrey" : "#2469F6"}}/>
+            </button>
+          </Link>
+          )}
           <p
             style={{
               ...timeStyles, 

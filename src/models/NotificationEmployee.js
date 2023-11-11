@@ -1,11 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from 'mongoose';
 
-const NotiEmpSchema = new Schema(
-    {
-        userid: String,
-        timestamp: Date,
-        isRead: Boolean
-    }
-);
+const notificationSchema = new mongoose.Schema({
+  userid: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+  isRead: { type: Boolean, default: false },
+});
 
-export default mongoose.models.NotiEmp || mongoose.model("NotiEmp", NotiEmpSchema, "NotiEmp");
+const NotificationEmployee =
+    mongoose.models.NotificationEmployee ||
+    mongoose.model("NotificationEmployee", notificationSchema, "temp-notification-employee");
+
+export default NotificationEmployee;

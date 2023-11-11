@@ -6,13 +6,14 @@ export async function POST(request) {
   await connectMongoDB();
 
   try {
-    const { userid, timestamp, isRead } = await request.json();
+    const { userid, timestamp, isRead, assessmentType } = await request.json();
 
     const collection = mongoose.connection.db.collection("temp-notification-employee");
     await collection.insertOne({
       userid,
       timestamp,
       isRead,
+      assessmentType,
     });
 
     return NextResponse.json({ message: "Notification Created" }, { status: 201 });

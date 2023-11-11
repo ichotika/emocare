@@ -59,7 +59,7 @@ export default async function Records() {
             assessmentPromise,
         ]);
     
-    console.log("dklsd", notification)
+
 
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.timestamp).month() === currentMonth - 1

@@ -1,89 +1,68 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { BsArrowRight, BsEnvelope } from "react-icons/bs";
-import { FaRegBell } from "react-icons/fa";
 import Link from "next/link";
 import Bell from "@/public/assets/Wireframes/bell.svg";
 
+
+
+
+
 const NotificationEmployee = ({ headertext, notification }) => {
-    console.log(notification);
-    const [notificationCount, setNotificationCount] = useState(
-        notification.length
-    );
+
+    const [notificationCount, setNotificationCount] = useState(notification.length);
+
+    useEffect(()=>{
+        setNotificationCount(notification?.length)
+    },[notification])
+
 
     const [clearNotification, setClearNotification] = useState(true);
     const [clickedNotifications, setClickedNotifications] = useState([]);
 
-    const handleNotificationButtonClick = async (id, index) => {
+    const handleNotificationClick = async (id, index) => {
+        console.log('id', id)
         try {
-            const response = await fetch(
-                `/api/notification/organization/${id}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            const updatedNotification = {
-                ...notification.notification[index],
-                isRead: true,
-            };
-            const updatedNotifications = [...notification.notification];
+            const response = await fetch(`/api/notification/employeeAssessment/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+    
+            const updatedNotification = { ...notification[index], isRead: true };
+            const updatedNotifications = [...notification];
             updatedNotifications[index] = updatedNotification;
-
+    
             // Update the notification count and state
             setNotificationCount(notificationCount - 1);
             setClickedNotifications([...clickedNotifications, index]);
         } catch (error) {
-            console.error("Error updating notification:", error);
+            console.error('Error updating notification:', error);
         }
     };
+    
+
 
     const notify = () => {
+        const unreadNotifications = notification.filter((noti) => !noti.isRead).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        ;
+
         toast(
             <div>
-                <div className="flex flex-col">
-                    <div
-                        style={{ borderColor: "#2469F6", color: "#2469F6" }}
-                        className="my-3 h-14 w-14 rounded-full border p-2 "
-                    >
-                        <div
-                            style={{ backgroundColor: "#CFDEF3" }}
-                            className="flex h-10 w-10 items-center justify-center rounded-full"
-                        >
-                            <BsEnvelope size={25} />
+                {unreadNotifications.map((noti, index) => (
+                    <Link href='/employees/assessment'>
+                        <div key={index} className={`pb-2 mb-2 ${index === unreadNotifications.length - 1 || unreadNotifications.length === 1 ? '' : 'border-b border-gray-300'}`} 
+                        onClick={() => handleNotificationClick(noti?._id, index)}>
+                            <p>{noti.timestamp}</p>
+                            <p>{noti.message}</p>
+                            <p>Please take a moment to complete your assessment this month.</p>
                         </div>
-                    </div>
-
-                    {/* dlmfdsl;fm */}
-                    <p>{notification?.userid}</p>
-                    <p>{notification?.timestamp}</p>
-
-                    <p>
-                        Please take a moment to complete your assessment this
-                        month.
-                    </p>
-
-                    <Link href="">
-                        {/* <button className="flex items-center" onClick={() => handleNotificationButtonClick(notification.notification[index]?._id, index)}>
-                    <div style={{color: isRead ? "lightgrey" : "#2469F6"}} className="pr-2">{notification.notification[index]?.button}</div>
-                    <BsArrowRight size={20} style={{color: isRead ? "lightgrey" : "#2469F6"}}/> */}
-                        {/* </button> */}
-                        <button>
-                            <div className="mt-5 flex items-center">
-                                <p className=" mr-3">Take Assessment</p>
-                                <BsArrowRight size={20} />
-                            </div>
-                        </button>
                     </Link>
-                </div>
+                ))}
             </div>,
             {
                 position: "top-right",

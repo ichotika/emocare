@@ -7,8 +7,6 @@ import MedCondition from "@/public/assets/organization/medConditionIcon.svg";
 import RecordTable from "@/components/organizations/RecordTable";
 function AssessmentRecords({ emplist, prevObj, curObj }) {
  
-    // console.log(prevObj);
-    // console.log(curObj);
     const compareObj = {
         difGood: (
             (curObj.good / curObj.total - prevObj.good / prevObj.total) *

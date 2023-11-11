@@ -16,10 +16,11 @@ const TableRow = styled.div`
     padding: 0.75rem 0;
 `;
 
-const handleButtonClick = async (id) => {
+
+const handleButtonClick = async (id, assessmentType) => {
+
     try {
-
-
+       
         const response = await fetch(`/api/notification/employee/${id}`, {
             method: 'POST', 
             headers: {
@@ -28,7 +29,8 @@ const handleButtonClick = async (id) => {
             body: JSON.stringify({ 
                 userid: id, 
                 timestamp:new Date().toISOString(),
-                isRead: false }),
+                isRead: false,
+                assessmentType: assessmentType}),
           });
 
     } catch (error) {
@@ -44,6 +46,7 @@ function OrganizationRow({
     scorePrev,
     assessmentType,
 }) {
+    
     return (
         <TableRow>
             <div className="flex items-center justify-end">
@@ -69,7 +72,7 @@ function OrganizationRow({
                 {scorePrev}
             </p>
 
-            <button className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white" onClick={() => handleButtonClick(id)}>
+            <button className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white" onClick={() => handleButtonClick(id, assessmentType)}>
                 Notify
             </button>
         </TableRow>

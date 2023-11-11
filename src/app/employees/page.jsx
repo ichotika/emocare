@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-// import Header from "@/components/organizations/Header";
 import AssessmentHistory from "@/components/employees/AssessmentHistory";
 import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
 import DoughnutChart from "@/components/employees/DoughnutChart";
@@ -29,7 +28,7 @@ export default function Home() {
 
     const currentDate = new Date().getMonth();
 
-    // console.log("cur", currentUserId);
+   
     useEffect(() => {
         async function updateUser() {
             const notiData = await fetchNoti();
@@ -37,7 +36,8 @@ export default function Home() {
             const filteredNoti = await notiData.filter(
                 (noti) => noti.userid === currentUserId && noti.isRead === false
             );
-            isLoaded && setUserId(user.id);
+            setUserId(user?.id);
+            
             setNotification(filteredNoti);
         }
         updateUser();
@@ -126,39 +126,13 @@ export default function Home() {
         return data.notiEmp;
     };
 
-    // useEffect(() => {
-    //     const getNoti = async () => {
-    //         const notiData = await fetchNoti();
-    //         console.log("notiDatttaa",notiData)
-    //         const filteredNoti = await (currentUserId
-    //             ? notiData.filter(
-    //                 noti => noti.userid === user?.id && noti.isRead === false)
-    //             : []);
-
-    //         // await notiData.filter(
-    //         //     noti => noti.userid === user?.id && noti.isRead === false
-    //         // );
-    //         console.log("testttttt",currentUserId)
-    //         console.log("filteredNoti",filteredNoti)
-    //         setNotification(filteredNoti);
-    //     }
-    //     getNoti()
-    // } , [])
-
-    // const assessData = await fetchAssessment();
-    //         const userData = await (currentUserId
-    //             ? assessData.filter((user) => user.userId === currentUserId)
-    //             : []);
-    //         const sortedUserData = await userData.sort(
-    //             (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-    //         );
-    //         setAssessmentData(sortedUserData);
-
     return (
         <div>
-            {notification.length > 0 && (
+            {/* {notification.length > 0 && ( */}
                 <Header headertext={"employee"} notification={notification} />
-            )}
+            {/* )} */}
+            
+
             <div className="grid grid-cols-4 gap-1 bg-slate-200">
                 <div className="col-span-4">
                     <h1>Employee Dashboard</h1>
