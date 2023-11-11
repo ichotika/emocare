@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ModT01 from "./ModT01";
 import Link from "next/link";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 function EduModule({ eduModule, eduRes, userId, newEduResponse, richContent }) {
@@ -12,7 +11,7 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse, richContent }) {
             const res = await response;
             setEdu(res);
             const userEdu = res.filter(
-                (e) => e.userId === userId && e.topicId === eduModule[0].topicId
+                (e) => e.userId === userId && e.topicId === eduModule[0].fields.topicId
             );
             setStatus(userEdu.length > 0 ? userEdu[0].status : "Not Completed");
         };
@@ -29,26 +28,25 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse, richContent }) {
 
     return (
         <div>
-            {eduModule[0].topicId === "T01" ? <ModT01 /> : ""}
+            <div>{documentToReactComponents(richContent)}</div>
             {status !== "Completed" ? (
                 <>
-                    <div>{documentToReactComponents(richContent)}</div>
                     <div className="flex justify-end">
                         <button
                             className="rounded-lg bg-black p-2 text-white"
                             type="submit"
                             onClick={() => {
                                 let res = {
-                                    topicId: eduModule[0].topicId,
+                                    topicId: eduModule[0].fields.topicId,
                                     userId: userId,
-                                    topic: eduModule[0].topic,
-                                    category: eduModule[0].category,
+                                    topic: eduModule[0].fields.topic,
+                                    category: eduModule[0].fields.category,
                                     status: "Completed",
                                 };
                                 newEduResponse(res);
                             }}
                         >
-                            <Link href={"http://localhost:3000/education"}>
+                            <Link href={"/employees/education"}>
                                 Mark as Complete
                             </Link>
                         </button>
