@@ -3,7 +3,7 @@ export default function Page() {
         <div className={"flex flex-col items-center"}>
             <h1 className={"text-4xl"}>Feedback</h1>
             <div className={"mx-auto"}>
-                <form action="/api/submit_feedback" method="post" className={"flex flex-col gap-4"}>
+                <form action="/api/feedback" method="post" className={"flex flex-col gap-4"}>
                     <h2>
                         Anonymous Feedback
                     </h2>
