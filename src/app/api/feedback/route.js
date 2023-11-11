@@ -14,9 +14,6 @@ export async function GET () {
     const user = await currentUser();
 
     console.log(user);
-    if (user.unsafeMetadata.role==="employee") {
-        return new NextResponse("Unauthorized. User not an employer", {status: 401});
-    }
 
     try{
         await connectMongoDB();
@@ -24,7 +21,7 @@ export async function GET () {
         console.log(feedbacks);
         return NextResponse.json({feedbacks},{status: 200});
     }catch(error){
-        console.error("Error fetching your organization's feedbacks: ", error);
+        console.error("Error fetching your organization's feedback: ", error);
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }
