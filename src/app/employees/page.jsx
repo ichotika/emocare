@@ -20,28 +20,12 @@ export default function Home() {
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
     const [currentUserId, setUserId] = useState("");
-    const [notification, setNotification] = useState("");
 
     // current logged in user
-    const { user, isLoaded } = useUser();
+    const { user } = useUser();
     const currentUserEmail = user ? user.emailAddresses[0].emailAddress : null;
-
     const currentDate = new Date().getMonth();
 
-   
-    useEffect(() => {
-        async function updateUser() {
-            const notiData = await fetchNoti();
-
-            const filteredNoti = await notiData.filter(
-                (noti) => noti.userid === currentUserId && noti.isRead === false
-            );
-            setUserId(user?.id);
-            
-            setNotification(filteredNoti);
-        }
-        updateUser();
-    }, [isLoaded, user, currentUserId]);
     useEffect(() => {
         const getAssessmentData = async () => {
             // Mental assesment data
@@ -54,7 +38,7 @@ export default function Home() {
                 (a, b) => new Date(b.assessDate) - new Date(a.assessDate)
             );
             setAssessmentData(sortedUserData);
-
+            setUserId(user?.id);
             // checking if there are any assessments for the current month
             const dateCheck =
                 sortedUserData.length > 0
@@ -103,7 +87,7 @@ export default function Home() {
             );
         };
         getAssessmentData();
-    }, []);
+    }, [currentDate, currentUserId, currentUserEmail, user?.id]);
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -120,18 +104,12 @@ export default function Home() {
     };
 
     // fetch noti
-    const fetchNoti = async () => {
-        const res = await fetch("/api/notification/employee");
-        const data = await res.json();
-        return data.notiEmp;
-    };
 
     return (
         <div>
             {/* {notification.length > 0 && ( */}
-                <Header headertext={"employee"} notification={notification} />
+            <Header headertext={"Employee"} user={currentUserId} />
             {/* )} */}
-            
 
             <div className="grid grid-cols-4 gap-1 bg-slate-200">
                 <div className="col-span-4">
