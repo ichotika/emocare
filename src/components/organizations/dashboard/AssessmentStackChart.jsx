@@ -33,8 +33,8 @@ export default function AssessmentStackChart({
     const depressionGoodAssessments = [];
 
     depressionAssessments.forEach((assessment) => {
-        const score_description = assessment.score_description;
-        switch (score_description) {
+        const levelDescription = assessment.levelDescription;
+        switch (levelDescription) {
             case "Critical":
                 depressionCriticalAssessments.push(assessment);
                 break;
@@ -63,8 +63,8 @@ export default function AssessmentStackChart({
 
     
     burnoutAssessments.forEach((assessment) => {
-        const score_description = assessment.score_description;
-        switch (score_description) {
+        const levelDescription = assessment.levelDescription;
+        switch (levelDescription) {
             case "Critical":
                 burnoutCriticalAssessments.push(assessment);
                 break;
@@ -91,8 +91,8 @@ export default function AssessmentStackChart({
     const anxietyGoodAssessments = [];
 
     anxietyAssessments.forEach((assessment) => {
-        const score_description = assessment.score_description;
-        switch (score_description) {
+        const levelDescription = assessment.levelDescription;
+        switch (levelDescription) {
             case "Critical":
                 anxietyCriticalAssessments.push(assessment);
                 break;
@@ -171,7 +171,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [depressionCriticalPercent],
+                data: [100-depressionGoodPercent-depressionDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -201,7 +201,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [burnoutCriticalPercent],
+                data: [100-burnoutGoodPercent-burnoutDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -231,7 +231,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [anxietyCriticalPercent],
+                data: [100-anxietyGoodPercent-anxietyDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -241,7 +241,7 @@ export default function AssessmentStackChart({
     };
 
     return (
-        <div className="flex max-w-lg flex-col">
+        <div className="h-200 flex max-w-lg flex-col">
             <div>
                 <div className=" flex justify-between">
                     <div className="flex items-center">

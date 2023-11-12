@@ -1,6 +1,7 @@
 import AssessmentRecord from "./AssessmentRecord";
 const dayjs = require("dayjs");
 function AssessmentHistory({ assessment }) {
+    console.log(assessment);
     const newHistory = [];
     for (let i = 0; i < 6; i++) {
         const newTimestamp = dayjs().subtract(i, "month").startOf("month");
@@ -15,13 +16,13 @@ function AssessmentHistory({ assessment }) {
             const assessTimestamp = dayjs(assess.timestamp).startOf("month");
             if (newTimestamp.isSame(assessTimestamp, "month")) {
                 switch (assess.assessmentType) {
-                    case "Depression":
+                    case "depression":
                         historyEntry.depressionLevel = assess.level;
                         break;
                     case "Anxiety":
                         historyEntry.anxietyLevel = assess.level;
                         break;
-                    case "Burn out":
+                    case "burnout":
                         historyEntry.burnoutLevel = assess.level;
                         break;
                     default:

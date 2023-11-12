@@ -7,7 +7,6 @@ const OverallCard = ({ assessmentData, employee }) => {
 
     const changeInEmployeesMonth10Year2023 = employee.reduce((change, emp) => {
         const joinDate = new Date(emp.joinDate);
-        const resignDate = new Date(emp.resignDate);
 
         if (
             joinDate.getMonth() === targetMonth &&
@@ -62,13 +61,14 @@ const OverallCard = ({ assessmentData, employee }) => {
         assessmentsInMonth10Year2023.length;
     const assessmentDifference =
         assessmentCountInMonth10Year2023 - assessmentCountInMonth9Year2023;
-    console.log(`diff 10 vs 9 in 2023: ${assessmentDifference}`);
+    // console.log(`diff 10 vs 9 in 2023: ${assessmentDifference}`);
 
     return (
         <div className="mb-7 mt-7 flex sm:items-center sm:justify-center">
             <div className="flex gap-4 w-4/5 flex-row sm:flex-col sm:items-center sm:justify-center ">
                 <div className="flex flex-grow p-1">
                     <div style={{width: '384px'}} className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+
                         <p className="text-xl">Total Employees</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">

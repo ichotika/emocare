@@ -1,9 +1,69 @@
 import MainBtn from "@/components/base/MainBtn";
 import Notification from "@/components/base/Notification";
+import React from "react";
 import RoundedBtn from "@/components/base/RoundedBtn";
 import HeaderTab from "@/components/base/HeaderTab";
 import Pagination from "@/components/base/Pagination";
+const textColorClasses = [
+    "text-p-blue-1",
+    "text-p-blue-2",
+    "text-p-blue-3",
+    "text-p-blue-4",
+    "text-s-orange-1",
+    "text-s-orange-2",
+    "text-s-orange-3",
+    "text-s-orange-4",
+    "text-o-navy-1",
+    "text-o-joy-1",
+    "text-o-success-1",
+    "text-o-success-2",
+    "text-o-error-1",
+    "text-g-black-1",
+    "text-g-gray-1",
+    "text-g-gray-2",
+    "text-g-gray-3",
+    "text-g-gray-4",
+    "text-g-white-1",
+];
 
+const bgColorClasses = [
+    "bg-p-blue-1",
+    "bg-p-blue-2",
+    "bg-p-blue-3",
+    "bg-p-blue-4",
+    "bg-s-orange-1",
+    "bg-s-orange-2",
+    "bg-s-orange-3",
+    "bg-s-orange-4",
+    "bg-o-navy-1",
+    "bg-o-joy-1",
+    "bg-o-success-1",
+    "bg-o-success-2",
+    "bg-o-error-1",
+    "bg-g-black-1",
+    "bg-g-gray-1",
+    "bg-g-gray-2",
+    "bg-g-gray-3",
+    "bg-g-gray-4",
+    "bg-g-white-1",
+];
+const fontSizeClasses = [
+    "text-h-xl",
+    "text-h-2xl",
+    "text-h-3xl",
+    "text-h-4xl",
+    "text-h-5xl",
+    "text-h-6xl",
+    "text-b-xs",
+    "text-b-sm",
+    "text-b-base",
+    "text-b-lg",
+    "text-b-xl",
+    "text-b-2xl",
+    "text-b-3xl",
+    "text-b-4xl",
+    "text-b-5xl",
+];
 const dataArr = [
     {
         userId: 1,
@@ -277,6 +337,77 @@ const dataArr = [
     },
 ];
 
+const SampleComponent = () => {
+    const colors = [
+        "p-blue-1",
+        "p-blue-2",
+        "p-blue-3",
+        "p-blue-4",
+        "s-orange-1",
+        "s-orange-2",
+        "s-orange-3",
+        "s-orange-4",
+        "o-navy-1",
+        "o-joy-1",
+        "o-success-1",
+        "o-success-2",
+        "o-error-1",
+        "g-black-1",
+        "g-gray-1",
+        "g-gray-2",
+        "g-gray-3",
+        "g-gray-4",
+        "g-white-1",
+    ];
+
+    const fontSizes = [
+        "b-xs",
+        "b-sm",
+        "b-base",
+        "b-lg",
+        "b-xl",
+        "b-2xl",
+        "b-3xl",
+        "b-4xl",
+        "b-5xl",
+    ];
+    const headerSizes = ["h-6xl", "h-5xl", "h-4xl", "h-3xl", "h-2xl", "h-xl"];
+    return (
+        <div className="bg-g-white-1 p-8">
+            <div className="space-y-4">
+                {colors.map((color) => (
+                    <p key={color} className={`text-b-5xl bg-${color}`}>
+                        {`bg-${color}`}
+                    </p>
+                ))}
+            </div>
+            <div className="bg-gradient-org p-4 text-white">
+                bg-gradient-org
+            </div>
+            <div className="bg-gradient-blue p-4 text-white">
+                bg-gradient-blue
+            </div>
+            <div className="bg-gradient-orange p-4 text-white">
+                bg-gradient-orange
+            </div>
+            {headerSizes.map((size, index) =>
+                React.createElement(
+                    `h${index + 1}`,
+                    { className: `text-${size}` },
+                    `text-${size}`
+                )
+            )}
+            <div className="mt-8 space-y-4">
+                {fontSizes.map((size) => (
+                    <p key={size} className={`text-${size} text-g-black-1 `}>
+                        {`text-${size}`}
+                    </p>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 export default function Basecomponent() {
     return (
         <>
@@ -301,6 +432,7 @@ export default function Basecomponent() {
                 textColor={"text-white"}
             />
             <Pagination dataArr={dataArr} max={5} />
+            <SampleComponent />
         </>
     );
 }

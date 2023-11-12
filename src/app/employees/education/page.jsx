@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import EducationProgress from "@/components/educations/EducationProgress";
 import { useUser } from "@clerk/nextjs";
 import HeaderTab from "@/components/base/HeaderTab";
-
+import Header from "@/components/employees/Header";
 
 export default function Home() {
     const [edulist, setEdulist] = useState([]);
@@ -48,6 +48,7 @@ export default function Home() {
 
     return (
         <>
+            <Header headertext={"Education"} />
             <div className="m-4">
                 <EducationProgress currentUser={currentUserId} />
                 <div className="py-8">
@@ -67,8 +68,12 @@ export default function Home() {
                     </div>
                     <div>
                         <ResourceTable
-                            educationList={activeTab === "All"? edulist : edulist.filter((edu) => edu.category === activeTab)
-                                
+                            educationList={
+                                activeTab === "All"
+                                    ? edulist
+                                    : edulist.filter(
+                                          (edu) => edu.category === activeTab
+                                      )
                             }
                             userEdu={userEdulist}
                         />

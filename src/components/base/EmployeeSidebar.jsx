@@ -41,6 +41,7 @@ const EmployeeSidebar = () => {
                 </header>
 
                 <footer className="p-5">
+
                     <div className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
                         <UserButton afterSignOutUrl="/"></UserButton>
                     </div>

@@ -21,10 +21,16 @@ export default function AssessmentTrendsChart({ assessmentData }) {
     Tooltip,
     Legend
   );
-  
+
+  const filteredAssessmentData = assessmentData.filter((assessment) => assessment.timestamp !== undefined);
+
+  // filteredAssessmentData.forEach((assessment) => {
+  //   console.log(assessment.timestamp);
+  // });
+
   const assessmentsByYear = {};
 
-  assessmentData.forEach((assessment) => {
+  filteredAssessmentData.forEach((assessment) => {
     const timestamp = new Date(assessment.timestamp);
     const year = timestamp.getFullYear();
     const month = timestamp.getMonth();
@@ -62,7 +68,7 @@ export default function AssessmentTrendsChart({ assessmentData }) {
       borderColor: colors[index % colors.length],
       pointRadius: 0, 
       pointHitRadius: 0, 
-    })),
+    }))
   };
 
   const options = {
