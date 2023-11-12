@@ -21,7 +21,7 @@ export default function MonthlyAssessment({assessmentData}) {
   
 
   assessmentsInMonthYear.forEach(assessment => {
-    const assessmentType = assessment.assessment_type;
+    const assessmentType = assessment.assessmentType;
     switch (assessmentType) {
       case "Depression":
         depressionAssessments.push(assessment);

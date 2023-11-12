@@ -7,7 +7,6 @@ const OverallCard = ({ assessmentData, employee }) => {
 
     const changeInEmployeesMonth10Year2023 = employee.reduce((change, emp) => {
         const joinDate = new Date(emp.joinDate);
-        const resignDate = new Date(emp.resignDate);
 
         if (
             joinDate.getMonth() === targetMonth &&
@@ -62,13 +61,14 @@ const OverallCard = ({ assessmentData, employee }) => {
         assessmentsInMonth10Year2023.length;
     const assessmentDifference =
         assessmentCountInMonth10Year2023 - assessmentCountInMonth9Year2023;
-    console.log(`diff 10 vs 9 in 2023: ${assessmentDifference}`);
+    // console.log(`diff 10 vs 9 in 2023: ${assessmentDifference}`);
 
     return (
         <div className="mb-7 mt-7 flex">
-            <div className="flex flex-col gap-4 xl:w-4/5 xl:flex-row">
+            <div className="gap-4 flex sm:flex-col w-4/5 flex-row ">
+            {/* <div className="flex flex-col gap-4 xl:w-4/5 xl:flex-row"> */}
                 <div className="flex flex-grow p-1">
-                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow sm:max-w-sm">
                         <p className="text-xl">Total Employees</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
@@ -150,7 +150,7 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                 {/* active employee */}
                 <div className="flex flex-grow p-1">
-                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow sm:max-w-sm">
                         <p className="text-xl">Active Employee</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">

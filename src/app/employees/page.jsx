@@ -9,6 +9,7 @@ import EducationProgress from "@/components/educations/EducationProgress";
 import PopUpAssessmentHistory from "@/components/employees/PopUpAssessmentHistory";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import Header from "@/components/employees/Header";
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
@@ -17,6 +18,7 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
+    const [currentUserId, setUserId] = useState("");
 
     // current logged in user
     const { user } = useUser();
@@ -26,6 +28,7 @@ export default function Home() {
     useEffect(() => {
         const getAssessmentData = async () => {
             // Mental assesment data
+
             const assessData = await fetchAssessment();
             const userData = await (currentUserId
                 ? assessData.filter((user) => user.userId === currentUserId)
@@ -34,7 +37,7 @@ export default function Home() {
                 (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
             );
             setAssessmentData(sortedUserData);
-
+            setUserId(user?.id);
             // checking if there are any assessments for the current month
             const dateCheck =
                 sortedUserData.length > 0
@@ -97,8 +100,12 @@ export default function Home() {
         return data.personality;
     };
 
+    // fetch noti
+
     return (
+
         <div className="bg-slate-200">
+            <Header headertext={"Employee"} user={currentUserId} />
             <div>
                 <h1 className="font-bold p-2 mx-2">Employee Dashboard</h1>
             </div>
@@ -114,8 +121,8 @@ export default function Home() {
                     ) : (
                         <>
                             <NoResultChart
-                                mainTitle={"Depression"}
-                                link="/employees/assessment/depression"
+                                mainTitle={"Anxiety"}
+                                link="/employees/assessment/anxiety"
                             />
                         </>
                     )}
