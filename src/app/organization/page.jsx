@@ -98,8 +98,9 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            <div>
-                <p style={{top: '2rem'}} className="text-1xl absolute">Welcome</p>
+            <div className="flex flex-col">
+                <p style={{top: '2rem'}} className="text-1xl absolute">WELCOME</p>
+
                 {notification?.notification?.length >= 0 ? (
                     <Header
                         headertext={organizations[0]?.orgName}
@@ -110,31 +111,30 @@ export default function Home() {
                     <></>
                 )}
                
+            
                 <OverallCard
                     assessmentData={assessmentData}
-                    employee={employee}
-                />
-                <div className="flex flex-col flex-wrap gap-6">
-                    <div className="flex xl:max-w-full gap-6 sm:flex-col">
-                        <div className="xl:w-1/4">
-                        {/* <div className="sm:max-w-sm"> */}
-                            <WorkplaceWellbeing
-                                assessmentData={assessmentData}
-                                employee={employee}
-                            />
-                        </div>
-                        <div className="xl:w-3/4">
-                        {/* <div className="w-3/4 sm:flex sm:flex-col"> */}
-                            <MonthlyAssessment
-                                assessmentData={assessmentData}
-                            />
-                        </div>
-                    </div>
 
-                    <div className="flex xl:max-w-full  gap-6">
-                        <AssessmentTrendsChart
+                    employee={employee}/>
+
+                
+                <div className="flex flex-col flex-wrap gap-6 sm:items-center ">
+                    <div className="flex gap-6 sm:flex-col items-center">
+                        <WorkplaceWellbeing
+                            assessmentData={assessmentData}
+                            employee={employee}
+                        />
+                       
+                        <MonthlyAssessment
                             assessmentData={assessmentData}
                         />
+                    </div>
+                    <div className="flex max-w-full gap-6 sm:flex-col items-center">
+
+                        <AssessmentTrendsChart
+                            assessmentData={assessmentData}
+                            
+                            />
                         <Feedbacks feedbacks={feedbacks} />
                     </div>
                 </div>

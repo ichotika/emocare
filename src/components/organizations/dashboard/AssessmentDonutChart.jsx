@@ -43,8 +43,8 @@ export default function AssessmentDonutChart({
                 display: false,
             },
         },
-        cutout: 70, 
-        // aspectRatio: 1.4,
+        cutout: 120, 
+
     };
 
     const gaugeText = {
@@ -68,9 +68,10 @@ export default function AssessmentDonutChart({
       };
 
     return (
-        <div className="h-200">
-        {/* <div className="h-200 flex max-w-lg flex-grow gap-3"> */}
-            <div  className="mr-8">
+        <div className="h-200 flex max-w-lg flex-grow gap-3">
+            <div style={{width:"330px"}} className="flex flex-col items-center">
+            {/* <div className="xl:mr-8"> */}
+
                 <h2 className="text-xl mb-5">Monthly Assessment</h2>
                 <Doughnut data={data} width={200} height={200} options={options} plugins={[gaugeText]}/> 
             </div>

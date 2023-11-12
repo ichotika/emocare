@@ -113,7 +113,7 @@ export default function AssessmentStackChart({
     const anxietyGoodPercent =
         ((anxietyGoodAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
 
-    const width = 250;
+    const width = 220;
     const height = 40;
 
     const options = {
@@ -243,7 +243,7 @@ export default function AssessmentStackChart({
     return (
         <div className="h-200 flex max-w-lg flex-col">
             <div>
-                <div className="flex justify-between">
+                <div className=" flex justify-between">
                     <div className="flex items-center">
                         <div
                             style={{ backgroundColor: "#2469F6" }}

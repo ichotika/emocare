@@ -16,7 +16,7 @@ export default function Feedbacks({ feedbacks }) {
     }, [emblaApi]);
 
     return (
-        <div className="relative basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
+        <div style={{width:"380px", height:"350px"}} className="relative basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
 
 
             <div className="embla">
