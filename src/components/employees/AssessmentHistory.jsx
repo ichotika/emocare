@@ -1,6 +1,38 @@
 import AssessmentRecord from "./AssessmentRecord";
-
+const dayjs = require("dayjs");
 function AssessmentHistory({ assessment }) {
+    const newHistory = [];
+    for (let i = 0; i < 6; i++) {
+        const newTimestamp = dayjs().subtract(i, "month").startOf("month");
+        let historyEntry = {
+            timestamp: newTimestamp.format(),
+            depressionLevel: "Not taken",
+            anxietyLevel: "Not taken",
+            burnoutLevel: "Not taken",
+        };
+
+        assessment.forEach((assess) => {
+            const assessTimestamp = dayjs(assess.timestamp).startOf("month");
+            if (newTimestamp.isSame(assessTimestamp, "month")) {
+                switch (assess.assessmentType) {
+                    case "Depression":
+                        historyEntry.depressionLevel = assess.level;
+                        break;
+                    case "Anxiety":
+                        historyEntry.anxietyLevel = assess.level;
+                        break;
+                    case "Burn out":
+                        historyEntry.burnoutLevel = assess.level;
+                        break;
+                    default:
+                        console.log("Unknown assessment type for:", assess);
+                }
+            }
+        });
+
+        newHistory.push(historyEntry);
+    }
+
     return (
         <div className="h-[80%] overflow-auto">
             <div
@@ -16,13 +48,13 @@ function AssessmentHistory({ assessment }) {
                 <div className="w-1/4 text-center">Burnout</div>
             </div>
             <>
-                {assessment.map((assess, index) => (
+                {newHistory.map((history, index) => (
                     <div key={index}>
                         <AssessmentRecord
-                            date={assess.assessDate}
-                            deprLevel={assess.depressionLevel}
-                            anxietyLevel={assess.anxietyLevel}
-                            burnoutLevel={assess.burnoutLevel}
+                            date={history.timestamp}
+                            deprLevel={history.depressionLevel}
+                            anxietyLevel={history.anxietyLevel}
+                            burnoutLevel={history.burnoutLevel}
                         />
                     </div>
                 ))}

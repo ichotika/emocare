@@ -1,15 +1,14 @@
 const fs = require("fs");
 
 const userIDs = [
-    "BDEA122313",
-    "BDEA133313",
-    "A7adju2421",
-    "BDEA13213",
-    "U005",
-    "U001",
-    "U002",
-    "U003",
-    "U004",
+    "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
+    "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
+    "user_2Xj10InQPYdmPjOR9VreThe9fic",
+    "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
+    "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+    "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
+    "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
+    "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
 ];
 
 function getRandomFromArray(array) {
@@ -42,6 +41,15 @@ function getRandomDate(month) {
         .toString()
         .padStart(2, "0")}T12:00:00Z`;
 }
+function determineLevel(score) {
+    if (score <= 15) {
+        return "Critical";
+    } else if (score <= 30) {
+        return "Decent";
+    } else {
+        return "Good";
+    }
+}
 
 function generateData() {
     const data = [];
@@ -57,13 +65,15 @@ function generateData() {
                     ? getRandomFromArray(tempUserIDs)
                     : `RandomUser${i + 1}`;
 
+            const level = determineLevel(score);
+
             data.push({
                 userId: userID,
-                assessment_id: `A${month}${i}`, // Made this month-specific to ensure uniqueness
+                assessmentType: getRandomAssessmentType(),
                 score: score,
-                assessment_type: getRandomAssessmentType(),
-                timestamp: getRandomDate(month),
-                score_description: description,
+                level: level,
+                levelDescription: description,
+                timestamp: getRandomDate(month), // Changed from 'timestamps' to 'timestamp'
             });
         }
     }

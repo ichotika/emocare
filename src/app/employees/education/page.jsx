@@ -3,11 +3,15 @@ import ResourceTable from "@/components/educations/ResourceTable";
 import { useEffect, useState } from "react";
 import EducationProgress from "@/components/educations/EducationProgress";
 import { useUser } from "@clerk/nextjs";
+import HeaderTab from "@/components/base/HeaderTab";
 
 
 export default function Home() {
     const [edulist, setEdulist] = useState([]);
     const [userEdulist, setUserEdulist] = useState([]);
+    const [activeTab, setActiveTab] = useState("All");
+    const [curNumber, setCurNumber] = useState(1);
+
     // fetching current user Id
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -44,17 +48,10 @@ export default function Home() {
 
     return (
         <>
-            <div>
+            <div className="m-4">
                 <EducationProgress currentUser={currentUserId} />
-                {/* <button
-                    onClick={() => {
-                        console.log(content);
-                    }}
-                >
-                    Hello
-                </button> */}
-                <div className="py-6">
-                    {/* <div className="pb-4">
+                <div className="py-8">
+                    <div className="pb-4">
                         <HeaderTab
                             tabNames={[
                                 "All",
@@ -63,11 +60,16 @@ export default function Home() {
                                 "Anxiety",
                                 "Burnout",
                             ]}
+                            activeTab={activeTab}
+                            setActiveTab={setActiveTab}
+                            setCurNumber={setCurNumber}
                         />
-                    </div> */}
+                    </div>
                     <div>
                         <ResourceTable
-                            educationList={edulist}
+                            educationList={activeTab === "All"? edulist : edulist.filter((edu) => edu.category === activeTab)
+                                
+                            }
                             userEdu={userEdulist}
                         />
                     </div>

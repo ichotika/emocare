@@ -106,24 +106,23 @@ const Questionnaire = () => {
         let i = [];
 
         async function response() {
-            await fetch("/api/questionnaires/depression/response", {
+            await fetch("/api/assessment", {
                 method: "POST",
                 body: JSON.stringify({
                     userId: user.id,
-                    assessment_id: 1,
-                    assessment_type: "depression",
-                    assess_date: new Date(),
+                    assessmentType: "depression",
                     score: totalScore,
                     level: getDepressionLevel(totalScore).dlevel,
-                    level_description:
+                    levelDescription:
                         getDepressionLevel(totalScore).description,
+                    createdAt: new Date()
                 }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
                 .then(() => {
-                    router.push("/assessment/depression/depressionresult");
+                    router.push("/employees/assessment/depression/depressionresult");
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);

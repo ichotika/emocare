@@ -50,18 +50,18 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent }) {
 
             ctx.font = "bold 18px sans-serif";
             ctx.fillStyle = "#878D96";
-            ctx.fillText(levelText, xCoor, yCoor - 50);
+            ctx.fillText(`${levelText}%`, xCoor, yCoor - 50);
         },
     };
 
     return (
-        <div className="bg-white rounded-lg p-2" style={{ width: "100%", height: "100%" }}>
+        <div className="bg-white rounded-lg p-2 w-[100%] h-[100%]">
             <h3 className="font-bold text-center">{headtitle}</h3>
             <Doughnut
                 data={data}
                 options={options}
                 plugins={[chartInnerText]}
-                style={{ width: "100%", height: "100%" }}
+                className="w-[100%] h-[100%]"
             />
         </div>
     );

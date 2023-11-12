@@ -8,21 +8,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Splash() {
     const router = useRouter();
-    const { isLoaded, user } = useUser();
+    const { isLoaded, isSignedIn, user } = useUser();
 
     useEffect(() => {
-        if (user) {
+        if (isSignedIn) {
             const userRole = user?.unsafeMetadata?.role;
             if (userRole === "employee") {
                 router.push("/employees");
             } else if (userRole === "organization") {
                 router.push("/organization");
             }
+        } else {
+            router.push("/company");
         }
-    }, [user, router]);
+    }, [user, router, isSignedIn]);
 
     return (
-        <AnimatePresence mode="animate">
+        <AnimatePresence mode="wait">
             {!isLoaded ? (
                 <motion.div
                     key="splash"

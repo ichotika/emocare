@@ -1,9 +1,10 @@
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
-import { Inter } from "next/font/google";
+import { Archivo, Manrope } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({ subsets: ["latin"] });
+const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata = {
     title: "EmoCare",
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
         >
             <html lang="en">
                 <body>
-                    <div className="mx-auto min-h-full p-4">
+                    <div
+                        className={`mx-autp min-h-full ${archivo.variable} ${manrope.variable}`}
+                    >
                         <StyledComponentsRegistry className="mt-8">
                             {children}
                         </StyledComponentsRegistry>
