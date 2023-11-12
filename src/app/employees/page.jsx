@@ -18,8 +18,6 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
-    const [currentUserId, setUserId] = useState("");
-
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -34,16 +32,15 @@ export default function Home() {
                 ? assessData.filter((user) => user.userId === currentUserId)
                 : []);
             const sortedUserData = await userData.sort(
-                (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
             );
             setAssessmentData(sortedUserData);
-            setUserId(user?.id);
             // checking if there are any assessments for the current month
             const dateCheck =
                 sortedUserData.length > 0
                     ? sortedUserData.filter(
                           (user) =>
-                              new Date(user.timestamp).getMonth() ===
+                              new Date(user.createdAt).getMonth() ===
                               currentDate
                       )
                     : [];
@@ -51,7 +48,7 @@ export default function Home() {
             // fetching data for each category
             setDeprData(
                 dateCheck.length > 0
-                    ? dateCheck.filter((d) => d.assessmentType === "Depression")
+                    ? dateCheck.filter((d) => d.assessmentType === "depression")
                     : 0
             );
             setAnxietyData(
@@ -61,7 +58,7 @@ export default function Home() {
             );
             setBurnoutData(
                 dateCheck.length > 0
-                    ? dateCheck.filter((d) => d.assessmentType === "Burn out")
+                    ? dateCheck.filter((d) => d.assessmentType === "burnout")
                     : 0
             );
 
@@ -103,90 +100,94 @@ export default function Home() {
     // fetch noti
 
     return (
-
-        <div className="bg-slate-200">
-            <Header headertext={"Employee"} user={currentUserId} />
-            <div>
-                <h1 className="font-bold p-2 mx-2">Employee Dashboard</h1>
-            </div>
-            <div className="sm:flex sm:flex-col grid grid-cols-3">
-                <div className="m-4 flex sm:flex-col col-span-2 gap-4">
-                    {deprData.length > 0 ? (
-                        <HalfDoughnutChart
-                            headtitle={"Depression"}
-                            levelText={deprData[0].level}
-                            levelNum={deprData[0].score}
-                            levelPercent={(deprData[0].score * 100) / 27}
-                        />
-                    ) : (
-                        <>
+        <>
+            <Header headertext={"Employee"} />
+            <div className="bg-slate-200">
+                <div>
+                    <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
+                </div>
+                <div className="grid grid-cols-3 sm:flex sm:flex-col">
+                    <div className="col-span-2 m-4 flex gap-4 sm:flex-col">
+                        {deprData.length > 0 ? (
+                            <HalfDoughnutChart
+                                headtitle={"Depression"}
+                                levelText={deprData[0].level}
+                                levelNum={deprData[0].score}
+                                levelPercent={(deprData[0].score * 100) / 27}
+                            />
+                        ) : (
+                            <>
+                                <NoResultChart
+                                    mainTitle={"Depression"}
+                                    link="/employees/assessment/depression"
+                                />
+                            </>
+                        )}
+                        {anxietyData.length > 0 ? (
+                            <HalfDoughnutChart
+                                headtitle={"Anxiety"}
+                                levelText={anxietyData[0].level}
+                                levelNum={anxietyData[0].score}
+                                levelPercent={(anxietyData[0].score * 100) / 21}
+                            />
+                        ) : (
                             <NoResultChart
                                 mainTitle={"Anxiety"}
                                 link="/employees/assessment/anxiety"
                             />
-                        </>
-                    )}
-                    {anxietyData.length > 0 ? (
-                        <HalfDoughnutChart
-                            headtitle={"Anxiety"}
-                            levelText={anxietyData[0].level}
-                            levelNum={anxietyData[0].score}
-                            levelPercent={(anxietyData[0].score * 100) / 21}
-                        />
-                    ) : (
-                        <NoResultChart
-                            mainTitle={"Anxiety"}
-                            link="/employees/assessment/anxiety"
-                        />
-                    )}
-                    {burnoutData.length > 0 ? (
-                        <HalfDoughnutChart
-                            headtitle={"Burnout"}
-                            levelText={burnoutData[0].level}
-                            levelNum={burnoutData[0].score}
-                            levelPercent={(burnoutData[0].score * 100) / 75}
-                        />
-                    ) : (
-                        <NoResultChart
-                            mainTitle={"Burnout"}
-                            link="/employees/assessment/burnout"
-                        />
-                    )}
-                </div>
-
-                <div className="m-2 row-span-2">
-                    <PersonalityType mypersonality={recentPersonalityType} />
-                </div>
-
-                <div className="m-4 col-span-2 rounded-lg bg-white p-2">
-                    <div className="flex justify-between">
-                        <h2 className="pb-2 font-bold">
-                            Your Assessment History
-                        </h2>
-                        <button onClick={() => setPopup(true)}>View all</button>
+                        )}
+                        {burnoutData.length > 0 ? (
+                            <HalfDoughnutChart
+                                headtitle={"Burnout"}
+                                levelText={burnoutData[0].level}
+                                levelNum={burnoutData[0].score}
+                                levelPercent={(burnoutData[0].score * 100) / 75}
+                            />
+                        ) : (
+                            <NoResultChart
+                                mainTitle={"Burnout"}
+                                link="/employees/assessment/burnout"
+                            />
+                        )}
                     </div>
-                    {assessmentData.length > 0 ? (
-                        <AssessmentHistory assessment={assessmentData} />
-                    ) : (
-                        <NoAssessResult />
-                    )}
+
+                    <div className="row-span-2 m-2">
+                        <PersonalityType
+                            mypersonality={recentPersonalityType}
+                        />
+                    </div>
+
+                    <div className="col-span-2 m-4 rounded-lg bg-white p-2">
+                        <div className="flex justify-between">
+                            <h2 className="pb-2 font-bold">
+                                Your Assessment History
+                            </h2>
+                            <button onClick={() => setPopup(true)}>
+                                View all
+                            </button>
+                        </div>
+                        {assessmentData.length > 0 ? (
+                            <AssessmentHistory assessment={assessmentData} />
+                        ) : (
+                            <NoAssessResult />
+                        )}
+                    </div>
                 </div>
 
-            </div>
-
-            <div className="m-4 rounded-lg bg-white p-2">
-                <div className="flex justify-between pb-4">
-                    <h2 className="font-bold">Education</h2>
-                    <Link href={`/employees/education`}>View all</Link>
+                <div className="m-4 rounded-lg bg-white p-2">
+                    <div className="flex justify-between pb-4">
+                        <h2 className="font-bold">Education</h2>
+                        <Link href={`/employees/education`}>View all</Link>
+                    </div>
+                    <EducationProgress currentUser={currentUserId} />
                 </div>
-                <EducationProgress currentUser={currentUserId} />
+
+                <PopUpAssessmentHistory
+                    isVisible={popup}
+                    onClose={() => setPopup(false)}
+                    assessment={assessmentData}
+                />
             </div>
-            
-            <PopUpAssessmentHistory
-                isVisible={popup}
-                onClose={() => setPopup(false)}
-                assessment={assessmentData}
-            />
-        </div>
+        </>
     );
 }

@@ -5,61 +5,72 @@ import { UserButton } from "@clerk/nextjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import Bell from "@/public/assets/Wireframes/bell.svg";
-
-
-
-
+import Bell from "@/public/icons/bell.svg";
 
 const NotificationEmployee = ({ headertext, notification }) => {
+    const [notificationCount, setNotificationCount] = useState(
+        notification.length
+    );
 
-    const [notificationCount, setNotificationCount] = useState(notification.length);
+    useEffect(() => {
+        setNotificationCount(notification?.length);
+    }, [notification]);
 
-    useEffect(()=>{
-        setNotificationCount(notification?.length)
-    },[notification])
-
-
-    const [clearNotification, setClearNotification] = useState(true);
     const [clickedNotifications, setClickedNotifications] = useState([]);
 
     const handleNotificationClick = async (id, index) => {
-        console.log('id', id)
+        console.log("id", id);
         try {
-            const response = await fetch(`/api/notification/employeeAssessment/${id}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-    
-            const updatedNotification = { ...notification[index], isRead: true };
+            const response = await fetch(
+                `/api/notification/employeeAssessment/${id}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            const updatedNotification = {
+                ...notification[index],
+                isRead: true,
+            };
             const updatedNotifications = [...notification];
             updatedNotifications[index] = updatedNotification;
-    
+
             // Update the notification count and state
             setNotificationCount(notificationCount - 1);
             setClickedNotifications([...clickedNotifications, index]);
         } catch (error) {
-            console.error('Error updating notification:', error);
+            console.error("Error updating notification:", error);
         }
     };
-    
-
 
     const notify = () => {
-        const unreadNotifications = notification.filter((noti) => !noti.isRead).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        ;
-
+        const unreadNotifications = notification
+            .filter((noti) => !noti.isRead)
+            .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         toast(
             <div>
                 {unreadNotifications.map((noti, index) => (
-                    <Link href='/employees/assessment'>
-                        <div key={index} className={`pb-2 mb-2 ${index === unreadNotifications.length - 1 || unreadNotifications.length === 1 ? '' : 'border-b border-gray-300'}`} 
-                        onClick={() => handleNotificationClick(noti?._id, index)}>
+                    <Link key={index} href="/employees/assessment">
+                        <div
+                            className={`mb-2 pb-2 ${
+                                index === unreadNotifications.length - 1 ||
+                                unreadNotifications.length === 1
+                                    ? ""
+                                    : "border-b border-gray-300"
+                            }`}
+                            onClick={() =>
+                                handleNotificationClick(noti?._id, index)
+                            }
+                        >
                             <p>{noti.timestamp}</p>
                             <p>{noti.message}</p>
-                            <p>Please take a moment to complete your assessment this month.</p>
+                            <p>
+                                Please take a moment to complete your assessment
+                                this month.
+                            </p>
                         </div>
                     </Link>
                 ))}
@@ -87,11 +98,10 @@ const NotificationEmployee = ({ headertext, notification }) => {
                     height={24}
                     alt="Bell Notification"
                 />
-
                 {notification?.length > 0 ? (
                     <div className="notification absolute">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600">
-                            <span className=" rounded-full text-center text-sm font-semibold text-white">
+                        <div className="flex h-2 w-2 items-center justify-center rounded-full bg-s-orange-1">
+                            <span className="text-center text-b-xs text-white">
                                 {notificationCount}
                             </span>
                         </div>
