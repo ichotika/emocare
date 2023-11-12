@@ -1,13 +1,11 @@
 import Tests from "@/components/assessment/Tests";
 import Link from "next/link";
-// import Header from "@/components/employees/Header";
-
+import Header from "@/components/employees/Header";
 
 const Assessment = () => {
-
     return (
         <>
-        {/* <Header headertext={"employee"} /> */}
+            <Header headertext={"Assessment"} />
             <div className="bg-slate-100">
                 <div className="mentalHealth">
                     <h5 className="pb-5 pl-5 pt-10 text-4xl font-bold">
@@ -48,7 +46,7 @@ const Assessment = () => {
                                     </p>
                                 </div>
                                 <div className="my-4 flex justify-center">
-                                    <button className="rounded-lg bg-blue-500 px-14 py-2 font-bold text-white hover:bg-blue-700">
+                                    <button className="px-14 rounded-lg bg-blue-500 py-2 font-bold text-white hover:bg-blue-700">
                                         <Link
                                             href={
                                                 "/employees/assessment/personality"
