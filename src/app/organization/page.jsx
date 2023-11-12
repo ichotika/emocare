@@ -99,7 +99,7 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            <div>
+            <div className="flex flex-col">
                 <p style={{top: '2rem'}} className="text-1xl absolute">WELCOME</p>
                 {notification?.notification?.length >= 0 ? (
                     <Header
@@ -111,28 +111,28 @@ export default function Home() {
                     <></>
                 )}
                
+            
                 <OverallCard
                     assessmentData={assessmentData}
-                    employee={employee}
-                />
-                <div className="flex flex-col flex-wrap gap-6">
-                    <div className="flex max-w-full gap-6">
-                        <div className="w-1/4">
-                            <WorkplaceWellbeing
-                                assessmentData={assessmentData}
-                                employee={employee}
-                            />
-                        </div>
-                        <div className="w-3/4">
-                            <MonthlyAssessment
-                                assessmentData={assessmentData}
-                            />
-                        </div>
-                    </div>
-                    <div className="flex max-w-full  gap-6">
-                        <AssessmentTrendsChart
+                    employee={employee}/>
+
+                
+                <div className="flex flex-col flex-wrap gap-6 sm:items-center ">
+                    <div className="flex gap-6 sm:flex-col items-center">
+                        <WorkplaceWellbeing
+                            assessmentData={assessmentData}
+                            employee={employee}
+                        />
+                       
+                        <MonthlyAssessment
                             assessmentData={assessmentData}
                         />
+                    </div>
+                    <div className="flex max-w-full gap-6 sm:flex-col items-center">
+                        <AssessmentTrendsChart
+                            assessmentData={assessmentData}
+                            
+                            />
                         <Feedbacks feedbacks={feedbacks} />
                     </div>
                 </div>

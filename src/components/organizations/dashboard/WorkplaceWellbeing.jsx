@@ -33,7 +33,7 @@ const wellBeingRate = distinctUserIds.length/employee.length*100
         backgroundColor: ["#ED672C", "#FDF4E8"],
         borderColor: ["white"],
         circumference: 220,
-        rotation: 251,
+        rotation: 250,
       },
     ],
   };
@@ -47,7 +47,7 @@ const wellBeingRate = distinctUserIds.length/employee.length*100
         display: false,
       },
     },
-    cutout: 70, 
+    cutout: 120, 
   };
 
   const gaugeText = {
@@ -72,7 +72,14 @@ const wellBeingRate = distinctUserIds.length/employee.length*100
   };
 
   return (
-    <div className="h-200 flex flex-col flex-grow basis-2/5 rounded-lg border border-gray-200 bg-white p-6 shadow">
+    <div style={{width:"384px", 
+    '@media (min-width: 768px)': {
+      height: '150px',
+    },
+
+    }} className="h-200 rounded-lg border border-gray-200 bg-white p-6 shadow flex flex-grow basis-2/5 w-64
+    flex-col">
+   
       <h2 className="text-xl mb-5">Workplace Wellbeing</h2>
       <Doughnut className="flex-grow"
         width={200}

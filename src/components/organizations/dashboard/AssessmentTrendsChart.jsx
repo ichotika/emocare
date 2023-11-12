@@ -97,8 +97,9 @@ export default function AssessmentTrendsChart({ assessmentData }) {
   };
 
   return (
-    <div className="basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
-      <h2 className="text-xl mb-5">Assessment Trends</h2>
+    <div style={{width:"380px",  height:"350px"}} 
+    className="basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
+      <h2 className="text-xl mb-5 ">Assessment Trends</h2>
       <Line options={options} data={data} />
     </div>
   );
