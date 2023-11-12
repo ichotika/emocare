@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Header from "@/components/organizations/Header";
-import WelcomePanel from "@/components/organizations/dashboard/WelcomePanel";
 import OverallCard from "@/components/organizations/dashboard/OverallCard";
 import WorkplaceWellbeing from "@/components/organizations/dashboard/WorkplaceWellbeing";
 import MonthlyAssessment from "@/components/organizations/dashboard/MonthlyAssessment";
@@ -26,7 +25,7 @@ export default function Home() {
     useEffect(() => {
         const getAssessmentData = async () => {
             const assessData = await fetchAssessment();
-            setAssessmentData(assessData.randAsessment);
+            setAssessmentData(assessData.assesshistory);
             setNotiAssesment(assessData);
         };
         getAssessmentData();
@@ -100,7 +99,7 @@ export default function Home() {
     return (
         <>
             <div>
-                <p style={{top: '2rem'}} className="text-1xl absolute">WELCOME</p>
+                <p style={{top: '2rem'}} className="text-1xl absolute">Welcome</p>
                 {notification?.notification?.length >= 0 ? (
                     <Header
                         headertext={organizations[0]?.orgName}
@@ -116,20 +115,23 @@ export default function Home() {
                     employee={employee}
                 />
                 <div className="flex flex-col flex-wrap gap-6">
-                    <div className="flex max-w-full gap-6">
-                        <div className="w-1/4">
+                    <div className="flex xl:max-w-full gap-6 sm:flex-col">
+                        <div className="xl:w-1/4">
+                        {/* <div className="sm:max-w-sm"> */}
                             <WorkplaceWellbeing
                                 assessmentData={assessmentData}
                                 employee={employee}
                             />
                         </div>
-                        <div className="w-3/4">
+                        <div className="xl:w-3/4">
+                        {/* <div className="w-3/4 sm:flex sm:flex-col"> */}
                             <MonthlyAssessment
                                 assessmentData={assessmentData}
                             />
                         </div>
                     </div>
-                    <div className="flex max-w-full  gap-6">
+
+                    <div className="flex xl:max-w-full  gap-6">
                         <AssessmentTrendsChart
                             assessmentData={assessmentData}
                         />
