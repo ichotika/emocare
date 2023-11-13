@@ -63,6 +63,10 @@ const Questionnaire = () => {
             description:
                 "Treat using antidepressants, psychotherapy or a combination of treatment.",
         },
+        {
+            dlevel: "Error",
+            description: "Error"
+        }
     ];
 
     // const [level, setLevel] = useState("")
@@ -89,13 +93,20 @@ const Questionnaire = () => {
                 result.description = depressionLevel[2].description;
                 break;
 
-            case totalScore >= 15:
+            case totalScore <= 19:
                 result.dlevel = depressionLevel[3].dlevel;
                 result.description = depressionLevel[3].description;
                 break;
 
+            case totalScore >= 27:
+                result.dlevel = depressionLevel[4].dlevel;
+                result.description = depressionLevel[4].description;
+                break;
+
             default:
-                return depressionLevel[4].dlevel;
+                result.dlevel = depressionLevel[5].dlevel;
+                result.description = depressionLevel[5].description;
+                break;
         }
         return result;
     };

@@ -46,51 +46,73 @@ const BurnoutQuestionnaire = () => {
     }, 0);
 
     const burnoutLevel = [
-        { description: "No sign of burnout here." },
+        { 
+            blevel: "No-sign",
+            description: "No sign of burnout here." },
         {
+            blevel: "Little sign",
             description:
                 "Little sign of burnout here, unless some factors are particularly severe.",
         },
         {
+            blevel: "Be careful",
             description:
                 "Be careful - you may be at risk of burnout, particularly if several scores are high.",
         },
         {
+            blevel: "Severe risk",
             description:
                 "You are at severe risk of burnout - do something about this urgently.",
         },
         {
+            blevel: "Very severe risk",
             description:
                 "You are at very severe risk of burnout - do something about this urgently.",
         },
+        {
+            blevel: "Error",
+            description: "Error"
+        }
     ];
 
     // const [level, setLevel] = useState("")
 
     const getBurnoutLevel = (totalScore) => {
         const result = {
+            blevel: "",
             description: "",
         };
 
         switch (true) {
             case totalScore <= 18:
+                result.blevel = burnoutLevel[0].blevel;
                 result.description = burnoutLevel[0].description;
                 break;
 
             case totalScore <= 32:
+                result.blevel = burnoutLevel[1].blevel;
                 result.description = burnoutLevel[1].description;
                 break;
 
             case totalScore <= 49:
+                result.blevel = burnoutLevel[2].blevel;
                 result.description = burnoutLevel[2].description;
                 break;
 
-            case totalScore >= 59:
+            case totalScore <= 59:
+                result.blevel = burnoutLevel[3].blevel;
                 result.description = burnoutLevel[3].description;
                 break;
 
+            case totalScore >= 75:
+                result.blevel = burnoutLevel[4].blevel;
+                result.description = burnoutLevel[4].description;
+                break;
+
             default:
-                return burnoutLevel[4].dlevel;
+                result.blevel = burnoutLevel[5].blevel;
+                result.description = burnoutLevel[5].description;
+                break;
         }
         return result;
     };
@@ -107,6 +129,7 @@ const BurnoutQuestionnaire = () => {
                     userId: user.id,
                     assessmentType: "burnout",
                     score: totalScore,
+                    level: getBurnoutLevel(totalScore).blevel,
                     levelDescription: getBurnoutLevel(totalScore).description,
                     createdAt: new Date(),
                 }),
@@ -123,9 +146,9 @@ const BurnoutQuestionnaire = () => {
         }
 
         for (const eachValue in value) {
-            console.log(eachValue);
+            // console.log(eachValue);
             if (value[eachValue] === -1) {
-                console.log(eachValue, value[eachValue]);
+                // console.log(eachValue, value[eachValue]);
                 // alert("Please input every button.")
                 i.push(eachValue);
             }
