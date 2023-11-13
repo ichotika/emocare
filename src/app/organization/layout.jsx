@@ -9,8 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <div className="flex min-h-full w-screen">
-            <div className="h-screen w-1/5">
+        <div className="flex w-screen">
+            <div className="flex max-h-full min-h-screen w-1/5 flex-col items-center bg-gradient-org text-g-white-1 sm:invisible">
                 <OrganizationSidebar />
             </div>
             <div className="w-4/5">{children}</div>
