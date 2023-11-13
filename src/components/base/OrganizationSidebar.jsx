@@ -36,7 +36,7 @@ const OrganizationSidebar = () => {
                     </nav>
                 </header>
 
-                <footer>
+                <footer className="pb-16">
                     <div className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
                         <SignOutButton />
                     </div>
