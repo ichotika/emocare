@@ -100,7 +100,7 @@ const NotificationEmployee = ({ headertext, notification }) => {
                 />
                 {notification?.length > 0 ? (
                     <div className="notification absolute">
-                        <div className="flex h-2 w-2 items-center justify-center rounded-full bg-s-orange-1">
+                        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-s-orange-1">
                             <span className="text-center text-b-xs text-white">
                                 {notificationCount}
                             </span>
