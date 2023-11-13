@@ -30,7 +30,7 @@ const TableHeader = styled.div`
 function RecordTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
     const [curNumber, setCurNumber] = useState(1);
-    const max = 5;
+    const max = 10;
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");

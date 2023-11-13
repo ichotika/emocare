@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
             <div className="flex max-h-full min-h-screen w-1/5 flex-col items-center text-g-white-1 xl:invisible xl:w-0">
                 <OrganizationSidebar />
             </div>
-            <div className="w-4/5 rounded-tl-[40px] bg-g-white-1 ps-12 xl:w-full xl:rounded-tl-none">
+            <div className="w-4/5 rounded-tl-[40px] bg-g-white-1 p-12  xl:w-full xl:rounded-tl-none">
                 {children}
             </div>
         </div>
