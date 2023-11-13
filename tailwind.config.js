@@ -7,18 +7,6 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        spacing: {
-            1: "0.5rem",
-            2: "1rem",
-            3: "1.5rem",
-            4: "2rem",
-            5: "2.5rem",
-            6: "3rem",
-            8: "4rem",
-            10: "5rem",
-            12: "6rem",
-        },
-
         extend: {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
