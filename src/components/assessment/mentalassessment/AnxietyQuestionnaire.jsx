@@ -56,6 +56,10 @@ const AnxietyQuestionnaire = () => {
             description:
                 "Further assessment (including diagnostic interview and mental status examination) and/or referral to a mental health professional is recommended.",
         },
+        {
+            alevel: "Error",
+            description: "Error"
+        }
     ];
 
     // const [level, setLevel] = useState("")
@@ -82,13 +86,14 @@ const AnxietyQuestionnaire = () => {
                 result.description = anxietyLevel[2].description;
                 break;
 
-            case totalScore >= 15:
+            case totalScore >= 21:
                 result.alevel = anxietyLevel[3].alevel;
                 result.description = anxietyLevel[3].description;
                 break;
 
             default:
-                return anxietyLevel[4].alevel;
+                result.alevel = anxietyLevel[4].alevel;
+                result.description = anxietyLevel[4].description;
         }
         return result;
     };
@@ -122,9 +127,9 @@ const AnxietyQuestionnaire = () => {
         }
 
         for (const eachValue in value) {
-            console.log(eachValue);
+            // console.log(eachValue);
             if (value[eachValue] === -1) {
-                console.log(eachValue, value[eachValue]);
+                // console.log(eachValue, value[eachValue]);
                 // alert("Please input every button.")
                 i.push(eachValue);
             }
