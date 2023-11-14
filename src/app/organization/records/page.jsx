@@ -27,18 +27,48 @@ async function getAssessment() {
 function calculateRatio(arr) {
     const countObj = arr.reduce(
         (totalCount, item) => {
-            if (item.level === "Good") {
-                totalCount.good = totalCount.good + 1;
-            } else if (item.level === "Decent") {
-                totalCount.decent = totalCount.decent + 1;
-            } else {
-                totalCount.critical = totalCount.critical + 1;
+            let level;
+            const score = item.score;
+
+            switch (item.assessmentType) {
+                case "depression":
+                    level =
+                        score >= 15
+                            ? "Critical"
+                            : score >= 5
+                            ? "Moderate"
+                            : "Good";
+                    break;
+                case "Anxiety":
+                    level =
+                        score >= 10
+                            ? "Critical"
+                            : score >= 5
+                            ? "Moderate"
+                            : "Good";
+                    break;
+                case "burnout":
+                    level =
+                        score >= 50
+                            ? "Critical"
+                            : score >= 19
+                            ? "Moderate"
+                            : "Good";
+                    break;
             }
-            totalCount.total = totalCount.total + 1;
-            return totalCount; // <-- You need to return the totalCount object here
+            totalCount[
+                level === "Good"
+                    ? "good"
+                    : level === "Moderate"
+                    ? "decent"
+                    : "critical"
+            ] += 1;
+            totalCount.total += 1;
+            return totalCount;
         },
         { good: 0, decent: 0, critical: 0, total: 0 }
     );
+
     return countObj;
 }
 
@@ -57,10 +87,10 @@ export default async function Records() {
             assessmentPromise,
         ]);
     const prevRecords = assessmentRecord.assessmentArr.filter(
-        (item) => dayjs(item.timestamp).month() === currentMonth - 1
+        (item) => dayjs(item.createdAt).month() === currentMonth - 1
     );
     const curRecords = assessmentRecord.assessmentArr.filter(
-        (item) => dayjs(item.timestamp).month() === currentMonth
+        (item) => dayjs(item.createdAt).month() === currentMonth
     );
     const prevObj = calculateRatio(prevRecords);
     const curObj = calculateRatio(curRecords);
@@ -73,10 +103,50 @@ export default async function Records() {
         const item3DataArray = curRecords.filter(
             (item3) => item3.userId === item1.userId
         );
-        const getAssessmentData = (dataArray, type) => {
-            const data = dataArray.find((item) => item.assessmentType === type);
-            return data ? data.level : "Not Taken";
-        };
+        function getAssessmentData(dataArray, type) {
+            const data = dataArray.find(
+                (item) =>
+                    item.assessmentType.toLowerCase() === type.toLowerCase()
+            );
+
+            if (!data) {
+                return "Not Taken";
+            }
+
+            let level;
+            const score = data.score;
+
+            switch (type.toLowerCase()) {
+                case "depression":
+                    level =
+                        score >= 15
+                            ? "Critical"
+                            : score >= 5
+                            ? "Moderate"
+                            : "Good";
+                    break;
+                case "anxiety":
+                    level =
+                        score >= 10
+                            ? "Critical"
+                            : score >= 5
+                            ? "Moderate"
+                            : "Good";
+                    break;
+                case "burn out":
+                    level =
+                        score >= 50
+                            ? "Critical"
+                            : score >= 19
+                            ? "Moderate"
+                            : "Good";
+                    break;
+                default:
+                    level = "Unknown";
+            }
+
+            return level;
+        }
 
         const assessmentTypes = ["Depression", "Burn out", "Anxiety"];
 
