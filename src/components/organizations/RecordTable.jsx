@@ -5,10 +5,11 @@ import HeaderTab from "@/components/base/HeaderTab";
 import Pagination from "../base/Pagination";
 import { useState } from "react";
 const Table = styled.div`
-    border: 1px solid var(--color-grey-200);
+    border-top: 2px solid #f5f9ff;
+    border-left: 2px solid #f5f9ff;
+    border-right: 2px solid #f5f9ff;
     font-size: 1rem;
-    background-color: var(--color-grey-0);
-    border-radius: 7px;
+    min-width: 800px;
 `;
 
 const TableHeader = styled.div`
@@ -17,9 +18,8 @@ const TableHeader = styled.div`
     align-items: center;
     justify-content: start;
     font-size: 12px;
-    background-color: var(--color-grey-100);
-    border-bottom: 1px solid var(--color-grey-200);
-    text-transform: uppercase;
+    background-color: #f5f9ff;
+    border-bottom: 2px solid #f5f9ff;
     letter-spacing: 0.4px;
     font-weight: 600;
     color: var(--color-grey-600);

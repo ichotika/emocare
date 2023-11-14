@@ -5,6 +5,8 @@ import BadCondition from "@/public/assets/organization/Decline.gif";
 import GoodCondition from "@/public/assets/organization/Growth.gif";
 import MedCondition from "@/public/assets/organization/Normal.gif";
 import RecordTable from "@/components/organizations/RecordTable";
+import Up from "@/public/icons/up.svg";
+import Down from "@/public/icons/down.svg";
 function AssessmentRecords({ emplist, prevObj, curObj }) {
     const compareObj = {
         difGood: (
@@ -23,9 +25,9 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
     };
     return (
         <>
-            <div className="flex gap-5">
-                <div className="border-p-blue-5 flex grow gap-5 rounded-xl border border-solid p-7 shadow-md">
-                    <div className="flex flex-col gap-1">
+            <div className="mt-6 flex gap-5 xl:flex-col">
+                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                    <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Good Condition
                         </p>
@@ -33,25 +35,37 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                             {((curObj.good / curObj.total) * 100).toFixed(1)}%
                         </h3>
 
-                        <h3 className="block text-start text-sm font-semibold">
-                            <span className="text-b-xs font-medium text-p-blue-1">
-                                {compareObj.difGood}%
-                            </span>
-                            <span className="ps-1 text-b-xs font-medium text-g-gray-1">
+                        <div className="flex items-center gap-2 text-start text-sm font-semibold">
+                            {compareObj.difGood > 0 ? (
+                                <>
+                                    <Image src={Up} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {compareObj.difGood}%
+                                    </h3>
+                                </>
+                            ) : (
+                                <>
+                                    <Image src={Down} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {-compareObj.difGood}%
+                                    </h3>
+                                </>
+                            )}
+                            <span className="text-b-xs font-medium text-g-gray-1">
                                 vs last month
                             </span>
-                        </h3>
+                        </div>
                     </div>
-                    <Image
-                        src={GoodCondition}
-                        alt="good condition"
-                        className="-rotate-90"
-                        height={100}
-                        width={100}
-                    />
+                    <div className="flex h-[6.25rem] w-[6.25rem] items-center justify-center">
+                        <Image
+                            src={GoodCondition}
+                            alt="good condition"
+                            className="-rotate-90"
+                        />{" "}
+                    </div>
                 </div>
-                <div className="border-p-blue-5 flex grow gap-5 rounded-xl border border-solid p-7 shadow-md">
-                    <div className="flex flex-col gap-1">
+                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                    <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Moderate Condition
                         </p>
@@ -59,24 +73,33 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                             {((curObj.decent / curObj.total) * 100).toFixed(1)}%
                         </h3>
 
-                        <h3 className="block text-start text-sm font-semibold">
-                            <span className="text-b-xs font-medium text-p-blue-1">
-                                {compareObj.difDecent}%
-                            </span>
-                            <span className="ps-1 text-b-xs font-medium text-g-gray-1">
+                        <div className="flex items-center gap-2 text-start text-sm font-semibold">
+                            {compareObj.difDecent > 0 ? (
+                                <>
+                                    <Image src={Up} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {compareObj.difDecent}%
+                                    </h3>
+                                </>
+                            ) : (
+                                <>
+                                    <Image src={Down} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {-compareObj.difDecent}%
+                                    </h3>
+                                </>
+                            )}
+                            <span className="text-b-xs font-medium text-g-gray-1">
                                 vs last month
                             </span>
-                        </h3>
+                        </div>
                     </div>
-                    <Image
-                        src={MedCondition}
-                        alt="decent condition"
-                        height={100}
-                        width={100}
-                    />
+                    <div className="flex h-[6.25rem] w-[6.25rem] items-center justify-center">
+                        <Image src={MedCondition} alt="decent condition" />
+                    </div>
                 </div>
-                <div className="border-p-blue-5 flex grow gap-5 rounded-xl border border-solid p-7 shadow-md">
-                    <div className="flex flex-col gap-1">
+                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                    <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Critical Condition
                         </p>
@@ -87,22 +110,34 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                             %
                         </h3>
 
-                        <h3 className="block text-start text-sm font-semibold">
-                            <span className="text-b-xs font-medium text-p-blue-1">
-                                {compareObj.difCritical}%
-                            </span>
-                            <span className="ps-1 text-b-xs font-medium text-g-gray-1">
+                        <div className="flex items-center gap-2 text-start text-sm font-semibold">
+                            {compareObj.difCritical > 0 ? (
+                                <>
+                                    <Image src={Up} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {compareObj.difCritical}%
+                                    </h3>
+                                </>
+                            ) : (
+                                <>
+                                    <Image src={Down} alt={"score increased"} />
+                                    <h3 className="text-b-xs font-medium text-p-blue-1">
+                                        {-compareObj.difCritical}%
+                                    </h3>
+                                </>
+                            )}
+                            <span className="text-b-xs font-medium text-g-gray-1">
                                 vs last month
                             </span>
-                        </h3>
+                        </div>
                     </div>
-                    <Image
-                        src={BadCondition}
-                        alt="critical condition"
-                        className="rotate-90"
-                        height={100}
-                        width={100}
-                    />
+                    <div className="flex h-[6.25rem] w-[6.25rem] items-center justify-center">
+                        <Image
+                            src={BadCondition}
+                            alt="critical condition"
+                            className="rotate-90"
+                        />
+                    </div>
                 </div>
             </div>
             <RecordTable employeeList={emplist} />
