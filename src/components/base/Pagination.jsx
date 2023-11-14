@@ -18,7 +18,6 @@ function Pagination({ dataArr, max, curNumber, setCurNumber }) {
     }
     function handleNum(num) {
         setCurNumber(num);
-        console.log(num);
     }
     return (
         <div className="flex items-center justify-center">

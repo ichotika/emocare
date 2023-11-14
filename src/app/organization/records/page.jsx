@@ -15,7 +15,6 @@ async function getRecords() {
 async function getNoti() {
     const res = await import("../../api/notification/organization/route");
     const data = (await res.GET()).json();
-    console.log(data)
     return data;
 }
 
@@ -24,7 +23,6 @@ async function getAssessment() {
     const data = (await res.GET()).json();
     return data;
 }
-
 
 function calculateRatio(arr) {
     const countObj = arr.reduce(
@@ -98,7 +96,6 @@ export default async function Records() {
                 headertext={"Assessment Record"}
                 notification={notification}
                 assessment={assessment}
-               
             />
             <AssessmentRecords
                 emplist={mergedEmpList}
