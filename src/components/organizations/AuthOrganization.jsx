@@ -26,9 +26,9 @@ function AuthOrganization({ emplist }) {
     return (
         <>
             <div>
-                <h2 className="mb-6 text-lg font-semibold">
-                    Authorize Request!
-                </h2>
+                <p className="mb-6 mt-2 text-b-xl font-semibold">
+                    Authorize Requests to Join Organization
+                </p>
                 <AuthOrganizationList
                     employeeList={employeeList}
                     onStatusChanged={fetchData}
