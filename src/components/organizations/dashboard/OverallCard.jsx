@@ -130,11 +130,11 @@ const OverallCard = ({ assessmentData, employee }) => {
                             
                             {/* gif */}
                             {changeInEmployeesMonth10Year2023 > 0 ? (
-                                 <img src="/organization/org_increase.gif" alt="GIF increase"  />
+                                 <img src="/organization/Growth.gif" alt="GIF increase"  />
                             ) : changeInEmployeesMonth10Year2023 < 0 ? (
-                                <img src="/organization/decrease.gif" alt="GIF decrease"  />
+                                <img src="/organization/Decline.gif" alt="GIF decrease"  />
                             ) : (
-                                <img src="/organization/org_increase.gif" alt="GIF increase"  />
+                                <img src="/organization/Normal.gif" alt="GIF remain"  />
                             )}
 
                         </div>
@@ -203,11 +203,11 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                             {/* gif */}
                             {percentageDifference > 0 ? (
-                                 <img src="/organization/org_increase.gif" alt="GIF increase"  />
+                                 <img src="/organization/Growth.gif" alt="GIF increase"  />
                             ) : percentageDifference < 0 ? (
-                                <img src="/organization/decrease.gif" alt="GIF decrease"  />
+                                <img src="/organization/Decline.gif" alt="GIF decrease"  />
                             ) : (
-                                <img src="/organization/org_increase.gif" alt="GIF increase"  />
+                                <img src="/organization/Normal.gif" alt="GIF remain"  />
                             )}
 
                            

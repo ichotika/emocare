@@ -21,7 +21,7 @@ export default function Feedbacks({ feedbacks }) {
 
             <div className="embla">
                 <div className="flex justify-between">
-                    <p className="text-xl mb-5">Feedbacks</p>
+                    <p className="text-xl mb-1">Feedbacks</p>
                     <div>
                         <button className="embla__prev border border-black rounded px-1.5 py-0" onClick={scrollPrev}>
                         &lt;

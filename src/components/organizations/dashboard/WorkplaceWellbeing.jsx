@@ -5,13 +5,11 @@ import { Doughnut } from "react-chartjs-2";
 export default function WorkplaceWellbeing({ assessmentData, employee }) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  // fix : distinct ppl take accessment vs all
-
   const targetYear = 2023;
   const targetMonth = 9; // Month 10
 
-  const assessmentsInMonthYear = assessmentData.filter(assessment => {
-  const assessmentTimestamp = new Date(assessment.timestamp);
+  const assessmentsInMonthYear = assessmentData?.filter(assessment => {
+  const assessmentTimestamp = new Date(assessment.createdAt);
   return (
     assessmentTimestamp.getMonth() === targetMonth &&
     assessmentTimestamp.getFullYear() === targetYear
