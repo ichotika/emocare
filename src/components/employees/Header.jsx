@@ -4,7 +4,7 @@
 import NotificationEmployee from "@/components/base/NotificationEmployee";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-const Header = ({ headertext }) => {
+const Header = ({ headertext, mb=12, mt=12, hidden }) => {
     const [notification, setNotification] = useState([]);
     const { user, isLoaded } = useUser();
 
@@ -38,8 +38,8 @@ const Header = ({ headertext }) => {
     }
 
     return (
-        <header className="mb-12 mt-12 flex justify-between">
-            <h1 className="text-5xl font-bold">{headertext}</h1>
+        <header className={`mb-${mb} mt-${mt} flex justify-between`}>
+            <h1 className={`text-5xl font-bold ${hidden}`}>{headertext}</h1>
             <NotificationEmployee notification={notification} />
         </header>
     );
