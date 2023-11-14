@@ -2,7 +2,11 @@ import { clerkClient } from "@clerk/nextjs";
 
 export default async function getClerkData() {
     try {
-        const users = await clerkClient.users.getUserList();
+        const users = await clerkClient.users.getUserList({
+            orderBy: "-created_at",
+            limit: 300,
+        });
+
         const newUsers = users
             .filter(
                 (user) =>
