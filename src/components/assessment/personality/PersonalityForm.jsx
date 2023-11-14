@@ -4,6 +4,22 @@ import { useUser } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import RadioQ from "./RadioQ";
+import styled from "styled-components";
+const TableHeader = styled.div`
+    display: grid;
+    grid-template-columns: 8% 26% 8% 8% 8% 8% 8% 26%;
+    align-items: center;
+    justify-content: start;
+    font-size: 12px;
+    background-color: #f2f4f4;
+    border: 2px solid #c7c8d1;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    color: black;
+    padding: 1rem 0;
+`;
 
 const createResponse = async (responseObj, router) => {
     try {
@@ -40,7 +56,29 @@ function PersonalityForm() {
     }, []);
 
     return (
-        <div>
+        <div className="mt-6">
+            <TableHeader>
+                <div className="ms-4 flex items-center justify-start text-b-sm font-bold">
+                    No.
+                </div>
+                <div className="flex items-center justify-start text-b-sm font-bold"></div>
+                <div className="flex items-center justify-center text-b-sm font-bold">
+                    1
+                </div>
+                <div className="flex items-center justify-center text-b-sm font-bold">
+                    2
+                </div>
+                <div className="flex items-center justify-center text-b-sm font-bold">
+                    3
+                </div>
+                <div className="flex items-center justify-center text-b-sm font-bold">
+                    4
+                </div>
+                <div className="flex items-center justify-center text-b-sm font-bold">
+                    5
+                </div>
+                <div className="flex items-center justify-start text-b-sm font-bold"></div>
+            </TableHeader>
             <Formik
                 initialValues={{
                     q1: "",
@@ -133,13 +171,17 @@ function PersonalityForm() {
                                     question={question}
                                 />
                             ))}
-
-                        <button
-                            className="mb-4 mt-4 rounded-xl bg-yellow-200 p-3"
-                            type="submit"
-                        >
-                            Submit
-                        </button>
+                        <p className="mt-4 flex items-center justify-center text-b-sm font-normal">
+                            Developed by Eric Jorgenson personality-testing.info
+                        </p>
+                        <div className="flex items-center justify-end">
+                            <button
+                                className={`text-medium mb-4 mt-16 rounded-md bg-p-blue-1 px-9 py-2 text-b-sm text-white`}
+                                type="submit"
+                            >
+                                Submit Anonymously
+                            </button>
+                        </div>
                     </Form>
                 )}
             </Formik>
