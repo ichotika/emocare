@@ -60,7 +60,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
 
     return (
         <>
-            <header className="flex grow justify-between xl:items-center xl:bg-blue-700 text-blue-700 xl:text-white">
+            <header className="flex grow-0 justify-between xl:items-center xl:bg-blue-700 text-blue-700 xl:text-white xl:p-4">
 
                 {/* Emocare Logo */}
                 <Link href={"/"}>
@@ -85,27 +85,32 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
             </header>
 
             {/* sidebar */}
-            <aside className="flex flex-col min-h-screen">
+            <aside className="flex grow flex-col h-screen justify-between  mt-16 xl:mt-0 xl:pt-16 xl:pb-12 xl:px-6">
                 <div className="flex flex-col">
-                    <div className="hidden xl:block text-center">
+
+                    {/* user account & notification */}
+                    <div className="hidden xl:flex justify-center items-center xl:items-center xl:mb-2">
                         <Header headertext={""} mb={0} mt={0} hidden={"hidden"}></Header>
                     </div>
+
+                    {/* main nav */}
                     <nav>
                         <ul>
                             {menuRoutes.map((menu, index) =>
                                 <li
                                     key={index}
-                                    className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
+                                    className="rounded-lg px-6 py-3 hover:bg-blue-700 text-blue-700 hover:text-white">
                                     <Link
                                         className="side-menu flex"
                                         href={`/employees/${menu.slug}`}
                                     >
                                         <Image
-                                            className="fill-blue-500"
+                                            className="fill-blue-500 mr-2"
                                             src={menu.image}
                                             alt={menu.name}
                                             width={24}
-                                            height={24} />
+                                            height={24}
+                                        />
                                         {menu.name}
                                     </Link>
                                 </li>
@@ -114,18 +119,18 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     </nav>
                 </div>
                 <div className="flex flex-col">
-                    <nav>
+                    <nav className="mb-6">
                         <ul>
-                        {supportRoutes.map((support, index) =>
+                            {supportRoutes.map((support, index) =>
                                 <li
                                     key={index}
-                                    className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
+                                    className="rounded-lg px-6 py-3 hover:bg-blue-700 text-blue-700 hover:text-white">
                                     <Link
                                         className="side-menu flex"
                                         href={`/employees/${support.slug}`}
                                     >
                                         <Image
-                                            className="fill-blue-500"
+                                            className="fill-blue-500 mr-2"
                                             src={support.image}
                                             alt={support.name}
                                             width={24}
@@ -138,9 +143,9 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     </nav>
 
                     {/* Signout button */}
-                    <div className="rounded-lg px-2 py-3 hover:bg-blue-700 hover:text-white">
-                    <UserButton afterSignOutUrl="/"></UserButton>
-                </div>
+                    <div className="rounded-lg px-6 py-3 mt-6 hover:bg-blue-700 hover:text-white">
+                        <UserButton afterSignOutUrl="/"></UserButton>
+                    </div>
 
                 </div>
             </aside>
