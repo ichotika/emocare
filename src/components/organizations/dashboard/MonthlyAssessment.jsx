@@ -12,7 +12,7 @@ export default function MonthlyAssessment({assessmentData}) {
     const anxietyAssessments = [];
 
     const assessmentsInMonthYear = assessmentData.filter(assessment => {
-    const assessmentTimestamp = new Date(assessment.timestamp);
+    const assessmentTimestamp = new Date(assessment.createdAt);
     return (
       assessmentTimestamp.getMonth() === targetMonth &&
       assessmentTimestamp.getFullYear() === targetYear
@@ -23,10 +23,10 @@ export default function MonthlyAssessment({assessmentData}) {
   assessmentsInMonthYear.forEach(assessment => {
     const assessmentType = assessment.assessmentType;
     switch (assessmentType) {
-      case "Depression":
+      case "depression":
         depressionAssessments.push(assessment);
         break;
-      case "Burn out":
+      case "burnout":
         burnoutAssessments.push(assessment);
         break;
       case "Anxiety":

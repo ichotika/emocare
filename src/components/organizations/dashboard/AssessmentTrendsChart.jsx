@@ -22,16 +22,12 @@ export default function AssessmentTrendsChart({ assessmentData }) {
     Legend
   );
 
-  const filteredAssessmentData = assessmentData.filter((assessment) => assessment.timestamp !== undefined);
-
-  // filteredAssessmentData.forEach((assessment) => {
-  //   console.log(assessment.timestamp);
-  // });
+  const filteredAssessmentData = assessmentData.filter((assessment) => assessment.createdAt !== undefined);
 
   const assessmentsByYear = {};
 
   filteredAssessmentData.forEach((assessment) => {
-    const timestamp = new Date(assessment.timestamp);
+    const timestamp = new Date(assessment.createdAt);
     const year = timestamp.getFullYear();
     const month = timestamp.getMonth();
     const key = `${year}-${month}`;
@@ -105,7 +101,7 @@ export default function AssessmentTrendsChart({ assessmentData }) {
   return (
     <div style={{width:"380px",  height:"350px"}} 
     className="basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
-      <h2 className="text-xl mb-5 ">Assessment Trends</h2>
+      <h2 className="text-xl mb-1 ">Assessment Trends</h2>
       <Line options={options} data={data} />
     </div>
   );
