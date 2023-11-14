@@ -4,31 +4,23 @@ import Footer from "@/components/company/footerNav";
 
 const routesTop = [
     {
-        slug: "services",
-        name: "How it works"
+        slug: "team",
+        name: "Our team"
     },
     {
         slug: "pricing",
         name: "Pricing"
-    },
-    {
-        slug: "team",
-        name: "Our team"
     },
 ]
 
 const routesBottom = [
     {
-        slug: "services",
-        name: "How it works"
-    },
-    {
         slug: "pricing",
         name: "Pricing"
     },
     {
         slug: "team",
-        name: "Our team"
+        name: "Meet Our team"
     },
     {
         slug: "contact",

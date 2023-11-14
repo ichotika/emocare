@@ -43,9 +43,9 @@ export default function TopNav({routes}) {
                         <Link href={"/sign-in"}>
                             Member Login
                         </Link>
-                        <button>
+                        <Link href={"/company/contact"}>
                             Request a Demo
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </nav>
@@ -71,9 +71,9 @@ function HamburgerNav({routes, tuckedAway, onClose}) {
                 <Link href={"/sign-in"}>
                     Member Login
                 </Link>
-                <button>
+                <Link href={"/company/contact"}>
                     Request a Demo
-                </button>
+                </Link>
             </div>
             <button onClick={onClose} className={"bg-blue-600 text-white text-3xl rounded-full p-1"}>X</button>
         </nav>)
