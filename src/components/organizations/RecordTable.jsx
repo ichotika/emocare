@@ -9,12 +9,11 @@ const Table = styled.div`
     font-size: 1rem;
     background-color: var(--color-grey-0);
     border-radius: 7px;
-    overflow: hidden;
 `;
 
 const TableHeader = styled.div`
     display: grid;
-    grid-template-columns: 5% 25% 15% 15% 15% 15%;
+    grid-template-columns: 6% 30% 16% 16% 16% 16%;
     align-items: center;
     justify-content: start;
     font-size: 12px;
@@ -54,8 +53,8 @@ function RecordTable({ employeeList }) {
                 setActiveTab={setActiveTab}
                 setCurNumber={setCurNumber}
             />
-            <Table role="table" className="mb-12 mt-6">
-                <TableHeader role="row">
+            <Table className="mb-12 mt-6">
+                <TableHeader>
                     <div></div>
                     <div className="">Employee Designation</div>
                     <div className="text-center">Condition</div>

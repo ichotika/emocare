@@ -4,7 +4,7 @@ import styled from "styled-components";
 import anonymous from "@/public/assets/organization/user.svg";
 const TableRow = styled.div`
     display: grid;
-    grid-template-columns: 5% 25% 15% 15% 15% 15%;
+    grid-template-columns: 6% 30% 16% 16% 16% 16%;
     align-items: center;
     justify-content: start;
     font-size: 12px;
@@ -16,27 +16,24 @@ const TableRow = styled.div`
     padding: 0.75rem 0;
 `;
 
-
 const handleButtonClick = async (id, assessmentType) => {
-
     try {
-       
         const response = await fetch(`/api/notification/employee/${id}`, {
-            method: 'POST', 
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ 
-                userid: id, 
-                timestamp:new Date().toISOString(),
+            body: JSON.stringify({
+                userid: id,
+                timestamp: new Date().toISOString(),
                 isRead: false,
-                assessmentType: assessmentType}),
-          });
-
+                assessmentType: assessmentType,
+            }),
+        });
     } catch (error) {
-      console.error('Error updating notification:', error);
+        console.error("Error updating notification:", error);
     }
-  };
+};
 
 function OrganizationRow({
     title,
@@ -46,10 +43,9 @@ function OrganizationRow({
     scorePrev,
     assessmentType,
 }) {
-    
     return (
         <TableRow>
-            <div className="flex items-center justify-end">
+            <div className="mb-auto mt-auto flex items-center justify-end">
                 <Image
                     className="rounded-full"
                     src={anonymous}
@@ -58,10 +54,7 @@ function OrganizationRow({
                     alt="Profile picture"
                 />
             </div>
-            <div>
-                <p className="text-sm font-light">{title}</p>
-            </div>
-
+            <p className="mb-auto mt-auto block text-sm font-light">{title}</p>
             <p className="mb-auto mt-auto block text-center text-sm font-light">
                 {assessmentType}
             </p>
@@ -72,7 +65,10 @@ function OrganizationRow({
                 {scorePrev}
             </p>
 
-            <button className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white" onClick={() => handleButtonClick(id, assessmentType)}>
+            <button
+                className="m-auto block w-1/2 rounded-md bg-blue-600 p-1 text-center text-sm font-light text-white"
+                onClick={() => handleButtonClick(id, assessmentType)}
+            >
                 Notify
             </button>
         </TableRow>
