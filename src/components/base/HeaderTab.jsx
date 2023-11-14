@@ -2,9 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 const TabMain = styled.ul`
-    border-bottom: 1.5px solid var(--color-grey-300);
     font-size: 1rem;
-    background-color: var(--color-grey-0);
     overflow: hidden;
 `;
 
@@ -14,7 +12,7 @@ const Border = styled.span`
     bottom: 0;
     left: 0;
     transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color: #1e40af;
+    background-color: #0066ff;
 `;
 
 function Tabbed({ tabs, activeTab, setActiveTab, setCurNumber }) {
@@ -67,7 +65,7 @@ function Tab({ name, activeTab, handleActiveTab, forwardedRef }) {
             ref={forwardedRef}
             className={
                 activeTab === name
-                    ? "tab active cursor-pointer pb-1 pt-1 font-semibold text-blue-700"
+                    ? "tab active cursor-pointer pb-1 pt-1 font-semibold text-p-blue-1"
                     : "tab cursor-pointer pb-1 pt-1"
             }
             onClick={() => handleActiveTab(name)}
