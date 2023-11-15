@@ -13,11 +13,11 @@ module.exports = {
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
                 "gradient-org":
-                    "linear-gradient(90deg, rgba(0,39,97,1) 0%, rgba(0,78,134,1) 100%)",
+                    "linear-gradient(180deg, rgba(0,39,97,1) 0%, rgba(0,78,134,1) 100%)",
                 "gradient-blue":
-                    "linear-gradient(90deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
+                    "linear-gradient(180deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
                 "gradient-orange":
-                    "linear-gradient(90deg, rgba(255,92,0,1) 0%, rgba(255,140,73,1) 100%)",
+                    "linear-gradient(180deg, rgba(255,92,0,1) 0%, rgba(255,140,73,1) 100%)",
             },
             screens: {
                 "2xl": { max: "1535px" },
