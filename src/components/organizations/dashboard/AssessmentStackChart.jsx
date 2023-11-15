@@ -48,20 +48,24 @@ export default function AssessmentStackChart({
     });
 
     const depressionAssessmentsCount = depressionAssessments.length;
-    const depressionCriticalPercent =
-       ((depressionCriticalAssessments.length / depressionAssessmentsCount) *
-        100).toFixed(0);
-    const depressionDecentPercent =
-        ((depressionDecentAssessments.length / depressionAssessmentsCount) * 100).toFixed(0);
-    const depressionGoodPercent =
-        ((depressionGoodAssessments.length / depressionAssessmentsCount) * 100).toFixed(0);
+    const depressionCriticalPercent = (
+        (depressionCriticalAssessments.length / depressionAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const depressionDecentPercent = (
+        (depressionDecentAssessments.length / depressionAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const depressionGoodPercent = (
+        (depressionGoodAssessments.length / depressionAssessmentsCount) *
+        100
+    ).toFixed(0);
 
     //burnout
     const burnoutCriticalAssessments = [];
     const burnoutDecentAssessments = [];
     const burnoutGoodAssessments = [];
 
-    
     burnoutAssessments.forEach((assessment) => {
         const levelDescription = assessment.levelDescription;
         switch (levelDescription) {
@@ -78,12 +82,18 @@ export default function AssessmentStackChart({
     });
 
     const burnoutAssessmentsCount = burnoutAssessments.length;
-    const burnoutCriticalPercent =
-        ((burnoutCriticalAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
-    const burnoutDecentPercent =
-        ((burnoutDecentAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
-    const burnoutGoodPercent =
-        ((burnoutGoodAssessments.length / burnoutAssessmentsCount) * 100).toFixed(0);
+    const burnoutCriticalPercent = (
+        (burnoutCriticalAssessments.length / burnoutAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const burnoutDecentPercent = (
+        (burnoutDecentAssessments.length / burnoutAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const burnoutGoodPercent = (
+        (burnoutGoodAssessments.length / burnoutAssessmentsCount) *
+        100
+    ).toFixed(0);
 
     //anxiety
     const anxietyCriticalAssessments = [];
@@ -106,15 +116,18 @@ export default function AssessmentStackChart({
     });
 
     const anxietyAssessmentsCount = anxietyAssessments.length;
-    const anxietyCriticalPercent =
-        ((anxietyCriticalAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
-    const anxietyDecentPercent =
-        ((anxietyDecentAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
-    const anxietyGoodPercent =
-        ((anxietyGoodAssessments.length / anxietyAssessmentsCount) * 100).toFixed(0);
-
-    const width = 220;
-    const height = 40;
+    const anxietyCriticalPercent = (
+        (anxietyCriticalAssessments.length / anxietyAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const anxietyDecentPercent = (
+        (anxietyDecentAssessments.length / anxietyAssessmentsCount) *
+        100
+    ).toFixed(0);
+    const anxietyGoodPercent = (
+        (anxietyGoodAssessments.length / anxietyAssessmentsCount) *
+        100
+    ).toFixed(0);
 
     const options = {
         plugins: {
@@ -134,7 +147,7 @@ export default function AssessmentStackChart({
                 },
             },
         },
-
+        aspectRatio: 5 / 1,
         responsive: true,
         scales: {
             x: {
@@ -171,7 +184,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [100-depressionGoodPercent-depressionDecentPercent],
+                data: [100 - depressionGoodPercent - depressionDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -201,7 +214,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [100-burnoutGoodPercent-burnoutDecentPercent],
+                data: [100 - burnoutGoodPercent - burnoutDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -231,7 +244,7 @@ export default function AssessmentStackChart({
             },
             {
                 label: "Critical",
-                data: [100-anxietyGoodPercent-anxietyDecentPercent],
+                data: [100 - anxietyGoodPercent - anxietyDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
@@ -262,12 +275,9 @@ export default function AssessmentStackChart({
                         {depressionAssessments.length} emp
                     </p>
                 </div>
-                <Bar
-                    width={width}
-                    height={height}
-                    options={options}
-                    data={data}
-                />
+                <div className="chart-js-wrapper">
+                    <Bar options={options} data={data} />
+                </div>
             </div>
 
             <div>
@@ -290,13 +300,9 @@ export default function AssessmentStackChart({
                         {anxietyAssessments.length} emp
                     </p>
                 </div>
-
-                <Bar
-                    width={width}
-                    height={height}
-                    options={options}
-                    data={data2}
-                />
+                <div className="chart-js-wrapper">
+                    <Bar options={options} data={data2} />
+                </div>
             </div>
 
             <div>
@@ -319,12 +325,9 @@ export default function AssessmentStackChart({
                         {burnoutAssessments.length} emp
                     </p>
                 </div>
-                <Bar
-                    width={width}
-                    height={height}
-                    options={options}
-                    data={data3}
-                />
+                <div className="chart-js-wrapper">
+                    <Bar options={options} data={data3} />
+                </div>
             </div>
         </div>
     );
