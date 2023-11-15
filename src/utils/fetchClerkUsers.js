@@ -22,6 +22,7 @@ export default async function getClerkData() {
                     title: user.unsafeMetadata.designation,
                     pending: user.unsafeMetadata.approved,
                     joinDate: user.createdAt,
+                    lastLogin: user.lastSignInAt,
                 };
             });
 

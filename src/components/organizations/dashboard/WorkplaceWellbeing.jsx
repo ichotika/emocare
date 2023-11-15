@@ -6,7 +6,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const targetYear = 2023;
-  const targetMonth = 9; // Month 10
+  const targetMonth = 10; // Month 11
 
   const assessmentsInMonthYear = assessmentData?.filter(assessment => {
   const assessmentTimestamp = new Date(assessment.createdAt);
@@ -18,8 +18,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
 
 const distinctUserIds = [...new Set(assessmentsInMonthYear.map(assessment => assessment.userid))];
 
-
-const wellBeingRate = distinctUserIds.length/employee.length*100
+const wellBeingRate = (distinctUserIds.length/employee.length*100).toFixed(0)
 
 
   const data = {
