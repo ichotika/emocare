@@ -53,15 +53,12 @@ const routesSupport = [
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <div className="flex xl:flex-col relative">
+        <div className="flex xl:flex-col">
             {/* navbar(until xl) & sidebar*/}
             <div class="flex flex-col justify-between h-full xl:h-auto w-[320px] xl:w-auto fixed top-0 left-0 xl:static pt-12 xl:pt-0 pb-12 xl:pb-0 px-6 xl:px-0">
                 <EmployeeSidebar menuRoutes={routesMenu} supportRoutes={routesSupport} />
             </div>
-            <div className="relative left-[320px] xl:static">{children}</div>
+            <div className="ml-[320px] xl:ml-0">{children}</div>
         </div>
     );
 }
-
-
-//aside:    className=" xl:min-h-screen flex justify-between xl:text-blue-700 sm:bg-blue-700"

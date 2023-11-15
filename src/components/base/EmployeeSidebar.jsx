@@ -3,24 +3,25 @@
 import MobileLogo from "@/public/icons/logo_mobile.svg";
 import DesktopLogo from "@/public/icons/logo_main.svg";
 import Hamburger from "@/public/assets/Wireframes/hamburgerMenu.svg";
-// import FAQ from "@/public/assets/Wireframes/faq.svg";
-// import Feedback from "@/public/assets/Wireframes/faq.svg";
-// import Logout from "@/public/assets/Wireframes/log-out.svg";
-// import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
-// import bell from "@/public/assets/Wireframes/bell.svg";
 
-// import others 
+// import hooks
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
-import TopNav from "../company/topNav";
-import { usePathname } from "next/navigation";
 import Header from "../employees/Header";
-// import { useRouter } from 'next/router';
-
+// import { useRouter } from "next/router";
 
 const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
+
+    // Hamburger menu
+    const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+    const toggleHamburger = (event) => {
+        event.preventDefault();
+        // console.log("toggle button is clicked")
+        setIsHamburgerOpen(!isHamburgerOpen);
+        console.log(isHamburgerOpen)
+    }
 
     // Set Logo depending on the screen size. 
     const [isDesktop, setIsDesktop] = useState();
@@ -48,19 +49,11 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
         };
     }, [window.innerWidth]);
 
-    // const [hiddenHamburger, setHiddenHamburger] = useState(true)
-
-    // useEffect(() => {
-    //     handleClose();
-    // }, [pathname])
-
-    // const handleClose = () => {
-    //     setHiddenHamburger(true);
-    // }
+    // const router = useRouter();
 
     return (
         <>
-            <header className="flex grow-0 justify-between xl:items-center xl:bg-blue-700 text-blue-700 xl:text-white xl:p-4">
+            <header className="flex grow-0 justify-between xl:items-center xl:bg-p-blue-1 text-p-blue-1 xl:text-white xl:p-4">
 
                 {/* Emocare Logo */}
                 <Link href={"/"}>
@@ -70,22 +63,20 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     />
                 </Link>
 
-                {/* humburger icon */}
-                <nav className="hidden xl:block">
-                    <ul className="flex xl:bg-blue-700 grow pl-0">
-                        <li className="grow">
-                            <Link href={"/"} className="p-0">
-                                <Image
-                                    src={Hamburger}
-                                    alt="hamburger menu" />
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+
+                {/* hamburger menu */}
+                <button className="hidden xl:block" onClick={toggleHamburger}>
+                    <Image
+                        src={Hamburger}
+                        alt="hamburger menu"
+                    />
+                </button>
             </header>
 
             {/* sidebar */}
-            <aside className="flex grow flex-col h-screen justify-between  mt-16 xl:mt-0 xl:pt-16 xl:pb-12 xl:px-6">
+            <aside className={`flex grow flex-col h-screen justify-between mt-16 xl:mt-0 xl:pt-16 xl:pb-12 xl:px-6 xl:fixed xl:bg-white xl:transition-all ${isHamburgerOpen ? "xl:translate-x-0 w-[320px] z-10" : "xl:-translate-x-full"}`}>
+
+                {/* upper group*/}
                 <div className="flex flex-col">
 
                     {/* user account & notification */}
@@ -99,13 +90,13 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                             {menuRoutes.map((menu, index) =>
                                 <li
                                     key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-blue-700 text-blue-700 hover:text-white">
+                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1 text-p-blue-1 hover:text-white">
                                     <Link
-                                        className="side-menu flex"
+                                        className="side-menu flex leading-6 font-bold"
                                         href={`/employees/${menu.slug}`}
                                     >
                                         <Image
-                                            className="fill-blue-500 mr-2"
+                                            className="fill-blue-500 hover:fill-white mr-2"
                                             src={menu.image}
                                             alt={menu.name}
                                             width={24}
@@ -118,15 +109,17 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                         </ul>
                     </nav>
                 </div>
+
+                {/* lower group */}
                 <div className="flex flex-col">
                     <nav className="mb-6">
                         <ul>
                             {supportRoutes.map((support, index) =>
                                 <li
                                     key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-blue-700 text-blue-700 hover:text-white">
+                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1 text-p-blue-1 hover:text-white">
                                     <Link
-                                        className="side-menu flex"
+                                        className="side-menu flex leading-6 font-bold"
                                         href={`/employees/${support.slug}`}
                                     >
                                         <Image
@@ -143,7 +136,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     </nav>
 
                     {/* Signout button */}
-                    <div className="rounded-lg px-6 py-3 mt-6 hover:bg-blue-700 hover:text-white">
+                    <div className="rounded-lg px-6 py-3 mt-6 hover:bg-p-blue-1 hover:text-white">
                         <UserButton afterSignOutUrl="/"></UserButton>
                     </div>
 
