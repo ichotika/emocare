@@ -5,7 +5,7 @@ import AssessmentStackChart from "./AssessmentStackChart";
 
 export default function MonthlyAssessment({ assessmentData }) {
     const targetYear = 2023;
-    const targetMonth = 9; // Month 10
+    const targetMonth = 10; // Month 11
 
     const depressionAssessments = [];
     const burnoutAssessments = [];
@@ -55,11 +55,11 @@ export default function MonthlyAssessment({ assessmentData }) {
                         />
                     </div>
                     <div className="grow-[1] basis-1/2">
-                        {/* <div className="grow-[1] basis-1/2 w-1/2"> */}
                         <AssessmentStackChart
                             depressionAssessments={depressionAssessments}
                             burnoutAssessments={burnoutAssessments}
                             anxietyAssessments={anxietyAssessments}
+
                         />
                     </div>
                 </div>

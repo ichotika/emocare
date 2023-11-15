@@ -7,6 +7,7 @@ export default function AssessmentDonutChart({
     assessmentData,
     assessmentsInMonthYearCount,
     depressionCount,
+
     burnoutCount,
     anxietyCount,
 }) {
@@ -70,8 +71,6 @@ export default function AssessmentDonutChart({
     return (
         <div className="flex max-w-lg flex-grow gap-3">
             <div className="flex flex-col items-center">
-                {/* <div className="xl:mr-8"> */}
-
                 <h2 className="mb-5 text-xl">Monthly Assessment</h2>
                 <div className="chart-js-wrapper" style={{ width: "334px" }}>
                     <Doughnut

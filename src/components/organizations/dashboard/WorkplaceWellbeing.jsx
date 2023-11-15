@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 export default function WorkplaceWellbeing({ assessmentData, employee }) {
+
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const targetYear = 2023;
@@ -88,4 +89,5 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
             </div>
         </div>
     );
+
 }

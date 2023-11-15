@@ -31,20 +31,27 @@ export default function Home() {
         getAssessmentData();
     }, []);
 
-    // fetch user
-    const fetchEmployee = async () => {
-        const res = await fetch("/api/organization/dashboardEmployee");
-        const data = await res.json();
-        return data;
-    };
 
+    // employee
+    async function fetchEmployee() {
+        try {
+            const response = await fetch("/api/fetchclerk", {
+                method: "GET",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setEmployee(data.emplist);
+        } catch (error) {
+            console.error("Could not fetch data", error);
+        }
+    }
     useEffect(() => {
-        const getEmployee = async () => {
-            const employee = await fetchEmployee();
-            setEmployee(employee.employee);
-        };
-        getEmployee();
+        fetchEmployee();
     }, []);
+
+
 
     // fetch feedbacks
     const fetchFeedbacks = async () => {

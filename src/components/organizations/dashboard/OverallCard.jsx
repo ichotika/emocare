@@ -2,67 +2,40 @@
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const OverallCard = ({ assessmentData, employee }) => {
+
+    function countEmployeesByMonthAndYear(employees, year, month, dateType) {
+        return employees.reduce((count, emp) => {
+            const dateValue = new Date(emp[dateType]);
+    
+            if (
+                dateValue.getMonth() === month &&
+                dateValue.getFullYear() === year
+            ) {
+                count += 1; // Employee had the specified date in the specified month and year
+            }
+    
+            return count;
+        }, 0);
+    }
+
     const targetYear = 2023;
-    const targetMonth = 9; // Month 10
+    const targetMonth = 10; // Month 11
 
-    const changeInEmployeesMonth10Year2023 = employee.reduce((change, emp) => {
-        const joinDate = new Date(emp.joinDate);
 
-        if (
-            joinDate.getMonth() === targetMonth &&
-            joinDate.getFullYear() === targetYear
-        ) {
-            change += 1; // Employee joined in month 10
+    const changeInEmployeesMonth11Year2023 = countEmployeesByMonthAndYear(employee, targetYear, targetMonth, 'joinDate');
+    const activeEmployeesInMonth11Year2023 = countEmployeesByMonthAndYear(employee, targetYear, targetMonth, 'lastLogin');
+    const activeEmployeesInMonth10Year2023 = countEmployeesByMonthAndYear(employee, targetYear, targetMonth-1, 'lastLogin');
+    let percentageDifference = 0;
+
+    if (activeEmployeesInMonth10Year2023 !== 0) {
+        percentageDifference = (((activeEmployeesInMonth11Year2023 - activeEmployeesInMonth10Year2023) / activeEmployeesInMonth10Year2023) * 100).toFixed(2);
+    
+        if (isNaN(percentageDifference) || !isFinite(percentageDifference)) {
+            percentageDifference = 0;
         }
-
-        return change;
-    }, 0);
-
-    // calculate %diff
-    const activeEmployees = employee.filter((emp) => emp.status === "active");
-
-    const activeEmployeesInMonth10Year2023 = activeEmployees.filter((emp) => {
-        const assessmentDate = new Date(emp.assessmentTakenDate);
-        return (
-            assessmentDate.getMonth() === targetMonth &&
-            assessmentDate.getFullYear() === targetYear
-        );
-    });
-
-    const percentageDifference = (
-        (activeEmployeesInMonth10Year2023.length / activeEmployees.length) *
-        100
-    ).toFixed(0);
-
-    // calculate assessment diff
-    const month9 = 8; // Month 9
-    const month10 = 9; // Month 10
-
-    // Filter assessments taken in month 9 of 2023
-    const assessmentsInMonth9Year2023 = assessmentData.filter((assessment) => {
-        const assessmentTimestamp = new Date(assessment.timestamp);
-        return (
-            assessmentTimestamp.getMonth() === month9 &&
-            assessmentTimestamp.getFullYear() === targetYear
-        );
-    });
-
-    // Filter assessments taken in month 10 of 2023
-    const assessmentsInMonth10Year2023 = assessmentData.filter((assessment) => {
-        const assessmentTimestamp = new Date(assessment.timestamp);
-        return (
-            assessmentTimestamp.getMonth() === month10 &&
-            assessmentTimestamp.getFullYear() === targetYear
-        );
-    });
-
-    const assessmentCountInMonth9Year2023 = assessmentsInMonth9Year2023.length;
-    const assessmentCountInMonth10Year2023 =
-        assessmentsInMonth10Year2023.length;
-    const assessmentDifference =
-        assessmentCountInMonth10Year2023 - assessmentCountInMonth9Year2023;
-    // console.log(`diff 10 vs 9 in 2023: ${assessmentDifference}`);
-
+    }
+  
+    
     return (
         <div className="mb-7 mt-7 flex sm:items-center sm:justify-center">
             <div className="flex w-4/5 flex-row gap-4 sm:flex-col sm:items-center sm:justify-center ">
@@ -79,7 +52,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                                 </h4>
 
                                 <div className="flex text-sm">
-                                    {changeInEmployeesMonth10Year2023 > 0 ? (
+                                    {changeInEmployeesMonth11Year2023 > 0 ? (
                                         <>
                                             <div style={{ color: "green" }}>
                                                 <FaArrowUp />
@@ -93,11 +66,11 @@ const OverallCard = ({ assessmentData, employee }) => {
                                             >
                                                 +
                                                 {
-                                                    changeInEmployeesMonth10Year2023
+                                                    changeInEmployeesMonth11Year2023
                                                 }
                                             </p>
                                         </>
-                                    ) : changeInEmployeesMonth10Year2023 < 0 ? (
+                                    ) : changeInEmployeesMonth11Year2023 < 0 ? (
                                         <>
                                             <div style={{ color: "red" }}>
                                                 <FaArrowDown />
@@ -111,7 +84,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                                             >
                                                 -
                                                 {Math.abs(
-                                                    changeInEmployeesMonth10Year2023
+                                                    changeInEmployeesMonth11Year2023
                                                 )}
                                             </p>
                                         </>
@@ -123,7 +96,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                                                 marginRight: "5px",
                                             }}
                                         >
-                                            {changeInEmployeesMonth10Year2023}
+                                            {changeInEmployeesMonth11Year2023}
                                         </div>
                                     )}
                                     <div>vs last month</div>
@@ -161,7 +134,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
                                 <h4 className="flex-grow text-5xl font-bold">
-                                    {(activeEmployees.length /
+                                    {(activeEmployeesInMonth11Year2023 /
                                         employee.length) *
                                         100}
                                     %
