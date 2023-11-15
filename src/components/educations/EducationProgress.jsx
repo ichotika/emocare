@@ -1,9 +1,9 @@
 "use client";
-import DoughnutChart from "../employees/DoughnutChart";
 import { useState, useEffect } from "react";
-import NoResultEducation from "./NoResultEducation";
+import EmpEduProgress from "../employees/EmpEduProgress";
+import EduCategoryProgress from "./EduCategoryProgress";
 
-function EducationProgress({ currentUser }) {
+function EducationProgress({ currentUser, pageTitle, currentTab }) {
     const [alleduPercent, setAllEduPercent] = useState("");
     const [resourceEdu, setResourceEdu] = useState("");
     const [deprEdu, setDeprEdu] = useState("");
@@ -85,32 +85,25 @@ function EducationProgress({ currentUser }) {
 
     return (
         <>
-            <div className="flex flex-row sm:flex-col gap-6 rounded-lg bg-white">
-                {alleduPercent > 0 ? <DoughnutChart
-                        healthPercent={alleduPercent}
-                        categoryTitle={"All"}
-                        percentCompleted={alleduPercent}
-                    /> : <NoResultEducation categoryTitle={"All"} />}
-                {resourceEdu > 0 ? <DoughnutChart
-                    healthPercent={resourceEdu}
-                    categoryTitle={"Resources"}
-                    percentCompleted={resourceEdu}
-                /> : <NoResultEducation categoryTitle={"Resource"} /> }
-                {deprEdu > 0 ? <DoughnutChart
-                    healthPercent={deprEdu}
-                    categoryTitle={"Depression"}
-                    percentCompleted={deprEdu}
-                /> : <NoResultEducation categoryTitle={"Depression"} />}
-                {anxietyEdu > 0 ? <DoughnutChart
-                    healthPercent={anxietyEdu}
-                    categoryTitle={"Anxiety"}
-                    percentCompleted={anxietyEdu}
-                /> : <NoResultEducation categoryTitle={"Anxiety"} />}
-                {burnoutEdu > 0 ? <DoughnutChart
-                    healthPercent={burnoutEdu}
-                    categoryTitle={"Burnout"}
-                    percentCompleted={burnoutEdu}
-                /> : <NoResultEducation categoryTitle={"Burnout"} />}
+            <div className="rounded-lg bg-white py-2">
+                {pageTitle === "employee" ? (
+                    <EmpEduProgress
+                        alleduPercent={alleduPercent}
+                        resourceEdu={resourceEdu}
+                        deprEdu={deprEdu}
+                        anxietyEdu={anxietyEdu}
+                        burnoutEdu={burnoutEdu}
+                    />
+                ) : (
+                    <EduCategoryProgress
+                        currentTab={currentTab}
+                        alleduPercent={alleduPercent}
+                        resourceEdu={resourceEdu}
+                        deprEdu={deprEdu}
+                        anxietyEdu={anxietyEdu}
+                        burnoutEdu={burnoutEdu}
+                    />
+                )}
             </div>
         </>
     );

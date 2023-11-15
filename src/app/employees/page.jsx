@@ -180,6 +180,7 @@ export default function Home() {
                         <Link href={`/employees/education`}>View all</Link>
                     </div>
                     {/* <EducationProgress currentUser={currentUserId} /> */}
+                    <EducationProgress currentUser={currentUserId} pageTitle={"employee"} />
                 </div>
 
                 <PopUpAssessmentHistory
