@@ -13,7 +13,7 @@ function Splash() {
     useEffect(() => {
         if (isLoaded) {
             if (isSignedIn) {
-                const userRole = user?.unsafeMetadata?.role;
+                const userRole = user.unsafeMetadata.role;
                 if (userRole === "employee") {
                     router.push("/employees");
                 } else if (userRole === "organization") {
@@ -23,7 +23,7 @@ function Splash() {
                 router.push("/company");
             }
         }
-    }, [user, isSignedIn,isLoaded]);
+    }, [user, isSignedIn, isLoaded, router]);
 
     return (
         <AnimatePresence mode="wait">
@@ -35,7 +35,7 @@ function Splash() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1 }}
                     transition={{
-                        duration: 0.6,
+                        duration: 0.8,
                         repeat: 1,
                     }}
                 >
