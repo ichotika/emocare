@@ -6,27 +6,24 @@ import { useState } from "react";
 import Pagination from "@/components/base/Pagination";
 
 const Table = styled.div`
-    border: 1px solid var(--color-grey-200);
-
+    border-top: 2px solid #f5f9ff;
+    border-left: 2px solid #f5f9ff;
+    border-right: 2px solid #f5f9ff;
     font-size: 1rem;
-    background-color: var(--color-grey-0);
-    border-radius: 7px;
-    overflow: hidden;
+    min-width: 800px;
 `;
-
 const TableHeader = styled.div`
     display: grid;
-    grid-template-columns: 30% 25% 20% 25%;
-    column-gap: 1.6rem;
-    align-items: start;
-    background-color: var(--color-grey-100);
-    border-bottom: 1px solid var(--color-grey-200);
-    text-transform: uppercase;
+    grid-template-columns: 5% 35% 30% 30%;
+    align-items: center;
+    justify-content: start;
+    font-size: 12px;
+    background-color: #f5f9ff;
+    border-bottom: 2px solid #f5f9ff;
     letter-spacing: 0.4px;
     font-weight: 600;
     color: var(--color-grey-600);
-    padding: 1.6rem 2rem;
-    width: 100%;
+    padding: 0.75rem 0;
 `;
 
 function EmployeeTable({ employeeList }) {
@@ -58,10 +55,10 @@ function EmployeeTable({ employeeList }) {
             />
             <Table role="table" className="mb-12 mt-6 overflow-x-auto">
                 <TableHeader role="row">
-                    <div>Employee Name</div>
                     <div></div>
-                    <div>Employee ID</div>
-                    <div>Joined EmoCare</div>
+                    <div>Employee Designation</div>
+                    <div className="text-center">Employee ID</div>
+                    <div className="text-center">Date of Joining</div>
                 </TableHeader>
                 {activeTab === "All"
                     ? employeeList
@@ -77,7 +74,7 @@ function EmployeeTable({ employeeList }) {
                                       title={list.title}
                                       department={list.department}
                                       joinDate={formatDate(list.joinDate)}
-                                      id={list.userId}
+                                      id={list.userId.slice(0, 9)}
                                       key={list.userId}
                                   />
                               );

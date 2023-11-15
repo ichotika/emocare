@@ -5,22 +5,21 @@ import HeaderTab from "@/components/base/HeaderTab";
 import Pagination from "../base/Pagination";
 import { useState } from "react";
 const Table = styled.div`
-    border: 1px solid var(--color-grey-200);
+    border-top: 2px solid #f5f9ff;
+    border-left: 2px solid #f5f9ff;
+    border-right: 2px solid #f5f9ff;
     font-size: 1rem;
-    background-color: var(--color-grey-0);
-    border-radius: 7px;
-    overflow: hidden;
+    min-width: 800px;
 `;
 
 const TableHeader = styled.div`
     display: grid;
-    grid-template-columns: 5% 25% 15% 15% 15% 15%;
+    grid-template-columns: 6% 30% 16% 16% 16% 16%;
     align-items: center;
     justify-content: start;
     font-size: 12px;
-    background-color: var(--color-grey-100);
-    border-bottom: 1px solid var(--color-grey-200);
-    text-transform: uppercase;
+    background-color: #f5f9ff;
+    border-bottom: 2px solid #f5f9ff;
     letter-spacing: 0.4px;
     font-weight: 600;
     color: var(--color-grey-600);
@@ -30,7 +29,7 @@ const TableHeader = styled.div`
 function RecordTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
     const [curNumber, setCurNumber] = useState(1);
-    const max = 5;
+    const max = 10;
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -54,8 +53,8 @@ function RecordTable({ employeeList }) {
                 setActiveTab={setActiveTab}
                 setCurNumber={setCurNumber}
             />
-            <Table role="table" className="mb-12 mt-6">
-                <TableHeader role="row">
+            <Table className="mb-12 mt-6">
+                <TableHeader>
                     <div></div>
                     <div className="">Employee Designation</div>
                     <div className="text-center">Condition</div>

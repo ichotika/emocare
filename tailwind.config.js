@@ -8,12 +8,20 @@ module.exports = {
     ],
     theme: {
         extend: {
+            spacing: {
+                12: "3rem",
+                14: "3.5rem",
+                16: "4rem",
+                18: "4.5rem",
+                20: "5rem",
+                24: "6rem",
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
                 "gradient-org":
-                    "linear-gradient(90deg, rgba(0,39,97,1) 0%, rgba(0,78,134,1) 100%)",
+                    "linear-gradient(180deg, rgba(0,39,97,1) 0%, rgba(0,78,134,1) 100%)",
                 "gradient-blue":
                     "linear-gradient(90deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
                 "gradient-orange":
@@ -40,15 +48,19 @@ module.exports = {
                 "p-blue-2": "#4D93FB",
                 "p-blue-3": "#A6C8F7",
                 "p-blue-4": "#CCDEF5",
+                "p-blue-5": "#F2F4F4",
+                "p-blue-6": "#F5F9FF",
                 "s-orange-1": "#FF5C00",
                 "s-orange-2": "#FF8C49",
                 "s-orange-3": "#FFC49E",
                 "s-orange-4": "#FFDCC2",
                 "o-navy-1": "#002761",
                 "o-joy-1": "#FFC700",
+                "o-joy-2": "#fffefa",
                 "o-success-1": "#0ECD9E",
                 "o-success-2": "#DBF5E7",
                 "o-error-1": "#F5003D",
+                "o-error-2": "#FED6D7",
                 "g-black-1": "#0E0E17",
                 "g-gray-1": "#6E6E74",
                 "g-gray-2": "#C7C8D1",
