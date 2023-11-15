@@ -3,22 +3,17 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
-
 export default function AssessmentDonutChart({
-    assessmentData, 
+    assessmentData,
     assessmentsInMonthYearCount,
-    depressionCount, 
+    depressionCount,
     burnoutCount,
-    anxietyCount
+    anxietyCount,
 }) {
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const data = {
-        labels: [
-            "Depression",
-            "Burn out",
-            "Anxiety",
-        ],
+        labels: ["Depression", "Burn out", "Anxiety"],
         datasets: [
             {
                 label: "Employees",
@@ -43,42 +38,49 @@ export default function AssessmentDonutChart({
                 display: false,
             },
         },
-        cutout: 120, 
-
+        aspectRatio: 1 / 1,
+        cutout: 120,
     };
 
     const gaugeText = {
         id: "gaugeText",
         beforeDatasetsDraw(chart, args, pluginOptions) {
-          const {
-            ctx,
-            data,
-          } = chart;
-    
-          const xCenter = chart.getDatasetMeta(0).data[0].x;
-          const yCenter = chart.getDatasetMeta(0).data[0].y;
-    
-          ctx.save();
-          ctx.fillStyle = "grey";
-          ctx.font = "bold 30px serif";
-          ctx.textAlign = "center";
-          ctx.fillText(`${data.datasets[0].data[0]+data.datasets[0].data[1]+data.datasets[0].data[2]}`, xCenter, yCenter - 10);
-          ctx.fillText(`Taken`, xCenter, yCenter+20);
+            const { ctx, data } = chart;
+
+            const xCenter = chart.getDatasetMeta(0).data[0].x;
+            const yCenter = chart.getDatasetMeta(0).data[0].y;
+
+            ctx.save();
+            ctx.fillStyle = "grey";
+            ctx.font = "bold 30px serif";
+            ctx.textAlign = "center";
+            ctx.fillText(
+                `${
+                    data.datasets[0].data[0] +
+                    data.datasets[0].data[1] +
+                    data.datasets[0].data[2]
+                }`,
+                xCenter,
+                yCenter - 10
+            );
+            ctx.fillText(`Taken`, xCenter, yCenter + 20);
         },
-      };
+    };
 
     return (
-        <div className="h-200 flex max-w-lg flex-grow gap-3">
-            <div style={{width:"330px"}} className="flex flex-col items-center">
-            {/* <div className="xl:mr-8"> */}
+        <div className="flex max-w-lg flex-grow gap-3">
+            <div className="flex flex-col items-center">
+                {/* <div className="xl:mr-8"> */}
 
-                <h2 className="text-xl mb-5">Monthly Assessment</h2>
-                <Doughnut data={data} width={200} height={200} options={options} plugins={[gaugeText]}/> 
+                <h2 className="mb-5 text-xl">Monthly Assessment</h2>
+                <div className="chart-js-wrapper" style={{ width: "334px" }}>
+                    <Doughnut
+                        data={data}
+                        options={options}
+                        plugins={[gaugeText]}
+                    />
+                </div>
             </div>
         </div>
     );
 }
-
-
-
-

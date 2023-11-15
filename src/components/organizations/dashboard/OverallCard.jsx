@@ -65,10 +65,12 @@ const OverallCard = ({ assessmentData, employee }) => {
 
     return (
         <div className="mb-7 mt-7 flex sm:items-center sm:justify-center">
-            <div className="flex gap-4 w-4/5 flex-row sm:flex-col sm:items-center sm:justify-center ">
-                <div className="flex flex-grow p-1">
-                    <div style={{width: '384px'}} className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
-
+            <div className="flex w-4/5 flex-row gap-4 sm:flex-col sm:items-center sm:justify-center ">
+                <div className="flex flex-grow">
+                    <div
+                        style={{ width: "384px" }}
+                        className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow"
+                    >
                         <p className="text-xl">Total Employees</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
@@ -127,23 +129,34 @@ const OverallCard = ({ assessmentData, employee }) => {
                                     <div>vs last month</div>
                                 </div>
                             </div>
-                            
+
                             {/* gif */}
                             {changeInEmployeesMonth10Year2023 > 0 ? (
-                                 <img src="/organization/Growth.gif" alt="GIF increase"  />
+                                <img
+                                    src="/organization/Growth.gif"
+                                    alt="GIF increase"
+                                />
                             ) : changeInEmployeesMonth10Year2023 < 0 ? (
-                                <img src="/organization/Decline.gif" alt="GIF decrease"  />
+                                <img
+                                    src="/organization/Decline.gif"
+                                    alt="GIF decrease"
+                                />
                             ) : (
-                                <img src="/organization/Normal.gif" alt="GIF remain"  />
+                                <img
+                                    src="/organization/Normal.gif"
+                                    alt="GIF remain"
+                                />
                             )}
-
                         </div>
                     </div>
                 </div>
 
                 {/* active employee */}
-                <div className="flex flex-grow p-1">
-                    <div style={{width: '384px'}} className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
+                <div className="flex flex-grow">
+                    <div
+                        style={{ width: "384px" }}
+                        className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow"
+                    >
                         <p className="text-xl">Active Employee</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
@@ -203,14 +216,21 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                             {/* gif */}
                             {percentageDifference > 0 ? (
-                                 <img src="/organization/Growth.gif" alt="GIF increase"  />
+                                <img
+                                    src="/organization/Growth.gif"
+                                    alt="GIF increase"
+                                />
                             ) : percentageDifference < 0 ? (
-                                <img src="/organization/Decline.gif" alt="GIF decrease"  />
+                                <img
+                                    src="/organization/Decline.gif"
+                                    alt="GIF decrease"
+                                />
                             ) : (
-                                <img src="/organization/Normal.gif" alt="GIF remain"  />
+                                <img
+                                    src="/organization/Normal.gif"
+                                    alt="GIF remain"
+                                />
                             )}
-
-                           
                         </div>
                     </div>
                 </div>
