@@ -2,10 +2,6 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const TableRow = styled.div`
-    display: grid;
-    grid-template-columns: 80% 20%;
-    column-gap: 1rem;
-    align-items: start;
 
     background-color: var(--color-white);
     border-bottom: 1px solid var(--color-grey-200);
@@ -15,8 +11,8 @@ const TableRow = styled.div`
 
 function ResourceRow({ topic, category, id, userRead }) {
     return (
-        <TableRow>
-            <div>
+        <TableRow className="grid grid-cols-4 gap-2">
+            <div className="col-span-3 sm:col-span-2">
                 <input type="checkbox" name="eduDone" id="eduDone" checked={userRead.length > 0} readOnly />
                 <Link className="pl-4"
                     href={{
@@ -27,7 +23,7 @@ function ResourceRow({ topic, category, id, userRead }) {
                     {topic}
                 </Link>
             </div>
-            <div>{category}</div>
+            <div className="sm:col-span-2 ml-8">{category}</div>
         </TableRow>
     );
 }
