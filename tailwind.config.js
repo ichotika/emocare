@@ -15,9 +15,9 @@ module.exports = {
                 "gradient-org":
                     "linear-gradient(180deg, rgba(0,39,97,1) 0%, rgba(0,78,134,1) 100%)",
                 "gradient-blue":
-                    "linear-gradient(180deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
+                    "linear-gradient(90deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
                 "gradient-orange":
-                    "linear-gradient(180deg, rgba(255,92,0,1) 0%, rgba(255,140,73,1) 100%)",
+                    "linear-gradient(90deg, rgba(255,92,0,1) 0%, rgba(255,140,73,1) 100%)",
             },
             screens: {
                 "2xl": { max: "1535px" },
