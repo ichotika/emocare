@@ -11,28 +11,24 @@ import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Header from "../employees/Header";
 import useWindowDimensions from '@/components/base/WindsizeChanger';
-// import { useRouter } from 'next/router';
-
+import { usePathname } from "next/navigation";
 
 const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
-
     // Hamburger menu
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const toggleHamburger = (event) => {
         event.preventDefault();
         // console.log("toggle button is clicked")
         setIsHamburgerOpen(!isHamburgerOpen);
-        console.log(isHamburgerOpen)
-    }
+        console.log(isHamburgerOpen);
+    };
 
-    // Set Logo depending on the screen size. 
+    // Set Logo depending on the screen size.
     const [isDesktop, setIsDesktop] = useState();
 
     const myWindow = useWindowDimensions();
 
-    useEffect(() => {
-        // const handleResize = () => {
-            
+    useEffect(() => {         
             if (myWindow.width >= 1280) {
                 setIsDesktop(true);
                 console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
@@ -40,33 +36,13 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     setIsDesktop(false)
                     console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
                 }
-            // if (window.innerWidth >= 1280) {
-            //     setIsDesktop(true);
-            //     // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
-            // } else {
-            //     setIsDesktop(false)
-            //     // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
-            // }
-        // };
-
-        // Call the handleResize when screen size is changed
-        // window.addEventListener('resize',
-        //     handleResize);
-
-        // // handleResize();
-
-        // return () => {
-        //     window.removeEventListener('resize',
-        //         handleResize);
-        // };
     }, [myWindow]);
 
-    // const router = useRouter();
+    const pathname = usePathname();
 
     return (
         <>
-            <header className="flex grow-0 justify-between xl:items-center xl:bg-p-blue-1 text-p-blue-1 xl:text-white xl:p-4">
-
+            <header className="flex grow-0 justify-between text-p-blue-1 xl:items-center xl:bg-p-blue-1 xl:p-4 xl:text-white">
                 {/* Emocare Logo */}
                 <Link href={"/"}>
                     <Image
@@ -75,40 +51,43 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     />
                 </Link>
 
-
                 {/* hamburger menu */}
                 <button className="hidden xl:block" onClick={toggleHamburger}>
-                    <Image
-                        src={Hamburger}
-                        alt="hamburger menu"
-                    />
+                    <Image src={Hamburger} alt="hamburger menu" />
                 </button>
             </header>
 
             {/* sidebar */}
-            <aside className={`flex grow flex-col h-screen justify-between mt-16 xl:mt-0 xl:pt-16 xl:pb-12 xl:px-6 xl:fixed xl:bg-white xl:transition-all ${isHamburgerOpen ? "xl:translate-x-0 w-[320px] z-10" : "xl:-translate-x-full"}`}>
-
+            <aside
+                className={`mt-16 flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${
+                    isHamburgerOpen
+                        ? "z-10 w-[320px] xl:translate-x-0"
+                        : "xl:-translate-x-full"
+                }`}
+            >
                 {/* upper group*/}
                 <div className="flex flex-col">
-
                     {/* user account & notification */}
-                    <div className="hidden xl:flex justify-center items-center xl:items-center xl:mb-2">
-                        <Header headertext={""} mb={0} mt={0} hidden={"hidden"}></Header>
+                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center">
+                        <Header
+                            headertext={""}
+                            marginTB = "mb-0 mt-0"
+                            hidden={"hidden"}
+                        ></Header>
                     </div>
 
                     {/* main nav */}
                     <nav>
                         <ul>
-                            {menuRoutes.map((menu, index) =>
-                                <li
-                                    key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1 text-p-blue-1 hover:text-white">
+                            {menuRoutes.map((menu, index) => (
+                                <li key={index}>
                                     <Link
-                                        className="side-menu flex leading-6 font-bold"
+                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname === `/employees${menu.slug}` ? "bg-p-blue-1 text-white" : ""} `}
+                                        // 
                                         href={`/employees/${menu.slug}`}
                                     >
                                         <Image
-                                            className="fill-blue-500 hover:fill-white mr-2"
+                                            className="mr-2 fill-blue-500 hover:fill-white"
                                             src={menu.image}
                                             alt={menu.name}
                                             width={24}
@@ -117,7 +96,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                                         {menu.name}
                                     </Link>
                                 </li>
-                            )}
+                            ))}
                         </ul>
                     </nav>
                 </div>
@@ -126,32 +105,30 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                 <div className="flex flex-col">
                     <nav className="mb-6">
                         <ul>
-                            {supportRoutes.map((support, index) =>
-                                <li
-                                    key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1 text-p-blue-1 hover:text-white">
+                            {supportRoutes.map((support, index) => (
+                                <li key={index}>
                                     <Link
-                                        className="side-menu flex leading-6 font-bold"
+                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname === `/employees${support.slug}` ? "bg-p-blue-1 text-white" : ""} `}
                                         href={`/employees/${support.slug}`}
                                     >
                                         <Image
-                                            className="fill-blue-500 mr-2"
+                                            className="mr-2 fill-blue-500"
                                             src={support.image}
                                             alt={support.name}
                                             width={24}
-                                            height={24} />
+                                            height={24}
+                                        />
                                         {support.name}
                                     </Link>
                                 </li>
-                            )}
+                            ))}
                         </ul>
                     </nav>
 
                     {/* Signout button */}
-                    <div className="rounded-lg px-6 py-3 mt-6 hover:bg-p-blue-1 hover:text-white">
+                    <div className="mt-6 rounded-lg px-6 py-3 hover:bg-p-blue-1 hover:text-white">
                         <UserButton afterSignOutUrl="/"></UserButton>
                     </div>
-
                 </div>
             </aside>
         </>
