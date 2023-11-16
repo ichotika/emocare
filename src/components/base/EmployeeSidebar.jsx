@@ -10,7 +10,9 @@ import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Header from "../employees/Header";
-// import { useRouter } from "next/router";
+import useWindowDimensions from '@/components/base/WindsizeChanger';
+// import { useRouter } from 'next/router';
+
 
 const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
 
@@ -26,28 +28,38 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
     // Set Logo depending on the screen size. 
     const [isDesktop, setIsDesktop] = useState();
 
+    const myWindow = useWindowDimensions();
+
     useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1280) {
+        // const handleResize = () => {
+            
+            if (myWindow.width >= 1280) {
                 setIsDesktop(true);
-                // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
-            } else {
-                setIsDesktop(false)
-                // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
-            }
-        };
+                console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+            }else {
+                    setIsDesktop(false)
+                    console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+                }
+            // if (window.innerWidth >= 1280) {
+            //     setIsDesktop(true);
+            //     // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
+            // } else {
+            //     setIsDesktop(false)
+            //     // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
+            // }
+        // };
 
         // Call the handleResize when screen size is changed
-        window.addEventListener('resize',
-            handleResize);
+        // window.addEventListener('resize',
+        //     handleResize);
 
-        handleResize();
+        // // handleResize();
 
-        return () => {
-            window.removeEventListener('resize',
-                handleResize);
-        };
-    }, [window.innerWidth]);
+        // return () => {
+        //     window.removeEventListener('resize',
+        //         handleResize);
+        // };
+    }, [myWindow]);
 
     // const router = useRouter();
 
@@ -146,6 +158,5 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
     );
 };
 
-// function HamburgerMenu({})
 
 export default EmployeeSidebar;
