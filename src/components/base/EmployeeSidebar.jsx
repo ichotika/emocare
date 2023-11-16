@@ -31,10 +31,10 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
     useEffect(() => {         
             if (myWindow.width >= 1280) {
                 setIsDesktop(true);
-                console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+                // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
             }else {
                     setIsDesktop(false)
-                    console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+                    // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
                 }
     }, [myWindow]);
 
