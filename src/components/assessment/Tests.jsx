@@ -37,7 +37,7 @@ const Tests = () => {
 
     return (
         <>
-            <div className="cards-container grid grid-cols-3 gap-x-6 xl:gap-y-6 xl:grid-cols-2 sm:block">
+            <div className="cards-container grid grid-cols-3 gap-x-6 xl:gap-y-6 xl:grid-cols-2 sm:grid-cols-1">
                 {assessments.map((assessment, index) => (
                     <AssessmentCard key={index} {...assessment} />
                 ))}
@@ -61,7 +61,7 @@ const PersonalityTest = () => {
 
     return (
         <>
-            <div className="cards-container grid grid-cols-3 gap-x-6 xl:gap-y-6 xl:grid-cols-2 sm:block">
+            <div className="cards-container grid grid-cols-3 gap-x-6 xl:gap-y-6 xl:grid-cols-2 sm:grid-cols-1">
                 {personalities.map((personality, index) => (
                     <AssessmentCard key={index} {...personality} />
                 ))}
