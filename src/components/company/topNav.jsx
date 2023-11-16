@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import emocareLogo from "@/public/assets/Wireframes/EmoCare_logo 1.svg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function TopNav({ routes }) {
