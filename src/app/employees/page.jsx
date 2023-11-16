@@ -22,6 +22,7 @@ export default function Home() {
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
     const currentDate = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         const getAssessmentData = async () => {
@@ -41,7 +42,8 @@ export default function Home() {
                     ? sortedUserData.filter(
                           (user) =>
                               new Date(user.createdAt).getMonth() ===
-                              currentDate
+                              currentDate && new Date(user.createdAt).getFullYear() ===
+                              currentYear
                       )
                     : [];
 
@@ -81,7 +83,7 @@ export default function Home() {
             );
         };
         getAssessmentData();
-    }, [currentDate, currentUserId]);
+    }, [currentDate, currentUserId, currentYear]);
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -99,65 +101,76 @@ export default function Home() {
 
     // fetch noti
 
+    console.log("data:", anxietyData[0])
+
     return (
         <>
             <Header headertext={"Employee"} />
-            <div className="bg-slate-200">
+            <div className="bg-slate-200 py-2">
                 <div>
                     <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
                 </div>
-                <div className="grid grid-cols-3 sm:flex sm:flex-col">
-                    <div className="col-span-2 m-4 flex gap-4 sm:flex-col">
-                        {deprData.length > 0 ? (
-                            <HalfDoughnutChart
-                                headtitle={"Depression"}
-                                levelText={deprData[0].level}
-                                levelNum={deprData[0].score}
-                                levelPercent={(deprData[0].score * 100) / 27}
-                            />
-                        ) : (
-                            <>
-                                <NoResultChart
-                                    mainTitle={"Depression"}
-                                    link="/employees/assessment/depression"
+                <div className="grid grid-cols-4 sm:flex sm:flex-col">
+                    <div className="m-2 col-span-3 flex flex-wrap gap-4">
+                        <div className="w-[216px] grow">
+                            {deprData.length > 0 ? (
+                                <HalfDoughnutChart
+                                    headtitle={"Depression"}
+                                    levelText={deprData[0].level}
+                                    levelNum={deprData[0].score}
+                                    levelPercent={(deprData[0].score * 100) / 27}
+                                    percentColor={"#FFC700"}
                                 />
-                            </>
-                        )}
-                        {anxietyData.length > 0 ? (
-                            <HalfDoughnutChart
-                                headtitle={"Anxiety"}
-                                levelText={anxietyData[0].level}
-                                levelNum={anxietyData[0].score}
-                                levelPercent={(anxietyData[0].score * 100) / 21}
-                            />
-                        ) : (
-                            <NoResultChart
-                                mainTitle={"Anxiety"}
-                                link="/employees/assessment/anxiety"
-                            />
-                        )}
-                        {burnoutData.length > 0 ? (
-                            <HalfDoughnutChart
-                                headtitle={"Burnout"}
-                                levelText={burnoutData[0].level}
-                                levelNum={burnoutData[0].score}
-                                levelPercent={(burnoutData[0].score * 100) / 75}
-                            />
-                        ) : (
-                            <NoResultChart
-                                mainTitle={"Burnout"}
-                                link="/employees/assessment/burnout"
-                            />
-                        )}
+                            ) : (
+                                <>
+                                    <NoResultChart
+                                        mainTitle={"Depression"}
+                                        link="/employees/assessment/depression"
+                                    />
+                                </>
+                            )}
+                        </div>
+                        <div className="w-[216px] grow">
+                            {anxietyData.length > 0 ? (
+                                <HalfDoughnutChart
+                                    headtitle={"Anxiety"}
+                                    levelText={anxietyData[0].level}
+                                    levelNum={anxietyData[0].score}
+                                    levelPercent={(anxietyData[0].score * 100) / 21}
+                                    percentColor={"#0ECD9E"}
+                                />
+                            ) : (
+                                <NoResultChart
+                                    mainTitle={"Anxiety"}
+                                    link="/employees/assessment/anxiety"
+                                />
+                            )}
+                        </div>
+                        <div className="w-[216px] grow">
+                            {burnoutData.length > 0 ? (
+                                <HalfDoughnutChart
+                                    headtitle={"Burnout"}
+                                    levelText={burnoutData[0].level}
+                                    levelNum={burnoutData[0].score}
+                                    levelPercent={(burnoutData[0].score * 100) / 75}
+                                    percentColor={"#FF8C49"}
+                                />
+                            ) : (
+                                <NoResultChart
+                                    mainTitle={"Burnout"}
+                                    link="/employees/assessment/burnout"
+                                />
+                            )}
+                        </div>
                     </div>
 
-                    <div className="row-span-2 m-2">
+                    <div className="m-2 row-span-2">
                         <PersonalityType
                             mypersonality={recentPersonalityType}
                         />
                     </div>
 
-                    <div className="col-span-2 m-4 rounded-lg bg-white p-2">
+                    <div className="m-2 col-span-3 rounded-lg bg-white p-2">
                         <div className="flex justify-between">
                             <h2 className="pb-2 font-bold">
                                 Your Assessment History
@@ -174,12 +187,11 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="m-4 rounded-lg bg-white p-2">
+                <div className="m-2 rounded-lg bg-white p-2">
                     <div className="flex justify-between pb-4">
                         <h2 className="font-bold">Education</h2>
                         <Link href={`/employees/education`}>View all</Link>
                     </div>
-                    {/* <EducationProgress currentUser={currentUserId} /> */}
                     <EducationProgress currentUser={currentUserId} pageTitle={"employee"} />
                 </div>
 

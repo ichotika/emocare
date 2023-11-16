@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function NoPersonalityResult({ personalityLink }) {
     return (
-        <div className="m-2 flex flex-col justify-between gap-4 rounded-lg bg-white p-4">
+        <div className="flex flex-col justify-between gap-4 rounded-lg bg-white p-4 h-[100%]">
             <h1 className="font-bold">Your Personality Type</h1>
             <div className="flex flex-col justify-between gap-2 p-2 text-center font-bold">
                 <p className="text-slate-400">

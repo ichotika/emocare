@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function PersonalityDesc({ personalityDesc }) {
     return (
-        <div className="m-2 rounded-lg bg-white p-4">
+        <div className="rounded-lg bg-white h-[100%] p-4">
             <h1 className="font-bold">{personalityDesc.personality}</h1>
             <div className="flex justify-center py-4">
                 {/* <Image src={Profile} width={100} height={100} alt="Picture" /> */}
