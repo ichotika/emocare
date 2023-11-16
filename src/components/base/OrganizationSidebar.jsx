@@ -7,11 +7,11 @@ import Hamburger from "@/public/assets/Wireframes/hamburgerMenu.svg";
 
 // import others
 import Link from "next/link";
-import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { UserButton } from "@clerk/nextjs";
 import Header from "../employees/Header";
+import useWindowDimensions from '@/components/base/WindsizeChanger';
 import { usePathname } from "next/navigation";
 
 const OrganizationSidebar = ({ menuRoutes }) => {
@@ -28,28 +28,17 @@ const OrganizationSidebar = ({ menuRoutes }) => {
     // Set Logo depending on the screen size. 
     const [isDesktop, setIsDesktop] = useState();
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1280) {
-                setIsDesktop(true);
-                // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
-            } else {
+    const myWindow = useWindowDimensions();
+
+    useEffect(() => {         
+        if (myWindow.width >= 1280) {
+            setIsDesktop(true);
+            // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+        }else {
                 setIsDesktop(false)
-                // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
-            }
-        };
-
-        // Call the handleResize when screen size is changed
-        window.addEventListener('resize',
-            handleResize);
-
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize',
-                handleResize);
-        };
-    }, [window.innerWidth]);
+                // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+        }
+    }, [myWindow]);
 
     const pathname = usePathname();
 
