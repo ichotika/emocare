@@ -55,13 +55,13 @@ export default function RootLayout({ children }) {
     return (
         <div className="flex xl:flex-col">
             {/* navbar(until xl) & sidebar*/}
-            <div className="fixed left-0 top-0 flex h-screen w-[320px] flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
+            <div className="fixed left-0 top-0 grow flex h-screen w-[320px] flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
                 <EmployeeSidebar
                     menuRoutes={routesMenu}
                     supportRoutes={routesSupport}
                 />
             </div>
-            <div className="ml-[320px] xl:ml-0 min-h-screen bg-p-blue-6 px-12 pb-10 xl:max-w-5xl xl:self-center xl:px-4">
+            <div className="ml-[320px] xl:ml-0 grow min-h-screen bg-p-blue-6 px-12 pb-10 xl:max-w-5xl xl:self-center xl:px-4">
                 {children}
             </div>
         </div>

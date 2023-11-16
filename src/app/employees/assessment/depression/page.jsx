@@ -1,14 +1,14 @@
 "use client";
 import Instruction from "@/components/assessment/mentalassessment/Instruction";
 import Questionnaire from "@/components/assessment/mentalassessment/DepressionQuestionnaire";
-import Header from "@/components/employees/Header";
+import AssessmentHeader from "@/components/employees/AssessmentHeader";
 
 const DepressionQuestionnairesPage = () => {
     return (
         <>
-            <Header></Header>
+            <AssessmentHeader header></AssessmentHeader>
 
-            <Instruction></Instruction>
+            {/* <Instruction></Instruction> */}
             <Questionnaire></Questionnaire>
         </>
     );

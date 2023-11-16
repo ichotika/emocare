@@ -124,7 +124,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                                     src={Normal}
                                     alt="GIF remain"
                                 />
-                            )} */}
+                            )}
                         </div>
                     </div>
                 </div>
