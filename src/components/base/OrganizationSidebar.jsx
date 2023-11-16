@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { UserButton } from "@clerk/nextjs";
 import Header from "../employees/Header";
+import { usePathname } from "next/navigation";
 
 const OrganizationSidebar = ({ menuRoutes }) => {
 
@@ -21,7 +22,7 @@ const OrganizationSidebar = ({ menuRoutes }) => {
         event.preventDefault();
         // console.log("toggle button is clicked")
         setIsHamburgerOpen(!isHamburgerOpen);
-        console.log(isHamburgerOpen)
+        // console.log(isHamburgerOpen)
     }
 
     // Set Logo depending on the screen size. 
@@ -49,6 +50,8 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                 handleResize);
         };
     }, [window.innerWidth]);
+
+    const pathname = usePathname();
 
     return (
         <>
@@ -84,12 +87,10 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                     <nav>
                         <ul>
                             {menuRoutes.map((menu, index) =>
-                                <li
-                                    key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1">
+                                <li key={index}>
                                     <Link
-                                        className="side-menu flex leading-6"
-                                        href={`/organization/${menu.slug}`}
+                                        className={`side-menu flex rounded-lg pl-6 py-3 leading-6 text-white ${pathname === `/organization${menu.slug}` ? "bg-p-blue-1 font-bold" : ""} `}
+                                        href={`/organization${menu.slug}`}
                                     >
                                         <Image
                                             className="mr-2"

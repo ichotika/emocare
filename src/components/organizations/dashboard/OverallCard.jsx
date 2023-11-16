@@ -111,6 +111,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                             {changeInEmployeesMonth11Year2023 > 0 ? (
                                 <Image
                                     src={Growth}
+
                                     alt="GIF increase"
                                 />
                             ) : changeInEmployeesMonth11Year2023 < 0 ? (
@@ -123,7 +124,7 @@ const OverallCard = ({ assessmentData, employee }) => {
                                     src={Normal}
                                     alt="GIF remain"
                                 />
-                            )}
+                            )} */}
                         </div>
                     </div>
                 </div>
