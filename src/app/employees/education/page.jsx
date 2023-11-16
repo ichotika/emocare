@@ -50,7 +50,6 @@ export default function Home() {
         <>
             <Header headertext={"Education"} />
             <div className="m-4">
-                <EducationProgress currentUser={currentUserId} />
                 <div className="py-8">
                     <div className="pb-4">
                         <HeaderTab
@@ -66,6 +65,7 @@ export default function Home() {
                             setCurNumber={setCurNumber}
                         />
                     </div>
+                    <EducationProgress currentUser={currentUserId} pageTitle={"education"} currentTab={activeTab} />
                     <div>
                         <ResourceTable
                             educationList={

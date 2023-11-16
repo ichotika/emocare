@@ -15,7 +15,6 @@ export default function Home() {
     const [notification, setNotification] = useState([]);
     const [notiAssesment, setNotiAssesment] = useState([]);
 
-   
     // fetch all assessment record
     const fetchAssessment = async () => {
         const res = await fetch("/api/organization/dashboardAssessment");
@@ -107,7 +106,9 @@ export default function Home() {
     return (
         <>
             <div className="flex flex-col">
-                <p style={{top: '2rem'}} className="text-1xl absolute">WELCOME</p>
+                <p style={{ top: "2rem" }} className="text-1xl absolute">
+                    WELCOME
+                </p>
 
                 {notification?.notification?.length >= 0 ? (
                     <Header
@@ -118,31 +119,25 @@ export default function Home() {
                 ) : (
                     <></>
                 )}
-               
-            
+
                 <OverallCard
                     assessmentData={assessmentData}
+                    employee={employee}
+                />
 
-                    employee={employee}/>
-
-                
                 <div className="flex flex-col flex-wrap gap-6 sm:items-center ">
-                    <div className="flex gap-6 sm:flex-col items-center">
+                    <div className="flex items-center gap-6 sm:flex-col">
                         <WorkplaceWellbeing
                             assessmentData={assessmentData}
                             employee={employee}
                         />
-                       
-                        <MonthlyAssessment
-                            assessmentData={assessmentData}
-                        />
-                    </div>
-                    <div className="flex max-w-full gap-6 sm:flex-col items-center">
 
+                        <MonthlyAssessment assessmentData={assessmentData} />
+                    </div>
+                    <div className="flex max-w-full items-center gap-6 sm:flex-col">
                         <AssessmentTrendsChart
                             assessmentData={assessmentData}
-                            
-                            />
+                        />
                         <Feedbacks feedbacks={feedbacks} />
                     </div>
                 </div>

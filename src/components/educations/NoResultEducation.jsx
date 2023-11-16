@@ -1,10 +1,10 @@
-import DoughnutChart from "../employees/DoughnutChart"
+import EduProgressBar from "./EduProgressBar"
 
 function NoResultEducation({categoryTitle}) {
   return (
-    <div>
-        <DoughnutChart healthPercent={0} categoryTitle={categoryTitle} />
-    </div>
+    <>
+        <EduProgressBar category={categoryTitle} percent={0} />
+    </>
   )
 }
 
