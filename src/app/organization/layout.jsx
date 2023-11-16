@@ -13,17 +13,17 @@ export const metadata = {
 
 const routesMenu = [
     {
-        slug: "/",
+        slug: "",
         name: "Dashboard",
         image: Dashboard
     },
     {
-        slug: "records",
+        slug: "/records",
         name: "Assessment Records",
         image: Records
     },
     {
-        slug: "management",
+        slug: "/management",
         name: "Management",
         image: Management
     }
