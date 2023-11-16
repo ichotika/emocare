@@ -27,7 +27,7 @@ const routesMenu = [
     },
     {
         slug: "/education",
-        name: "Eduction",
+        name: "Education",
         image: Education,
     },
     {
