@@ -9,7 +9,7 @@ const AssessmentHeader = ({ headerText1, headerText2, description }) => {
                     {headerText1}
                 </p>
                 <Header headertext={headerText2} marginTB="mt-1 mb-1" />
-                <p className="mt-4 basis-3/5 text-justify text-b-lg font-bold">
+                <p className="mt-4 basis-3/5 text-justify text-b-lg font-bold xl:basis-full">
                     {description}
                 </p>
             </div>
