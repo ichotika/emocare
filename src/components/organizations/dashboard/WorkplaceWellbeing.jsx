@@ -76,7 +76,6 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
     return (
         <div className="flex-grow basis-4/5 rounded-lg border border-gray-200 bg-white p-6 shadow ">
             <div className="flex flex-col items-center">
-                {/* <div className="xl:mr-8"> */}
 
                 <h2 className="mb-5 text-xl">Workplace Wellbeing</h2>
                 <div className="chart-js-wrapper" style={{ width: "334px" }}>

@@ -1,5 +1,9 @@
 "use client";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import Image from "next/image";
+import Growth from "@/public/assets/organization/Growth.gif";
+import Normal from "@/public/assets/organization/Normal.gif";
+import Decline from "@/public/assets/organization/Decline.gif";
 
 const OverallCard = ({ assessmentData, employee }) => {
 
@@ -104,19 +108,20 @@ const OverallCard = ({ assessmentData, employee }) => {
                             </div>
 
                             {/* gif */}
-                            {/* {changeInEmployeesMonth10Year2023 > 0 ? (
-                                <img
-                                    src="/organization/Growth.gif"
+                            {changeInEmployeesMonth11Year2023 > 0 ? (
+                                <Image
+                                    src={Growth}
+
                                     alt="GIF increase"
                                 />
-                            ) : changeInEmployeesMonth10Year2023 < 0 ? (
-                                <img
-                                    src="/organization/Decline.gif"
+                            ) : changeInEmployeesMonth11Year2023 < 0 ? (
+                                <Image
+                                    src={Decline}
                                     alt="GIF decrease"
                                 />
                             ) : (
-                                <img
-                                    src="/organization/Normal.gif"
+                                <Image
+                                    src={Normal}
                                     alt="GIF remain"
                                 />
                             )} */}
@@ -189,18 +194,18 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                             {/* gif */}
                             {percentageDifference > 0 ? (
-                                <img
-                                    src="/organization/Growth.gif"
+                                <Image
+                                    src={Growth}
                                     alt="GIF increase"
                                 />
                             ) : percentageDifference < 0 ? (
-                                <img
-                                    src="/organization/Decline.gif"
+                                <Image
+                                    src={Decline}
                                     alt="GIF decrease"
                                 />
                             ) : (
-                                <img
-                                    src="/organization/Normal.gif"
+                                <Image
+                                    src={Normal}
                                     alt="GIF remain"
                                 />
                             )}

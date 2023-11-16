@@ -105,13 +105,13 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            <div className="flex flex-col">
-                <p style={{ top: "2rem" }} className="text-1xl absolute">
+            <div className="flex flex-col pl-1">
+                <p style={{marginBottom: "-10px"}} className="text-1xl pt-5">
                     WELCOME
                 </p>
 
                 {notification?.notification?.length >= 0 ? (
-                    <Header
+                    <Header 
                         headertext={organizations[0]?.orgName}
                         notification={notification}
                         assessment={notiAssesment}
