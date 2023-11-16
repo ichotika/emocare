@@ -30,9 +30,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
 
     const myWindow = useWindowDimensions();
 
-    useEffect(() => {
-        // const handleResize = () => {
-            
+    useEffect(() => {         
             if (myWindow.width >= 1280) {
                 setIsDesktop(true);
                 console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
@@ -40,28 +38,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     setIsDesktop(false)
                     console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
                 }
-            // if (window.innerWidth >= 1280) {
-            //     setIsDesktop(true);
-            //     // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
-            // } else {
-            //     setIsDesktop(false)
-            //     // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
-            // }
-        // };
-
-        // Call the handleResize when screen size is changed
-        // window.addEventListener('resize',
-        //     handleResize);
-
-        // // handleResize();
-
-        // return () => {
-        //     window.removeEventListener('resize',
-        //         handleResize);
-        // };
     }, [myWindow]);
-
-    // const router = useRouter();
 
     return (
         <>
