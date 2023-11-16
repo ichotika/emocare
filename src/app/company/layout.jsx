@@ -1,47 +1,38 @@
 import TopNav from "@/components/company/topNav";
 import Footer from "@/components/company/footerNav";
 
-
 const routesTop = [
     {
-        slug: "services",
-        name: "How it works"
+        slug: "team",
+        name: "Our team",
     },
     {
         slug: "pricing",
-        name: "Pricing"
+        name: "Pricing",
     },
-    {
-        slug: "team",
-        name: "Our team"
-    },
-]
+];
 
 const routesBottom = [
     {
-        slug: "services",
-        name: "How it works"
-    },
-    {
         slug: "pricing",
-        name: "Pricing"
+        name: "Pricing",
     },
     {
         slug: "team",
-        name: "Our team"
+        name: "Meet Our team",
     },
     {
         slug: "contact",
-        name: "Contact"
+        name: "Contact",
     },
-]
+];
 
-export default function Layout({children}) {
+export default function Layout({ children }) {
     return (
         <>
             <TopNav routes={routesTop}></TopNav>
-            {children}
+            <div className={"sm:mt-[50px]"}> {children}</div>
             <Footer routes={routesBottom}></Footer>
         </>
-    )
+    );
 }
