@@ -48,7 +48,7 @@ export default function Home() {
 
     return (
         <>
-            <Header headertext={"Education"} />
+            <Header headertext={"Education"} isHidden={true} />
             <div className="m-4">
                 <div className="py-8">
                     <div className="pb-4">
@@ -65,7 +65,11 @@ export default function Home() {
                             setCurNumber={setCurNumber}
                         />
                     </div>
-                    <EducationProgress currentUser={currentUserId} pageTitle={"education"} currentTab={activeTab} />
+                    <EducationProgress
+                        currentUser={currentUserId}
+                        pageTitle={"education"}
+                        currentTab={activeTab}
+                    />
                     <div>
                         <ResourceTable
                             educationList={

@@ -1,13 +1,16 @@
-import {Tests} from "@/components/assessment/Tests";
+import { Tests } from "@/components/assessment/Tests";
 // import Link from "next/link";
 import Header from "@/components/employees/Header";
-import {PersonalityTest} from "@/components/assessment/Tests";
+import { PersonalityTest } from "@/components/assessment/Tests";
 
 const Assessment = () => {
     return (
         <>
             <div className="mentalhealthContainer mb-8">
-                <Header headertext={"Mental Health Assessment"} />
+                <Header
+                    headertext={"Mental Health Assessment"}
+                    isHidden={true}
+                />
                 <Tests></Tests>
             </div>
 
