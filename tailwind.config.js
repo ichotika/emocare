@@ -7,6 +7,22 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
+        screens: {
+            "2xl": { max: "1535px" },
+            // => @media (max-width: 1535px) { ... }
+
+            xl: { max: "1279px" },
+            // => @media (max-width: 1279px) { ... }
+
+            lg: { max: "1023px" },
+            // => @media (max-width: 1023px) { ... }
+
+            md: { max: "767px" },
+            // => @media (max-width: 767px) { ... }
+
+            sm: { max: "639px" },
+            // => @media (max-width: 639px) { ... }
+        },
         extend: {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -18,22 +34,6 @@ module.exports = {
                     "linear-gradient(90deg, rgba(0,102,255,1) 0%, rgba(77,147,251,1) 100%)",
                 "gradient-orange":
                     "linear-gradient(90deg, rgba(255,92,0,1) 0%, rgba(255,140,73,1) 100%)",
-            },
-            screens: {
-                "2xl": { max: "1535px" },
-                // => @media (max-width: 1535px) { ... }
-
-                xl: { max: "1279px" },
-                // => @media (max-width: 1279px) { ... }
-
-                lg: { max: "1023px" },
-                // => @media (max-width: 1023px) { ... }
-
-                md: { max: "767px" },
-                // => @media (max-width: 767px) { ... }
-
-                sm: { max: "639px" },
-                // => @media (max-width: 639px) { ... }
             },
             colors: {
                 "p-blue-1": "#0066FF",
