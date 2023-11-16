@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                     supportRoutes={routesSupport}
                 />
             </div>
-            <div className="ml-[320px] min-h-screen bg-p-blue-6 px-12 pb-10 xl:max-w-5xl xl:self-center xl:px-4">
+            <div className="ml-[320px] xl:ml-0 min-h-screen bg-p-blue-6 px-12 pb-10 xl:max-w-5xl xl:self-center xl:px-4">
                 {children}
             </div>
         </div>
