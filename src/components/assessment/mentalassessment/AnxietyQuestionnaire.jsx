@@ -11,8 +11,6 @@ const TableHeader = styled.div`
     align-items: center;
     font-size: 14px;
     line-height: 20px;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
     letter-spacing: 0.07px;
     font-weight: 700;
     color: black;
@@ -79,8 +77,8 @@ const AnxietyQuestionnaire = () => {
         },
         {
             alevel: "Error",
-            description: "Error"
-        }
+            description: "Error",
+        },
     ];
 
     // const [level, setLevel] = useState("")
@@ -123,7 +121,6 @@ const AnxietyQuestionnaire = () => {
     const onSubmit = async (data) => {
         // event.preventDefault();
         let i = [];
-
         async function response() {
             await fetch("/api/assessment", {
                 method: "POST",
@@ -183,101 +180,97 @@ const AnxietyQuestionnaire = () => {
 
     return (
         <div className="flex">
-            <div>
-                <form
-                    method="POST"
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col gap-y-16"
-                >
-                    <div className="main-container flex flex-col gap-y-6">
-                        <div className="rounded-lg xl:rounded-none">
-                            <TableHeader className="bg-p-blue-5 border-g-gray-2 border border-collapse xl:bg-p-blue-5 xl:border-g-white-1 xl:border-x">
-                                <div className="px-3">No.</div>
-                                <div className="px-3" >Questions</div>
-                                {options.map(
-                                    (option) => (
-                                        <div
-                                            className="text-center justify-center px-3"
-                                            key={option.label}>{option.label}</div>
-                                    )
-                                )}
-                            </TableHeader>
-                            <div className="rounded-b-lg">
-                                {anxietyQustionnaire?.anxietyAssessment?.map(
-                                    (question, index, array) => (
-                                        <div 
-                                            className={`text-b-sm leading-5 grid grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-collapse border-g-gray-2 xl:block ${index === array.length - 1 ? "rounded-b-lg" : ""}`} 
-                                            key={question.No}>
-                                                
-                                            <div className="py-4 px-3 self-center justify-self-center">{question.No}</div>
-                                            <div className="py-4 px-3">
+            <form
+                method="POST"
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-y-16"
+            >
+                <div className="main-container flex flex-col gap-y-6">
+                    <div className=" ">
+                        <TableHeader className="border-collapse rounded-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
+                            <div className="px-3">No.</div>
+                            <div className="px-3">Questions</div>
+                            {options.map((option) => (
+                                <div
+                                    className="justify-center px-3 text-center xl:hidden"
+                                    key={option.label}
+                                >
+                                    {option.label}
+                                </div>
+                            ))}
+                        </TableHeader>
+                        <div className="rounded-b-lg xl:rounded-b-none">
+                            {anxietyQustionnaire?.anxietyAssessment?.map(
+                                (question, index, array) => (
+                                    <div
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
+                                            index === array.length - 1
+                                                ? "rounded-b-lg xl:rounded-none"
+                                                : ""
+                                        }`}
+                                        key={question.No}
+                                    >
+                                        <div className="col-span-2 flex">
+                                            <div className="self-center justify-self-center px-4 py-4 xl:self-start">
+                                                {question.No}
+                                            </div>
+                                            <div className="px-4 py-3.5 xl:px-3">
                                                 {question.question}
                                             </div>
-                                            {options.map((option) => (
-                                                <div
-                                                    key={
-                                                        question.No +
-                                                        option.value
-                                                    }
-                                                    className="text-center py-4 px-3 self-center"
-                                                >
-                                                    <input
-                                                        className="border-p-blue-1 bg-p-blue-1 content-center"
-                                                        type="radio"
-                                                        {...register(
-                                                            `q${question.No}`,
-                                                            { required: true }
-                                                        )}
-                                                        id={`q${question.No}_${option.value}`}
-                                                        value={Number(
-                                                            option.value
-                                                        )}
-                                                        onChange={
-                                                            handleRadioChange
-                                                        }
-                                                    />
-                                                    <label
-                                                        htmlFor={`q${question.No}_${option.value}`}
-                                                        className="hidden xl:block"
-                                                    >
-                                                        {option.label}
-                                                    </label>
-                                                </div>
-                                            ))}
-                                            {errors[`q${question.No}`] && (
-                                                <div
-                                                    className="text-o-error-1 col-start-3 col-span-4 px-3 pb-3 text-center"
-                                                >
-                                                    This item is mandatory
-                                                </div>
-                                            )}
                                         </div>
-                                    )
-                                )}
-                            </div>
+                                        {options.map((option) => (
+                                            <div
+                                                key={question.No + option.value}
+                                                className="self-center px-3 py-4 pl-[49px] text-center font-bold xl:flex xl:self-start xl:py-2"
+                                            >
+                                                <input
+                                                    className="content-center border-p-blue-1 bg-p-blue-1"
+                                                    type="radio"
+                                                    {...register(
+                                                        `q${question.No}`,
+                                                        { required: true }
+                                                    )}
+                                                    id={`q${question.No}_${option.value}`}
+                                                    value={Number(option.value)}
+                                                    onChange={handleRadioChange}
+                                                />
+                                                <label
+                                                    htmlFor={`q${question.No}_${option.value}`}
+                                                    className="hidden py-3.5 xl:block xl:px-2.5"
+                                                >
+                                                    {option.label}
+                                                </label>
+                                            </div>
+                                        ))}
+                                        {errors[`q${question.No}`] && (
+                                            <div className="col-span-4 col-start-3 px-3 pb-3 text-center text-o-error-1">
+                                                This item is mandatory
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            )}
                         </div>
-                        <p className="self-center">
-                            Developed by Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke and colleagues, with an educational grant from Pfizer Inc.
-                        </p>
                     </div>
-                    <div className="buttons flex justify-end gap-x-3 xl:justify-center xl:gap-x-[13px]">
-                        <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
-                            Save
-                        </button>
-                        <button
-                            // onClick={handleSubmit(onSubmit)}
-                            className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
-                        >
-                            Submit Anonymously
-                        </button>
-                    </div>
-
-                </form>
-
-
-            </div>
+                    <p className="self-center xl:hidden">
+                        Developed by Drs. Robert L. Spitzer, Janet B.W.
+                        Williams, Kurt Kroenke and colleagues, with an
+                        educational grant from Pfizer Inc.
+                    </p>
+                </div>
+                <div className="buttons flex justify-end gap-x-3 xl:justify-center xl:gap-x-[13px]">
+                    <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
+                        Save
+                    </button>
+                    <button
+                        className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
+                    >
+                        Submit Anonymously
+                    </button>
+                </div>
+            </form>
         </div>
-    )
+    );
 };
 
 export default AnxietyQuestionnaire;

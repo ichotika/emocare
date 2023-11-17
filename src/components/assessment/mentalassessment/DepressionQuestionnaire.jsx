@@ -152,7 +152,7 @@ const Questionnaire = () => {
                 },
             })
                 .then(() => {
-                    console.log("deta sent");
+                    // console.log("deta sent");
                     router.push(
                         "/employees/assessment/depression/depressionresult"
                     );
@@ -224,7 +224,7 @@ const Questionnaire = () => {
                             {depressionQustionnaire?.depressionAssessment?.map(
                                 (question, index, array) => (
                                     <div
-                                        className={`grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 xl:border-g-white-1 xl:boder-0 xl:border-x-0 xl:border-y text-b-sm leading-5 xl:flex xl:flex-col ${
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
                                             index === array.length - 1
                                                 ? "rounded-b-lg xl:rounded-none"
                                                 : ""
@@ -236,14 +236,13 @@ const Questionnaire = () => {
                                                 {question.No}
                                             </div>
                                             <div className="px-4 py-3.5 xl:px-3">
-                                                {" "}
                                                 {question.question}
                                             </div>
                                         </div>
                                         {options.map((option) => (
                                             <div
                                                 key={question.No + option.value}
-                                                className="font-bold self-center px-3 py-4 pl-[49px] text-center xl:flex xl:self-start xl:py-2"
+                                                className="self-center px-3 py-4 pl-[49px] text-center font-bold xl:flex xl:self-start xl:py-2"
                                             >
                                                 <input
                                                     className="content-center border-p-blue-1 bg-p-blue-1"
@@ -285,7 +284,6 @@ const Questionnaire = () => {
                         Save
                     </button>
                     <button
-                        // onClick={handleSubmit(onSubmit)}
                         className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
                     >
                         Submit Anonymously
