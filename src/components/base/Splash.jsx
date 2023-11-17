@@ -36,7 +36,7 @@ function Splash() {
                     exit={{ opacity: 0, scale: 1 }}
                     transition={{
                         duration: 0.8,
-                        repeat: 1,
+                        repeat: 4,
                     }}
                 >
                     <Image src={Logo} alt="logo" />
