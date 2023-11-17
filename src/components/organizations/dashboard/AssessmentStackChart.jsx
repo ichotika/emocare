@@ -147,8 +147,8 @@ export default function AssessmentStackChart({
                 },
             },
         },
-        aspectRatio: 5 / 1,
-        responsive: true,
+        aspectRatio: false,
+
         scales: {
             x: {
                 stacked: true,
@@ -275,7 +275,7 @@ export default function AssessmentStackChart({
                         {depressionAssessments.length} emp
                     </p>
                 </div>
-                <div className="chart-js-wrapper">
+                <div className="chart-js-wrapper-stack">
                     <Bar options={options} data={data} />
                 </div>
             </div>
@@ -300,7 +300,7 @@ export default function AssessmentStackChart({
                         {anxietyAssessments.length} emp
                     </p>
                 </div>
-                <div className="chart-js-wrapper">
+                <div className="chart-js-wrapper-stack">
                     <Bar options={options} data={data2} />
                 </div>
             </div>
@@ -325,7 +325,7 @@ export default function AssessmentStackChart({
                         {burnoutAssessments.length} emp
                     </p>
                 </div>
-                <div className="chart-js-wrapper">
+                <div className="chart-js-wrapper-stack">
                     <Bar options={options} data={data3} />
                 </div>
             </div>

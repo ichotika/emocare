@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Bell from "@/public/icons/bell.svg";
 
-const NotificationEmployee = ({ headertext, notification }) => {
+const NotificationEmployee = ({ notification }) => {
     const [notificationCount, setNotificationCount] = useState(
         notification.length
     );

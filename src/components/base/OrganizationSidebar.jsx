@@ -7,53 +7,42 @@ import Hamburger from "@/public/assets/Wireframes/hamburgerMenu.svg";
 
 // import others
 import Link from "next/link";
-import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { UserButton } from "@clerk/nextjs";
 import Header from "../employees/Header";
+import useWindowDimensions from "@/components/base/WindsizeChanger";
+import { usePathname } from "next/navigation";
 
 const OrganizationSidebar = ({ menuRoutes }) => {
-
     // Hamburger menu
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const toggleHamburger = (event) => {
         event.preventDefault();
         // console.log("toggle button is clicked")
         setIsHamburgerOpen(!isHamburgerOpen);
-        console.log(isHamburgerOpen)
-    }
+        // console.log(isHamburgerOpen)
+    };
 
-    // Set Logo depending on the screen size. 
+    // Set Logo depending on the screen size.
     const [isDesktop, setIsDesktop] = useState();
 
+    const myWindow = useWindowDimensions();
+
     useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1280) {
-                setIsDesktop(true);
-                // console.log("this is the window.innerWidth from line 28 ==>>", window.innerWidth)
-            } else {
-                setIsDesktop(false)
-                // console.log("this is the window.innerWidth from line 31 ==>>", window.innerWidth)
-            }
-        };
+        if (myWindow.width >= 1280) {
+            setIsDesktop(true);
+            // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+        } else {
+            setIsDesktop(false);
+            // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+        }
+    }, [myWindow]);
 
-        // Call the handleResize when screen size is changed
-        window.addEventListener('resize',
-            handleResize);
-
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize',
-                handleResize);
-        };
-    }, [window.innerWidth]);
+    const pathname = usePathname();
 
     return (
         <>
-            <header className="flex grow-0 xl:w-screen justify-between xl:items-center xl:bg-o-navy-1 text-white xl:p-4">
-
+            <header className="flex grow-0 justify-between text-white xl:items-center xl:bg-o-navy-1 xl:p-4">
                 {/* Emocare Logo */}
                 <Link href={"/"}>
                     <Image
@@ -66,48 +55,50 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                 {/* Hamburger Menu */}
 
                 <button className="hidden xl:block" onClick={toggleHamburger}>
-                    <Image
-                        src={Hamburger}
-                        alt="hamburger menu"
-                    />
+                    <Image src={Hamburger} alt="hamburger menu" />
                 </button>
-
             </header>
 
             {/* Sidebar */}
-            <aside className={`flex grow flex-col h-screen justify-between mt-16 xl:mt-0 xl:pt-16 xl:pb-12 xl:px-6 xl:fixed xl:bg-white xl:transition-all ${isHamburgerOpen ? "xl:translate-x-0 w-[320px] z-10 xl:bg-gradient-org" : "xl:-translate-x-full"}`}>
-
+            <aside
+                className={`mt-16 flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${
+                    isHamburgerOpen
+                        ? "z-10 w-[320px] xl:translate-x-0 xl:bg-gradient-org"
+                        : "xl:-translate-x-full"
+                }`}
+            >
                 <div className="flex flex-col">
-                    <div className="hidden xl:flex justify-center items-center xl:items-center xl:mb-2">
-                        <Header headertext={""} mb={0} mt={0} hidden={"hidden"}></Header>
+                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center">
+                        <Header headertext={""} mb={0} mt={0}></Header>
                     </div>
                     <nav>
                         <ul>
-                            {menuRoutes.map((menu, index) =>
-                                <li
-                                    key={index}
-                                    className="rounded-lg px-6 py-3 hover:bg-p-blue-1">
+                            {menuRoutes.map((menu, index) => (
+                                <li key={index}>
                                     <Link
-                                        className="side-menu flex leading-6"
-                                        href={`/organization/${menu.slug}`}
+                                        className={`side-menu flex rounded-lg px-3 py-4 text-b-lg leading-6 text-white ${
+                                            pathname ===
+                                            `/organization${menu.slug}`
+                                                ? "bg-p-blue-1 font-bold"
+                                                : ""
+                                        } `}
+                                        href={`/organization${menu.slug}`}
                                     >
-                                        <Image
-                                            className="mr-2"
-                                            src={menu.image}
-                                            alt={menu.name}
-                                            width={24}
-                                            height={24}
-                                        />
+                                        <div className="text-white">
+                                            <Image
+                                                className="mr-2"
+                                                src={menu.image}
+                                                alt={menu.name}
+                                                width={24}
+                                                height={24}
+                                            />
+                                        </div>
                                         {menu.name}
                                     </Link>
                                 </li>
-                            )
-                            }
+                            ))}
                         </ul>
                     </nav>
-                </div>
-                <div className="rounded-lg px-6 py-3 mt-6 hover:bg-p-blue-1 hover:text-white">
-                    <UserButton afterSignOutUrl="/"></UserButton>
                 </div>
             </aside>
         </>

@@ -21,7 +21,7 @@ export default function AssessmentDonutChart({
                 data: [depressionCount, burnoutCount, anxietyCount],
                 backgroundColor: ["#2469F6", "#0A285D", "#ACC8F3"],
                 borderColor: ["#2469F6", "#0A285D", "#ACC8F3"],
-                borderWidth: 1,
+                borderWidth: 30,
             },
         ],
     };
@@ -72,7 +72,7 @@ export default function AssessmentDonutChart({
         <div className="flex max-w-lg flex-grow gap-3">
             <div className="flex flex-col items-center">
                 <h2 className="mb-5 text-xl">Monthly Assessment</h2>
-                <div className="chart-js-wrapper" style={{ width: "334px" }}>
+                <div className="chart-js-wrapper" style={{ width: "250px" }}>
                     <Doughnut
                         data={data}
                         options={options}

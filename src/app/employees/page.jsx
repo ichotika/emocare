@@ -103,8 +103,8 @@ export default function Home() {
 
     return (
         <>
-            <Header headertext={"Employee"} />
-            <div className="bg-slate-200 py-2">
+            <Header headertext={"Employee"} isHidden={true} />
+            <div className="bg-slate-200">
                 <div>
                     <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
                 </div>
@@ -190,7 +190,11 @@ export default function Home() {
                         <h2 className="font-bold">Education</h2>
                         <Link href={`/employees/education`}>View all</Link>
                     </div>
-                    <EducationProgress currentUser={currentUserId} pageTitle={"employee"} />
+                    {/* <EducationProgress currentUser={currentUserId} /> */}
+                    <EducationProgress
+                        currentUser={currentUserId}
+                        pageTitle={"employee"}
+                    />
                 </div>
 
                 <PopUpAssessmentHistory
