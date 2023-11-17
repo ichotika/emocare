@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import PersonalityDetail from "@/components/employees/PersonalityDetail";
 import { client } from "@/libs/contentful";
 import { useEffect, useState } from "react";
+import AssessmentHeader from "@/components/employees/AssessmentHeader";
 
 const fetchPersonality = async (type) => {
     try{
@@ -35,7 +36,11 @@ export default function Home() {
 
     const typeList = perContent.length > 0 ? perContent : [];
     return (
-        <div className="bg-slate-200">
+        <div>
+            <AssessmentHeader
+                headerText1={"Personality"}
+                headerText2={"Open Extended Jungian Type Scales 1.2"}
+            />
             {typeList.length > 0 ? (
                 <PersonalityDetail personality={typeList[0].fields} />
             ) : (

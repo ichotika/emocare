@@ -101,8 +101,6 @@ export default function Home() {
 
     // fetch noti
 
-    console.log("data:", anxietyData[0])
-
     return (
         <>
             <Header headertext={"Employee"} />
@@ -112,7 +110,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-4 sm:flex sm:flex-col">
                     <div className="m-2 col-span-3 flex flex-wrap gap-4">
-                        <div className="w-[216px] grow">
+                        <div className="grow w-[216px] sm:w-[100%]">
                             {deprData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Depression"}
@@ -130,7 +128,7 @@ export default function Home() {
                                 </>
                             )}
                         </div>
-                        <div className="w-[216px] grow">
+                        <div className="grow w-[216px] sm:w-[100%]">
                             {anxietyData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Anxiety"}
@@ -146,7 +144,7 @@ export default function Home() {
                                 />
                             )}
                         </div>
-                        <div className="w-[216px] grow">
+                        <div className="grow w-[216px] sm:w-[100%]">
                             {burnoutData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Burnout"}
