@@ -65,8 +65,8 @@ const Questionnaire = () => {
         },
         {
             dlevel: "Error",
-            description: "Error"
-        }
+            description: "Error",
+        },
     ];
 
     // const [level, setLevel] = useState("")
@@ -126,14 +126,16 @@ const Questionnaire = () => {
                     level: getDepressionLevel(totalScore).dlevel,
                     levelDescription:
                         getDepressionLevel(totalScore).description,
-                    createdAt: new Date()
+                    createdAt: new Date(),
                 }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
                 .then(() => {
-                    router.push("/employees/assessment/depression/depressionresult");
+                    router.push(
+                        "/employees/assessment/depression/depressionresult"
+                    );
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);
@@ -179,54 +181,68 @@ const Questionnaire = () => {
 
     return (
         <div className="flex">
-            <div></div>
+            <form
+                method="POST"
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-y-16"
+            >
+                <div className="main-container flex flex-col gap-y-6">
+                    <div className="border border-g-gray-2 rounded-lg z-10">
 
-            <form method="POST" onSubmit={handleSubmit}>
-                <table style={{ width: "100%" }}>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th colSpan="4">Questions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {depressionQustionnaire?.depressionAssessment?.map(
-                            (question) => (
-                                <tr key={question.No}>
-                                    <td>{question.No}</td>
-                                    <td colSpan="4">{question.question}</td>
-                                    {options.map((option) => (
-                                        <td key={question.No + option.value}>
-                                            <label
-                                                htmlFor={`q${question.No}_${option.value}`}
+                        <table className="w-full  bg-g-white-1">
+                        <thead className="py-3">
+                            <tr>
+                                <th>No</th>
+                                <th colSpan="4">Questions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="py-3">
+                            {depressionQustionnaire?.depressionAssessment?.map(
+                                (question) => (
+                                    <tr key={question.No}>
+                                        <td>{question.No}</td>
+                                        <td colSpan="4">{question.question}</td>
+                                        {options.map((option) => (
+                                            <td
+                                                key={question.No + option.value}
                                             >
-                                                {option.label}
-                                            </label>
-                                            <input
-                                                type="radio"
-                                                name={`q${question.No}`}
-                                                id={`q${question.No}_${option.value}`}
-                                                value={Number(option.value)}
-                                                onChange={handleRadioChange}
-                                            />
-                                        </td>
-                                    ))}
-                                </tr>
-                            )
-                        )}
-                    </tbody>
-                </table>
-
-                <button className="m-3 rounded-lg border-neutral-950 p-3">
-                    Save
-                </button>
-                <button
-                    onClick={handleSubmit}
-                    className="m-3 rounded-lg bg-blue-600 p-3 text-white"
-                >
-                    Submit Anonymously
-                </button>
+                                                <label
+                                                    htmlFor={`q${question.No}_${option.value}`}
+                                                >
+                                                    {option.label}
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    name={`q${question.No}`}
+                                                    id={`q${question.No}_${option.value}`}
+                                                    value={Number(option.value)}
+                                                    onChange={handleRadioChange}
+                                                />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                )
+                            )}
+                        </tbody>
+                    </table>
+                    </div>
+                    <p className="self-center">
+                        Developed by Drs. Robert L. Spitzer, Janet B.W.
+                        Williams, Kurt Kroenke and colleagues, with an
+                        educational grant from Pfizer Inc.
+                    </p>
+                </div>
+                <div className="buttons flex justify-end gap-x-3">
+                    <button className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 text-g-white-1">
+                        Save
+                    </button>
+                    <button
+                        onClick={handleSubmit}
+                        className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 text-g-white-1"
+                    >
+                        Submit Anonymously
+                    </button>
+                </div>
             </form>
             {/* 
 

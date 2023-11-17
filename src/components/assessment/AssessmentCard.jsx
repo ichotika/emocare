@@ -3,8 +3,6 @@ import Image from "next/image";
 
 const AssessmentCard = ({ title, questions, duration, description, link, src }) => {
 
-    // const getAssessData = 
-
     return (
 
             <div className="card-container flex flex-col grow">
