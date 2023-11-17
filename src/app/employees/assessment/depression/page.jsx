@@ -14,7 +14,7 @@ const assessHeader = {
 const DepressionQuestionnairesPage = () => {
     return (
         <>
-        <div className="flex flex-col justify-between gap-y-6">
+        <div className="flex flex-col grow justify-between gap-y-6">
             <AssessmentHeader {...assessHeader}></AssessmentHeader>
             <Questionnaire></Questionnaire>
         </div>
