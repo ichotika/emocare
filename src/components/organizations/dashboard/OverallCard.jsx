@@ -4,8 +4,8 @@ import Image from "next/image";
 import Growth from "@/public/assets/organization/Growth.gif";
 import Normal from "@/public/assets/organization/Normal.gif";
 import Decline from "@/public/assets/organization/Decline.gif";
-
-const OverallCard = ({ assessmentData, employee }) => {
+import { Suspense } from "react";
+const OverallCard = ({ employee }) => {
     function countEmployeesByMonthAndYear(employees, year, month, dateType) {
         return employees.reduce((count, emp) => {
             const dateValue = new Date(emp[dateType]);

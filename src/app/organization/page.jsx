@@ -1,4 +1,5 @@
 "use client";
+import LoadingGif from "@/components/base/Loading";
 import { useState, useEffect } from "react";
 import Header from "@/components/organizations/Header";
 import OverallCard from "@/components/organizations/dashboard/OverallCard";
@@ -14,7 +15,7 @@ export default function Home() {
     const [organizations, setOrganizations] = useState([]);
     const [notification, setNotification] = useState([]);
     const [notiAssesment, setNotiAssesment] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(true);
     // fetch all assessment record
     const fetchAssessment = async () => {
         const res = await fetch("/api/organization/dashboardAssessment");
@@ -31,7 +32,6 @@ export default function Home() {
         getAssessmentData();
     }, []);
 
-
     // employee
     async function fetchEmployee() {
         try {
@@ -43,6 +43,7 @@ export default function Home() {
             }
             const data = await response.json();
             setEmployee(data.emplist);
+            setIsLoading(false);
         } catch (error) {
             console.error("Could not fetch data", error);
         }
@@ -50,8 +51,6 @@ export default function Home() {
     useEffect(() => {
         fetchEmployee();
     }, []);
-
-
 
     // fetch feedbacks
     const fetchFeedbacks = async () => {
@@ -105,43 +104,53 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            <div className="flex flex-col pl-1">
-                <p style={{marginBottom: "-10px"}} className="text-1xl pt-5">
-                    WELCOME
-                </p>
+            {isLoading ? (
+                <LoadingGif />
+            ) : (
+                <div className="flex flex-col pl-1">
+                    <p
+                        style={{ marginBottom: "-10px" }}
+                        className="text-1xl pt-5"
+                    >
+                        WELCOME
+                    </p>
 
-                {notification?.notification?.length >= 0 ? (
-                    <Header 
-                        headertext={organizations[0]?.orgName}
-                        notification={notification}
-                        assessment={notiAssesment}
+                    {notification?.notification?.length >= 0 ? (
+                        <Header
+                            headertext={organizations[0]?.orgName}
+                            notification={notification}
+                            assessment={notiAssesment}
+                        />
+                    ) : (
+                        <></>
+                    )}
+
+                    <OverallCard
+                        assessmentData={assessmentData}
+                        employee={employee}
                     />
-                ) : (
-                    <></>
-                )}
 
-                <OverallCard
-                    assessmentData={assessmentData}
-                    employee={employee}
-                />
+                    <div className="flex flex-col flex-wrap gap-6 xl:items-center ">
+                        <div className="flex grow items-center gap-6 xl:flex-col">
+                            <WorkplaceWellbeing
+                                assessmentData={assessmentData}
+                                employee={employee}
+                            />
 
-                <div className="flex flex-col flex-wrap gap-6 sm:items-center ">
-                    <div className="flex items-center gap-6 sm:flex-col">
-                        <WorkplaceWellbeing
-                            assessmentData={assessmentData}
-                            employee={employee}
-                        />
+                            <MonthlyAssessment
+                                assessmentData={assessmentData}
+                            />
+                        </div>
+                        <div className="flex max-w-full items-center gap-6 xl:flex-col">
+                            <AssessmentTrendsChart
+                                assessmentData={assessmentData}
+                            />
 
-                        <MonthlyAssessment assessmentData={assessmentData} />
-                    </div>
-                    <div className="flex max-w-full items-center gap-6 sm:flex-col">
-                        <AssessmentTrendsChart
-                            assessmentData={assessmentData}
-                        />
-                        <Feedbacks feedbacks={feedbacks} />
+                            <Feedbacks feedbacks={feedbacks} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 }

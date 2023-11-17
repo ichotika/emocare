@@ -196,7 +196,7 @@ img {
 }
 
 
-@media (min-width: 1279) {
+@media (min-width: 1279px) {
     .chart-js-wrapper-trend {
         height: 220px;
         width: auto;
