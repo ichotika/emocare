@@ -11,6 +11,7 @@ export default function CreatePersonalityResponse() {
                 description={
                     "For each pair, you must choose where on the scale between them you think you are. For example, if the pair is “angry” versus “calm”, you should circle a 1 if you are always angry and never calm, a 3 if you are half and half, etc. On the page after that there are scoring instructions."
                 }
+                isHidden={true}
             />
             <PersonalityForm />
         </>

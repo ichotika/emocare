@@ -17,7 +17,9 @@
 
 .embla__slide {
     flex: 0 0 100%;
-    min-width: 0;
+    width: 70px;
+
+
 }
 
 :root {
@@ -179,4 +181,30 @@ img {
 .chart-js-wrapper {
     max-width: 100%;
     height: auto;
+}
+
+.chart-js-wrapper-trend {
+    height: 180px;
+    width: 300px;
+    position: relative;
+}
+
+.chart-js-wrapper-stack {
+    height: 60px;
+    width: 300px;
+    position: relative;
+}
+
+
+@media (min-width: 1279px) {
+    .chart-js-wrapper-trend {
+        height: 220px;
+        width: auto;
+    }
+
+    .chart-js-wrapper-stack {
+        height: 60px;
+        max-width: 1200px;
+        position: relative;
+    }
 }

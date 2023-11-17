@@ -26,7 +26,7 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
     return (
         <>
             <div className="mt-6 flex gap-5 xl:flex-col">
-                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Good Condition
@@ -57,14 +57,10 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                         </div>
                     </div>
                     <div className="flex h-[6.25rem] w-[6.25rem] items-center justify-center">
-                        <Image
-                            src={GoodCondition}
-                            alt="good condition"
-                            className="-rotate-90"
-                        />{" "}
+                        <Image src={GoodCondition} alt="good condition" />{" "}
                     </div>
                 </div>
-                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Moderate Condition
@@ -98,7 +94,7 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                         <Image src={MedCondition} alt="decent condition" />
                     </div>
                 </div>
-                <div className="border-p-blue-5 flex grow justify-between rounded-xl border border-solid p-7 shadow-md">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Critical Condition
@@ -132,11 +128,7 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                         </div>
                     </div>
                     <div className="flex h-[6.25rem] w-[6.25rem] items-center justify-center">
-                        <Image
-                            src={BadCondition}
-                            alt="critical condition"
-                            className="rotate-90"
-                        />
+                        <Image src={BadCondition} alt="critical condition" />
                     </div>
                 </div>
             </div>

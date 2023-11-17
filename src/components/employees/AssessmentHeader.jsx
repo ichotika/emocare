@@ -1,7 +1,12 @@
 "use client";
 import Header from "@/components/employees/Header";
 
-const AssessmentHeader = ({ headerText1, headerText2, description }) => {
+const AssessmentHeader = ({
+    headerText1,
+    headerText2,
+    description,
+    isHidden = false,
+}) => {
     return (
         <>
             <div className="flex flex-wrap justify-between pt-8 gap-11">

@@ -56,7 +56,7 @@ function OrganizationRow({
     return (
         <TableRow>
             <div className="mb-auto mt-auto flex items-center justify-end">
-                <div className="bg-p-blue-6 me-2 rounded-full p-2">
+                <div className="me-2 rounded-full bg-p-blue-6 p-2">
                     <Image
                         src={anonymous}
                         width={24}
@@ -65,10 +65,10 @@ function OrganizationRow({
                     />
                 </div>
             </div>
-            <p className="border-p-blue-6 mb-auto mt-auto block border-r-2 py-3 text-sm font-light">
+            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-sm font-light">
                 {title}
             </p>
-            <p className="border-p-blue-6 mb-auto mt-auto block border-r-2 py-3 text-center text-sm font-light">
+            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-center text-sm font-light">
                 {assessmentType}
             </p>
             {scoreCur === "Good" ? (
@@ -76,11 +76,11 @@ function OrganizationRow({
                     {scoreCur}
                 </StyledParagraph>
             ) : scoreCur === "Moderate" ? (
-                <StyledParagraph className="bg-o-joy-2 border-b-2 border-o-joy-1">
+                <StyledParagraph className="border-b-2 border-o-joy-1 bg-o-joy-2">
                     {scoreCur}
                 </StyledParagraph>
             ) : scoreCur === "Critical" ? (
-                <StyledParagraph className="bg-o-error-2 border-b-2 border-o-error-1">
+                <StyledParagraph className="border-b-2 border-o-error-1 bg-o-error-2">
                     {scoreCur}
                 </StyledParagraph>
             ) : (
@@ -91,17 +91,17 @@ function OrganizationRow({
                     {scorePrev}
                 </StyledParagraph>
             ) : scorePrev === "Moderate" ? (
-                <StyledParagraph className="bg-o-joy-2 border-b-2 border-o-joy-1">
+                <StyledParagraph className="border-b-2 border-o-joy-1 bg-o-joy-2">
                     {scorePrev}
                 </StyledParagraph>
             ) : scorePrev === "Critical" ? (
-                <StyledParagraph className="bg-o-error-2 border-b-2 border-o-error-1">
+                <StyledParagraph className="border-b-2 border-o-error-1 bg-o-error-2">
                     {scorePrev}
                 </StyledParagraph>
             ) : (
                 <StyledParagraph>{scorePrev}</StyledParagraph>
             )}
-            {scorePrev === "Not Taken" && scoreCur === "Not Taken" ? (
+            {scoreCur === "Not Taken" ? (
                 <button
                     className="m-auto block w-1/2 rounded-md bg-p-blue-1 p-1 text-center text-sm font-bold text-white"
                     onClick={() => handleButtonClick(id, assessmentType)}
@@ -110,7 +110,7 @@ function OrganizationRow({
                 </button>
             ) : (
                 <button
-                    className="bg-p-blue-5 m-auto block w-1/2 rounded-md p-1 text-center text-sm font-bold text-g-gray-1"
+                    className="m-auto block w-1/2 rounded-md bg-p-blue-5 p-1 text-center text-sm font-bold text-g-gray-1"
                     onClick={() => handleButtonClick(id, assessmentType)}
                     disabled
                 >

@@ -4,12 +4,12 @@ import { Doughnut } from "react-chartjs-2";
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent }) {
+function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, percentColor }) {
     const data = {
         datasets: [
             {
                 data: [levelPercent, 100 - levelPercent],
-                backgroundColor: ["#878D96", "#DDE1E6"], //'#DDE1E6'
+                backgroundColor: [percentColor, "#DDE1E6"], //'#DDE1E6'
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
@@ -50,13 +50,13 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent }) {
 
             ctx.font = "bold 18px sans-serif";
             ctx.fillStyle = "#878D96";
-            ctx.fillText(`${levelText}%`, xCoor, yCoor - 50);
+            ctx.fillText(`${levelText}`, xCoor, yCoor - 50);
         },
     };
 
     return (
         <div className="bg-white rounded-lg p-2 w-[100%] h-[100%]">
-            <h3 className="font-bold text-center">{headtitle}</h3>
+            <h1 className="font-bold text-center">{headtitle}</h1>
             <Doughnut
                 data={data}
                 options={options}

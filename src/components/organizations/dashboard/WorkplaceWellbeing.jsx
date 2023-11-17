@@ -3,7 +3,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 export default function WorkplaceWellbeing({ assessmentData, employee }) {
-
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const targetYear = 2023;
@@ -74,19 +73,11 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
     };
 
     return (
-        <div className="flex-grow basis-4/5 rounded-lg border border-gray-200 bg-white p-6 shadow ">
-            <div className="flex flex-col items-center">
-
-                <h2 className="mb-5 text-xl">Workplace Wellbeing</h2>
-                <div className="chart-js-wrapper" style={{ width: "334px" }}>
-                    <Doughnut
-                        data={data}
-                        options={options}
-                        plugins={[gaugeText]}
-                    />
-                </div>
+        <div className="flex-grow items-center rounded-lg border border-gray-200 bg-white p-6 shadow ">
+            <h2 className="mb-5 text-center text-xl">Workplace Wellbeing</h2>
+            <div className="chart-js-wrapper -mt-14" style={{ width: "300px" }}>
+                <Doughnut data={data} options={options} plugins={[gaugeText]} />
             </div>
         </div>
     );
-
 }

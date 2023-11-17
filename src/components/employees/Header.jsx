@@ -8,6 +8,7 @@ const Header = ({
     headertext,
     fontSize = "text-h-2xl",
     marginTB = "mb-12 mt-12 ",
+    isHidden = false,
 }) => {
     const [notification, setNotification] = useState([]);
     const { user, isLoaded } = useUser();
@@ -44,7 +45,9 @@ const Header = ({
     return (
         <header className={`${marginTB} flex w-full justify-between `}>
             <h1 className={`${fontSize} font-bold`}>{headertext}</h1>
-            <NotificationEmployee notification={notification} />
+            <div className={isHidden ? "xl:invisible xl:w-0" : ""}>
+                <NotificationEmployee notification={notification} />
+            </div>
         </header>
     );
 };
