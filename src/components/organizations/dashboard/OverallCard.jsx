@@ -58,13 +58,13 @@ const OverallCard = ({ assessmentData, employee }) => {
     }
 
     return (
-        <div className="mb-7 mt-7 flex sm:items-center sm:justify-center">
-            <div className="flex w-4/5 flex-row gap-4 sm:flex-col sm:items-center sm:justify-center ">
-                <div className="flex flex-grow">
-                    <div
-                        style={{ width: "384px" }}
-                        className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow"
-                    >
+        <div className="mb-7 mt-7 flex xl:items-center xl:justify-center">
+            <div className="flex w-4/5 flex-row gap-4 xl:flex-col xl:items-center xl:justify-center">
+                <div
+                    className="flex flex-grow"
+                    style={{ "min-width": "350px" }}
+                >
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <p className="text-xl">Total Employees</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
@@ -126,22 +126,28 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                             {/* gif */}
                             {changeInEmployeesMonth11Year2023 > 0 ? (
-                                <Image src={Growth} alt="GIF increase" />
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Growth} alt="GIF increase" />
+                                </div>
                             ) : changeInEmployeesMonth11Year2023 < 0 ? (
-                                <Image src={Decline} alt="GIF decrease" />
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Decline} alt="GIF decrease" />
+                                </div>
                             ) : (
-                                <Image src={Normal} alt="GIF remain" />
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Normal} alt="GIF remain" />
+                                </div>
                             )}
                         </div>
                     </div>
                 </div>
 
                 {/* active employee */}
-                <div className="flex flex-grow">
-                    <div
-                        style={{ width: "384px" }}
-                        className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow"
-                    >
+                <div
+                    className="flex flex-grow"
+                    style={{ "min-width": "350px" }}
+                >
+                    <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <p className="text-xl">Active Employee</p>
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
@@ -201,11 +207,17 @@ const OverallCard = ({ assessmentData, employee }) => {
 
                             {/* gif */}
                             {percentageDifference > 0 ? (
-                                <Image src={Growth} alt="GIF increase" />
-                            ) : percentageDifference < 0 ? (
-                                <Image src={Decline} alt="GIF decrease" />
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Growth} alt="GIF increase" />
+                                </div>
+                            ) : changeInEmployeesMonth11Year2023 < 0 ? (
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Decline} alt="GIF decrease" />
+                                </div>
                             ) : (
-                                <Image src={Normal} alt="GIF remain" />
+                                <div className="flex h-32 w-32 items-center justify-center">
+                                    <Image src={Normal} alt="GIF remain" />
+                                </div>
                             )}
                         </div>
                     </div>

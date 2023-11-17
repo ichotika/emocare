@@ -16,25 +16,29 @@ export default function Feedbacks({ feedbacks }) {
     }, [emblaApi]);
 
     return (
-        <div style={{width:"380px", height:"350px"}} className="relative basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
-
-
+        <div className="relative max-h-[316px] min-w-[350px] grow basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
             <div className="embla">
                 <div className="flex justify-between">
-                    <p className="text-xl mb-1">Feedbacks</p>
+                    <p className="mb-1 text-xl">Feedbacks</p>
                     <div>
-                        <button className="embla__prev border border-black rounded px-1.5 py-0" onClick={scrollPrev}>
-                        &lt;
+                        <button
+                            className="embla__prev rounded border border-black px-1.5 py-0"
+                            onClick={scrollPrev}
+                        >
+                            &lt;
                         </button>
                         <span> </span>
-                        <button className="embla__next border border-black rounded px-1.5 py-0" onClick={scrollNext}>
-                        &gt;
+                        <button
+                            className="embla__next rounded border border-black px-1.5 py-0"
+                            onClick={scrollNext}
+                        >
+                            &gt;
                         </button>
                     </div>
                 </div>
-                
+
                 <div className="embla__viewport" ref={emblaRef}>
-                    <div className="embla__container">
+                    <div className="embla__container max-w-full">
                         {feedbacks.map((feedback, index) => (
                             <div className="embla__slide" key={index}>
                                 <FeedbackCard title={feedback.title}>
