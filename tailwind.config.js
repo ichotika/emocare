@@ -49,7 +49,7 @@ module.exports = {
                 "p-blue-3": "#A6C8F7",
                 "p-blue-4": "#CCDEF5",
                 "p-blue-5": "#F2F4F4",
-                "p-blue-6": "#F5F9FF",
+                "p-blue-6": "#F4F9FF",
                 "s-orange-1": "#FF5C00",
                 "s-orange-2": "#FF8C49",
                 "s-orange-3": "#FFC49E",
@@ -66,6 +66,7 @@ module.exports = {
                 "g-gray-2": "#C7C8D1",
                 "g-gray-3": "#EEEEF1",
                 "g-gray-4": "#F6F6F8",
+                "g-gray-5": "#F5F5F5",
                 "g-white-1": "#FFFFFF",
             },
             fontFamily: {

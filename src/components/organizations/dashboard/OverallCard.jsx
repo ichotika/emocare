@@ -134,6 +134,7 @@ const OverallCard = ({ employee }) => {
                                     <Image src={Decline} alt="GIF decrease" />
                                 </div>
                             ) : (
+
                                 <div className="flex h-32 w-32 items-center justify-center">
                                     <Image src={Normal} alt="GIF remain" />
                                 </div>

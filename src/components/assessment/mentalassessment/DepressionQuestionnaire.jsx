@@ -2,10 +2,29 @@
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+
+const TableHeader = styled.div`
+    display: grid;
+    grid-template-columns: 3.9% 50% 11.5% 11.5% 11.5% 11.5%;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.07px;
+    font-weight: 700;
+    color: black;
+    padding: 1rem 0;
+`;
 
 const Questionnaire = () => {
     const { user } = useUser();
     const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const options = [
         { label: "Not At All", value: 0 },
@@ -65,8 +84,8 @@ const Questionnaire = () => {
         },
         {
             dlevel: "Error",
-            description: "Error"
-        }
+            description: "Error",
+        },
     ];
 
     // const [level, setLevel] = useState("")
@@ -112,10 +131,10 @@ const Questionnaire = () => {
     };
 
     // post data to assessHistory collection in MongoDB.
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const onSubmit = async (data) => {
+        // console.log("this is the data from line 119", data);
+        // console.log("my user id => ", user.id)
         let i = [];
-
         async function response() {
             await fetch("/api/assessment", {
                 method: "POST",
@@ -126,14 +145,17 @@ const Questionnaire = () => {
                     level: getDepressionLevel(totalScore).dlevel,
                     levelDescription:
                         getDepressionLevel(totalScore).description,
-                    createdAt: new Date()
+                    createdAt: new Date(),
                 }),
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
                 .then(() => {
-                    router.push("/employees/assessment/depression/depressionresult");
+                    // console.log("deta sent");
+                    router.push(
+                        "/employees/assessment/depression/depressionresult"
+                    );
                 })
                 .catch((error) => {
                     console.error("Failed to submit data", error);
@@ -141,9 +163,9 @@ const Questionnaire = () => {
         }
 
         for (const eachValue in value) {
-            console.log(eachValue);
+            // console.log(eachValue);
             if (value[eachValue] === -1) {
-                console.log(eachValue, value[eachValue]);
+                // console.log(eachValue, value[eachValue]);
                 // alert("Please input every button.")
                 i.push(eachValue);
             }
@@ -152,12 +174,12 @@ const Questionnaire = () => {
         if (i.length === 0) {
             // fetching
             // console.log(response());
-
             response();
         } else {
-            for (let index = 0; index < i.length; index++) {
-                alert("please enter value for " + i[index]);
-            }
+            console.error("input has not done", errors);
+            // for (let index = 0; index < i.length; index++) {
+            //     alert("please enter value for " + i[index]);
+            // }
         }
     };
 
@@ -179,60 +201,95 @@ const Questionnaire = () => {
 
     return (
         <div className="flex">
-            <div></div>
-
-            <form method="POST" onSubmit={handleSubmit}>
-                <table style={{ width: "100%" }}>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th colSpan="4">Questions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {depressionQustionnaire?.depressionAssessment?.map(
-                            (question) => (
-                                <tr key={question.No}>
-                                    <td>{question.No}</td>
-                                    <td colSpan="4">{question.question}</td>
-                                    {options.map((option) => (
-                                        <td key={question.No + option.value}>
-                                            <label
-                                                htmlFor={`q${question.No}_${option.value}`}
+            <form
+                method="POST"
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-y-16"
+            >
+                <div className="main-container flex flex-col gap-y-6">
+                    <div className="">
+                        <TableHeader className="border-collapse rounded-t-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
+                            <div className="px-3">No.</div>
+                            <div className="px-3">Questions</div>
+                            {options.map((option) => (
+                                <div
+                                    className="justify-center px-3 text-center xl:hidden"
+                                    key={option.label}
+                                >
+                                    {option.label}
+                                </div>
+                            ))}
+                        </TableHeader>
+                        <div className="rounded-b-lg xl:rounded-b-none">
+                            {depressionQustionnaire?.depressionAssessment?.map(
+                                (question, index, array) => (
+                                    <div
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
+                                            index === array.length - 1
+                                                ? "rounded-b-lg xl:rounded-none"
+                                                : ""
+                                        }`}
+                                        key={question.No}
+                                    >
+                                        <div className="col-span-2 flex">
+                                            <div className="self-center justify-self-center px-4 py-4 xl:self-start">
+                                                {question.No}
+                                            </div>
+                                            <div className="px-4 py-3.5 xl:px-3">
+                                                {question.question}
+                                            </div>
+                                        </div>
+                                        {options.map((option) => (
+                                            <div
+                                                key={question.No + option.value}
+                                                className="self-center px-3 py-4 pl-[49px] text-center font-bold xl:flex xl:self-start xl:py-2"
                                             >
-                                                {option.label}
-                                            </label>
-                                            <input
-                                                type="radio"
-                                                name={`q${question.No}`}
-                                                id={`q${question.No}_${option.value}`}
-                                                value={Number(option.value)}
-                                                onChange={handleRadioChange}
-                                            />
-                                        </td>
-                                    ))}
-                                </tr>
-                            )
-                        )}
-                    </tbody>
-                </table>
-
-                <button className="m-3 rounded-lg border-neutral-950 p-3">
-                    Save
-                </button>
-                <button
-                    onClick={handleSubmit}
-                    className="m-3 rounded-lg bg-blue-600 p-3 text-white"
-                >
-                    Submit Anonymously
-                </button>
+                                                <input
+                                                    className="content-center border-p-blue-1 bg-p-blue-1"
+                                                    type="radio"
+                                                    {...register(
+                                                        `q${question.No}`,
+                                                        { required: true }
+                                                    )}
+                                                    id={`q${question.No}_${option.value}`}
+                                                    value={Number(option.value)}
+                                                    onChange={handleRadioChange}
+                                                />
+                                                <label
+                                                    htmlFor={`q${question.No}_${option.value}`}
+                                                    className="hidden py-3.5 xl:block xl:px-2.5"
+                                                >
+                                                    {option.label}
+                                                </label>
+                                            </div>
+                                        ))}
+                                        {errors[`q${question.No}`] && (
+                                            <div className="col-span-4 col-start-3 px-3 pb-3 text-center text-o-error-1 ">
+                                                This item is mandatory
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    </div>
+                    <p className="self-center xl:hidden">
+                        Developed by Drs. Robert L. Spitzer, Janet B.W.
+                        Williams, Kurt Kroenke and colleagues, with an
+                        educational grant from Pfizer Inc.
+                    </p>
+                </div>
+                <div className="buttons flex justify-end gap-x-3 xl:justify-center xl:gap-x-[13px]">
+                    <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
+                        Save
+                    </button>
+                    <button
+                        className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
+                    >
+                        Submit Anonymously
+                    </button>
+                </div>
             </form>
-            {/* 
-
-            <p>Your total mental score is {totalScore}</p>
-            <p>Your mental health level is Your mental health level is {getDepressionLevel(totalScore).dlevel}</p>
-            <p>Your mental health level is Your mental health level is "{getDepressionLevel(totalScore).description}"</p> */}
         </div>
     );
 };
