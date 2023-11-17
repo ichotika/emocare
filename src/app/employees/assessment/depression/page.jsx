@@ -1,9 +1,8 @@
 "use client";
-import Instruction from "@/components/assessment/mentalassessment/Instruction";
 import Questionnaire from "@/components/assessment/mentalassessment/DepressionQuestionnaire";
 import AssessmentHeader from "@/components/employees/AssessmentHeader";
 
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 
 const assessHeader = {
     headerText1: "Depression Assessment",
@@ -14,10 +13,10 @@ const assessHeader = {
 const DepressionQuestionnairesPage = () => {
     return (
         <>
-        <div className="flex flex-col grow justify-between gap-y-6">
-            <AssessmentHeader {...assessHeader}></AssessmentHeader>
-            <Questionnaire></Questionnaire>
-        </div>
+            <div className="flex flex-col grow justify-between gap-y-6">
+                <AssessmentHeader {...assessHeader}></AssessmentHeader>
+                <Questionnaire></Questionnaire>
+            </div>
 
         </>
     );

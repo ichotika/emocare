@@ -66,6 +66,7 @@ module.exports = {
                 "g-gray-2": "#C7C8D1",
                 "g-gray-3": "#EEEEF1",
                 "g-gray-4": "#F6F6F8",
+                "g-gray-5": "#F5F5F5",
                 "g-white-1": "#FFFFFF",
             },
             fontFamily: {

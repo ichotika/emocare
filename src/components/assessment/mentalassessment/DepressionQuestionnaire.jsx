@@ -9,14 +9,14 @@ const TableHeader = styled.div`
     display: grid;
     grid-template-columns: 3.9% 50% 11.5% 11.5% 11.5% 11.5%;
     align-items: center;
-    justify-content: start;
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 20px;
     background-color: #f2f4f4;
-    border: 2px solid #c7c8d1;
+    border: 1px solid #c7c8d1;
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
-    letter-spacing: 0.4px;
-    font-weight: 600;
+    letter-spacing: 0.07px;
+    font-weight: 700;
     color: black;
     padding: 1rem 0;
 `;
@@ -156,34 +156,36 @@ const Questionnaire = () => {
                 },
             })
                 .then(() => {
+                    console.log("deta sent")
                     router.push(
                         "/employees/assessment/depression/depressionresult"
                     );
                 })
                 .catch((error) => {
-                    alert("Failed to submit data", error);
+                    console.error("Failed to submit data", error);
                 });
         }
 
-        // for (const eachValue in value) {
-        //     // console.log(eachValue);
-        //     if (value[eachValue] === -1) {
-        //         // console.log(eachValue, value[eachValue]);
-        //         // alert("Please input every button.")
-        //         i.push(eachValue);
-        //     }
-        // }
 
-        // if (i.length === 0) {
-        //     // fetching
-        //     // console.log(response());
+        for (const eachValue in value) {
+            // console.log(eachValue);
+            if (value[eachValue] === -1) {
+                // console.log(eachValue, value[eachValue]);
+                // alert("Please input every button.")
+                i.push(eachValue);
+            }
+        }
 
-        //     response();
-        // } else {
-        //     for (let index = 0; index < i.length; index++) {
-        //         alert("please enter value for " + i[index]);
-        //     }
-        // }
+        if (i.length === 0) {
+            // fetching
+            // console.log(response());
+            response();
+        } else {
+            console.error("input has not done", errors);
+            // for (let index = 0; index < i.length; index++) {
+            //     alert("please enter value for " + i[index]);
+            // }
+        }
     };
 
     const [depressionQustionnaire, setDepressionQuestionnaire] = useState([]);
@@ -210,83 +212,69 @@ const Questionnaire = () => {
                 className="flex flex-col gap-y-16"
             >
                 <div className="main-container flex flex-col gap-y-6">
-                    <div className="z-10 rounded-lg border border-g-gray-2">
-                        {/* <TableHeader>
-                            <div>No</div>
-                            <div>Questions</div>
+                    <div className="rounded-b-lg">
+                        <TableHeader>
+                            <div className="px-3">No.</div>
+                            <div className="px-3">Questions</div>
                             {options.map(
-                                        (option) => (
-                                            <div>{option.label}</div>
-                                        )
-                                    )}
-
-                        </TableHeader> */}
-
-
-                        <table className="w-full bg-g-white-1" flex>
-                            <thead className="py-3 bg-p-blue-5">
-                                <tr>
-                                    <th colSpan={1}>No</th>
-                                    <th colSpan={12.5}>Questions</th>
-                                    {options.map(
-                                        (option) => (
-                                            <th colSpan={2.8}>{option.label}</th>
-                                        )
-                                    )}
-                                </tr>
-                            </thead>
-                            <tbody className="py-3">
-                                {depressionQustionnaire?.depressionAssessment?.map(
-                                    (question) => (
-                                        <tr key={question.No}>
-                                            <td colSpan={1}>{question.No}</td>
-                                            <td colSpan={12.5}>
-                                                {question.question}
-                                            </td>
-                                            {options.map((option) => (
-                                                <td
-                                                    key={
-                                                        question.No +
+                                (option) => (
+                                    <div
+                                        className="text-center justify-center px-3 xl:hidden"
+                                        key={option.label}>{option.label}</div>
+                                )
+                            )}
+                        </TableHeader>
+                        <div className="rounded-b-lg">
+                            {depressionQustionnaire?.depressionAssessment?.map(
+                                (question, index, array) => (
+                                    <div className={`text-b-sm leading-5 grid grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-collapse border-g-gray-2 xl:flex xl:flex-col ${index === array.length - 1 ? "rounded-b-lg" : ""}`} key={question.No}>
+                                        <div className="col-span-2 flex">
+                                            <div className="py-4 px-4 self-center justify-self-center">{question.No}</div>
+                                            <div className="py-4 px-4 xl:px-3"> {question.question}</div>
+                                        </div>
+                                        {options.map((option) => (
+                                            <div
+                                                key={
+                                                    question.No +
+                                                    option.value
+                                                }
+                                                className="text-center py-4 px-3 self-center xl:flex xl:self-start pl-[49px]"
+                                            >
+                                                <input
+                                                    className="border-p-blue-1 bg-p-blue-1 content-center"
+                                                    type="radio"
+                                                    {...register(
+                                                        `q${question.No}`,
+                                                        { required: true }
+                                                    )}
+                                                    id={`q${question.No}_${option.value}`}
+                                                    value={Number(
                                                         option.value
+                                                    )}
+                                                    onChange={
+                                                        handleRadioChange
                                                     }
-                                                    colSpan={2.8}
+                                                />
+                                                <label
+                                                    htmlFor={`q${question.No}_${option.value}`}
+                                                    className="hidden xl:block xl:px-2.5 py-3.5"
                                                 >
-                                                    <label
-                                                        htmlFor={`q${question.No}_${option.value}`}
-                                                        className="hidden"
-                                                    >
-                                                        {option.label}
-                                                    </label>
-                                                    <input
-                                                        className="border-p-blue-1"
-                                                        type="radio"
-                                                        {...register(
-                                                            `q${question.No}`,
-                                                            { required: true }
-                                                        )}
-                                                        id={`q${question.No}_${option.value}`}
-                                                        value={Number(
-                                                            option.value
-                                                        )}
-                                                        onChange={
-                                                            handleRadioChange
-                                                        }
-                                                    />
-                                                </td>
-                                            ))}
-                                            {errors[`q${question.No}`] && (
-                                                <td
-                                                    colSpan="4"
-                                                    className="text-o-error-1"
-                                                >
-                                                    This item is mandatory
-                                                </td>
-                                            )}
-                                        </tr>
-                                    )
-                                )}
-                            </tbody>
-                        </table>
+                                                    {option.label}
+                                                </label>
+                                                
+                                            </div>
+                                        ))}
+                                        {errors[`q${question.No}`] && (
+                                            <div
+                                                className="text-o-error-1 col-start-3 col-span-4 px-3 pb-3 text-center"
+                                            >
+                                                This item is mandatory
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            )}
+                        </div>
                     </div>
                     <p className="self-center">
                         Developed by Drs. Robert L. Spitzer, Janet B.W.
@@ -299,18 +287,13 @@ const Questionnaire = () => {
                         Save
                     </button>
                     <button
-                        onClick={handleSubmit}
+                        // onClick={handleSubmit(onSubmit)}
                         className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
                     >
                         Submit Anonymously
                     </button>
                 </div>
             </form>
-            {/* 
-
-            <p>Your total mental score is {totalScore}</p>
-            <p>Your mental health level is Your mental health level is {getDepressionLevel(totalScore).dlevel}</p>
-            <p>Your mental health level is Your mental health level is "{getDepressionLevel(totalScore).description}"</p> */}
         </div>
     );
 };

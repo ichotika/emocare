@@ -2,10 +2,33 @@
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+
+const TableHeader = styled.div`
+    display: grid;
+    grid-template-columns: 3.9% 50% 11.5% 11.5% 11.5% 11.5%;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #f2f4f4;
+    border: 1px solid #c7c8d1;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    letter-spacing: 0.07px;
+    font-weight: 700;
+    color: black;
+    padding: 1rem 0;
+`;
 
 const AnxietyQuestionnaire = () => {
     const { user } = useUser();
     const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const options = [
         { label: "Not At All", value: 0 },
@@ -99,8 +122,8 @@ const AnxietyQuestionnaire = () => {
     };
 
     // post data to assessHistory collection in MongoDB.
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const onSubmit = async (data) => {
+        // event.preventDefault();
         let i = [];
 
         async function response() {
@@ -138,12 +161,9 @@ const AnxietyQuestionnaire = () => {
         if (i.length === 0) {
             // fetching
             // console.log(response());
-
             response();
         } else {
-            for (let index = 0; index < i.length; index++) {
-                alert("please enter value for " + i[index]);
-            }
+            console.error("input has not done", errors);
         }
     };
 
@@ -165,55 +185,101 @@ const AnxietyQuestionnaire = () => {
 
     return (
         <div className="flex">
-            <form method="POST" onSubmit={handleSubmit}>
-                <table style={{ width: "100%" }}>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th colSpan="4">Questions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {anxietyQustionnaire?.anxietyAssessment?.map(
-                            (question) => (
-                                <tr key={question.No}>
-                                    <td>{question.No}</td>
-                                    <td colSpan="4">{question.question}</td>
-                                    {options.map((option) => (
-                                        <td key={question.No + option.value}>
-                                            <label
-                                                htmlFor={`q${question.No}_${option.value}`}
-                                            >
-                                                {option.label}
-                                            </label>
-                                            <input
-                                                type="radio"
-                                                name={`q${question.No}`}
-                                                id={`q${question.No}_${option.value}`}
-                                                value={Number(option.value)}
-                                                onChange={handleRadioChange}
-                                            />
-                                        </td>
-                                    ))}
-                                </tr>
-                            )
-                        )}
-                    </tbody>
-                </table>
-
-                <button className="m-3 rounded-lg border-neutral-950 p-3">
-                    Save
-                </button>
-                <button
-                    onClick={handleSubmit}
-                    className="m-3 rounded-lg bg-blue-600 p-3 text-white"
+            <div>
+                <form
+                    method="POST"
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-col gap-y-16"
                 >
-                    Submit Anonymously
-                </button>
-            </form>
+                    <div className="main-container flex flex-col gap-y-6">
+                        <div className="rounded-lg">
+                            <TableHeader>
+                                <div className="px-3">No.</div>
+                                <div className="px-3" >Questions</div>
+                                {options.map(
+                                    (option) => (
+                                        <div
+                                            className="text-center justify-center px-3"
+                                            key={option.label}>{option.label}</div>
+                                    )
+                                )}
+                            </TableHeader>
+                            <div className="rounded-b-lg">
+                                {anxietyQustionnaire?.anxietyAssessment?.map(
+                                    (question, index, array) => (
+                                        <div 
+                                            className={`text-b-sm leading-5 grid grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-collapse border-g-gray-2 xl:block ${index === array.length - 1 ? "rounded-b-lg" : ""}`} 
+                                            key={question.No}>
+                                                
+                                            <div className="py-4 px-3 self-center justify-self-center">{question.No}</div>
+                                            <div className="py-4 px-3">
+                                                {question.question}
+                                            </div>
+                                            {options.map((option) => (
+                                                <div
+                                                    key={
+                                                        question.No +
+                                                        option.value
+                                                    }
+                                                    className="text-center py-4 px-3 self-center"
+                                                >
+                                                    <label
+                                                        htmlFor={`q${question.No}_${option.value}`}
+                                                        className="hidden"
+                                                    >
+                                                        {option.label}
+                                                    </label>
+                                                    <input
+                                                        className="border-p-blue-1 bg-p-blue-1 content-center"
+                                                        type="radio"
+                                                        {...register(
+                                                            `q${question.No}`,
+                                                            { required: true }
+                                                        )}
+                                                        id={`q${question.No}_${option.value}`}
+                                                        value={Number(
+                                                            option.value
+                                                        )}
+                                                        onChange={
+                                                            handleRadioChange
+                                                        }
+                                                    />
+                                                </div>
+                                            ))}
+                                            {errors[`q${question.No}`] && (
+                                                <div
+                                                    className="text-o-error-1 col-start-3 col-span-4 px-3 pb-3 text-center"
+                                                >
+                                                    This item is mandatory
+                                                </div>
+                                            )}
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                        <p className="self-center">
+                            Developed by Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke and colleagues, with an educational grant from Pfizer Inc.
+                        </p>
+                    </div>
+                    <div className="buttons flex justify-end gap-x-3 xl:justify-center xl:gap-x-[13px]">
+                        <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
+                            Save
+                        </button>
+                        <button
+                            // onClick={handleSubmit(onSubmit)}
+                            className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
+                        >
+                            Submit Anonymously
+                        </button>
+                    </div>
+
+                </form>
+
+
+            </div>
         </div>
-    );
+    )
 };
 
 export default AnxietyQuestionnaire;
