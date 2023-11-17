@@ -223,7 +223,7 @@ const Questionnaire = () => {
                         </TableHeader> */}
 
 
-                        <table className="w-full bg-g-white-1">
+                        <table className="w-full bg-g-white-1" flex>
                             <thead className="py-3 bg-p-blue-5">
                                 <tr>
                                     <th colSpan={1}>No</th>
@@ -258,7 +258,7 @@ const Questionnaire = () => {
                                                         {option.label}
                                                     </label>
                                                     <input
-                                                        className="bg-p-blue-1 border-rose-500"
+                                                        className="border-p-blue-1"
                                                         type="radio"
                                                         {...register(
                                                             `q${question.No}`,
