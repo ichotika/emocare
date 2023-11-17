@@ -1,7 +1,7 @@
 function NoAssessResult() {
     return (
-        <div className="m-8 text-center font-bold text-slate-400">
-            <p>You have not taken any assessments yet.</p>
+        <div className="text-center font-bold h-[100%] flex flex-col justify-center">
+            <p className="text-g-gray-1 text-b-lg">You have not taken any assessments yet.</p>
             <br />
         </div>
     );

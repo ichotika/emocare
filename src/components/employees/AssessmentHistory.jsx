@@ -1,5 +1,19 @@
 import AssessmentRecord from "./AssessmentRecord";
+import styled from "styled-components";
+
+const Table = styled.div`
+    border: 1px solid var(--color-grey-200);
+    background-color: var(--color-grey-0);
+`;
+
+const TableHeader = styled.div`
+    background-color: var(--color-grey-100);
+    border-bottom: 1px solid var(--color-grey-200);
+    color: var(--color-grey-600);
+`;
+
 const dayjs = require("dayjs");
+
 function AssessmentHistory({ assessment }) {
     console.log(assessment);
     const newHistory = [];
@@ -18,12 +32,15 @@ function AssessmentHistory({ assessment }) {
                 switch (assess.assessmentType) {
                     case "depression":
                         historyEntry.depressionLevel = assess.level;
+                        historyEntry.scoreDeprLevel = (assess.score >= 0 && assess.score <= 4 ? "good" : assess.score >= 5 && assess.score <= 14 ? "moderate" : assess.score >= 15 && assess.score <= 27 ? "critical" : "na")
                         break;
                     case "Anxiety":
                         historyEntry.anxietyLevel = assess.level;
+                        historyEntry.scoreAnxLevel = (assess.score >= 0 && assess.score <= 4 ? "good" : assess.score >= 5 && assess.score <= 9 ? "moderate" : assess.score >= 10 && assess.score <= 21 ? "critical" : "na")
                         break;
                     case "burnout":
                         historyEntry.burnoutLevel = assess.level;
+                        historyEntry.scoreBurnoutLevel = (assess.score >= 15 && assess.score <= 18 ? "good" : assess.score >= 19 && assess.score <= 49 ? "moderate" : assess.score >= 50 && assess.score <= 75 ? "critical" : "na")
                         break;
                     default:
                         console.log("Unknown assessment type for:", assess);
@@ -35,19 +52,13 @@ function AssessmentHistory({ assessment }) {
     }
 
     return (
-        <div className="h-[80%] overflow-auto">
-            <div
-                className="flex p-2 font-semibold"
-                style={{
-                    backgroundColor: "#F2F4F8",
-                    border: "1px solid #DDE1E6",
-                }}
-            >
+        <Table role="table" className="overflow-auto rounded-lg">
+            <TableHeader role="row" className="flex p-2 font-semibold">
                 <div className="w-1/4">Date</div>
                 <div className="w-1/4 text-center">Depression</div>
                 <div className="w-1/4 text-center">Anxiety</div>
                 <div className="w-1/4 text-center">Burnout</div>
-            </div>
+            </TableHeader>
             <>
                 {newHistory.map((history, index) => (
                     <div key={index}>
@@ -56,11 +67,14 @@ function AssessmentHistory({ assessment }) {
                             deprLevel={history.depressionLevel}
                             anxietyLevel={history.anxietyLevel}
                             burnoutLevel={history.burnoutLevel}
+                            deprScore={history.scoreDeprLevel}
+                            anxScore={history.scoreAnxLevel}
+                            burnoutScore={history.scoreBurnoutLevel}
                         />
                     </div>
                 ))}
             </>
-        </div>
+        </Table>
     );
 }
 
