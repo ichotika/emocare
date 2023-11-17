@@ -11,8 +11,6 @@ const TableHeader = styled.div`
     align-items: center;
     font-size: 14px;
     line-height: 20px;
-    background-color: #f2f4f4;
-    border: 1px solid #c7c8d1;
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
     letter-spacing: 0.07px;
@@ -192,8 +190,8 @@ const AnxietyQuestionnaire = () => {
                     className="flex flex-col gap-y-16"
                 >
                     <div className="main-container flex flex-col gap-y-6">
-                        <div className="rounded-lg">
-                            <TableHeader>
+                        <div className="rounded-lg xl:rounded-none">
+                            <TableHeader className="bg-p-blue-5 border-g-gray-2 border border-collapse xl:bg-p-blue-5 xl:border-g-white-1 xl:border-x">
                                 <div className="px-3">No.</div>
                                 <div className="px-3" >Questions</div>
                                 {options.map(
@@ -223,12 +221,6 @@ const AnxietyQuestionnaire = () => {
                                                     }
                                                     className="text-center py-4 px-3 self-center"
                                                 >
-                                                    <label
-                                                        htmlFor={`q${question.No}_${option.value}`}
-                                                        className="hidden"
-                                                    >
-                                                        {option.label}
-                                                    </label>
                                                     <input
                                                         className="border-p-blue-1 bg-p-blue-1 content-center"
                                                         type="radio"
@@ -244,6 +236,12 @@ const AnxietyQuestionnaire = () => {
                                                             handleRadioChange
                                                         }
                                                     />
+                                                    <label
+                                                        htmlFor={`q${question.No}_${option.value}`}
+                                                        className="hidden xl:block"
+                                                    >
+                                                        {option.label}
+                                                    </label>
                                                 </div>
                                             ))}
                                             {errors[`q${question.No}`] && (

@@ -11,10 +11,6 @@ const TableHeader = styled.div`
     align-items: center;
     font-size: 14px;
     line-height: 20px;
-    background-color: #f2f4f4;
-    border: 1px solid #c7c8d1;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
     letter-spacing: 0.07px;
     font-weight: 700;
     color: black;
@@ -156,7 +152,7 @@ const Questionnaire = () => {
                 },
             })
                 .then(() => {
-                    console.log("deta sent")
+                    console.log("deta sent");
                     router.push(
                         "/employees/assessment/depression/depressionresult"
                     );
@@ -165,7 +161,6 @@ const Questionnaire = () => {
                     console.error("Failed to submit data", error);
                 });
         }
-
 
         for (const eachValue in value) {
             // console.log(eachValue);
@@ -212,62 +207,65 @@ const Questionnaire = () => {
                 className="flex flex-col gap-y-16"
             >
                 <div className="main-container flex flex-col gap-y-6">
-                    <div className="rounded-b-lg">
-                        <TableHeader>
+                    <div className="">
+                        <TableHeader className="border-collapse rounded-t-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
                             <div className="px-3">No.</div>
                             <div className="px-3">Questions</div>
-                            {options.map(
-                                (option) => (
-                                    <div
-                                        className="text-center justify-center px-3 xl:hidden"
-                                        key={option.label}>{option.label}</div>
-                                )
-                            )}
+                            {options.map((option) => (
+                                <div
+                                    className="justify-center px-3 text-center xl:hidden"
+                                    key={option.label}
+                                >
+                                    {option.label}
+                                </div>
+                            ))}
                         </TableHeader>
-                        <div className="rounded-b-lg">
+                        <div className="rounded-b-lg xl:rounded-b-none">
                             {depressionQustionnaire?.depressionAssessment?.map(
                                 (question, index, array) => (
-                                    <div className={`text-b-sm leading-5 grid grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-collapse border-g-gray-2 xl:flex xl:flex-col ${index === array.length - 1 ? "rounded-b-lg" : ""}`} key={question.No}>
+                                    <div
+                                        className={`grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 xl:border-g-white-1 xl:boder-0 xl:border-x-0 xl:border-y text-b-sm leading-5 xl:flex xl:flex-col ${
+                                            index === array.length - 1
+                                                ? "rounded-b-lg xl:rounded-none"
+                                                : ""
+                                        }`}
+                                        key={question.No}
+                                    >
                                         <div className="col-span-2 flex">
-                                            <div className="py-4 px-4 self-center justify-self-center">{question.No}</div>
-                                            <div className="py-4 px-4 xl:px-3"> {question.question}</div>
+                                            <div className="self-center justify-self-center px-4 py-4 xl:self-start">
+                                                {question.No}
+                                            </div>
+                                            <div className="px-4 py-3.5 xl:px-3">
+                                                {" "}
+                                                {question.question}
+                                            </div>
                                         </div>
                                         {options.map((option) => (
                                             <div
-                                                key={
-                                                    question.No +
-                                                    option.value
-                                                }
-                                                className="text-center py-4 px-3 self-center xl:flex xl:self-start pl-[49px]"
+                                                key={question.No + option.value}
+                                                className="font-bold self-center px-3 py-4 pl-[49px] text-center xl:flex xl:self-start xl:py-2"
                                             >
                                                 <input
-                                                    className="border-p-blue-1 bg-p-blue-1 content-center"
+                                                    className="content-center border-p-blue-1 bg-p-blue-1"
                                                     type="radio"
                                                     {...register(
                                                         `q${question.No}`,
                                                         { required: true }
                                                     )}
                                                     id={`q${question.No}_${option.value}`}
-                                                    value={Number(
-                                                        option.value
-                                                    )}
-                                                    onChange={
-                                                        handleRadioChange
-                                                    }
+                                                    value={Number(option.value)}
+                                                    onChange={handleRadioChange}
                                                 />
                                                 <label
                                                     htmlFor={`q${question.No}_${option.value}`}
-                                                    className="hidden xl:block xl:px-2.5 py-3.5"
+                                                    className="hidden py-3.5 xl:block xl:px-2.5"
                                                 >
                                                     {option.label}
                                                 </label>
-                                                
                                             </div>
                                         ))}
                                         {errors[`q${question.No}`] && (
-                                            <div
-                                                className="text-o-error-1 col-start-3 col-span-4 px-3 pb-3 text-center"
-                                            >
+                                            <div className="col-span-4 col-start-3 px-3 pb-3 text-center text-o-error-1 ">
                                                 This item is mandatory
                                             </div>
                                         )}
@@ -276,7 +274,7 @@ const Questionnaire = () => {
                             )}
                         </div>
                     </div>
-                    <p className="self-center">
+                    <p className="self-center xl:hidden">
                         Developed by Drs. Robert L. Spitzer, Janet B.W.
                         Williams, Kurt Kroenke and colleagues, with an
                         educational grant from Pfizer Inc.
