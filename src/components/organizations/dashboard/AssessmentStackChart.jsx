@@ -120,11 +120,6 @@ export default function AssessmentStackChart({
             assessment.score,
             assessment.assessmentType
         );
-        console.log(
-            levelDescription,
-            assessment.score,
-            assessment.assessmentType
-        );
         switch (levelDescription) {
             case "Critical":
                 anxietyCriticalAssessments.push(assessment);

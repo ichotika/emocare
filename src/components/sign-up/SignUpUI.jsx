@@ -177,7 +177,7 @@ function CreateOrg({ onOrgDecide }) {
                             );
                         }
                     };
-                    console.log(createdOrg);
+                    // console.log(createdOrg);
                     checkOrgs();
                 }}
             >
