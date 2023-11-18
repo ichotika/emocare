@@ -22,7 +22,10 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
         ),
     ];
 
-    const wellBeingRate = (distinctUserIds.length / employee.length) * 100;
+    const wellBeingRate = (
+        (distinctUserIds.length / employee.length) *
+        100
+    ).toFixed(2);
 
     const data = {
         labels: ["Satisfaction", "Remaining"],

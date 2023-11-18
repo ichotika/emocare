@@ -40,6 +40,7 @@ const handleButtonClick = async (id, assessmentType) => {
                 assessmentType: assessmentType,
             }),
         });
+        alert("Notification sent");
     } catch (error) {
         console.error("Error updating notification:", error);
     }

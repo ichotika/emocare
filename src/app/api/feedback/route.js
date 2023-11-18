@@ -1,10 +1,9 @@
 import connectMongoDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 import Feedback from "@/models/Feedback";
-import {currentUser, auth} from "@clerk/nextjs";
+import { currentUser, auth } from "@clerk/nextjs";
 
-
-export async function GET () {
+export async function GET() {
     const { userId } = auth();
 
     if (!userId) {
@@ -13,14 +12,14 @@ export async function GET () {
 
     const user = await currentUser();
 
-    console.log(user);
-
-    try{
+    try {
         await connectMongoDB();
-        const feedbacks = await Feedback.find({organization_name:user.unsafeMetadata.organization});
+        const feedbacks = await Feedback.find({
+            organization_name: user.unsafeMetadata.organization,
+        });
         console.log(feedbacks);
-        return NextResponse.json({feedbacks},{status: 200});
-    }catch(error){
+        return NextResponse.json({ feedbacks }, { status: 200 });
+    } catch (error) {
         console.error("Error fetching your organization's feedback: ", error);
         return NextResponse.json(
             { error: "Internal server error" },
@@ -31,7 +30,7 @@ export async function GET () {
 
 // title is designation in Clerk user
 // description is content in POST request
-export async function POST (request){
+export async function POST(request) {
     const { userId } = auth();
 
     if (!userId) {
@@ -41,16 +40,17 @@ export async function POST (request){
     const user = await currentUser();
 
     console.log(user);
-    if (user.unsafeMetadata.role!=="employee") {
-        return new NextResponse("Unauthorized. User not an employee", {status: 401});
+    if (user.unsafeMetadata.role !== "employee") {
+        return new NextResponse("Unauthorized. User not an employee", {
+            status: 401,
+        });
     }
 
     await connectMongoDB();
     try {
-        const formData= await request.formData();
+        const formData = await request.formData();
         const data = Object.fromEntries(formData);
-        console.log(data);
-        const {category,comment} = data;
+        const { category, comment } = data;
         const newFeedback = new Feedback({
             clerk_id: user.id,
             organization_name: user.unsafeMetadata.organization,
@@ -58,17 +58,20 @@ export async function POST (request){
             title: user.unsafeMetadata.designation,
             category: category,
             description: comment,
-        })
+        });
 
         await newFeedback.save();
         const dataResponse = newFeedback.toObject();
 
-        return NextResponse.json({message:"Feedback successfully submitted",data: dataResponse},{status: 201});
-    } catch(error) {
+        return NextResponse.json(
+            { message: "Feedback successfully submitted", data: dataResponse },
+            { status: 201 }
+        );
+    } catch (error) {
         console.error("Error creating assessment: ", error);
         return NextResponse.json(
-            { error: "Internal server error"},
-            {status: 500}
+            { error: "Internal server error" },
+            { status: 500 }
         );
     }
 }

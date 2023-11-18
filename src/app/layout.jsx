@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
             <html lang="en">
                 <body>
                     <div
-                        className={`mx-autp min-h-full ${archivo.variable} ${manrope.variable}`}
+                        className={`${archivo.variable} ${manrope.variable}  h-screen w-screen`}
                     >
                         <StyledComponentsRegistry className="mt-8">
                             {children}

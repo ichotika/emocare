@@ -133,7 +133,7 @@ export default async function Records() {
                             ? "Moderate"
                             : "Good";
                     break;
-                case "burn out":
+                case "burnout":
                     level =
                         score >= 50
                             ? "Critical"
@@ -148,7 +148,7 @@ export default async function Records() {
             return level;
         }
 
-        const assessmentTypes = ["Depression", "Burn out", "Anxiety"];
+        const assessmentTypes = ["Depression", "Burnout", "Anxiety"];
 
         assessmentTypes.forEach((type) => {
             mergedEmpList.push({

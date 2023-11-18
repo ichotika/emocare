@@ -19,7 +19,6 @@ const NotificationEmployee = ({ notification }) => {
     const [clickedNotifications, setClickedNotifications] = useState([]);
 
     const handleNotificationClick = async (id, index) => {
-        console.log("id", id);
         try {
             const response = await fetch(
                 `/api/notification/employeeAssessment/${id}`,
@@ -68,8 +67,8 @@ const NotificationEmployee = ({ notification }) => {
                             <p>{noti.timestamp}</p>
                             <p>{noti.message}</p>
                             <p>
-                                Please take a moment to complete your assessment
-                                this month.
+                                Please take a moment to complete your{" "}
+                                {noti.assessmentType} assessment this month.
                             </p>
                         </div>
                     </Link>

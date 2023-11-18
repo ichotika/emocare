@@ -93,7 +93,7 @@ function EmployeeTable({ employeeList }) {
                                       title={list.title}
                                       department={list.department}
                                       joinDate={formatDate(list.joinDate)}
-                                      id={list.userId}
+                                      id={list.userId.slice(0, 9)}
                                       key={list.userId}
                                   />
                               );

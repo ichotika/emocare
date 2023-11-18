@@ -20,7 +20,6 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
         event.preventDefault();
         // console.log("toggle button is clicked")
         setIsHamburgerOpen(!isHamburgerOpen);
-        console.log(isHamburgerOpen);
     };
 
     // Set Logo depending on the screen size.
