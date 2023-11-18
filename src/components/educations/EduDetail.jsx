@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Recommendations from "./Recommendation";
 import EduModule from "./EduModule";
+import EduModHeader from "./EduModHeader";
 
 
 function EduDetail({ recList, eduModule, userId, newEduResponse }) {
@@ -25,16 +26,16 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
     }
 
     return (
-        <div className="m-4 bg-slate-100 p-4">
-            <div className="m-2 rounded-lg bg-slate-200 p-4 text-lg font-bold">
-                <h1>{eduModule.length > 0 ? eduModule[0].fields.topic : ""}</h1>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-                <div className="col-span-1 border-e-2 border-current">
+        <div className="m-4 p-4">
+            <>
+                {eduModule.length > 0 ? <EduModHeader header={eduModule[0].fields.topic} topicId={eduModule[0].fields.topicId} /> : ""}
+            </>
+            <div className="grid grid-cols-4 sm:flex sm:flex-col-reverse gap-2">
+                <div className="col-span-1 sm:bg-white sm:rounded-lg py-4">
                     <h2 className="pl-4 font-bold">Recommendations</h2>
                     {recList.length > 0
                         ? recList.map((detail, index) => (
-                              <div className="m-4" key={index}>
+                              <div className="m-4 sm:shadow sm:p-2 sm:rounded-lg" key={index}>
                                   <Recommendations
                                       category={detail.category}
                                       topic={detail.topic}
@@ -42,10 +43,10 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
                                   />
                               </div>
                           ))
-                        : "No data"}
+                        : ""}
                 </div>
 
-                <div className="col-span-3">
+                <div className="col-span-3 pb-4">
                     {eduModule.length > 0 ? (
                         <EduModule
                             eduModule={eduModule}
@@ -55,7 +56,7 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
                             richContent={eduModule[0].fields.richContent}
                         />
                     ) : (
-                        "No data"
+                        ""
                     )}
                 </div>
             </div>
