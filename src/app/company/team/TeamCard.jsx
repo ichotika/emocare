@@ -1,5 +1,4 @@
 import { FaLinkedinIn } from "react-icons/fa";
-
 export default function TeamCard({ member }) {
     const { name, designation, personality, imageName, LinkedInURL, hoverBG } =
         member;
@@ -13,7 +12,9 @@ export default function TeamCard({ member }) {
                 alt={name}
             />
             <div
-                className={"absolute inset-0 grid grid-cols-6 grid-rows-4 p-4 lg:p-3 sm:p-2"}
+                className={
+                    "absolute inset-0 grid grid-cols-6 grid-rows-4 p-4 lg:p-3 sm:p-2"
+                }
             >
                 <div
                     className={
