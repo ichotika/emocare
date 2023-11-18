@@ -29,8 +29,7 @@ const scoreRange = [
         { range: "60-75", severity: "Very severe risk", action: "You are at very severe risk of burnout - do something about this urgently." }
     ]
 ]
-
-console.log(scoreRange[0][0].range)
+// console.log(scoreRange[0][0].range)
 
 
 
@@ -44,7 +43,7 @@ const AssessmentResult = () => {
     const splitURL = pathname.split("/");
     // console.log(splitURL);
     const assessType = splitURL[splitURL.length - 2];
-    console.log(assessType);
+    // console.log(assessType);
 
     const [assessmentDataArry, setAssessmentDataArry] = useState([]);
 
@@ -56,7 +55,7 @@ const AssessmentResult = () => {
                     `/api/assessment?search=${user.id}`
                 );
                 const data = await response.json();
-                // console.log("this is the assessment data array", data.assessment);
+                console.log("this is the assessment data array", data.assessment);
 
                 const filteredArry = await data.assessment.filter(
                     (item) => item.assessmentType === assessType
@@ -90,7 +89,7 @@ const AssessmentResult = () => {
                         )}
                         {latestAssessRecord && assessType === "anxiety" && (
                             <HalfDoughnutChart
-                                headtitle={assessType}
+                                headtitle=""
                                 levelText={latestAssessRecord.level}
                                 levelNum={latestAssessRecord.score}
                                 levelPercent={(latestAssessRecord.score * 100) / 21}
@@ -99,7 +98,7 @@ const AssessmentResult = () => {
                         )}
                         {latestAssessRecord && assessType === "burnout" && (
                             <HalfDoughnutChart
-                                headtitle={assessType}
+                                headtitle=""
                                 levelText={latestAssessRecord.level}
                                 levelNum={latestAssessRecord.score}
                                 levelPercent={(latestAssessRecord.score * 100) / 75}
@@ -128,7 +127,7 @@ const AssessmentResult = () => {
                                 {assessType === "depression" && (
                                     scoreRange[0].map(
                                         (obj, index) => (
-                                            <tr>
+                                            <tr key="index">
                                                 <th colSpan={1} className="text-left text-b-sm leading-5 p-3">{obj.range}</th>
                                                 <th colSpan={1} className="text-left text-b-sm leading-5 p-3">{obj.severity}</th>
                                                 <th colSpan={4} className="text-left text-b-sm leading-5 p-3">{obj.action}</th>
@@ -139,7 +138,7 @@ const AssessmentResult = () => {
                                 {assessType === "anxiety" && (
                                     scoreRange[1].map(
                                         (obj, index) => (
-                                            <tr>
+                                            <tr key="index">
                                                 <th colSpan={1}>{obj.range}</th>
                                                 <th colSpan={1}>{obj.severity}</th>
                                                 <th colSpan={4}>{obj.action}</th>
@@ -150,7 +149,7 @@ const AssessmentResult = () => {
                                 {assessType === "burnout" && (
                                     scoreRange[2].map(
                                         (obj, index) => (
-                                            <tr>
+                                            <tr key="index">
                                                 <th colSpan={1}>{obj.range}</th>
                                                 <th colSpan={1}>{obj.severity}</th>
                                                 <th colSpan={4}>{obj.action}</th>
