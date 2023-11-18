@@ -12,6 +12,24 @@ import {
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
 
+function calculateRatio(score, assessmentType) {
+    let level;
+    switch (assessmentType) {
+        case "depression":
+            level = score >= 15 ? "Critical" : score >= 5 ? "Moderate" : "Good";
+            break;
+        case "Anxiety":
+            level = score >= 10 ? "Critical" : score >= 5 ? "Moderate" : "Good";
+            break;
+        case "burnout":
+            level =
+                score >= 50 ? "Critical" : score >= 19 ? "Moderate" : "Good";
+            break;
+        // default case if needed
+    }
+    return level;
+}
+
 export default function AssessmentStackChart({
     depressionAssessments,
     burnoutAssessments,
@@ -26,19 +44,21 @@ export default function AssessmentStackChart({
         Legend,
         ChartDataLabels
     );
-
     // depression
     const depressionCriticalAssessments = [];
     const depressionDecentAssessments = [];
     const depressionGoodAssessments = [];
 
     depressionAssessments.forEach((assessment) => {
-        const levelDescription = assessment.levelDescription;
+        const levelDescription = calculateRatio(
+            assessment.score,
+            assessment.assessmentType
+        );
         switch (levelDescription) {
             case "Critical":
                 depressionCriticalAssessments.push(assessment);
                 break;
-            case "Decent":
+            case "Moderate":
                 depressionDecentAssessments.push(assessment);
                 break;
             case "Good":
@@ -48,10 +68,6 @@ export default function AssessmentStackChart({
     });
 
     const depressionAssessmentsCount = depressionAssessments.length;
-    const depressionCriticalPercent = (
-        (depressionCriticalAssessments.length / depressionAssessmentsCount) *
-        100
-    ).toFixed(0);
     const depressionDecentPercent = (
         (depressionDecentAssessments.length / depressionAssessmentsCount) *
         100
@@ -67,12 +83,15 @@ export default function AssessmentStackChart({
     const burnoutGoodAssessments = [];
 
     burnoutAssessments.forEach((assessment) => {
-        const levelDescription = assessment.levelDescription;
+        const levelDescription = calculateRatio(
+            assessment.score,
+            assessment.assessmentType
+        );
         switch (levelDescription) {
             case "Critical":
                 burnoutCriticalAssessments.push(assessment);
                 break;
-            case "Decent":
+            case "Moderate":
                 burnoutDecentAssessments.push(assessment);
                 break;
             case "Good":
@@ -82,10 +101,6 @@ export default function AssessmentStackChart({
     });
 
     const burnoutAssessmentsCount = burnoutAssessments.length;
-    const burnoutCriticalPercent = (
-        (burnoutCriticalAssessments.length / burnoutAssessmentsCount) *
-        100
-    ).toFixed(0);
     const burnoutDecentPercent = (
         (burnoutDecentAssessments.length / burnoutAssessmentsCount) *
         100
@@ -101,12 +116,20 @@ export default function AssessmentStackChart({
     const anxietyGoodAssessments = [];
 
     anxietyAssessments.forEach((assessment) => {
-        const levelDescription = assessment.levelDescription;
+        const levelDescription = calculateRatio(
+            assessment.score,
+            assessment.assessmentType
+        );
+        console.log(
+            levelDescription,
+            assessment.score,
+            assessment.assessmentType
+        );
         switch (levelDescription) {
             case "Critical":
                 anxietyCriticalAssessments.push(assessment);
                 break;
-            case "Decent":
+            case "Moderate":
                 anxietyDecentAssessments.push(assessment);
                 break;
             case "Good":
@@ -116,10 +139,6 @@ export default function AssessmentStackChart({
     });
 
     const anxietyAssessmentsCount = anxietyAssessments.length;
-    const anxietyCriticalPercent = (
-        (anxietyCriticalAssessments.length / anxietyAssessmentsCount) *
-        100
-    ).toFixed(0);
     const anxietyDecentPercent = (
         (anxietyDecentAssessments.length / anxietyAssessmentsCount) *
         100
@@ -198,36 +217,6 @@ export default function AssessmentStackChart({
         datasets: [
             {
                 label: "Good",
-                data: [burnoutGoodPercent],
-                backgroundColor: "#F7FDFB",
-                borderColor: "#58BD98",
-                borderWidth: 1,
-                borderSkipped: false,
-            },
-            {
-                label: "Decent",
-                data: [burnoutDecentPercent],
-                backgroundColor: "#FFFDF6",
-                borderColor: "#EFC242",
-                borderWidth: 1,
-                borderSkipped: false,
-            },
-            {
-                label: "Critical",
-                data: [100 - burnoutGoodPercent - burnoutDecentPercent],
-                backgroundColor: "#FDF5F7",
-                borderColor: "#D72E41",
-                borderWidth: 1,
-                borderSkipped: false,
-            },
-        ],
-    };
-
-    const data3 = {
-        labels: ["Burnout"],
-        datasets: [
-            {
-                label: "Good",
                 data: [anxietyGoodPercent],
                 backgroundColor: "#F7FDFB",
                 borderColor: "#58BD98",
@@ -245,6 +234,36 @@ export default function AssessmentStackChart({
             {
                 label: "Critical",
                 data: [100 - anxietyGoodPercent - anxietyDecentPercent],
+                backgroundColor: "#FDF5F7",
+                borderColor: "#D72E41",
+                borderWidth: 1,
+                borderSkipped: false,
+            },
+        ],
+    };
+
+    const data3 = {
+        labels: ["Burnout"],
+        datasets: [
+            {
+                label: "Good",
+                data: [burnoutGoodPercent],
+                backgroundColor: "#F7FDFB",
+                borderColor: "#58BD98",
+                borderWidth: 1,
+                borderSkipped: false,
+            },
+            {
+                label: "Decent",
+                data: [burnoutDecentPercent],
+                backgroundColor: "#FFFDF6",
+                borderColor: "#EFC242",
+                borderWidth: 1,
+                borderSkipped: false,
+            },
+            {
+                label: "Critical",
+                data: [100 - burnoutGoodPercent - burnoutDecentPercent],
                 backgroundColor: "#FDF5F7",
                 borderColor: "#D72E41",
                 borderWidth: 1,
