@@ -104,7 +104,7 @@ export default function Home() {
     return (
         <>
             <Header headertext={"Employee"} isHidden={true} />
-            <div className="bg-slate-200">
+            <div>
                 <div>
                     <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
                 </div>
