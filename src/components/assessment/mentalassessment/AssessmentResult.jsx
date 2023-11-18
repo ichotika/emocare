@@ -18,35 +18,47 @@ const AssessmentResult = () => {
     const assessType = splitURL[splitURL.length - 2];
     // console.log(assessType);
 
-    const [assessmentData, setAssessmentData] = useState([]);
+    const [assessmentDataArry, setAssessmentDataArry] = useState([]);
 
     useEffect(() => {
         if (user) {
             const getAssessmentResult = async () => {
-                const response = await fetch(`/api/questionnaires/${assessType}/response?search=${user.id}`);
+                // console.log("getAssessmentResult function is working")
+                const response = await fetch(`/api/assessment?search=${user.id}`);
                 const data = await response.json();
-                // console.log("this is the assessment data", data);
-                setAssessmentData(data[0]);
-                // console.log("set Assessment",assessmentData);
+                // console.log("this is the assessment data array", data.assessment);
+
+                const filteredArry = data.assessment.filter(item => 
+                    item.assessmentType === assessType
+                )
+                // console.log(filteredArry);
+
+                setAssessmentDataArry(filteredArry);
+
             };
             getAssessmentResult();
-            // console.log("this is the assessment Data", typeof(assessmentData));
-            // console.log(assessmentData);
         }
     }, [user])
+    // console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
+
+    const latestAssessRecord = assessmentDataArry[assessmentDataArry.length -1];
+    // console.log("this is the latestassessrecord", latestAssessRecord)
+
 
     return (
         <>
         <div className="flex">
-
-            {assessmentData && Object.keys(assessmentData).length > 0 && (<HalfDoughnutChart
+            {/* {assessmentDataArry && Object.keys(assessmentDataArry).length > 0 && (<HalfDoughnutChart */}
+            {latestAssessRecord && (<HalfDoughnutChart
                 headtitle={assessType}
-                levelText={assessmentData.level}
-                levelNum={assessmentData.score}
-                levelPercent={(assessmentData.score * 100) /27}
+                levelText={latestAssessRecord.level}
+                levelNum={latestAssessRecord.score}
+                levelPercent={(latestAssessRecord.score * 100) /27}
             />)}
 
-            <h2>Your {assessType} score is {assessmentData.score} , {assessmentData.level} </h2>
+            {latestAssessRecord && 
+            <h2>Your {assessType} score is {latestAssessRecord.score} , {latestAssessRecord.level} </h2>
+            }
         </div>
         </>
     );
