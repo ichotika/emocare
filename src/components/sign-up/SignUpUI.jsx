@@ -6,7 +6,7 @@ import { HiChevronUpDown } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 const deptArr = [
     "Designer",
-    "Developers",
+    "Developer",
     "IT",
     "Finance",
     "Marketing",
@@ -115,7 +115,6 @@ function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
                 className="block bg-blue-800 text-white"
                 disabled={!selectedOrg}
                 onClick={() => {
-                    console.log(selectedOrg);
                     onOrgDecide(selectedOrg);
                     onDeptDeicde(department);
                     onDesignDecide(designation);

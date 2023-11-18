@@ -55,5 +55,3 @@ const randomUsers = Array.from({ length: 30 }, (_, index) => ({
     pending: getRandomBoolean(),
     joinDate: getRandomDate(new Date(2020, 0, 1), new Date()),
 }));
-
-console.log(randomUsers);

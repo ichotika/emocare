@@ -134,7 +134,6 @@ const OverallCard = ({ employee }) => {
                                     <Image src={Decline} alt="GIF decrease" />
                                 </div>
                             ) : (
-
                                 <div className="flex h-32 w-32 items-center justify-center">
                                     <Image src={Normal} alt="GIF remain" />
                                 </div>
@@ -153,9 +152,11 @@ const OverallCard = ({ employee }) => {
                         <div className="mt-3 flex flex-grow justify-between">
                             <div className="flex flex-grow flex-col justify-between">
                                 <h4 className="flex-grow text-5xl font-bold">
-                                    {(activeEmployeesInMonth11Year2023 /
-                                        employee.length) *
-                                        100}
+                                    {(
+                                        (activeEmployeesInMonth11Year2023 /
+                                            employee.length) *
+                                        100
+                                    ).toFixed(2)}
                                     %
                                 </h4>
 

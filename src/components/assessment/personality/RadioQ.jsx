@@ -1,4 +1,5 @@
-import { Field } from "formik";
+import { Field, useFormikContext } from "formik";
+import { useEffect } from "react";
 import styled from "styled-components";
 const TableRow = styled.div`
     display: grid;
@@ -19,6 +20,21 @@ const TableRow = styled.div`
             : `border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;`}
 `;
 function RadioQ({ question }) {
+    const { setFieldValue } = useFormikContext();
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "ArrowDown") {
+                setFieldValue(question.Question.toLowerCase(), "3");
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [setFieldValue, question.Question]);
     return (
         <TableRow question={question.Question}>
             <div className="ms-4 text-b-sm font-normal" id={question.Question}>

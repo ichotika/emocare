@@ -94,4 +94,3 @@ const jsonData = generateData();
 
 // Export to a JSON file
 fs.writeFileSync("data.json", JSON.stringify(jsonData, null, 2), "utf8");
-console.log("JSON data has been written to data.json");

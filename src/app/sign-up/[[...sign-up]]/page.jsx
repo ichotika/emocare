@@ -10,8 +10,6 @@ export default function Page() {
     const [finalDesig, setFinalDesig] = useState("");
     const pathname = usePathname();
 
-    console.log(pathname);
-
     const handleOrgDecide = (orgName) => {
         setFinalOrg(orgName);
     };
@@ -21,7 +19,6 @@ export default function Page() {
     const handleDesigDecide = (designName) => {
         setFinalDesig(designName);
     };
-    console.log("equals sign-up", pathname === "/sign-up");
     return pathname !== "/sign-up" || finalOrg ? (
         <FinalSignUpPage
             orgName={finalOrg}

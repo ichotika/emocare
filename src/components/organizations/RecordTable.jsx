@@ -75,7 +75,7 @@ function RecordTable({ employeeList }) {
                                       title={list.title}
                                       department={list.department}
                                       joinDate={formatDate(list.joinDate)}
-                                      id={list.email}
+                                      id={list.userId}
                                       assessmentType={list.assessmentType}
                                       scoreCur={list.levelCur}
                                       scorePrev={list.levelPrev}

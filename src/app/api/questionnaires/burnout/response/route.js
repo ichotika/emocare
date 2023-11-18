@@ -8,19 +8,18 @@ export async function GET(request) {
         await connectMongoDB();
 
         const { searchParams } = new URL(request.url);
-        const userId = searchParams.get("search")
+        const userId = searchParams.get("search");
 
         if (!userId) {
             console.error("You can't access this page.");
         }
-        
-        const findLatestUserData = await BurnoutResponse
-            .find({ userId })
+
+        const findLatestUserData = await BurnoutResponse.find({ userId })
             .sort({ createdAt: -1 })
             .limit(1)
-            .exec()
+            .exec();
 
-        console.log(findLatestUserData)
+        console.log(findLatestUserData);
 
         if (findLatestUserData.length > 0) {
             // const latestData = findLatestUserData[0];
@@ -41,22 +40,29 @@ export async function GET(request) {
 
 // POST the answer in MONGODB.
 export async function POST(request) {
-
     await connectMongoDB();
     try {
         const newBurnoutResponse = await request.json();
-        const { userId, assessment_id, assessment_type, assess_date, score, level_description } = newBurnoutResponse;
-
-        console.log(newBurnoutResponse);
+        const {
+            userId,
+            assessment_id,
+            assessment_type,
+            assess_date,
+            score,
+            level_description,
+        } = newBurnoutResponse;
 
         // search for existing data with emailID and assessData
         const existingData = await BurnoutResponse.findOne({ userId });
 
         if (existingData) {
-
-            const newAssessMonth = new Date(newBurnoutResponse.assess_date).getMonth();
+            const newAssessMonth = new Date(
+                newBurnoutResponse.assess_date
+            ).getMonth();
             // console.log("newAssessMonth", newAssessMonth);
-            const existingAssessMonth = new Date(existingData.assess_date).getMonth()
+            const existingAssessMonth = new Date(
+                existingData.assess_date
+            ).getMonth();
 
             // console.log("existing data",newAssessDay.getMonth());
 
@@ -69,15 +75,19 @@ export async function POST(request) {
                             assess_date,
                             // level,
                             score,
-                            level_description
-                        }
+                            level_description,
+                        },
                     }
                 );
-                return NextResponse.json({ message: "Burnout Assessment data updated" });
+                return NextResponse.json({
+                    message: "Burnout Assessment data updated",
+                });
             } else {
                 await BurnoutResponse.create(newBurnoutResponse);
 
-                return NextResponse.json({ message: "New document included in Burnout data added." })
+                return NextResponse.json({
+                    message: "New document included in Burnout data added.",
+                });
             }
         }
 
