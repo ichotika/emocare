@@ -16,7 +16,7 @@ export default function Feedbacks({ feedbacks }) {
     }, [emblaApi]);
 
     return (
-        <div className="relative max-h-[316px] min-w-[350px] grow basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
+        <div className="relative max-h-[316px] min-w-[300px] grow basis-2/4 rounded-lg border border-gray-200 bg-white p-6 shadow">
             <div className="embla">
                 <div className="flex justify-between">
                     <p className="mb-1 text-xl">Feedbacks</p>

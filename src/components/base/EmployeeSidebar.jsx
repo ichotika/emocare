@@ -7,10 +7,9 @@ import Hamburger from "@/public/assets/Wireframes/hamburgerMenu.svg";
 // import hooks
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Header from "../employees/Header";
-import useWindowDimensions from '@/components/base/WindsizeChanger';
+import useWindowDimensions from "@/components/base/WindsizeChanger";
 import { usePathname } from "next/navigation";
 
 const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
@@ -27,14 +26,14 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
 
     const myWindow = useWindowDimensions();
 
-    useEffect(() => {         
-            if (myWindow.width >= 1280) {
-                setIsDesktop(true);
-                // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
-            }else {
-                    setIsDesktop(false)
-                    // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
-                }
+    useEffect(() => {
+        if (myWindow.width >= 1280) {
+            setIsDesktop(true);
+            // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+        } else {
+            setIsDesktop(false);
+            // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+        }
     }, [myWindow]);
 
     const pathname = usePathname();
@@ -70,7 +69,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center">
                         <Header
                             headertext={""}
-                            marginTB = "mb-0 mt-0"
+                            marginTB="mb-0 mt-0"
                             hidden={"hidden"}
                         ></Header>
                     </div>
@@ -81,8 +80,13 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                             {menuRoutes.map((menu, index) => (
                                 <li key={index}>
                                     <Link
-                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname === `/employees${menu.slug}` ? "bg-p-blue-1 text-white" : ""} `}
-                                        // 
+                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${
+                                            pathname ===
+                                            `/employees${menu.slug}`
+                                                ? "bg-p-blue-1 text-white"
+                                                : ""
+                                        } `}
+                                        //
                                         href={`/employees/${menu.slug}`}
                                     >
                                         <Image
@@ -107,7 +111,12 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                             {supportRoutes.map((support, index) => (
                                 <li key={index}>
                                     <Link
-                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname === `/employees${support.slug}` ? "bg-p-blue-1 text-white" : ""} `}
+                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${
+                                            pathname ===
+                                            `/employees${support.slug}`
+                                                ? "bg-p-blue-1 text-white"
+                                                : ""
+                                        } `}
                                         href={`/employees/${support.slug}`}
                                     >
                                         <Image
@@ -125,14 +134,13 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     </nav>
 
                     {/* Signout button */}
-                    <div className="mt-6 rounded-lg px-6 py-3 hover:bg-p-blue-1 hover:text-white">
+                    {/* <div className="mt-6 rounded-lg px-6 py-3 hover:bg-p-blue-1 hover:text-white">
                         <UserButton afterSignOutUrl="/"></UserButton>
-                    </div>
+                    </div> */}
                 </div>
             </aside>
         </>
     );
 };
-
 
 export default EmployeeSidebar;

@@ -18,14 +18,15 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
 
     const distinctUserIds = [
         ...new Set(
-            assessmentsInMonthYear.map((assessment) => assessment.userid)
+            assessmentsInMonthYear.map((assessment) => {
+                return assessment.userId;
+            })
         ),
     ];
-
     const wellBeingRate = (
         (distinctUserIds.length / employee.length) *
         100
-    ).toFixed(2);
+    ).toFixed(0);
 
     const data = {
         labels: ["Satisfaction", "Remaining"],
