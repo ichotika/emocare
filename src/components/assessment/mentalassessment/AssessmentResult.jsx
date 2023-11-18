@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { Doughnut } from "react-chartjs-2";
 import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
 import Link from "next/link";
 
@@ -108,10 +107,10 @@ const AssessmentResult = () => {
                     `/api/assessment?search=${user.id}`
                 );
                 const data = await response.json();
-                console.log(
-                    "this is the assessment data array",
-                    data.assessment
-                );
+                // console.log(
+                //     "this is the assessment data array",
+                //     data.assessment
+                // );
 
                 const filteredArry = await data.assessment.filter(
                     (item) => item.assessmentType === assessType
