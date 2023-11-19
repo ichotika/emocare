@@ -32,8 +32,6 @@ const scoreRange = [
 // console.log(scoreRange[0][0].range)
 
 
-
-
 const AssessmentResult = () => {
     const { user } = useUser();
     // console.log(user);
@@ -43,7 +41,7 @@ const AssessmentResult = () => {
     const splitURL = pathname.split("/");
     // console.log(splitURL);
     const assessType = splitURL[splitURL.length - 2];
-    // console.log(assessType);
+    console.log("coming from URL",assessType);
 
     const [assessmentDataArry, setAssessmentDataArry] = useState([]);
 
@@ -58,7 +56,7 @@ const AssessmentResult = () => {
                 console.log("this is the assessment data array", data.assessment);
 
                 const filteredArry = await data.assessment.filter(
-                    (item) => item.assessmentType === assessType
+                    (item) => item.assessmentType.toLowerCase() === assessType.toLowerCase()
                 );
                 // console.log(filteredArry);
 
