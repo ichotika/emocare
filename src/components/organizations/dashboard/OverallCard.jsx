@@ -49,7 +49,7 @@ const OverallCard = ({ employee }) => {
                 activeEmployeesInMonth10Year2023) /
                 activeEmployeesInMonth10Year2023) *
             100
-        ).toFixed(2);
+        ).toFixed(0);
 
         if (isNaN(percentageDifference) || !isFinite(percentageDifference)) {
             percentageDifference = 0;
@@ -155,7 +155,7 @@ const OverallCard = ({ employee }) => {
                                         (activeEmployeesInMonth11Year2023 /
                                             employee.length) *
                                         100
-                                    ).toFixed(2)}
+                                    ).toFixed(0)}
                                     %
                                 </h4>
 
