@@ -68,8 +68,8 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
             const yCenter = chart.getDatasetMeta(0).data[0].y;
 
             ctx.save();
-            ctx.fillStyle = "grey";
-            ctx.font = "bold 25px serif";
+            ctx.fillStyle = "black";
+            ctx.font = "bold 30px Manrope, sans-serif";
             ctx.textAlign = "center";
             ctx.fillText(`${data.datasets[0].data[0]}%`, xCenter, yCenter - 10);
             ctx.fillText(`Protected`, xCenter, yCenter + 20);
