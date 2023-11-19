@@ -85,7 +85,6 @@ export default function Home() {
                     ? sortedPersonality[0].personalityType
                     : ""
             );
-            setIsLoading(false);
         };
         getAssessmentData();
     }, [currentDate, currentUserId, currentYear]);
@@ -101,6 +100,7 @@ export default function Home() {
     const fetchPersonality = async () => {
         const res = await fetch("/api/personality");
         const data = await res.json();
+        setIsLoading(false);
         return data.personality;
     };
 

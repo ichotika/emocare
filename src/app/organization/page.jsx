@@ -16,7 +16,7 @@ export default function Home() {
     const [notification, setNotification] = useState([]);
     const [notiAssesment, setNotiAssesment] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    
+
     // fetch all assessment record
     const fetchAssessment = async () => {
         const res = await fetch("/api/organization/dashboardAssessment");

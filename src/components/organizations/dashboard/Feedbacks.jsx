@@ -39,13 +39,16 @@ export default function Feedbacks({ feedbacks }) {
 
                 <div className="embla__viewport" ref={emblaRef}>
                     <div className="embla__container max-w-full">
-                        {feedbacks.map((feedback, index) => (
-                            <div className="embla__slide" key={index}>
-                                <FeedbackCard title={feedback.title}>
-                                    <p>{feedback.description}</p>
-                                </FeedbackCard>
-                            </div>
-                        ))}
+                        {feedbacks.map((feedback, index) => {
+                            console.log(index);
+                            return (
+                                <div className="embla__slide" key={index}>
+                                    <FeedbackCard title={feedback.title}>
+                                        <p>{feedback.description}</p>
+                                    </FeedbackCard>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

@@ -208,3 +208,13 @@ img {
         position: relative;
     }
 }
+
+.cs-message__content,
+.cs-message-input__content-editor-wrapper,
+.cs-message-input__content-editor {
+    background-color: #CCDEF5 !important;
+}
+
+.fa-paper-plane {
+    color: black
+}
