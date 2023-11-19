@@ -105,53 +105,44 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            {isLoading ? (
-                <LoadingGif />
-            ) : (
-                <div className="flex flex-col pl-1">
-                    <p
-                        style={{ marginBottom: "-10px" }}
-                        className="text-1xl pt-5"
-                    >
-                        WELCOME
-                    </p>
+            <div className="flex flex-col pl-1">
+                <p style={{ marginBottom: "-10px" }} className="text-1xl pt-5">
+                    WELCOME
+                </p>
 
-                    {notification?.notification?.length >= 0 ? (
-                        <Header
-                            headertext={organizations[0]?.orgName}
-                            notification={notification}
-                            assessment={notiAssesment}
-                        />
-                    ) : (
-                        <></>
-                    )}
-
-                    <OverallCard
-                        assessmentData={assessmentData}
-                        employee={employee}
+                {notification?.notification?.length >= 0 ? (
+                    <Header
+                        headertext={organizations[0]?.orgName}
+                        notification={notification}
+                        assessment={notiAssesment}
                     />
+                ) : (
+                    <></>
+                )}
 
-                    <div className="flex flex-col flex-wrap gap-6 xl:items-center ">
-                        <div className="flex grow items-center gap-6 xl:flex-col">
-                            <WorkplaceWellbeing
-                                assessmentData={assessmentData}
-                                employee={employee}
-                            />
+                <OverallCard
+                    assessmentData={assessmentData}
+                    employee={employee}
+                />
 
-                            <MonthlyAssessment
-                                assessmentData={assessmentData}
-                            />
-                        </div>
-                        <div className="flex max-w-full items-center gap-6 xl:flex-col">
-                            <AssessmentTrendsChart
-                                assessmentData={assessmentData}
-                            />
+                <div className="flex flex-col flex-wrap gap-6 xl:items-center ">
+                    <div className="flex grow items-center gap-6 xl:flex-col">
+                        <WorkplaceWellbeing
+                            assessmentData={assessmentData}
+                            employee={employee}
+                        />
 
-                            <Feedbacks feedbacks={feedbacks} />
-                        </div>
+                        <MonthlyAssessment assessmentData={assessmentData} />
+                    </div>
+                    <div className="flex max-w-full items-center gap-6 xl:flex-col">
+                        <AssessmentTrendsChart
+                            assessmentData={assessmentData}
+                        />
+
+                        <Feedbacks feedbacks={feedbacks} />
                     </div>
                 </div>
-            )}
+            </div>
         </>
     );
 }

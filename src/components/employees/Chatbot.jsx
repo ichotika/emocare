@@ -10,8 +10,6 @@ import {
     TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = "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";
-
 function Chatbot({ mypersonality }) {
     const [typing, setTyping] = useState(false);
     const [messages, setMessages] = useState([
@@ -56,7 +54,7 @@ function Chatbot({ mypersonality }) {
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                Authorization: "Bearer " + API_KEY,
+                Authorization: "Bearer " + process.env.NEXT_PUBLIC_GPT_API,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(apiRequestBody),
