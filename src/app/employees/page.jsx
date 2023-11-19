@@ -20,7 +20,7 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(0);
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -85,6 +85,7 @@ export default function Home() {
                     ? sortedPersonality[0].personalityType
                     : ""
             );
+            setIsLoading(() => isLoading + 1);
         };
         getAssessmentData();
     }, [currentDate, currentUserId, currentYear]);
@@ -100,15 +101,13 @@ export default function Home() {
     const fetchPersonality = async () => {
         const res = await fetch("/api/personality");
         const data = await res.json();
-        setIsLoading(false);
+        setIsLoading(() => isLoading + 1);
         return data.personality;
     };
 
     // fetch noti
 
-    return isLoading ? (
-        <LoadingGif />
-    ) : (
+    return (
         <>
             <Header headertext={"Employee"} isHidden={true} />
             <div>
