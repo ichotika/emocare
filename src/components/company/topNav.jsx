@@ -10,11 +10,9 @@ export default function TopNav({ routes }) {
 
     const [hiddenHamburgerNav, setHiddenHamburgerNav] = useState(true);
 
-
     useEffect(() => {
         handleClose();
     }, [pathname]);
-
 
     const handleOpen = () => {
         setHiddenHamburgerNav(false);
@@ -31,7 +29,9 @@ export default function TopNav({ routes }) {
                     "z-10 flex flex-row items-center justify-between bg-white sm:fixed sm:left-0 sm:right-0 sm:top-0 sm:h-[50px]"
                 }
             >
-                <Image src={emocareLogo} height={50} alt="Emocare Logo" />
+                <Link href={"/company"}>
+                    <Image src={emocareLogo} height={50} alt="Emocare Logo" />
+                </Link>
                 <button
                     onClick={handleOpen}
                     className={
@@ -72,7 +72,7 @@ export default function TopNav({ routes }) {
 function HamburgerNav({ routes, tuckedAway, onClose }) {
     return (
         <nav
-            className={`fixed inset-0 z-10 flex flex-col items-center gap-4 bg-blue-600 text-white top-[50px] transition-all ${
+            className={`fixed inset-0 top-[50px] z-10 flex flex-col items-center gap-4 bg-blue-600 text-white transition-all ${
                 tuckedAway ? "translate-x-full" : "translate-x-0"
             }`}
         >
