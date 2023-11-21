@@ -1,5 +1,4 @@
 "use client";
-import LoadingGif from "@/components/base/Loading";
 import { useState, useEffect } from "react";
 import Header from "@/components/organizations/Header";
 import OverallCard from "@/components/organizations/dashboard/OverallCard";
@@ -13,10 +12,21 @@ export default function Home() {
     const [employee, setEmployee] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [organizations, setOrganizations] = useState([]);
-    const [notification, setNotification] = useState([]);
-    const [notiAssesment, setNotiAssesment] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const fetchOrganizations = async () => {
+        const res = await fetch("/api/organization/dashboardOrganizations");
+        const data = await res.json();
+        return data;
+    };
 
+    useEffect(() => {
+        const getOrganizations = async () => {
+            const organizations = await fetchOrganizations();
+
+            setOrganizations(organizations.organizations);
+        };
+
+        getOrganizations();
+    }, []);
     // fetch all assessment record
     const fetchAssessment = async () => {
         const res = await fetch("/api/organization/dashboardAssessment");
@@ -28,7 +38,6 @@ export default function Home() {
         const getAssessmentData = async () => {
             const assessData = await fetchAssessment();
             setAssessmentData(assessData.assesshistory);
-            setNotiAssesment(assessData);
         };
         getAssessmentData();
     }, []);
@@ -44,7 +53,6 @@ export default function Home() {
             }
             const data = await response.json();
             setEmployee(data.emplist);
-            setIsLoading(false);
         } catch (error) {
             console.error("Could not fetch data", error);
         }
@@ -68,65 +76,35 @@ export default function Home() {
         getFeedbacks();
     }, []);
 
-    // fetch organizations
-    const fetchOrganizations = async () => {
-        const res = await fetch("/api/organization/dashboardOrganizations");
-        const data = await res.json();
-        return data;
-    };
-
-    useEffect(() => {
-        const getOrganizations = async () => {
-            const organizations = await fetchOrganizations();
-
-            setOrganizations(organizations.organizations);
-        };
-
-        getOrganizations();
-    }, []);
-
-    // fetch notification
-    const fetchNotification = async () => {
-        const res = await fetch("/api/notification/organization");
-        const data = await res.json();
-        return data;
-    };
-
-    useEffect(() => {
-        const getNotification = async () => {
-            const notification = await fetchNotification();
-            setNotification(notification);
-        };
-
-        getNotification();
-    }, []);
-
     const gaugeValue = 70;
     const gaugeMaxValue = 100;
     return (
         <>
-            <div className="-mt-4 flex flex-col pl-1">
-                <p style={{ marginBottom: "-10px" }} className="text-1xl">
-                    WELCOME
-                </p>
+            <div className="-mt-4 flex flex-col items-stretch pl-1 xl:items-center">
+                <div className="flex w-full grow flex-col">
+                    <p
+                        style={{ marginBottom: "-10px" }}
+                        className="text-1xl font-semibold"
+                    >
+                        WELCOME
+                    </p>
 
-                {notification?.notification?.length >= 0 ? (
-                    <Header
-                        headertext={organizations[0]?.orgName}
-                        notification={notification}
-                        assessment={notiAssesment}
-                    />
-                ) : (
-                    <></>
-                )}
+                    {/* {notification?.notification?.length >= 0 ? ( */}
+                    <div>
+                        <Header headertext={organizations[0]?.orgName} />
+                    </div>
 
+                    {/* ) : (
+                        <></>
+                    )} */}
+                </div>
                 <OverallCard
                     assessmentData={assessmentData}
                     employee={employee}
                 />
 
-                <div className="flex flex-col flex-wrap gap-6 xl:items-center ">
-                    <div className="flex items-center gap-6 xl:flex-col">
+                <div className="max-width-org-mobile flex flex-col flex-wrap gap-6 xl:items-center">
+                    <div className="flex max-h-[346px] w-full gap-6 xl:max-h-full xl:flex-col">
                         <WorkplaceWellbeing
                             assessmentData={assessmentData}
                             employee={employee}
@@ -134,7 +112,7 @@ export default function Home() {
 
                         <MonthlyAssessment assessmentData={assessmentData} />
                     </div>
-                    <div className="flex max-w-full items-center gap-6 xl:flex-col">
+                    <div className="flex gap-6 xl:max-h-full xl:flex-col">
                         <AssessmentTrendsChart
                             assessmentData={assessmentData}
                         />
