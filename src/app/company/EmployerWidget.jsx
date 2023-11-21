@@ -15,7 +15,7 @@ export default function EmployerWidget({ widget }) {
                 className="h-32 w-auto"
             ></Image>
             <h3 className={"text-2xl font-bold font-manrope"}>{heading}</h3>
-            <p>{body}</p>
+            <p className={"font-semibold"}>{body}</p>
         </div>
     );
 }
