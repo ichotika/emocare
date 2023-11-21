@@ -105,8 +105,8 @@ export default function Home() {
     const gaugeMaxValue = 100;
     return (
         <>
-            <div className="flex flex-col pl-1">
-                <p style={{ marginBottom: "-10px" }} className="text-1xl pt-5">
+            <div className="-mt-4 flex flex-col pl-1">
+                <p style={{ marginBottom: "-10px" }} className="text-1xl">
                     WELCOME
                 </p>
 
@@ -126,7 +126,7 @@ export default function Home() {
                 />
 
                 <div className="flex flex-col flex-wrap gap-6 xl:items-center ">
-                    <div className="flex grow items-center gap-6 xl:flex-col">
+                    <div className="flex items-center gap-6 xl:flex-col">
                         <WorkplaceWellbeing
                             assessmentData={assessmentData}
                             employee={employee}

@@ -21,9 +21,9 @@ const TableHeader = styled.div`
     background-color: #f5f9ff;
     border-bottom: 2px solid #f5f9ff;
     letter-spacing: 0.4px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-grey-600);
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
 `;
 
 function RecordTable({ employeeList }) {
@@ -39,7 +39,7 @@ function RecordTable({ employeeList }) {
     };
 
     return (
-        <div className="mt-12">
+        <div className="mt-8">
             <HeaderTab
                 tabNames={[
                     "All",
@@ -53,7 +53,7 @@ function RecordTable({ employeeList }) {
                 setActiveTab={setActiveTab}
                 setCurNumber={setCurNumber}
             />
-            <Table className="mb-12 mt-6">
+            <Table className="mb-8 mt-6">
                 <TableHeader>
                     <div></div>
                     <div className="">Employee Designation</div>

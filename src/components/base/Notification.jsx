@@ -97,7 +97,7 @@ const Notification = ({ headertext, notification, assessment }) => {
                             borderColor: isRead ? "lightgrey" : "#2469F6",
                             color: isRead ? "lightgrey" : "#2469F6",
                         }}
-                        className="w-14 h-14 mb-3 rounded-full border p-2 "
+                        className="mb-3 h-14 w-14 rounded-full border p-2 "
                     >
                         <div
                             style={{
@@ -116,7 +116,7 @@ const Notification = ({ headertext, notification, assessment }) => {
                             borderColor: isRead ? "lightgrey" : "#2469F6",
                             color: isRead ? "lightgrey" : "#2469F6",
                         }}
-                        className="w-14 h-14 my-3 rounded-full border p-2 "
+                        className="my-3 h-14 w-14 rounded-full border p-2 "
                     >
                         <div
                             style={{
@@ -225,7 +225,7 @@ const Notification = ({ headertext, notification, assessment }) => {
     };
 
     return (
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-4 px-12">
             <UserButton afterSignOutUrl="/" />
             <div className="relative cursor-pointer" onClick={notify}>
                 <Image

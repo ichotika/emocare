@@ -190,8 +190,9 @@ img {
 }
 
 .chart-js-wrapper-stack {
-    height: 60px;
-    width: 300px;
+    height: 50px;
+    min-width: 200px;
+    max-width: 260px;
     position: relative;
 }
 
@@ -203,7 +204,7 @@ img {
     }
 
     .chart-js-wrapper-stack {
-        height: 60px;
+        height: 50px;
         max-width: 1200px;
         position: relative;
     }

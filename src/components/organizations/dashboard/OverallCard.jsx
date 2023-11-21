@@ -61,7 +61,7 @@ const OverallCard = ({ employee }) => {
             <div className="flex w-4/5 flex-row gap-4 xl:flex-col xl:items-center xl:justify-center">
                 <div
                     className="flex flex-grow"
-                    style={{ "min-width": "350px" }}
+                    style={{ "min-width": "320px", "max-width": "350px" }}
                 >
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <p className="text-xl">Total Employees</p>
@@ -144,7 +144,7 @@ const OverallCard = ({ employee }) => {
                 {/* active employee */}
                 <div
                     className="flex flex-grow"
-                    style={{ "min-width": "350px" }}
+                    style={{ "min-width": "320px", "max-width": "350px" }}
                 >
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <p className="text-xl">Active Employee</p>

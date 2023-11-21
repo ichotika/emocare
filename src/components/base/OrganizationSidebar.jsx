@@ -61,7 +61,7 @@ const OrganizationSidebar = ({ menuRoutes }) => {
 
             {/* Sidebar */}
             <aside
-                className={`mt-16 flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${
+                className={`mt-[62px] flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${
                     isHamburgerOpen
                         ? "z-10 w-[320px] xl:translate-x-0 xl:bg-gradient-org"
                         : "xl:-translate-x-full"
