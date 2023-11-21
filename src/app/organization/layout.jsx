@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
                 <OrganizationSidebar menuRoutes={routesMenu} />
             </div>
 
-            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-white p-12 pb-[40px] xl:ml-0 xl:grow-0 xl:p-8">
+            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-white p-12 pb-[32px] xl:ml-0 xl:grow-0 xl:p-8">
                 {children}
             </div>
         </div>
