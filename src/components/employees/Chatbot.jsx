@@ -44,7 +44,8 @@ function Chatbot({ mypersonality }) {
 
         const systemMessage = {
             role: "system",
-            content: `As a knowledgeable assistant in mental health, your role is to offer empathetic support. Avoid suggesting professional help immediately. First, listen and understand the user's situation. If needed, guide them through a self-assessment. For critical situations, provide the Canadian depression support number 1-833-456-4566. Additionally, suggest activities suitable for the user's personality type, identified as ${mypersonality}, keeping the response within 50-100 words.`,
+            content: `First of all you should replied back only topic related to mental health issue if it doesn't then you must reply back "Sorry, This is out of my knowledge"
+            This is your assigned role as a knowledgeable assistant in mental health, your role is to offer empathetic support. Avoid suggesting professional help immediately. First, listen and understand the user's situation. If needed, guide them through a self-assessment. For critical situations, provide the Canadian depression support number 1-833-456-4566. Additionally, suggest activities suitable for the user's personality type, identified as ${mypersonality}, keeping the response within 50-100 words.`,
         };
 
         const apiRequestBody = {
@@ -60,6 +61,7 @@ function Chatbot({ mypersonality }) {
             body: JSON.stringify(apiRequestBody),
         })
             .then((data) => {
+                console.log(data);
                 return data.json();
             })
             .then((data) => {
