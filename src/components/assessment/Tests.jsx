@@ -13,7 +13,8 @@ const Tests = () => {
             description:
                 "Patient Health Questionnaire-9 (PHQ-9) is an assessment to evaluate your depression level.",
             link: "/employees/assessment/depression",
-            src: DepressionPic
+            src: DepressionPic,
+            type: "depression"
         },
         {
             title: "Anxiety Assessment",
@@ -22,7 +23,8 @@ const Tests = () => {
             description:
                 "Generalized Anxiety Disorder Assessment (GAD-7) is an assessment to evaluate your anxiety level",
             link: "/employees/assessment/anxiety",
-            src: AnxietyPic
+            src: AnxietyPic,
+            type: "anxiety"
         },
         {
             title: "Burnout Assessment",
@@ -31,7 +33,8 @@ const Tests = () => {
             description:
                 "This assessment helps you look at the way you feel about your job and your experiences at work, so that you can get a feel for whether you are at risk of burnout.",
             link: "/employees/assessment/burnout",
-            src: BurnoutPic
+            src: BurnoutPic,
+            type: "burnout"
         },
     ];
 
@@ -45,6 +48,9 @@ const Tests = () => {
         </>
     );
 };
+
+
+
 
 const PersonalityTest = () => {
     const personalities = [

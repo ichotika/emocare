@@ -57,13 +57,15 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, perce
     return (
         <div className="bg-white rounded-lg p-2 w-[100%] h-[100%]">
             <h1 className="font-bold text-center">{headtitle}</h1>
-            <Doughnut
-                data={data}
-                options={options}
-                plugins={[chartInnerText]}
-                className="w-[100%] h-[100%]"
-            />
-        </div>
+            {/* <v className="-mt-[80px]"> */}
+                <Doughnut
+                    data={data}
+                    options={options}
+                    plugins={[chartInnerText]}
+                    className="w-[100%] h-[100%]"
+                />
+            </div>
+        // </div>
     );
 }
 
