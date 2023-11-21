@@ -58,16 +58,13 @@ const OverallCard = ({ employee }) => {
 
     return (
         <div className="mb-7 mt-7 flex xl:items-center xl:justify-center">
-            <div className="flex w-4/5 flex-row gap-4 xl:flex-col xl:items-center xl:justify-center">
-                <div
-                    className="flex flex-grow"
-                    style={{ "min-width": "320px", "max-width": "350px" }}
-                >
+            <div className="flex max-h-[166px] flex-row gap-4 xl:max-h-full xl:flex-col xl:items-center xl:justify-center">
+                <div className="flex grow" style={{ width: "348px" }}>
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
-                        <p className="text-xl">Total Employees</p>
-                        <div className="mt-3 flex flex-grow justify-between">
-                            <div className="flex flex-grow flex-col justify-between">
-                                <h4 className="flex-grow text-5xl font-bold">
+                        <div className="flex justify-between">
+                            <div className="flex flex-col justify-between">
+                                <p className="flex text-xl">Total Employees</p>
+                                <h4 className="flex text-5xl font-bold">
                                     {employee.length}
                                 </h4>
 
@@ -142,15 +139,12 @@ const OverallCard = ({ employee }) => {
                 </div>
 
                 {/* active employee */}
-                <div
-                    className="flex flex-grow"
-                    style={{ "min-width": "320px", "max-width": "350px" }}
-                >
+                <div className="flex grow" style={{ width: "348px" }}>
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
-                        <p className="text-xl">Active Employee</p>
-                        <div className="mt-3 flex flex-grow justify-between">
-                            <div className="flex flex-grow flex-col justify-between">
-                                <h4 className="flex-grow text-5xl font-bold">
+                        <div className="flex justify-between">
+                            <div className="flex flex-col justify-between">
+                                <p className="flex text-xl">Total Employees</p>
+                                <h4 className="flex text-5xl font-bold">
                                     {(
                                         (activeEmployeesInMonth11Year2023 /
                                             employee.length) *

@@ -17,7 +17,7 @@
 
 .embla__slide {
     flex: 0 0 100%;
-    width: 70px;
+    width: 20px;
 
 
 }
@@ -190,14 +190,22 @@ img {
 }
 
 .chart-js-wrapper-stack {
+    display: flex;
     height: 50px;
     min-width: 200px;
     max-width: 260px;
     position: relative;
 }
 
+.max-width-org-mobile {
+    max-width: 348px;
+}
 
 @media (min-width: 1279px) {
+    .max-width-org-mobile {
+        max-width: 100%;
+    }
+
     .chart-js-wrapper-trend {
         height: 220px;
         width: auto;
@@ -205,10 +213,20 @@ img {
 
     .chart-js-wrapper-stack {
         height: 50px;
-        max-width: 1200px;
+        max-width: 250px;
         position: relative;
     }
 }
+
+@media (min-width: 1440px) {
+    .chart-js-wrapper-stack {
+        height: 50px;
+        max-width: 500px;
+        position: relative;
+    }
+}
+
+
 
 .cs-message__content,
 .cs-message-input__content-editor-wrapper,

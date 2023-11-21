@@ -40,9 +40,9 @@ export default function MonthlyAssessment({ assessmentData }) {
     const anxietyCount = anxietyAssessments.length;
 
     return (
-        <div className="max-h-[342px] basis-4/5 rounded-lg border border-gray-200 bg-white p-10 shadow xl:max-h-full xl:basis-full ">
+        <div className="basis-4/5 rounded-lg border border-gray-200 bg-white p-6 shadow xl:max-h-full xl:basis-full">
             <div className="flex flex-wrap gap-x-10 gap-y-6">
-                <div className="flex items-center gap-24 xl:flex-col">
+                <div className="flex grow items-center gap-[100px] xl:flex-col">
                     <div className="flex gap-3">
                         <AssessmentDonutChart
                             assessmentsInMonthYearCount={

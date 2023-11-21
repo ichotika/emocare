@@ -37,7 +37,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
                 backgroundColor: ["#ED672C", "#FDF4E8"],
                 borderColor: ["white"],
                 circumference: 270,
-                rotation: 230,
+                rotation: 225,
             },
         ],
     };
@@ -52,7 +52,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
             },
         },
         aspectRatio: 1 / 1,
-        cutout: 105,
+        cutout: 100,
     };
 
     const gaugeText = {
@@ -77,14 +77,11 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
     };
 
     return (
-        <div className="flex-grow items-center rounded-lg border border-gray-200 bg-white p-6 shadow ">
+        <div className="items-center rounded-lg border border-gray-200 bg-white p-6 shadow xl:flex xl:flex-col xl:justify-center">
             <p className="mb-5 text-center text-b-xl font-bold">
                 Workplace Wellbeing
             </p>
-            <div
-                className="chart-js-wrapper -mt-10 pt-1"
-                style={{ width: "270px" }}
-            >
+            <div className="chart-js-wrapper pt-1" style={{ width: "260px" }}>
                 <Doughnut data={data} options={options} plugins={[gaugeText]} />
             </div>
         </div>
