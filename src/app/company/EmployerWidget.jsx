@@ -5,7 +5,7 @@ export default function EmployerWidget({ widget }) {
     const { heading, body, src } = widget;
 
     return (
-        <div className={"flex flex-col items-start gap-7"}>
+        <div className={"flex flex-col items-start sm:items-center sm:text-center gap-7"}>
             <Image
                 src={baseImageURL + src}
                 alt={heading}
