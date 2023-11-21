@@ -26,23 +26,44 @@ function AssessmentHistory({ assessment }) {
         };
 
         assessment.forEach((assess) => {
-            const assessTimestamp = dayjs(assess.timestamp).startOf("month");
+            const assessTimestamp = dayjs(assess.createdAt).startOf("month");
             if (newTimestamp.isSame(assessTimestamp, "month")) {
                 switch (assess.assessmentType) {
                     case "depression":
                         historyEntry.depressionLevel = assess.level;
-                        historyEntry.scoreDeprLevel = (assess.score >= 0 && assess.score <= 4 ? "good" : assess.score >= 5 && assess.score <= 14 ? "moderate" : assess.score >= 15 && assess.score <= 27 ? "critical" : "na")
+                        historyEntry.scoreDeprLevel =
+                            assess.score >= 0 && assess.score <= 4
+                                ? "good"
+                                : assess.score >= 5 && assess.score <= 14
+                                ? "moderate"
+                                : assess.score >= 15 && assess.score <= 27
+                                ? "critical"
+                                : "na";
                         break;
                     case "Anxiety":
                         historyEntry.anxietyLevel = assess.level;
-                        historyEntry.scoreAnxLevel = (assess.score >= 0 && assess.score <= 4 ? "good" : assess.score >= 5 && assess.score <= 9 ? "moderate" : assess.score >= 10 && assess.score <= 21 ? "critical" : "na")
+                        historyEntry.scoreAnxLevel =
+                            assess.score >= 0 && assess.score <= 4
+                                ? "good"
+                                : assess.score >= 5 && assess.score <= 9
+                                ? "moderate"
+                                : assess.score >= 10 && assess.score <= 21
+                                ? "critical"
+                                : "na";
                         break;
                     case "burnout":
                         historyEntry.burnoutLevel = assess.level;
-                        historyEntry.scoreBurnoutLevel = (assess.score >= 15 && assess.score <= 18 ? "good" : assess.score >= 19 && assess.score <= 49 ? "moderate" : assess.score >= 50 && assess.score <= 75 ? "critical" : "na")
+                        historyEntry.scoreBurnoutLevel =
+                            assess.score >= 15 && assess.score <= 18
+                                ? "good"
+                                : assess.score >= 19 && assess.score <= 49
+                                ? "moderate"
+                                : assess.score >= 50 && assess.score <= 75
+                                ? "critical"
+                                : "na";
                         break;
                     default:
-                        console.log("Unknown assessment type for:", assess);
+                    // console.log("Unknown assessment type for:", assess);
                 }
             }
         });

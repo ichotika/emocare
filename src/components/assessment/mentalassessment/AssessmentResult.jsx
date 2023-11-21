@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { Doughnut } from "react-chartjs-2";
 import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
 import Link from "next/link";
 import Image from "next/image";
@@ -76,7 +75,6 @@ const scoreRange = [
 ]
 // console.log(scoreRange[0][scoreRange[0].length-1].level,scoreRange[0][scoreRange[0].length-2].level)
 
-
 const AssessmentResult = () => {
     const { user } = useUser();
     // console.log(user);
@@ -98,6 +96,7 @@ const AssessmentResult = () => {
                     `/api/assessment?search=${user.id}`
                 );
                 const data = await response.json();
+
                 // console.log("this is the assessment data array", data.assessment);
 
                 const filteredArry = await data.assessment.filter(
@@ -109,7 +108,7 @@ const AssessmentResult = () => {
             };
             getAssessmentResult();
         }
-    }, [user]);
+    }, [user, assessType]);
     // console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
 
     const latestAssessRecord =
@@ -126,7 +125,9 @@ const AssessmentResult = () => {
                                 headtitle=""
                                 levelText={latestAssessRecord.level}
                                 levelNum={latestAssessRecord.score}
-                                levelPercent={(latestAssessRecord.score * 100) / 27}
+                                levelPercent={
+                                    (latestAssessRecord.score * 100) / 27
+                                }
                                 percentColor={"#FFC700"}
                                 className="justify-self-center h-[50%]"
                             />
@@ -136,7 +137,9 @@ const AssessmentResult = () => {
                                 headtitle=""
                                 levelText={latestAssessRecord.level}
                                 levelNum={latestAssessRecord.score}
-                                levelPercent={(latestAssessRecord.score * 100) / 21}
+                                levelPercent={
+                                    (latestAssessRecord.score * 100) / 21
+                                }
                                 percentColor={"#0ECD9E"}
                             />
                         )}
@@ -145,7 +148,9 @@ const AssessmentResult = () => {
                                 headtitle=""
                                 levelText={latestAssessRecord.level}
                                 levelNum={latestAssessRecord.score}
-                                levelPercent={(latestAssessRecord.score * 100) / 75}
+                                levelPercent={
+                                    (latestAssessRecord.score * 100) / 75
+                                }
                                 percentColor={"#FF8C49"}
                             />
                         )}
@@ -203,6 +208,7 @@ const AssessmentResult = () => {
                                 )}
                             </tbody>
                         </table>
+
                     </div>
                     {latestAssessRecord && latestAssessRecord.level === 
                      (scoreRange[0][scoreRange[0].length-1]?.level ||

@@ -10,6 +10,8 @@ import PopUpAssessmentHistory from "@/components/employees/PopUpAssessmentHistor
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Header from "@/components/employees/Header";
+import Chatbot from "@/components/employees/Chatbot";
+import LoadingGif from "@/components/base/Loading";
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
@@ -18,6 +20,7 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
+    const [isLoading, setIsLoading] = useState(0);
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -42,8 +45,9 @@ export default function Home() {
                     ? sortedUserData.filter(
                           (user) =>
                               new Date(user.createdAt).getMonth() ===
-                              currentDate && new Date(user.createdAt).getFullYear() ===
-                              currentYear
+                                  currentDate &&
+                              new Date(user.createdAt).getFullYear() ===
+                                  currentYear
                       )
                     : [];
 
@@ -81,6 +85,7 @@ export default function Home() {
                     ? sortedPersonality[0].personalityType
                     : ""
             );
+            setIsLoading(() => isLoading + 1);
         };
         getAssessmentData();
     }, [currentDate, currentUserId, currentYear]);
@@ -96,6 +101,7 @@ export default function Home() {
     const fetchPersonality = async () => {
         const res = await fetch("/api/personality");
         const data = await res.json();
+        setIsLoading(() => isLoading + 1);
         return data.personality;
     };
 
@@ -109,14 +115,16 @@ export default function Home() {
                     <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
                 </div>
                 <div className="grid grid-cols-4 sm:flex sm:flex-col">
-                    <div className="m-2 col-span-3 flex flex-wrap gap-4">
-                        <div className="grow w-[216px] sm:w-[100%]">
+                    <div className="col-span-3 m-2 flex flex-wrap gap-4">
+                        <div className="w-[216px] grow sm:w-[100%]">
                             {deprData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Depression"}
                                     levelText={deprData[0].level}
                                     levelNum={deprData[0].score}
-                                    levelPercent={(deprData[0].score * 100) / 27}
+                                    levelPercent={
+                                        (deprData[0].score * 100) / 27
+                                    }
                                     percentColor={"#FFC700"}
                                 />
                             ) : (
@@ -128,13 +136,15 @@ export default function Home() {
                                 </>
                             )}
                         </div>
-                        <div className="grow w-[216px] sm:w-[100%]">
+                        <div className="w-[216px] grow sm:w-[100%]">
                             {anxietyData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Anxiety"}
                                     levelText={anxietyData[0].level}
                                     levelNum={anxietyData[0].score}
-                                    levelPercent={(anxietyData[0].score * 100) / 21}
+                                    levelPercent={
+                                        (anxietyData[0].score * 100) / 21
+                                    }
                                     percentColor={"#0ECD9E"}
                                 />
                             ) : (
@@ -144,13 +154,15 @@ export default function Home() {
                                 />
                             )}
                         </div>
-                        <div className="grow w-[216px] sm:w-[100%]">
+                        <div className="w-[216px] grow sm:w-[100%]">
                             {burnoutData.length > 0 ? (
                                 <HalfDoughnutChart
                                     headtitle={"Burnout"}
                                     levelText={burnoutData[0].level}
                                     levelNum={burnoutData[0].score}
-                                    levelPercent={(burnoutData[0].score * 100) / 75}
+                                    levelPercent={
+                                        (burnoutData[0].score * 100) / 75
+                                    }
                                     percentColor={"#FF8C49"}
                                 />
                             ) : (
@@ -162,13 +174,13 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="m-2 row-span-2">
+                    <div className="row-span-2 m-2">
                         <PersonalityType
                             mypersonality={recentPersonalityType}
                         />
                     </div>
 
-                    <div className="m-2 col-span-3 rounded-lg bg-white p-2">
+                    <div className="col-span-3 m-2 rounded-lg bg-white p-2">
                         <div className="flex justify-between">
                             <h2 className="pb-2 font-bold">
                                 Your Assessment History
@@ -184,19 +196,24 @@ export default function Home() {
                         )}
                     </div>
                 </div>
+                <div className="flex items-stretch">
+                    <div className="m-2 max-h-[350px] grow basis-3/5 rounded-lg bg-white p-2">
+                        <div className="flex justify-between pb-4">
+                            <h2 className="font-bold">Education</h2>
+                            <Link href={`/employees/education`}>View all</Link>
+                        </div>
+                        {/* <EducationProgress currentUser={currentUserId} /> */}
 
-                <div className="m-2 rounded-lg bg-white p-2">
-                    <div className="flex justify-between pb-4">
-                        <h2 className="font-bold">Education</h2>
-                        <Link href={`/employees/education`}>View all</Link>
+                        <EducationProgress
+                            currentUser={currentUserId}
+                            pageTitle={"employee"}
+                        />
                     </div>
-                    {/* <EducationProgress currentUser={currentUserId} /> */}
-                    <EducationProgress
-                        currentUser={currentUserId}
-                        pageTitle={"employee"}
-                    />
-                </div>
 
+                    <div className="m-2 max-h-[350px] basis-2/5 rounded-lg bg-white p-2 xl:hidden xl:w-0">
+                        <Chatbot mypersonality={recentPersonalityType} />
+                    </div>
+                </div>
                 <PopUpAssessmentHistory
                     isVisible={popup}
                     onClose={() => setPopup(false)}

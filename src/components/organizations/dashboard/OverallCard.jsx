@@ -4,7 +4,6 @@ import Image from "next/image";
 import Growth from "@/public/assets/organization/Growth.gif";
 import Normal from "@/public/assets/organization/Normal.gif";
 import Decline from "@/public/assets/organization/Decline.gif";
-import { Suspense } from "react";
 const OverallCard = ({ employee }) => {
     function countEmployeesByMonthAndYear(employees, year, month, dateType) {
         return employees.reduce((count, emp) => {
@@ -50,7 +49,7 @@ const OverallCard = ({ employee }) => {
                 activeEmployeesInMonth10Year2023) /
                 activeEmployeesInMonth10Year2023) *
             100
-        ).toFixed(2);
+        ).toFixed(0);
 
         if (isNaN(percentageDifference) || !isFinite(percentageDifference)) {
             percentageDifference = 0;
@@ -156,7 +155,7 @@ const OverallCard = ({ employee }) => {
                                         (activeEmployeesInMonth11Year2023 /
                                             employee.length) *
                                         100
-                                    ).toFixed(2)}
+                                    ).toFixed(0)}
                                     %
                                 </h4>
 

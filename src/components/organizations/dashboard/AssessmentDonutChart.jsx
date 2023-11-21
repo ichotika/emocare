@@ -52,8 +52,8 @@ export default function AssessmentDonutChart({
             const yCenter = chart.getDatasetMeta(0).data[0].y;
 
             ctx.save();
-            ctx.fillStyle = "grey";
-            ctx.font = "bold 30px serif";
+            ctx.fillStyle = "black";
+            ctx.font = "bold 30px Manrope, sans-serif";
             ctx.textAlign = "center";
             ctx.fillText(
                 `${

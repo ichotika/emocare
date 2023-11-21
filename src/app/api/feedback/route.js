@@ -17,7 +17,7 @@ export async function GET() {
         const feedbacks = await Feedback.find({
             organization_name: user.unsafeMetadata.organization,
         });
-        console.log(feedbacks);
+        // console.log(feedbacks);
         return NextResponse.json({ feedbacks }, { status: 200 });
     } catch (error) {
         console.error("Error fetching your organization's feedback: ", error);
