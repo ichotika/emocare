@@ -30,6 +30,7 @@ function EmployeeTable({ employeeList }) {
     const [activeTab, setActiveTab] = useState("All");
     const [curNumber, setCurNumber] = useState(1);
     const max = 5;
+    const filterEmp = employeeList.filter((list) => list.pending !== false);
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -61,7 +62,7 @@ function EmployeeTable({ employeeList }) {
                     <div className="text-center">Date of Joining</div>
                 </TableHeader>
                 {activeTab === "All"
-                    ? employeeList
+                    ? filterEmp
                           .slice(
                               curNumber === 1 ? 0 : (curNumber - 1) * max,
                               curNumber * max
@@ -79,7 +80,7 @@ function EmployeeTable({ employeeList }) {
                                   />
                               );
                           })
-                    : employeeList
+                    : filterEmp
                           .filter((list) => list.department === activeTab)
                           .slice(
                               curNumber === 1 ? 0 : (curNumber - 1) * max,
@@ -101,14 +102,14 @@ function EmployeeTable({ employeeList }) {
             </Table>
             {activeTab === "All" ? (
                 <Pagination
-                    dataArr={employeeList}
+                    dataArr={filterEmp}
                     max={max}
                     curNumber={curNumber}
                     setCurNumber={setCurNumber}
                 />
             ) : (
                 <Pagination
-                    dataArr={employeeList.filter(
+                    dataArr={filterEmp.filter(
                         (list) => list.department === activeTab
                     )}
                     max={max}
