@@ -9,7 +9,7 @@ import Hamburger from "@/public/assets/Wireframes/hamburgerMenu.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Header from "../employees/Header";
+import Header from "@/components/organizations/Header";
 import useWindowDimensions from "@/components/base/WindsizeChanger";
 import { usePathname } from "next/navigation";
 
@@ -68,8 +68,12 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                 }`}
             >
                 <div className="flex flex-col">
-                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center">
-                        <Header headertext={""} mb={0} mt={0}></Header>
+                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center xl:justify-end">
+                        <Header
+                            headertext={""}
+                            isHidden={true}
+                            color={"#FFFFFF"}
+                        ></Header>
                     </div>
                     <nav>
                         <ul>
@@ -83,6 +87,9 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                                                 : ""
                                         } `}
                                         href={`/organization${menu.slug}`}
+                                        onClick={() =>
+                                            setIsHamburgerOpen(false)
+                                        }
                                     >
                                         <div className="text-white">
                                             <Image

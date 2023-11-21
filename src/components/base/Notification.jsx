@@ -8,9 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsArrowRight, BsEnvelope } from "react-icons/bs";
 import Link from "next/link";
-import Bell from "@/public/icons/bell.svg";
+import Bell from "@/public/icons/BellOrg";
 
-const Notification = ({ headertext, notification, assessment }) => {
+const Notification = ({ notification, assessment, color }) => {
     const unreadNotifications = notification.notification.filter(
         (notif) => !notif.isRead
     );
@@ -225,15 +225,10 @@ const Notification = ({ headertext, notification, assessment }) => {
     };
 
     return (
-        <div className="flex items-center justify-center gap-4 px-12">
+        <div className="flex items-center justify-center gap-4 px-12 xl:px-0">
             <UserButton afterSignOutUrl="/" />
             <div className="relative cursor-pointer" onClick={notify}>
-                <Image
-                    src={Bell}
-                    width={24}
-                    height={24}
-                    alt="Bell Notification"
-                />
+                <Bell color={color} />
                 {unreadNotifications.length > 0 ? (
                     <div className="notification absolute">
                         <div className="flex h-4 w-4 items-center justify-center rounded-full bg-s-orange-1">
