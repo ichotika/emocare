@@ -12,7 +12,7 @@ const assessHeader = ({
 const AnxietyResultPage = () => {
     return (  
         <>
-            <div className="contents-wrapper">
+            <div className="contents-wrapper overflow-x-auto flex flex-nowrap">
                 <AssessmentHeader {...assessHeader} />
                 <AssessmentResult/>
             </div>
