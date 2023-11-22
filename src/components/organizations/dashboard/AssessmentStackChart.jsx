@@ -268,7 +268,7 @@ export default function AssessmentStackChart({
     };
 
     return (
-        <div className="h-200 flex max-w-lg flex-col">
+        <div className="flex flex-col gap-4">
             <div>
                 <div className=" flex justify-between">
                     <div className="flex items-center">

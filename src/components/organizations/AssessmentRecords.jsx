@@ -25,8 +25,8 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
     };
     return (
         <>
-            <div className="mt-6 flex gap-5 xl:flex-col">
-                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
+            <div className="mt-6 flex gap-6 xl:flex-col">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-5 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Good Condition
@@ -60,7 +60,7 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                         <Image src={GoodCondition} alt="good condition" />{" "}
                     </div>
                 </div>
-                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-5 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Moderate Condition
@@ -94,7 +94,7 @@ function AssessmentRecords({ emplist, prevObj, curObj }) {
                         <Image src={MedCondition} alt="decent condition" />
                     </div>
                 </div>
-                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-7 shadow-md">
+                <div className="flex grow justify-between rounded-xl border border-solid border-p-blue-5 p-5 shadow-md">
                     <div className="flex grow flex-col gap-1">
                         <p className="block text-start text-b-lg font-semibold">
                             Critical Condition

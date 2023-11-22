@@ -12,17 +12,6 @@ async function getRecords() {
     const data = (await res.GET()).json();
     return data;
 }
-async function getNoti() {
-    const res = await import("../../api/notification/organization/route");
-    const data = (await res.GET()).json();
-    return data;
-}
-
-async function getAssessment() {
-    const res = await import("../../api/notification/assessment/route");
-    const data = (await res.GET()).json();
-    return data;
-}
 
 function calculateRatio(arr) {
     const countObj = arr.reduce(
@@ -77,15 +66,11 @@ export default async function Records() {
     const currentMonth = dayjs().month();
     const emplistPromise = getEmployees();
     const assessmentRecordPromise = getRecords();
-    const notificationPromise = getNoti();
-    const assessmentPromise = getAssessment();
-    const [emplist, assessmentRecord, notification, assessment] =
-        await Promise.all([
-            emplistPromise,
-            assessmentRecordPromise,
-            notificationPromise,
-            assessmentPromise,
-        ]);
+
+    const [emplist, assessmentRecord, assessment] = await Promise.all([
+        emplistPromise,
+        assessmentRecordPromise,
+    ]);
     const prevRecords = assessmentRecord.assessmentArr.filter(
         (item) => dayjs(item.createdAt).month() === currentMonth - 1
     );
@@ -162,11 +147,7 @@ export default async function Records() {
 
     return (
         <>
-            <Header
-                headertext={"Assessment Record"}
-                notification={notification}
-                assessment={assessment}
-            />
+            <Header headertext={"Assessment Record"} />
             <AssessmentRecords
                 emplist={mergedEmpList}
                 prevObj={prevObj}

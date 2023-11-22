@@ -11,7 +11,6 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Header from "@/components/employees/Header";
 import Chatbot from "@/components/employees/Chatbot";
-import LoadingGif from "@/components/base/Loading";
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
@@ -20,7 +19,6 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
-    const [isLoading, setIsLoading] = useState(0);
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -85,10 +83,9 @@ export default function Home() {
                     ? sortedPersonality[0].personalityType
                     : ""
             );
-            setIsLoading(() => isLoading + 1);
         };
         getAssessmentData();
-    }, [currentDate, currentUserId, currentYear]);
+    }, [currentUserId, currentDate, currentYear]);
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -101,7 +98,6 @@ export default function Home() {
     const fetchPersonality = async () => {
         const res = await fetch("/api/personality");
         const data = await res.json();
-        setIsLoading(() => isLoading + 1);
         return data.personality;
     };
 
