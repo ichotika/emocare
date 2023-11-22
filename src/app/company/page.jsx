@@ -31,7 +31,7 @@ const employerWidgets = [
 
 export default function Page() {
     return (
-        <>
+        <main>
             <HeroBanner></HeroBanner>
             <div className={"flex flex-col gap-24 p-10"}>
                 <MediaAndText
@@ -146,6 +146,6 @@ export default function Page() {
                     </div>
                 </article>
             </div>
-        </>
+        </main>
     );
 }
