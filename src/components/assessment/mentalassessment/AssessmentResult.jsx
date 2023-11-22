@@ -7,7 +7,7 @@ import HalfDoughnutChart from "@/components/employees/HalfDoughnutChart";
 import Link from "next/link";
 import Image from "next/image";
 
-import alertLogo from "@/public/assets/organization/badConditionicon.svg";
+import alertLogo from "@/public/assets/organization/badConditionIcon.svg";
 
 const scoreRange = [
     [
