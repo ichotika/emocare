@@ -1,18 +1,15 @@
 "use client"
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const AssessmentCard = ({ title, questions, duration, description, link, src, type }) => {
 
+    const router = useRouter();
+
     const { user } = useUser();
     // console.log(user);
-
-    const pathname = usePathname();
-    // console.log(pathname);
 
     const assessType = type;
     // console.log("coming from type property of test component", assessType);
@@ -73,8 +70,9 @@ const AssessmentCard = ({ title, questions, duration, description, link, src, ty
                             <button 
                                 className={`${hasResult ? "bg-p-blue-5 text-p-blue-1" : "bg-blue-500 text-g-white-1"}  font-bold py-3 px-2 rounded-lg grow`}
                                 disabled={hasResult}
+                                onClick={() => router.push(`/employees/assessment/${assessType}`)}
                             >
-                                <Link href={link}>Take Assessment</Link>
+                                    Take Assessment
                             </button>
                         </div>
                     </div>
