@@ -11,23 +11,23 @@ export default function Page() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // const formData = new FormData(e.target);
-        // const object = Object.fromEntries(formData);
-        // const response = await fetch("https://api.web3forms.com/submit", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Accept: "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         ...object,
-        //         access_key: "46f33d6e-d05f-459b-92ba-f1a223f135aa",
-        //     }),
-        // });
-        // const result = await response.json();
-        // if (result.success) {
-        //     setShowModal(true);
-        // }
+        const formData = new FormData(e.target);
+        const object = Object.fromEntries(formData);
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                ...object,
+                access_key: "46f33d6e-d05f-459b-92ba-f1a223f135aa",
+            }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            setShowModal(true);
+        }
         setShowModal(true);
     }
 
