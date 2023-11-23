@@ -1,19 +1,20 @@
 import connectMongoDB from "@/libs/mongodb";
-import depressionAssessment from "@/models/depressionAssessment";
+import DepressionAssessment from "@/models/depressionAssessment";
 import { NextResponse } from "next/server";
 
+// Get a Depression questionnaire from MongoDB.
 export async function GET() {
-  try {
-    await connectMongoDB();
+    try {
+        await connectMongoDB();
 
-    const depressionAssessmentData = await depressionAssessment.find({});
+        const depressionAssessment = await DepressionAssessment.find();
 
-    return NextResponse.json(depressionAssessmentData);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
+        return NextResponse.json({ depressionAssessment });
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return NextResponse.json(
+            { error: "Internal server error" },
+            { status: 500 }
+        );
+    }
 }

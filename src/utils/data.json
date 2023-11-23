@@ -1,0 +1,290 @@
+[
+  {
+    "userId": "user_2XPEtkTKwMrPNxfwJI5Tlm7Lih5",
+    "assessmentType": "Anxiety",
+    "score": 11,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-11T12:00:00Z",
+    "updatedAt": "2023-10-02T12:00:00Z"
+  },
+  {
+    "userId": "user_2XPEPN06KiJLHjHhZtqObwybzLh",
+    "assessmentType": "depression",
+    "score": 4,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-18T12:00:00Z",
+    "updatedAt": "2023-10-04T12:00:00Z"
+  },
+  {
+    "userId": "user_2WjIXHWCPMqRxSY3nl9oYdFhLJI",
+    "assessmentType": "Anxiety",
+    "score": 3,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-12T12:00:00Z",
+    "updatedAt": "2023-10-14T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
+    "assessmentType": "burnout",
+    "score": 2,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-19T12:00:00Z",
+    "updatedAt": "2023-10-27T12:00:00Z"
+  },
+  {
+    "userId": "user_2Y0xrxG8MvcW2DCosLJimclY3Qy",
+    "assessmentType": "depression",
+    "score": 18,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-10-24T12:00:00Z",
+    "updatedAt": "2023-10-03T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm3vzaMwIEixd3yeUVZadaiEej",
+    "assessmentType": "Anxiety",
+    "score": 6,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-02T12:00:00Z",
+    "updatedAt": "2023-10-05T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm2YG63MkK5hmmnAjFbxFsgjsx",
+    "assessmentType": "depression",
+    "score": 20,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-10-24T12:00:00Z",
+    "updatedAt": "2023-10-01T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
+    "assessmentType": "Anxiety",
+    "score": 8,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-13T12:00:00Z",
+    "updatedAt": "2023-10-11T12:00:00Z"
+  },
+  {
+    "userId": "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
+    "assessmentType": "burnout",
+    "score": 5,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-08T12:00:00Z",
+    "updatedAt": "2023-10-07T12:00:00Z"
+  },
+  {
+    "userId": "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
+    "assessmentType": "depression",
+    "score": 17,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-10-12T12:00:00Z",
+    "updatedAt": "2023-10-25T12:00:00Z"
+  },
+  {
+    "userId": "user_2XjJmTTENoeu4CZn29IvGtQVcaT",
+    "assessmentType": "burnout",
+    "score": 51,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-10-23T12:00:00Z",
+    "updatedAt": "2023-10-16T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj10InQPYdmPjOR9VreThe9fic",
+    "assessmentType": "burnout",
+    "score": 38,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-10-11T12:00:00Z",
+    "updatedAt": "2023-10-04T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+    "assessmentType": "burnout",
+    "score": 14,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-15T12:00:00Z",
+    "updatedAt": "2023-10-18T12:00:00Z"
+  },
+  {
+    "userId": "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
+    "assessmentType": "Anxiety",
+    "score": 15,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-21T12:00:00Z",
+    "updatedAt": "2023-10-23T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm2BZttrdTbl64xxb2wnJsm9Cz",
+    "assessmentType": "depression",
+    "score": 3,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-10-17T12:00:00Z",
+    "updatedAt": "2023-10-25T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm410lLaboT0TuFcqYiOgEjFBL",
+    "assessmentType": "depression",
+    "score": 27,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-10-25T12:00:00Z",
+    "updatedAt": "2023-10-25T12:00:00Z"
+  },
+  {
+    "userId": "user_2XPEtkTKwMrPNxfwJI5Tlm7Lih5",
+    "assessmentType": "burnout",
+    "score": 58,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-11-17T12:00:00Z",
+    "updatedAt": "2023-11-14T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+    "assessmentType": "depression",
+    "score": 25,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-11-16T12:00:00Z",
+    "updatedAt": "2023-11-12T12:00:00Z"
+  },
+  {
+    "userId": "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
+    "assessmentType": "burnout",
+    "score": 19,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-19T12:00:00Z",
+    "updatedAt": "2023-11-20T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm2BZttrdTbl64xxb2wnJsm9Cz",
+    "assessmentType": "depression",
+    "score": 4,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-11-08T12:00:00Z",
+    "updatedAt": "2023-11-02T12:00:00Z"
+  },
+  {
+    "userId": "user_2XPEPN06KiJLHjHhZtqObwybzLh",
+    "assessmentType": "Anxiety",
+    "score": 11,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-11-13T12:00:00Z",
+    "updatedAt": "2023-11-27T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm3vzaMwIEixd3yeUVZadaiEej",
+    "assessmentType": "depression",
+    "score": 24,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-11-13T12:00:00Z",
+    "updatedAt": "2023-11-27T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm2YG63MkK5hmmnAjFbxFsgjsx",
+    "assessmentType": "Anxiety",
+    "score": 13,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-11-26T12:00:00Z",
+    "updatedAt": "2023-11-13T12:00:00Z"
+  },
+  {
+    "userId": "user_2Y0xrxG8MvcW2DCosLJimclY3Qy",
+    "assessmentType": "burnout",
+    "score": 33,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-24T12:00:00Z",
+    "updatedAt": "2023-11-06T12:00:00Z"
+  },
+  {
+    "userId": "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
+    "assessmentType": "depression",
+    "score": 10,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-05T12:00:00Z",
+    "updatedAt": "2023-11-27T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
+    "assessmentType": "Anxiety",
+    "score": 21,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-04T12:00:00Z",
+    "updatedAt": "2023-11-23T12:00:00Z"
+  },
+  {
+    "userId": "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
+    "assessmentType": "burnout",
+    "score": 55,
+    "level": "Critical",
+    "levelDescription": "Critical",
+    "createdAt": "2023-11-09T12:00:00Z",
+    "updatedAt": "2023-11-04T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj10InQPYdmPjOR9VreThe9fic",
+    "assessmentType": "Anxiety",
+    "score": 19,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-14T12:00:00Z",
+    "updatedAt": "2023-11-06T12:00:00Z"
+  },
+  {
+    "userId": "user_2WjIXHWCPMqRxSY3nl9oYdFhLJI",
+    "assessmentType": "depression",
+    "score": 5,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-04T12:00:00Z",
+    "updatedAt": "2023-11-20T12:00:00Z"
+  },
+  {
+    "userId": "user_2Wm410lLaboT0TuFcqYiOgEjFBL",
+    "assessmentType": "Anxiety",
+    "score": 1,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-11-02T12:00:00Z",
+    "updatedAt": "2023-11-13T12:00:00Z"
+  },
+  {
+    "userId": "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
+    "assessmentType": "depression",
+    "score": 5,
+    "level": "Moderate",
+    "levelDescription": "Moderate",
+    "createdAt": "2023-11-28T12:00:00Z",
+    "updatedAt": "2023-11-02T12:00:00Z"
+  },
+  {
+    "userId": "user_2XjJmTTENoeu4CZn29IvGtQVcaT",
+    "assessmentType": "depression",
+    "score": 0,
+    "level": "Good",
+    "levelDescription": "Good",
+    "createdAt": "2023-11-24T12:00:00Z",
+    "updatedAt": "2023-11-02T12:00:00Z"
+  }
+]

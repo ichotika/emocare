@@ -1,13 +1,8 @@
-import UsersLists from "@/components/UsersLists";
-import { UserButton } from "@clerk/nextjs";
-
+import Splash from "@/components/base/Splash";
 export default function Home() {
     return (
-        <>
-            <div>
-                <UserButton afterSignOutUrl="/" />
-            </div>
-            <UsersLists />
-        </>
+        <div className="items- m-auto flex h-screen items-center justify-center">
+            <Splash />
+        </div>
     );
 }

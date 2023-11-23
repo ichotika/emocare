@@ -1,12 +1,23 @@
 "use client";
-const MainBtn = ({ buttontext, bgColor, textColor, handleClick }) => {
-  return (
-    <button
-      className={`${bgColor} rounded-lg p-3 ${textColor}`}
-      onClick={handleClick}>
-      {buttontext}
-    </button>
-  );
+import Link from "next/link";
+
+const MainBtn = ({
+    buttontext,
+    bgColor,
+    textColor,
+    handleClick,
+    link,
+    borderColor,
+}) => {
+    // console.log(link)
+    return (
+        <button
+            className={`${bgColor} rounded p-2 ${textColor} text-medium px-9 py-2 text-b-sm ${borderColor}`}
+            onClick={handleClick}
+        >
+            {link ? <Link href={link}>{buttontext}</Link> : <>{buttontext}</>}
+        </button>
+    );
 };
 
 export default MainBtn;

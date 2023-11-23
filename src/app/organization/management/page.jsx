@@ -1,14 +1,8 @@
 import Header from "@/components/organizations/Header";
 import AuthOrganization from "@/components/organizations/AuthOrganization";
-
-async function getData() {
-    const res = await import("../../api/organization/temp-employees/route");
-    const data = (await res.GET()).json();
-    return data;
-}
-
+import getClerkData from "@/utils/fetchClerkUsers";
 export default async function Home() {
-    const emplist = await getData();
+    const emplist = await getClerkData();
 
     return (
         <>

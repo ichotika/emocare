@@ -1,31 +1,37 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ProRequest from "@/public/assets/Wireframes/ProRequest.svg";
 import MainBtn from "../base/MainBtn";
+import anonymous from "@/public/assets/organization/user-blue.svg";
 
-const AuthOrganizationList = ({ employeeList, fetchData }) => {
-    async function updateData(userId) {
-        const response = await fetch(`/api/organization/temp-employees`, {
-            method: "PATCH",
-            body: JSON.stringify({
-                userId: userId,
-                pending: true,
-            }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Error updating user:", errorData.error);
-            alert("Error updating user. Please try again later.");
-            return;
+const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
+    async function updateData(userId, department, title) {
+        const payload = {
+            userId: userId,
+            role: "employee",
+            approved: true,
+            department: department,
+            designation: title,
+            organization: "WMDD",
+        };
+        try {
+            const response = await fetch("/api/updateclerk", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            onStatusChanged();
+        } catch (error) {
+            console.error("Could not update data", error);
         }
-
-        fetchData();
     }
 
-    function confirmEmployee(userId) {
-        updateData(userId);
+    function confirmEmployee(userId, department, title) {
+        updateData(userId, department, title);
         alert("confirm");
     }
 
@@ -35,40 +41,53 @@ const AuthOrganizationList = ({ employeeList, fetchData }) => {
 
     return (
         <>
-            {employeeList.map((list) =>
-                list.pending === false ? (
-                    <div
-                        key={list.userId}
-                        className="mb-7 flex justify-between rounded-md bg-slate-400 p-5"
-                    >
-                        <div className="flex justify-between gap-6">
-                            <Image src={ProRequest} alt="Profile of User" />
-                            <div className="flex flex-col justify-between">
-                                <h3 className="font-semibold">
-                                    {list.fullname}
-                                </h3>
-                                <p className="pb-4 font-light">{list.title}</p>
-                                <p className="font-semibold">{list.email}</p>
+            {employeeList.every((list) => list.pending === true) ? (
+                <p>No new requests</p>
+            ) : (
+                employeeList.map((list) =>
+                    list.pending === false ? (
+                        <div
+                            key={list.userId}
+                            className="mb-7 flex items-center justify-between rounded-md border-2 border-p-blue-6 p-6 xl:max-w-[500px] xl:flex-col xl:content-around xl:p-4"
+                        >
+                            <div className="flex w-full items-center gap-6 xl:mb-4 ">
+                                <div className="me-2 flex h-[3rem] w-[3rem] items-center justify-center rounded-full bg-p-blue-6 p-4">
+                                    <Image
+                                        src={anonymous}
+                                        alt="Profile picture"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-between">
+                                    <p className="text-b-lg font-bold">
+                                        Employee ID: {list.userId.slice(0, 9)}
+                                    </p>
+                                    <p className="font-medium">{list.title}</p>
+                                </div>
+                            </div>
+                            <div className="flex w-full items-center justify-end gap-6 xl:justify-between">
+                                <MainBtn
+                                    buttontext="Confirm"
+                                    bgColor="bg-p-blue-1"
+                                    textColor="text-white"
+                                    handleClick={() => {
+                                        confirmEmployee(
+                                            list.userId,
+                                            list.department,
+                                            list.title
+                                        );
+                                    }}
+                                />
+                                <MainBtn
+                                    buttontext="Decline"
+                                    bgColor="bg-white"
+                                    borderColor="border border-g-gray-2"
+                                    textColor="text-p-blue-1"
+                                    handleClick={testDecline}
+                                />
                             </div>
                         </div>
-                        <div className="flex items-center justify-between gap-6">
-                            <MainBtn
-                                buttontext="Confirm"
-                                bgColor="bg-blue-700"
-                                textColor="text-white"
-                                handleClick={() => {
-                                    confirmEmployee(list.userId);
-                                }}
-                            />
-                            <MainBtn
-                                buttontext="Decline"
-                                bgColor="bg-white"
-                                textColor="text-blue-700"
-                                handleClick={testDecline}
-                            />
-                        </div>
-                    </div>
-                ) : null
+                    ) : null
+                )
             )}
         </>
     );

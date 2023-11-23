@@ -1,11 +1,10 @@
-import Navbar from "@/components/Navbar";
 import "@/styles/global.css";
 import StyledComponentsRegistry from "@/libs/registry";
-import { Inter } from "next/font/google";
-import { ClerkProvider } from '@clerk/nextjs';
-import OrganizationSidebar from "@/components/base/OrganizationSidebar";
+import { Archivo, Manrope } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({ subsets: ["latin"] });
+const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata = {
     title: "EmoCare",
@@ -16,18 +15,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <ClerkProvider>
+        <ClerkProvider
+            appearance={{
+                layout: {
+                    socialButtonsPlacement: "bottom",
+                },
+            }}
+        >
             <html lang="en">
-                <body /*className="flex"*/>
-                        {/* <div>
-                            <OrganizationSidebar></OrganizationSidebar>
-                        </div> */}
-                        <div className="max-w-screen-lg mx-auto p-4">
-                            <Navbar />
-                            <StyledComponentsRegistry className="mt-8">
-                                {children}
-                            </StyledComponentsRegistry>
-                        </div>
+                <body>
+                    <div
+                        className={`${archivo.variable} ${manrope.variable}  h-screen w-screen`}
+                    >
+                        <StyledComponentsRegistry className="mt-8">
+                            {children}
+                        </StyledComponentsRegistry>
+                    </div>
                 </body>
             </html>
         </ClerkProvider>

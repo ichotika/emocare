@@ -1,18 +1,47 @@
-import Image from "next/image"
-import Profile from "@/public/assets/Wireframes/bell.svg";
+import { useEffect, useState } from "react";
+import NoPersonalityResult from "./NoPersonalityResult";
+import PersonalityDesc from "./PersonalityDesc";
+import { client } from "@/libs/contentful";
 
-function PersonalityType() {
+const fetchPersonality = async (type) => {
+    try {
+        const res = await client.getEntries({
+            content_type: "personality",
+        });
+        const personalityContent = res.items.filter(
+            (per) => per.fields.type === type
+        );
+        return personalityContent;
+    } catch (error) {
+        console.error("Failed to fetch content:", error);
+    }
+};
+
+function PersonalityType({ mypersonality }) {
+    const [perContent, setPerContent] = useState("");
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            const content = await fetchPersonality(mypersonality);
+            setPerContent(content);
+        };
+
+        fetchContent();
+    }, [mypersonality]);
+
+    const personality = perContent.length > 0 ? perContent : [];
+
     return (
-        <div className="m-5 p-5" style={{backgroundColor: '#ffffff', borderRadius: '1rem'}}>
-           <h1>Your Personality Type</h1>
-           <Image src={Profile} width={100} height={100} alt="Picture"/>
-           <div>
-            <h2>Personality 1</h2>
-            <p>Qui dolore laboriosam qui dolor nostrum et impedit dolores sit aspernatur tempore qui voluptate neque eos dignissimos nostrum.</p>
-            <p className="text-center pt-6">View All</p>
-           </div>
-        </div>
-    )
+        <>
+            {personality.length > 0 ? (
+                <PersonalityDesc personalityDesc={personality[0].fields} />
+            ) : (
+                <NoPersonalityResult
+                    personalityLink={"/employees/assessment/personality"}
+                />
+            )}
+        </>
+    );
 }
 
-export default PersonalityType
+export default PersonalityType;
