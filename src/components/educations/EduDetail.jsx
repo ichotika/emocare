@@ -19,7 +19,7 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
 
     async function fetchEduRes() {
         const res = await fetch(
-            "http://localhost:3000/api/education/responses"
+            "/api/education/responses"
         );
         const data = await res.json();
         return data.eduresponse;

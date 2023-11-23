@@ -21,7 +21,7 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse, richContent }) {
 
     async function fetchEduRes() {
         const res = await fetch(
-            "http://localhost:3000/api/education/responses"
+            "/api/education/responses"
         );
         const data = await res.json();
         return data.eduresponse;
@@ -34,7 +34,7 @@ function EduModule({ eduModule, eduRes, userId, newEduResponse, richContent }) {
                 <>
                     <div className="flex justify-end sm:justify-center">
                         <button
-                            className="rounded-lg bg-p-blue-1 font-semibold w-[400px] p-2 m-4 text-white"
+                            className="rounded-lg bg-p-blue-1 hover:bg-p-blue-2 font-semibold w-[400px] p-2 m-4 text-white"
                             type="submit"
                             onClick={() => {
                                 let res = {

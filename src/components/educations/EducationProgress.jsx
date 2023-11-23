@@ -69,7 +69,7 @@ function EducationProgress({ currentUser, pageTitle, currentTab }) {
 
     // fetching education modules
     async function fetchEdu() {
-        const res = await fetch("http://localhost:3000/api/education");
+        const res = await fetch("/api/education");
         const data = await res.json();
         return data.education;
     }
@@ -77,7 +77,7 @@ function EducationProgress({ currentUser, pageTitle, currentTab }) {
     // fetching responses for progress
     async function fetchEduRes() {
         const res = await fetch(
-            "http://localhost:3000/api/education/responses"
+            "/api/education/responses"
         );
         const data = await res.json();
         return data.eduresponse;
@@ -85,7 +85,7 @@ function EducationProgress({ currentUser, pageTitle, currentTab }) {
 
     return (
         <>
-            <div className="rounded-lg bg-white py-2">
+            <div className="rounded-lg py-2">
                 {pageTitle === "employee" ? (
                     <EmpEduProgress
                         alleduPercent={alleduPercent}

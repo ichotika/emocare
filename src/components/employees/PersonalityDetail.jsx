@@ -33,7 +33,7 @@ function PersonalityDetail({ personality }) {
                 </p>
 
                 <div className="flex justify-end pt-6">
-                    <button className="rounded-lg bg-blue-700 p-2 text-white hover:bg-blue-500">
+                    <button className="rounded-lg bg-p-blue-1 p-2 text-white hover:bg-p-blue-2">
                         <Link href={`/employees`}>
                             Go back to dashboard
                         </Link>
