@@ -84,7 +84,7 @@ export default function Page() {
                             "hyphens-none text-4xl font-bold text-g-white-1 xl:text-3xl lg:text-2xl md:text-xl sm:text-2xl sm:text-center sm:-mt-14"
                         }
                     >
-                        Employees' data is treated anonymously to prioritize
+                        Employees&apos; data is treated anonymously to prioritize
                         their privacy and well-being.
                     </p>
                 </article>
@@ -101,7 +101,7 @@ export default function Page() {
                             The Essential Step to a Healthier, Happier You
                         </h2>
                         <p className={"font-manrope text-lg font-semibold"}>
-                            The "Mental Health Assessment" feature on our
+                            The &quot;Mental Health Assessment&quot; feature on our
                             platform is a systematic approach to promoting
                             employee well-being. Each month, employees
                             participate in a stress check questionnaire, where
@@ -140,7 +140,7 @@ export default function Page() {
                             Our Personality Assessment is a personalized journey
                             that starts with a series of carefully crafted
                             questions. By exploring your thoughts, preferences,
-                            and behaviors, you'll receive a tailored report that
+                            and behaviors, you&apos;ll receive a tailored report that
                             sheds light on your personality.
                         </p>
                     </div>

@@ -228,18 +228,24 @@ export default function Page() {
                             className="h-16 w-16"
                         ></Image>
                         <Dialog.Title
-                            className={"font-manrope text-3xl text-center"}
+                            className={"text-center font-manrope text-3xl"}
                         >
                             Request Submitted !
                         </Dialog.Title>
-                        <Dialog.Description className={"font-manrope text-2xl text-center text-g-gray-1"}>
-                            Thank you for requesting a demo. We'll be in touch
+                        <Dialog.Description
+                            className={
+                                "text-center font-manrope text-2xl text-g-gray-1"
+                            }
+                        >
+                            Thank you for requesting a demo. We&apos;ll be in touch
                             shortly!
                         </Dialog.Description>
                         <button
                             type={"button"}
                             onClick={() => router.push("/company")}
-                            className={"bg-p-blue-1 text-g-white-1 px-8 py-4 shadow-sm"}
+                            className={
+                                "bg-p-blue-1 px-8 py-4 text-g-white-1 shadow-sm"
+                            }
                         >
                             OK
                         </button>
