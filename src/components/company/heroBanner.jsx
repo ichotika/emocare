@@ -1,4 +1,4 @@
-// import Link from "next/link";
+import Link from "next/link";
 
 export default function HeroBanner() {
     return (
@@ -8,7 +8,7 @@ export default function HeroBanner() {
                     className="text-blue-500">Business</strong> with a Focus on Employee <strong
                     className="text-orange-500">Mental Health</strong></h1>
                 <p className="text-center text-2xl">Mental Wellness Drives Employee Performance and Company Prosperity</p>
-                <button className="bg-blue-700 text-white text-2xl py-4 px-8 rounded-xl">Get Started Now</button>
+                <Link className="bg-blue-700 text-white text-2xl py-4 px-8 rounded-xl" href={"/company/contact"}>Get Started Now</Link>
             </div>
         </header>
     )
