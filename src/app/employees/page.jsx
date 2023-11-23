@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Header from "@/components/employees/Header";
 import Chatbot from "@/components/employees/Chatbot";
+import AssessmentButton from "@/components/employees/AssessmentButton";
 
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
@@ -24,6 +25,7 @@ export default function Home() {
     const currentUserId = user ? user.id : null;
     const currentDate = new Date().getMonth();
     const currentYear = new Date().getFullYear();
+    const userName = user ? user.fullName : null;
 
     useEffect(() => {
         const getAssessmentData = async () => {
@@ -105,24 +107,35 @@ export default function Home() {
 
     return (
         <>
-            <Header headertext={"Employee"} isHidden={true} />
+            {/* <Header headertext={"Employee"} isHidden={true} /> */}
             <div>
-                <div>
-                    <h1 className="mx-2 p-2 font-bold">Employee Dashboard</h1>
-                </div>
+                {userName ? (
+                    <div className="mx-2 flex flex-col">
+                        <p className="text-b-lg font-bold">Welcome back,</p>
+                        <h1 className="text-h-2xl font-bold">{userName}</h1>
+                    </div>
+                ) : (
+                    ""
+                )}
                 <div className="grid grid-cols-4 sm:flex sm:flex-col">
                     <div className="col-span-3 m-2 flex flex-wrap gap-4">
-                        <div className="w-[216px] grow sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
                             {deprData.length > 0 ? (
-                                <HalfDoughnutChart
-                                    headtitle={"Depression"}
-                                    levelText={deprData[0].level}
-                                    levelNum={deprData[0].score}
-                                    levelPercent={
-                                        (deprData[0].score * 100) / 27
-                                    }
-                                    percentColor={"#FFC700"}
-                                />
+                                <>
+                                    <HalfDoughnutChart
+                                        headtitle={"Depression"}
+                                        levelText={deprData[0].level}
+                                        levelNum={deprData[0].score}
+                                        levelPercent={
+                                            (deprData[0].score * 100) / 27
+                                        }
+                                        percentColor={"#FFC700"}
+                                    />
+                                    <AssessmentButton
+                                        link="/employees/assessment/depression"
+                                        btnDisabled={deprData.length > 0 ? true : false}
+                                    />
+                                </>
                             ) : (
                                 <>
                                     <NoResultChart
@@ -132,17 +145,25 @@ export default function Home() {
                                 </>
                             )}
                         </div>
-                        <div className="w-[216px] grow sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
                             {anxietyData.length > 0 ? (
-                                <HalfDoughnutChart
-                                    headtitle={"Anxiety"}
-                                    levelText={anxietyData[0].level}
-                                    levelNum={anxietyData[0].score}
-                                    levelPercent={
-                                        (anxietyData[0].score * 100) / 21
-                                    }
-                                    percentColor={"#0ECD9E"}
-                                />
+                                <>
+                                    <HalfDoughnutChart
+                                        headtitle={"Anxiety"}
+                                        levelText={anxietyData[0].level}
+                                        levelNum={anxietyData[0].score}
+                                        levelPercent={
+                                            (anxietyData[0].score * 100) / 21
+                                        }
+                                        percentColor={"#0ECD9E"}
+                                    />
+                                    <AssessmentButton
+                                        link="/employees/assessment/anxiety"
+                                        btnDisabled={
+                                            anxietyData.length > 0 ? true : false
+                                        }
+                                    />
+                                </>
                             ) : (
                                 <NoResultChart
                                     mainTitle={"Anxiety"}
@@ -150,17 +171,25 @@ export default function Home() {
                                 />
                             )}
                         </div>
-                        <div className="w-[216px] grow sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
                             {burnoutData.length > 0 ? (
-                                <HalfDoughnutChart
-                                    headtitle={"Burnout"}
-                                    levelText={burnoutData[0].level}
-                                    levelNum={burnoutData[0].score}
-                                    levelPercent={
-                                        (burnoutData[0].score * 100) / 75
-                                    }
-                                    percentColor={"#FF8C49"}
-                                />
+                                <>
+                                    <HalfDoughnutChart
+                                        headtitle={"Burnout"}
+                                        levelText={burnoutData[0].level}
+                                        levelNum={burnoutData[0].score}
+                                        levelPercent={
+                                            (burnoutData[0].score * 100) / 75
+                                        }
+                                        percentColor={"#FF8C49"}
+                                    />
+                                    <AssessmentButton
+                                        link="/employees/assessment/burnout"
+                                        btnDisabled={
+                                            burnoutData.length > 0 ? true : false
+                                        }
+                                    />
+                                </>
                             ) : (
                                 <NoResultChart
                                     mainTitle={"Burnout"}
@@ -178,9 +207,9 @@ export default function Home() {
 
                     <div className="col-span-3 m-2 rounded-lg bg-white p-2">
                         <div className="flex justify-between">
-                            <h2 className="pb-2 font-bold">
+                            <p className="pb-2 text-b-lg font-bold">
                                 Your Assessment History
-                            </h2>
+                            </p>
                             <button onClick={() => setPopup(true)}>
                                 View all
                             </button>
@@ -192,10 +221,12 @@ export default function Home() {
                         )}
                     </div>
                 </div>
-                <div className="flex items-stretch">
-                    <div className="m-2 max-h-[350px] grow basis-3/5 rounded-lg bg-white p-2">
+                <div className="grid grid-cols-4 xl:block">
+                    <div className="col-span-3 m-2 max-h-[350px] rounded-lg bg-white p-2">
                         <div className="flex justify-between pb-4">
-                            <h2 className="font-bold">Education</h2>
+                            <p className="text-b-lg font-bold">
+                                Education Progress
+                            </p>
                             <Link href={`/employees/education`}>View all</Link>
                         </div>
                         {/* <EducationProgress currentUser={currentUserId} /> */}
@@ -206,7 +237,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="m-2 max-h-[350px] basis-2/5 rounded-lg bg-white p-2 xl:hidden xl:w-0">
+                    <div className="z-0 m-2 max-h-[350px] rounded-lg bg-white p-2 xl:hidden xl:w-0">
                         <Chatbot mypersonality={recentPersonalityType} />
                     </div>
                 </div>

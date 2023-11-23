@@ -29,7 +29,7 @@ export default function Home() {
     const createEduResponse = async (eduResponse) => {
         try {
             const res = await fetch(
-                "http://localhost:3000/api/education/responses",
+                "/api/education/responses",
                 {
                     method: "POST",
                     headers: {
@@ -67,7 +67,7 @@ export default function Home() {
         getContent();
     }, [dataId]);
     async function fetchEdu() {
-        const res = await fetch("http://localhost:3000/api/education");
+        const res = await fetch("/api/education");
         const data = await res.json();
         return data.education;
     }

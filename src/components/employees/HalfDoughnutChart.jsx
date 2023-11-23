@@ -44,28 +44,28 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, perce
 
             ctx.textAlign = "center";
 
-            ctx.font = "bold 32px sans-serif";
+            ctx.font = "bold 30px sans-serif";
             ctx.fillStyle = "#697077";
             ctx.fillText(levelNum, xCoor, yCoor - 10);
 
-            ctx.font = "bold 18px sans-serif";
+            ctx.font = "bold 14px sans-serif";
             ctx.fillStyle = "#878D96";
             ctx.fillText(`${levelText}`, xCoor, yCoor - 50);
         },
     };
 
     return (
-        <div className="bg-white rounded-lg p-2 w-[100%] h-[100%]">
-            <h1 className="font-bold text-center">{headtitle}</h1>
-            {/* <v className="-mt-[80px]"> */}
+        <div className="w-[100%] h-[100%]">
+            <p className="font-bold text-center text-b-lg">{headtitle}</p>
+            {/* <div className="-mt-[80px]"> */}
                 <Doughnut
                     data={data}
                     options={options}
                     plugins={[chartInnerText]}
                     className="w-[100%] h-[100%]"
                 />
-            </div>
-        // </div>
+            {/* </div> */}
+        </div>
     );
 }
 
