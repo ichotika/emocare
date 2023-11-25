@@ -16,7 +16,7 @@ export default function Footer({ routes }) {
                 {routes.map((route, index) => (
                     <Link
                         key={index}
-                        className={"block px-2 py-3"}
+                        className={"block px-2 py-3 font-semibold"}
                         href={`/company/${route.slug}`}
                     >
                         {route.name}
