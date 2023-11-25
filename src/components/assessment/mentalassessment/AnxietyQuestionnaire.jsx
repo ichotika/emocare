@@ -105,7 +105,7 @@ const AnxietyQuestionnaire = () => {
                 result.description = anxietyLevel[2].description;
                 break;
 
-            case totalScore >= 21:
+            case totalScore <= 21:
                 result.alevel = anxietyLevel[3].alevel;
                 result.description = anxietyLevel[3].description;
                 break;

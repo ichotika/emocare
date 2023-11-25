@@ -88,6 +88,8 @@ const Questionnaire = () => {
         },
     ];
 
+    console.log(depressionLevel[0].description)
+
     // const [level, setLevel] = useState("")
 
     const getDepressionLevel = (totalScore) => {
@@ -117,7 +119,7 @@ const Questionnaire = () => {
                 result.description = depressionLevel[3].description;
                 break;
 
-            case totalScore >= 27:
+            case totalScore <= 27:
                 result.dlevel = depressionLevel[4].dlevel;
                 result.description = depressionLevel[4].description;
                 break;
@@ -127,13 +129,15 @@ const Questionnaire = () => {
                 result.description = depressionLevel[5].description;
                 break;
         }
+
+        // console.log("this is result",result);
         return result;
     };
 
     // post data to assessHistory collection in MongoDB.
     const onSubmit = async (data) => {
         // console.log("this is the data from line 119", data);
-        // console.log("my user id => ", user.id)
+        console.log("my user id => ", user.id)
         let i = [];
         async function response() {
             await fetch("/api/assessment", {
