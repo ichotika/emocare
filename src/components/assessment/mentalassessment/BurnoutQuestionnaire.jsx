@@ -188,7 +188,7 @@ const BurnoutQuestionnaire = () => {
     useEffect(() => {
         const fetchBurnoutQuestionnaire = async () => {
             const res = await fetch(
-                "http://localhost:3000/api/questionnaires/burnout"
+                "api/questionnaires/burnout"
             );
             const data = await res.json();
             // console.log("burnout questionnaire", data);

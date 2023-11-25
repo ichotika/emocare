@@ -168,7 +168,7 @@ const AnxietyQuestionnaire = () => {
     useEffect(() => {
         const fetchAnxietyQuestionnaire = async () => {
             const res = await fetch(
-                "http://localhost:3000/api/questionnaires/anxiety"
+                "/api/questionnaires/anxiety"
             );
             const data = await res.json();
             // console.log("Anxiety questionnaire", data);

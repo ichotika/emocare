@@ -193,7 +193,7 @@ const Questionnaire = () => {
     useEffect(() => {
         const fetchDepressionQuestionnaire = async () => {
             const res = await fetch(
-                "http://localhost:3000/api/questionnaires/depression"
+                "/api/questionnaires/depression"
             );
             const data = await res.json();
             // console.log("depression questionnaire", data);
