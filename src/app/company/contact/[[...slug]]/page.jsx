@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import {useState} from "react";
+import {Dialog} from "@headlessui/react";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 
 export default function Page({params}) {
@@ -9,6 +9,22 @@ export default function Page({params}) {
     const {slug} = params;
 
     const router = useRouter();
+
+    const slugToValue = (slug) =>{
+        if (!slug) {
+            return "";
+        }
+        else {
+            switch (slug[0]) {
+                case "small":
+                    return "300 or fewer";
+                case "medium":
+                    return "300 to 1000";
+                case "large":
+                    return "over 1000";
+            }
+        }
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -95,13 +111,13 @@ export default function Page({params}) {
                             className={
                                 "mb-4 mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3"
                             }
-                        >
-                            <option value="" disabled selected={!slug} hidden>
+                            defaultValue={slugToValue(slug)}>
+                            <option value="" disabled hidden>
                                 Select your option
                             </option>
-                            <option value="300 or fewer" selected={slug[0]==="small"}>300 or fewer</option>
-                            <option value="300 to 1000" selected={slug[0]==="medium"}>300 to 1000</option>
-                            <option value="over 1000" selected={slug[0]==="large"}>over 1000</option>
+                            <option value="300 or fewer">300 or fewer</option>
+                            <option value="300 to 1000">300 to 1000</option>
+                            <option value="over 1000">over 1000</option>
                         </select>
                     </div>
                     <div className={"grid grid-cols-2 gap-x-4 md:grid-cols-1"}>
@@ -204,11 +220,12 @@ export default function Page({params}) {
 
             <Dialog
                 open={showModal}
-                onClose={() => {}}
+                onClose={() => {
+                }}
                 className="relative z-50"
             >
                 {/* The backdrop, rendered as a fixed sibling to the panel container */}
-                <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+                <div className="fixed inset-0 bg-black/30" aria-hidden="true"/>
 
                 <div
                     className={
