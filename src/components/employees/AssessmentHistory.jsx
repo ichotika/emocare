@@ -72,8 +72,11 @@ function AssessmentHistory({ assessment, total = 3 }) {
     }
 
     return (
-        <Table role="table" className="overflow-auto rounded-lg">
-            <TableHeader role="row" className="flex p-2 font-semibold">
+        <Table role="table" className="rounded-lg">
+            <TableHeader
+                role="row"
+                className="flex p-2 text-b-sm font-bold sm:text-b-xs"
+            >
                 <div className="w-1/4">Date</div>
                 <div className="w-1/4 text-center">Depression</div>
                 <div className="w-1/4 text-center">Anxiety</div>

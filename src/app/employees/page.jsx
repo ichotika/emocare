@@ -220,7 +220,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="col-span-3 rounded-lg bg-white p-2">
+                    <div className="col-span-3 overflow-auto rounded-lg bg-white p-2">
                         <div className="flex justify-between">
                             <p className="pb-2 text-b-lg font-bold">
                                 Your Assessment History
