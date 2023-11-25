@@ -14,9 +14,9 @@ const TableHeader = styled.div`
 
 const dayjs = require("dayjs");
 
-function AssessmentHistory({ assessment }) {
+function AssessmentHistory({ assessment, total = 3 }) {
     const newHistory = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < total; i++) {
         const newTimestamp = dayjs().subtract(i, "month").startOf("month");
         let historyEntry = {
             timestamp: newTimestamp.format(),

@@ -108,104 +108,119 @@ export default function Home() {
     return (
         <>
             {/* <Header headertext={"Employee"} isHidden={true} /> */}
-            <div>
-                {userName ? (
-                    <div className="mx-2 flex flex-col">
-                        <p className="text-b-lg font-bold">Welcome back,</p>
-                        <h1 className="text-h-2xl font-bold">{userName}</h1>
+            <div className="-mt-4 flex flex-col items-stretch pl-1 xl:items-center">
+                <div className="flex w-full grow flex-col">
+                    <p
+                        style={{ marginBottom: "-10px" }}
+                        className="text-b-lg font-bold"
+                    >
+                        WELCOME
+                    </p>
+                    <div>
+                        {userName ? (
+                            <Header
+                                headertext={userName}
+                                marginTB="mb-0 mt-0"
+                                isHidden={true}
+                            />
+                        ) : (
+                            <Header
+                                headertext={"User"}
+                                marginTB="mb-0 mt-0"
+                                isHidden={true}
+                            />
+                        )}
                     </div>
-                ) : (
-                    ""
-                )}
-                <div className="grid grid-cols-4 sm:flex sm:flex-col">
-                    <div className="col-span-3 m-2 flex flex-wrap gap-4">
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
-                            {deprData.length > 0 ? (
-                                <>
-                                    <HalfDoughnutChart
-                                        headtitle={"Depression"}
-                                        levelText={deprData[0].level}
-                                        levelNum={deprData[0].score}
-                                        levelPercent={
-                                            (deprData[0].score * 100) / 27
-                                        }
-                                        percentColor={"#FFC700"}
-                                    />
-                                    <AssessmentButton
-                                        link="/employees/assessment/depression"
-                                        btnDisabled={deprData.length > 0 ? true : false}
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <NoResultChart
-                                        mainTitle={"Depression"}
-                                        link="/employees/assessment/depression"
-                                    />
-                                </>
-                            )}
-                        </div>
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
-                            {anxietyData.length > 0 ? (
-                                <>
-                                    <HalfDoughnutChart
-                                        headtitle={"Anxiety"}
-                                        levelText={anxietyData[0].level}
-                                        levelNum={anxietyData[0].score}
-                                        levelPercent={
-                                            (anxietyData[0].score * 100) / 21
-                                        }
-                                        percentColor={"#0ECD9E"}
-                                    />
-                                    <AssessmentButton
-                                        link="/employees/assessment/anxiety"
-                                        btnDisabled={
-                                            anxietyData.length > 0 ? true : false
-                                        }
-                                    />
-                                </>
-                            ) : (
+                </div>
+                <div className="grid-row grid-height mt-2 grid grid-cols-4 gap-6 xl:flex xl:flex-col">
+                    <div className="flex h-[237px] w-[100%] grow flex-col items-center justify-between rounded-lg bg-g-white-1 p-2 shadow">
+                        {deprData.length > 0 ? (
+                            <>
+                                <HalfDoughnutChart
+                                    headtitle={"Depression"}
+                                    levelText={deprData[0].level}
+                                    levelNum={deprData[0].score}
+                                    levelPercent={
+                                        (deprData[0].score * 100) / 27
+                                    }
+                                    percentColor={"#FFC700"}
+                                />
+                                <AssessmentButton
+                                    link="/employees/assessment/depression"
+                                    btnDisabled={
+                                        deprData.length > 0 ? true : false
+                                    }
+                                />
+                            </>
+                        ) : (
+                            <>
                                 <NoResultChart
-                                    mainTitle={"Anxiety"}
+                                    mainTitle={"Depression"}
+                                    link="/employees/assessment/depression"
+                                />
+                            </>
+                        )}
+                    </div>
+                    <div className="flex h-[237px] w-[100%] grow flex-col items-center justify-between rounded-lg bg-g-white-1 p-2 shadow">
+                        {anxietyData.length > 0 ? (
+                            <>
+                                <HalfDoughnutChart
+                                    headtitle={"Anxiety"}
+                                    levelText={anxietyData[0].level}
+                                    levelNum={anxietyData[0].score}
+                                    levelPercent={
+                                        (anxietyData[0].score * 100) / 21
+                                    }
+                                    percentColor={"#0ECD9E"}
+                                />
+                                <AssessmentButton
                                     link="/employees/assessment/anxiety"
+                                    btnDisabled={
+                                        anxietyData.length > 0 ? true : false
+                                    }
                                 />
-                            )}
-                        </div>
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
-                            {burnoutData.length > 0 ? (
-                                <>
-                                    <HalfDoughnutChart
-                                        headtitle={"Burnout"}
-                                        levelText={burnoutData[0].level}
-                                        levelNum={burnoutData[0].score}
-                                        levelPercent={
-                                            (burnoutData[0].score * 100) / 75
-                                        }
-                                        percentColor={"#FF8C49"}
-                                    />
-                                    <AssessmentButton
-                                        link="/employees/assessment/burnout"
-                                        btnDisabled={
-                                            burnoutData.length > 0 ? true : false
-                                        }
-                                    />
-                                </>
-                            ) : (
-                                <NoResultChart
-                                    mainTitle={"Burnout"}
+                            </>
+                        ) : (
+                            <NoResultChart
+                                mainTitle={"Anxiety"}
+                                link="/employees/assessment/anxiety"
+                            />
+                        )}
+                    </div>
+                    <div className="flex h-[237px] w-[100%] grow flex-col items-center justify-between rounded-lg bg-g-white-1 p-2 shadow">
+                        {burnoutData.length > 0 ? (
+                            <>
+                                <HalfDoughnutChart
+                                    headtitle={"Burnout"}
+                                    levelText={burnoutData[0].level}
+                                    levelNum={burnoutData[0].score}
+                                    levelPercent={
+                                        (burnoutData[0].score * 100) / 75
+                                    }
+                                    percentColor={"#FF8C49"}
+                                />
+                                <AssessmentButton
                                     link="/employees/assessment/burnout"
+                                    btnDisabled={
+                                        burnoutData.length > 0 ? true : false
+                                    }
                                 />
-                            )}
-                        </div>
+                            </>
+                        ) : (
+                            <NoResultChart
+                                mainTitle={"Burnout"}
+                                link="/employees/assessment/burnout"
+                            />
+                        )}
                     </div>
 
-                    <div className="row-span-2 m-2">
+                    <div className="row-span-2">
                         <PersonalityType
                             mypersonality={recentPersonalityType}
                         />
                     </div>
 
-                    <div className="col-span-3 m-2 rounded-lg bg-white p-2">
+                    <div className="col-span-3 rounded-lg bg-white p-2">
                         <div className="flex justify-between">
                             <p className="pb-2 text-b-lg font-bold">
                                 Your Assessment History
@@ -220,9 +235,8 @@ export default function Home() {
                             <NoAssessResult />
                         )}
                     </div>
-                </div>
-                <div className="grid grid-cols-4 xl:block">
-                    <div className="col-span-3 m-2 max-h-[350px] rounded-lg bg-white p-2">
+
+                    <div className="col-span-3 max-h-[350px] rounded-lg bg-white p-2 xl:col-span-full">
                         <div className="flex justify-between pb-4">
                             <p className="text-b-lg font-bold">
                                 Education Progress
@@ -237,10 +251,11 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="z-0 m-2 max-h-[350px] rounded-lg bg-white p-2 xl:hidden xl:w-0">
+                    <div className="z-0 max-h-[350px] rounded-lg bg-white p-2 xl:hidden xl:w-0">
                         <Chatbot mypersonality={recentPersonalityType} />
                     </div>
                 </div>
+
                 <PopUpAssessmentHistory
                     isVisible={popup}
                     onClose={() => setPopup(false)}

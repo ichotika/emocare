@@ -4,7 +4,14 @@ import { Doughnut } from "react-chartjs-2";
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, percentColor }) {
+function HalfDoughnutChart({
+    headtitle,
+    levelText,
+    levelNum,
+    levelPercent,
+    percentColor,
+    scaling = false,
+}) {
     const data = {
         datasets: [
             {
@@ -13,7 +20,9 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, perce
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
-                cutout: "85%",
+                cutout: "80%",
+                maintainAspectRatio: false,
+                borderRadius: [{ innerEnd: 30, outerEnd: 30 }],
             },
         ],
     };
@@ -55,17 +64,29 @@ function HalfDoughnutChart({ headtitle, levelText, levelNum, levelPercent, perce
     };
 
     return (
-        <div className="w-[100%] h-[100%]">
-            <p className="font-bold text-center text-b-lg">{headtitle}</p>
+        <>
+            {scaling ? (
+                <></>
+            ) : (
+                <p className="mt-1 text-center text-b-lg font-bold">
+                    {headtitle}
+                </p>
+            )}
             {/* <div className="-mt-[80px]"> */}
+            <div
+                className={
+                    !scaling
+                        ? "chart-js-donut-emp"
+                        : "chart-js-donut-emp-result"
+                }
+            >
                 <Doughnut
                     data={data}
                     options={options}
                     plugins={[chartInnerText]}
-                    className="w-[100%] h-[100%]"
                 />
-            {/* </div> */}
-        </div>
+            </div>
+        </>
     );
 }
 

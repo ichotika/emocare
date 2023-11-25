@@ -5,21 +5,26 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 function PersonalityDetail({ personality }) {
     return (
         <>
-            <div className="p-4">
+            <div className="personality-detail p-4">
                 <div className="grid grid-cols-3 sm:flex sm:flex-col sm:pb-6">
                     <div className="flex items-start justify-center">
-                        <PersonalityImage personality={personality.personality} imgWidth={250} imgHeight={250} />
+                        <PersonalityImage
+                            personality={personality.personality}
+                            imgWidth={250}
+                            imgHeight={250}
+                        />
                     </div>
                     <div className="col-span-2 flex flex-col justify-center">
-                        <h1 className="pb-4 font-bold text-h-xl">
+                        <h1 className="pb-4 text-h-xl font-bold">
                             Your personality is {personality.type}
                         </h1>
                         <p className="text-b-lg">{personality.longdesc}</p>
-
                     </div>
                 </div>
 
-                <div className="text-b-lg" >{documentToReactComponents(personality.description)}</div>
+                <div className="text-b-lg">
+                    {documentToReactComponents(personality.description)}
+                </div>
 
                 <p className="pt-8 text-b-lg">
                     For more information, visit{" "}
@@ -34,9 +39,7 @@ function PersonalityDetail({ personality }) {
 
                 <div className="flex justify-end pt-6">
                     <button className="rounded-lg bg-p-blue-1 p-2 text-white hover:bg-p-blue-2">
-                        <Link href={`/employees`}>
-                            Go back to dashboard
-                        </Link>
+                        <Link href={`/employees`}>Go back to dashboard</Link>
                     </button>
                 </div>
             </div>

@@ -212,8 +212,33 @@ img {
     position: relative;
 }
 
+.chart-js-donut-emp {
+    margin-top: -40px;
+    width: auto;
+    height: 250px;
+    max-width: 210px;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-js-donut-emp-result {
+    margin-top: -40px;
+    width: auto;
+    height: 400px;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+}
+
 .max-width-org-mobile {
     max-width: 348px;
+}
+
+.excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
 }
 
 @media (min-width: 1279px) {
@@ -236,6 +261,21 @@ img {
         height: 50px;
         max-width: 900px;
         position: relative;
+    }
+
+    .chart-js-donut-emp {
+        max-width: auto;
+    }
+
+    .grid-height {
+        grid-template-rows: 237px 260px 280px;
+    }
+
+    .excerpt {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
     }
 }
 
