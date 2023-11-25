@@ -14,8 +14,10 @@ export default function EmployerWidget({ widget }) {
                 sizes="100vw"
                 className="h-32 w-auto"
             ></Image>
-            <h3 className={"text-2xl font-bold font-manrope"}>{heading}</h3>
-            <p className={"font-semibold"}>{body}</p>
+            <article className={"flex flex-col gap-5"}>
+                <h3 className={"text-2xl font-bold font-manrope"}>{heading}</h3>
+                <p className={"font-semibold"}>{body}</p>
+            </article>
         </div>
     );
 }

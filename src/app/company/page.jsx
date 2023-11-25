@@ -43,7 +43,7 @@ export default function Page() {
                 <article className={"flex flex-col items-center gap-8"}>
                     <h2 className={"text-center text-5xl font-bold"}>
                         We provide the Best{" "}
-                        <strong className={"text-blue-700"}>Solution</strong>
+                        <span className={"text-p-blue-1"}>Solution</span>
                     </h2>
                     <p
                         className={
@@ -81,7 +81,7 @@ export default function Page() {
                     ></Image>
                     <p
                         className={
-                            "hyphens-none text-4xl font-bold text-g-white-1 xl:text-3xl lg:text-2xl md:text-xl sm:text-2xl sm:text-center sm:-mt-14"
+                            "hyphens-none text-4xl font-semibold text-g-white-1 xl:text-3xl lg:text-2xl md:text-xl sm:text-2xl sm:text-center sm:-mt-14"
                         }
                     >
                         Employees&apos; data is treated anonymously to prioritize
@@ -96,7 +96,7 @@ export default function Page() {
                     <div className={"px-18 flex flex-col gap-11 lg:order-last"}>
                         <h2 className={"font-archivo text-4xl font-bold"}>
                             <span className={"text-s-orange-1"}>
-                                Transforming Lives:
+                                Transforming Lives:{" "}
                             </span>
                             The Essential Step to a Healthier, Happier You
                         </h2>
