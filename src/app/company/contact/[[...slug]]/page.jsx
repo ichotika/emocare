@@ -1,13 +1,30 @@
 "use client";
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import {useState} from "react";
+import {Dialog} from "@headlessui/react";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 
-export default function Page() {
+export default function Page({params}) {
     const [showModal, setShowModal] = useState(false);
+    const {slug} = params;
 
     const router = useRouter();
+
+    const slugToValue = (slug) =>{
+        if (!slug) {
+            return "";
+        }
+        else {
+            switch (slug[0]) {
+                case "small":
+                    return "300 or fewer";
+                case "medium":
+                    return "300 to 1000";
+                case "large":
+                    return "over 1000";
+            }
+        }
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -32,7 +49,7 @@ export default function Page() {
     }
 
     return (
-        <main className={"flex flex-col items-center gap-8"}>
+        <main className={"flex flex-col items-center gap-8 pt-10"}>
             <p className={"font-manrope text-xl font-bold text-p-blue-1"}>
                 Contact me
             </p>
@@ -94,8 +111,8 @@ export default function Page() {
                             className={
                                 "mb-4 mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3"
                             }
-                        >
-                            <option value="" disabled selected hidden>
+                            defaultValue={slugToValue(slug)}>
+                            <option value="" disabled hidden>
                                 Select your option
                             </option>
                             <option value="300 or fewer">300 or fewer</option>
@@ -193,7 +210,7 @@ export default function Page() {
                     <button
                         type="submit"
                         className={
-                            "self-end rounded-lg bg-p-blue-1 px-16 py-3 font-bold text-g-white-1 lg:mx-4 lg:self-stretch"
+                            "self-end rounded-lg bg-p-blue-1 px-16 py-3 font-bold text-g-white-1 lg:mx-4 lg:self-stretch mb-10"
                         }
                     >
                         Send Message
@@ -203,11 +220,12 @@ export default function Page() {
 
             <Dialog
                 open={showModal}
-                onClose={() => {}}
+                onClose={() => {
+                }}
                 className="relative z-50"
             >
                 {/* The backdrop, rendered as a fixed sibling to the panel container */}
-                <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+                <div className="fixed inset-0 bg-black/30" aria-hidden="true"/>
 
                 <div
                     className={

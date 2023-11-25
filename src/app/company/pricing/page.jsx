@@ -7,6 +7,7 @@ const cards = [
         basePrice: 12.99,
         discountPrice: 11.99,
         description: "For Companies with 300 or fewer Employees",
+        href: "/company/contact/small"
     },
     {
         title: "Mid-Size Partner",
@@ -14,6 +15,7 @@ const cards = [
         basePrice: 11.99,
         discountPrice: 10.99,
         description: "For Companies with over 300 to 1000 Employees",
+        href: "/company/contact/medium"
     },
     {
         title: "Organization",
@@ -21,26 +23,31 @@ const cards = [
         basePrice: 10.99,
         discountPrice: 9.99,
         description: "For Companies with over 1000 Employees",
+        href: "/company/contact/large"
     },
 ];
 
 export default function Page() {
     return (
-        <>
-            <header className="flex flex-col items-center">
-                <p className="text-center">Join Emocare</p>
-                <h1 className="text-center text-5xl">
+        <main className={"px-20 pb-20 pt-10 flex flex-col gap-y-12"}>
+            <header className="flex flex-col items-center gap-2">
+                <p className="text-center font-manrope text-xl font-bold">
+                    Join Emocare
+                </p>
+                <h1 className="text-center text-5xl font-semibold font-archivo">
                     Find the{" "}
-                    <strong className="text-blue-500">Right Plan</strong>
+                    <span className="text-p-blue-1">Right Plan</span>
                 </h1>
-                <ul className="grid grid-cols-3 content-center gap-8 sm:grid-cols-1">
+            </header>
+            <section>
+                <ul className="grid grid-cols-3 content-center gap-8 xl:grid-cols-2 lg:grid-cols-1">
                     {cards.map((card, index) => (
                         <li key={index}>
                             <PlanCard card={card}></PlanCard>
                         </li>
                     ))}
                 </ul>
-            </header>
-        </>
+            </section>
+        </main>
     );
 }
