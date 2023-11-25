@@ -21,7 +21,7 @@ const TableHeader = styled.div`
     background-color: #f5f9ff;
     border-bottom: 2px solid #f5f9ff;
     letter-spacing: 0.4px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-grey-600);
     padding: 0.75rem 0;
 `;

@@ -111,7 +111,7 @@ export default function AssessmentTrendsChart({ assessmentData }) {
 
     return (
         <div className="h-[286px] basis-7/12 rounded-lg border border-gray-200 bg-white p-6 shadow">
-            <h2 className="mb-1 text-xl ">Assessment Trends</h2>
+            <h2 className="mb-1 text-b-xl font-bold">Assessment Trends</h2>
             <div className="chart-js-wrapper-trend">
                 <Line options={options} data={data} />
             </div>

@@ -162,6 +162,7 @@ const AssessmentResult = () => {
                             levelNum={latestAssessRecord.score}
                             levelPercent={(latestAssessRecord.score * 100) / 75}
                             percentColor={"#FF8C49"}
+                            scaling={true}
                         />
                     )}
                     {latestAssessRecord && assessType === "depression" && (
@@ -258,7 +259,7 @@ const AssessmentResult = () => {
                     </table>
                 </div>
                 {latestAssessRecord &&
-                    latestAssessRecord.level ===
+                latestAssessRecord.level ===
                     (scoreRange[0][scoreRange[0].length - 1]?.level ||
                         scoreRange[0][scoreRange[0].length - 2]?.level ||
                         scoreRange[1][scoreRange[1].length - 1]?.level ||

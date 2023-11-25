@@ -6,20 +6,21 @@ import { useEffect, useState } from "react";
 import AssessmentHeader from "@/components/employees/AssessmentHeader";
 
 const fetchPersonality = async (type) => {
-    try{
+    try {
         const res = await client.getEntries({
             content_type: "personality",
         });
-        const personalityContent = res.items.filter((per) => per.fields.type === type);
+        const personalityContent = res.items.filter(
+            (per) => per.fields.type === type
+        );
         return personalityContent;
-    } catch(error){
-        console.error("Failed to fetch content:", error)
+    } catch (error) {
+        console.error("Failed to fetch content:", error);
     }
-}
+};
 
 export default function Home() {
-
-    const [perContent, setPerContent] = useState('')
+    const [perContent, setPerContent] = useState("");
 
     // fetching the personality type from link
     const searchParam = useSearchParams();
@@ -32,20 +33,27 @@ export default function Home() {
         };
 
         fetchContent();
-    })
+    }, [type]);
 
     const typeList = perContent.length > 0 ? perContent : [];
     return (
-        <div>
-            <AssessmentHeader
-                headerText1={"Personality"}
-                headerText2={"Open Extended Jungian Type Scales 1.2"}
-            />
-            {typeList.length > 0 ? (
-                <PersonalityDetail personality={typeList[0].fields} />
-            ) : (
-                ""
-            )}
-        </div>
+        <>
+            <style>
+                {
+                    "h2 {font-weight: bold; font-size:30px; margin-top: 40px; margin-bottom: 40px; } h3 {font-weight: bold; font-size:20px; margin-top: 30px; margin-bottom: 10px; } .personality-detail li {list-style: outside; margin-left:20px;}"
+                }
+            </style>
+            <div>
+                <AssessmentHeader
+                    headerText1={"Personality"}
+                    headerText2={"Open Extended Jungian Type Scales 1.2"}
+                />
+                {typeList.length > 0 ? (
+                    <PersonalityDetail personality={typeList[0].fields} />
+                ) : (
+                    ""
+                )}
+            </div>
+        </>
     );
 }

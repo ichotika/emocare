@@ -67,7 +67,7 @@ const BurnoutQuestionnaire = () => {
     const burnoutLevel = [
         {
             blevel: "No-sign",
-            description: "No sign of burnout here."
+            description: "No sign of burnout here.",
         },
         {
             blevel: "Little sign",
@@ -91,8 +91,8 @@ const BurnoutQuestionnaire = () => {
         },
         {
             blevel: "Error",
-            description: "Error"
-        }
+            description: "Error",
+        },
     ];
 
     // const [level, setLevel] = useState("")
@@ -197,7 +197,35 @@ const BurnoutQuestionnaire = () => {
         fetchBurnoutQuestionnaire();
     }, []);
     // console.log(burnoutQustionnaire);
-
+    // Keydown listener
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            console.log(event.key);
+            if (event.key === "ArrowDown") {
+                setValue({
+                    q1: 5,
+                    q2: 5,
+                    q3: 5,
+                    q4: 5,
+                    q5: 5,
+                    q6: 5,
+                    q7: 5,
+                    q8: 5,
+                    q9: 5,
+                    q10: 5,
+                    q11: 5,
+                    q12: 5,
+                    q13: 5,
+                    q14: 5,
+                    q15: 5,
+                });
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
     return (
         <div className="flex">
             <form
@@ -223,14 +251,14 @@ const BurnoutQuestionnaire = () => {
                             {burnoutQustionnaire?.map(
                                 (question, index, array) => (
                                     <div
-                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_38.6%_11.5%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-nowrap xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_38.6%_11.5%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:flex-nowrap xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
                                             index === array.length - 1
                                                 ? "rounded-b-lg xl:rounded-none"
                                                 : ""
                                         }`}
                                         key={question.No}
                                     >
-                                    <div className="col-span-2 flex">
+                                        <div className="col-span-2 flex">
                                             <div className="self-center justify-self-center px-4 py-4 xl:self-start">
                                                 {question.No}
                                             </div>
@@ -244,7 +272,6 @@ const BurnoutQuestionnaire = () => {
                                                 className="self-center px-3 py-4 pl-[49px] text-center font-bold xl:flex xl:self-start xl:py-2"
                                             >
                                                 <input
-                                                    className="content-center border-p-blue-1 bg-p-blue-1"
                                                     type="radio"
                                                     {...register(
                                                         `q${question.No}`,
@@ -252,6 +279,11 @@ const BurnoutQuestionnaire = () => {
                                                     )}
                                                     id={`q${question.No}_${option.value}`}
                                                     value={Number(option.value)}
+                                                    checked={
+                                                        value[
+                                                            `q${question.No}`
+                                                        ] === option.value
+                                                    }
                                                     onChange={handleRadioChange}
                                                 />
                                                 <label
@@ -282,9 +314,7 @@ const BurnoutQuestionnaire = () => {
                     <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
                         Save
                     </button>
-                    <button
-                        className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
-                    >
+                    <button className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4">
                         Submit Anonymously
                     </button>
                 </div>

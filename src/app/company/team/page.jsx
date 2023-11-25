@@ -70,29 +70,33 @@ const members = [
 
 function Page() {
     return (
-        <>
-            <header className={"text-center"}>
-                <h1 className={"font-sans text-5xl"}>Meet Our Team</h1>
-                <p>
+        <main
+            className={"flex flex-col content-center gap-10 px-20 pb-20 pt-10"}
+        >
+            <header className={"flex flex-col items-center gap-5 text-center"}>
+                <h1 className={"font-archivo text-5xl font-semibold"}>
+                    Meet Our Team
+                </h1>
+                <p className={"max-w-4xl font-manrope text-xl"}>
                     Introducing our dynamic team purple where the fusion of 5
                     skilled developers and 3 visionary designers forms the
                     backbone of EmoCare.
                 </p>
             </header>
-            <main>
+            <section>
                 <ul
                     className={
-                        "grid grid-cols-4 gap-y-7 lg:grid-cols-3 sm:grid-cols-2"
+                        "grid grid-cols-4 gap-y-7 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
                     }
                 >
                     {members.map((member) => (
-                        <li key={member.name}>
+                        <li key={member.name} className={"grid justify-center"}>
                             <TeamCard member={member}></TeamCard>
                         </li>
                     ))}
                 </ul>
-            </main>
-        </>
+            </section>
+        </main>
     );
 }
 
