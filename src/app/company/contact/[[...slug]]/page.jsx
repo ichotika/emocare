@@ -4,8 +4,9 @@ import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-export default function Page() {
+export default function Page({params}) {
     const [showModal, setShowModal] = useState(false);
+    const {slug} = params;
 
     const router = useRouter();
 
@@ -95,12 +96,12 @@ export default function Page() {
                                 "mb-4 mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3"
                             }
                         >
-                            <option value="" disabled selected hidden>
+                            <option value="" disabled selected={!slug} hidden>
                                 Select your option
                             </option>
-                            <option value="300 or fewer">300 or fewer</option>
-                            <option value="300 to 1000">300 to 1000</option>
-                            <option value="over 1000">over 1000</option>
+                            <option value="300 or fewer" selected={slug[0]==="small"}>300 or fewer</option>
+                            <option value="300 to 1000" selected={slug[0]==="medium"}>300 to 1000</option>
+                            <option value="over 1000" selected={slug[0]==="large"}>over 1000</option>
                         </select>
                     </div>
                     <div className={"grid grid-cols-2 gap-x-4 md:grid-cols-1"}>
