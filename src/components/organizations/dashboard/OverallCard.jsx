@@ -63,7 +63,9 @@ const OverallCard = ({ employee }) => {
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <div className="flex justify-between">
                             <div className="flex flex-col justify-between">
-                                <p className="flex text-xl">Total Employees</p>
+                                <p className="flex text-xl font-semibold">
+                                    Total Employees
+                                </p>
                                 <h4 className="flex text-5xl font-bold">
                                     {employee.length}
                                 </h4>
@@ -143,7 +145,9 @@ const OverallCard = ({ employee }) => {
                     <div className="flex-grow rounded-lg border border-gray-200 bg-white p-6 shadow">
                         <div className="flex justify-between">
                             <div className="flex flex-col justify-between">
-                                <p className="flex text-xl">Total Employees</p>
+                                <p className="flex text-xl font-semibold">
+                                    Active Users
+                                </p>
                                 <h4 className="flex text-5xl font-bold">
                                     {(
                                         (activeEmployeesInMonth11Year2023 /
