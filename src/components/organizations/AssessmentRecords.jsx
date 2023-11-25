@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import BadCondition from "@/public/assets/organization/Decline.gif";
 import GoodCondition from "@/public/assets/organization/Growth.gif";
