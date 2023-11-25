@@ -31,7 +31,7 @@ export default function TopNav({ routes }) {
         <>
             <nav
                 className={
-                    "z-20 flex h-20 flex-row items-center justify-between bg-white px-20 py-4 shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:h-16"
+                    "z-20 flex h-20 flex-row items-center justify-between bg-white px-20 py-4 shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:h-16 lg:px-4"
                 }
             >
                 <Link href={"/company"}>
