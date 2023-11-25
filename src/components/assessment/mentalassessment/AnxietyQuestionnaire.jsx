@@ -199,11 +199,11 @@ const AnxietyQuestionnaire = () => {
                                 </div>
                             ))}
                         </TableHeader>
-                        <div className="rounded-b-lg xl:rounded-b-none">
+                        <div className="rounded-b-lg xl:rounded-b-none bg-g-white-1">
                             {anxietyQustionnaire?.anxietyAssessment?.map(
                                 (question, index, array) => (
                                     <div
-                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2 ${
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2" ${
                                             index === array.length - 1
                                                 ? "rounded-b-lg xl:rounded-none"
                                                 : ""

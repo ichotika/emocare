@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
                 />
             </div>
 
-            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 p-12 xl:ml-0 xl:grow-0 xl:bg-g-gray-5 xl:p-8">
+            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 px-12 py-10 xl:ml-0 xl:grow-0 xl:bg-g-gray-5 xl:p-8">
                 {children}
             </div>
         </div>
