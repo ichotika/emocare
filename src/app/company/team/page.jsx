@@ -86,11 +86,11 @@ function Page() {
             <section>
                 <ul
                     className={
-                        "grid grid-cols-4 gap-y-7 lg:grid-cols-3 sm:grid-cols-2"
+                        "grid grid-cols-4 gap-y-7 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1"
                     }
                 >
                     {members.map((member) => (
-                        <li key={member.name}>
+                        <li key={member.name} className={"grid justify-center"}>
                             <TeamCard member={member}></TeamCard>
                         </li>
                     ))}
