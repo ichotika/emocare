@@ -10,6 +10,7 @@ function HalfDoughnutChart({
     levelNum,
     levelPercent,
     percentColor,
+    scaling = false,
 }) {
     const data = {
         datasets: [
@@ -19,7 +20,9 @@ function HalfDoughnutChart({
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
-                cutout: "85%",
+                cutout: "80%",
+                maintainAspectRatio: false,
+                borderRadius: [{ innerEnd: 30, outerEnd: 30 }],
             },
         ],
     };
@@ -61,18 +64,29 @@ function HalfDoughnutChart({
     };
 
     return (
-        <div className="h-[100%] w-[100%]">
-            <p className="text-center text-b-lg font-bold">{headtitle}</p>
+        <>
+            {scaling ? (
+                <></>
+            ) : (
+                <p className="mt-1 text-center text-b-lg font-bold">
+                    {headtitle}
+                </p>
+            )}
             {/* <div className="-mt-[80px]"> */}
-            <div className="chart-js-donut-emp">
+            <div
+                className={
+                    !scaling
+                        ? "chart-js-donut-emp"
+                        : "chart-js-donut-emp-result"
+                }
+            >
                 <Doughnut
                     data={data}
                     options={options}
                     plugins={[chartInnerText]}
-                    className="h-[100%] w-[100%]"
                 />
             </div>
-        </div>
+        </>
     );
 }
 

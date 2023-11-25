@@ -1,91 +1,97 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import AdventurerImage from "@/public/assets/employees/Personality - Adventurer.svg"
-import AdvocateImage from "@/public/assets/employees/Personality - Advocate.svg"
-import ArchitectImage from "@/public/assets/employees/Personality - Architect.svg"
-import CampaignerImage from "@/public/assets/employees/Personality - Campaigner.svg"
-import CommanderImage from "@/public/assets/employees/Personality - Commander.svg"
-import ConsulImage from "@/public/assets/employees/Personality - Consul.svg"
-import DebaterImage from "@/public/assets/employees/Personality - Debater.svg"
-import DefenderImage from "@/public/assets/employees/Personality - Defender.svg"
-import EntertainerImage from "@/public/assets/employees/Personality - Entertainer.svg"
-import EntrepreneurImage from "@/public/assets/employees/Personality - Entrepreneur.svg"
-import ExecutiveImage from "@/public/assets/employees/Personality - Executive.svg"
-import LogicianImage from "@/public/assets/employees/Personality - Logician.svg"
-import LogisticianImage from "@/public/assets/employees/Personality - Logistician.svg"
-import MediatorImage from "@/public/assets/employees/Personality - Mediator.svg"
-import ProtagonistImage from "@/public/assets/employees/Personality - Protagonist.svg"
-import VirtuosoImage from "@/public/assets/employees/Personality - Virtuoso.svg"
-import DefaultImage from "@/public/assets/organization/user.svg"
+import AdventurerImage from "@/public/assets/employees/Personality - Adventurer.svg";
+import AdvocateImage from "@/public/assets/employees/Personality - Advocate.svg";
+import ArchitectImage from "@/public/assets/employees/Personality - Architect.svg";
+import CampaignerImage from "@/public/assets/employees/Personality - Campaigner.svg";
+import CommanderImage from "@/public/assets/employees/Personality - Commander.svg";
+import ConsulImage from "@/public/assets/employees/Personality - Consul.svg";
+import DebaterImage from "@/public/assets/employees/Personality - Debater.svg";
+import DefenderImage from "@/public/assets/employees/Personality - Defender.svg";
+import EntertainerImage from "@/public/assets/employees/Personality - Entertainer.svg";
+import EntrepreneurImage from "@/public/assets/employees/Personality - Entrepreneur.svg";
+import ExecutiveImage from "@/public/assets/employees/Personality - Executive.svg";
+import LogicianImage from "@/public/assets/employees/Personality - Logician.svg";
+import LogisticianImage from "@/public/assets/employees/Personality - Logistician.svg";
+import MediatorImage from "@/public/assets/employees/Personality - Mediator.svg";
+import ProtagonistImage from "@/public/assets/employees/Personality - Protagonist.svg";
+import VirtuosoImage from "@/public/assets/employees/Personality - Virtuoso.svg";
+import DefaultImage from "@/public/assets/organization/user.svg";
 
-export default function PersonalityImage({personality, imgWidth, imgHeight}) {
+export default function PersonalityImage({ personality, imgWidth, imgHeight }) {
     const [personalityImage, setPersonalityImage] = useState(DefaultImage);
-    
+
     useEffect(() => {
         const fetchImg = () => {
             switch (personality) {
                 case "Adventurer":
-                    setPersonalityImage(AdventurerImage)
+                    setPersonalityImage(AdventurerImage);
                     break;
                 case "Advocate":
-                    setPersonalityImage(AdvocateImage)
+                    setPersonalityImage(AdvocateImage);
                     break;
                 case "Architect":
-                    setPersonalityImage(ArchitectImage)
+                    setPersonalityImage(ArchitectImage);
                     break;
                 case "Campaigner":
-                    setPersonalityImage(CampaignerImage)
+                    setPersonalityImage(CampaignerImage);
                     break;
                 case "Commander":
-                    setPersonalityImage(CommanderImage)
+                    setPersonalityImage(CommanderImage);
                     break;
                 case "Consul":
-                    setPersonalityImage(ConsulImage)
+                    setPersonalityImage(ConsulImage);
                     break;
                 case "Debater":
-                    setPersonalityImage(DebaterImage)
+                    setPersonalityImage(DebaterImage);
                     break;
                 case "Defender":
-                    setPersonalityImage(DefenderImage)
+                    setPersonalityImage(DefenderImage);
                     break;
                 case "Entertainer":
-                    setPersonalityImage(EntertainerImage)
+                    setPersonalityImage(EntertainerImage);
                     break;
                 case "Entrepreneur":
-                    setPersonalityImage(EntrepreneurImage)
+                    setPersonalityImage(EntrepreneurImage);
                     break;
                 case "Executive":
-                    setPersonalityImage(ExecutiveImage)
+                    setPersonalityImage(ExecutiveImage);
                     break;
                 case "Logician":
-                    setPersonalityImage(LogicianImage)
+                    setPersonalityImage(LogicianImage);
                     break;
                 case "Logistician":
-                    setPersonalityImage(LogisticianImage)
+                    setPersonalityImage(LogisticianImage);
                     break;
                 case "Mediator":
-                    setPersonalityImage(MediatorImage)
+                    setPersonalityImage(MediatorImage);
                     break;
                 case "Protagonist":
-                    setPersonalityImage(ProtagonistImage)
+                    setPersonalityImage(ProtagonistImage);
                     break;
                 case "Virtuoso":
-                    setPersonalityImage(VirtuosoImage)
+                    setPersonalityImage(VirtuosoImage);
                     break;
-            
+
                 default:
-                    setPersonalityImage(DefaultImage)
+                    setPersonalityImage(DefaultImage);
                     break;
             }
         };
         fetchImg();
-    },[personality])
+    }, [personality]);
 
     return (
         <>
-            <div className="flex justify-center py-4">
-                <Image src={ personalityImage } width={imgWidth} height={imgHeight} priority={false} alt="Picture" />
+            <div className="flex justify-center">
+                <Image
+                    src={personalityImage}
+                    width={imgWidth}
+                    height={imgHeight}
+                    priority={false}
+                    alt="Picture"
+                />
             </div>
         </>
-    )
+    );
 }
