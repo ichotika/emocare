@@ -1,22 +1,36 @@
 const fs = require("fs");
 
 const userIDs = [
-    "user_2Y0xrxG8MvcW2DCosLJimclY3Qy",
-    "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
-    "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
-    "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
-    "user_2XjJmTTENoeu4CZn29IvGtQVcaT",
-    "user_2Xj6laq466aLOP3JeMBLifmJT3q",
-    "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
-    "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
-    "user_2Xj10InQPYdmPjOR9VreThe9fic",
-    "user_2XPEtkTKwMrPNxfwJI5Tlm7Lih5",
-    "user_2XPEPN06KiJLHjHhZtqObwybzLh",
-    "user_2Wm410lLaboT0TuFcqYiOgEjFBL",
-    "user_2Wm3vzaMwIEixd3yeUVZadaiEej",
-    "user_2Wm2YG63MkK5hmmnAjFbxFsgjsx",
-    "user_2Wm2BZttrdTbl64xxb2wnJsm9Cz",
-    "user_2WjIXHWCPMqRxSY3nl9oYdFhLJI",
+    // "user_2Y0xrxG8MvcW2DCosLJimclY3Qy",
+    // "user_2XoieRxs3OMlyOhpJWrmuMt1ICc",
+    // "user_2XmlKxMzrbWeCmYAykfKIc5AYO2",
+    // "user_2XmZ48kI0zqFYIDVhGWcqWpcpDv",
+    // "user_2XjJmTTENoeu4CZn29IvGtQVcaT",
+    // "user_2Xj6laq466aLOP3JeMBLifmJT3q",
+    // "user_2Xj6T57AGPoMOBXCT2LTQMf324s",
+    // "user_2Xj5N0npf6pJfGaHlIWLvjxBJSp",
+    // "user_2Xj10InQPYdmPjOR9VreThe9fic",
+    // "user_2XPEtkTKwMrPNxfwJI5Tlm7Lih5",
+    // "user_2XPEPN06KiJLHjHhZtqObwybzLh",
+    // "user_2Wm410lLaboT0TuFcqYiOgEjFBL",
+    // "user_2Wm3vzaMwIEixd3yeUVZadaiEej",
+    // "user_2Wm2YG63MkK5hmmnAjFbxFsgjsx",
+    // "user_2Wm2BZttrdTbl64xxb2wnJsm9Cz",
+    // "user_2WjIXHWCPMqRxSY3nl9oYdFhLJI",
+    "user_2A0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2B0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2C0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2D0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2E0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2F0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2G0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2Q0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2W0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2E0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2O0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2L0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2P0xrxG8MvcW2DCosLJimclY3Qy",
+    "user_2I0xrxG8MvcW2DCosLJimclY3Qy",
 ];
 
 function getRandomFromArray(array) {
@@ -63,7 +77,7 @@ function getRandomDate(month) {
 }
 function generateData() {
     const data = [];
-    const months = ["10", "11"];
+    const months = ["3", "4", "5", "6", "7", "8", "9"];
 
     for (let month of months) {
         let tempUserIDs = [...userIDs];
