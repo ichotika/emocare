@@ -49,7 +49,7 @@ export default function Page({params}) {
     }
 
     return (
-        <main className={"flex flex-col items-center gap-8"}>
+        <main className={"flex flex-col items-center gap-8 pt-10"}>
             <p className={"font-manrope text-xl font-bold text-p-blue-1"}>
                 Contact me
             </p>
@@ -210,7 +210,7 @@ export default function Page({params}) {
                     <button
                         type="submit"
                         className={
-                            "self-end rounded-lg bg-p-blue-1 px-16 py-3 font-bold text-g-white-1 lg:mx-4 lg:self-stretch"
+                            "self-end rounded-lg bg-p-blue-1 px-16 py-3 font-bold text-g-white-1 lg:mx-4 lg:self-stretch mb-10"
                         }
                     >
                         Send Message
