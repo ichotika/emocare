@@ -24,7 +24,7 @@ const StyledParagraph = styled.p`
     padding-bottom: 0.75rem;
     text-align: left;
     font-size: 0.875rem;
-    font-weight: 300;
+    font-weight: 600;
 `;
 const StyledParagraphLeft = styled.p`
     margin-bottom: auto;
@@ -36,13 +36,13 @@ const StyledParagraphLeft = styled.p`
     padding-bottom: 0.75rem;
     text-align: center;
     font-size: 0.875rem;
-    font-weight: 300;
+    font-weight: 600;
 `;
 function OrganizationRow({ title, id, joinDate }) {
     return (
         <TableRow>
             <div className="mb-auto mt-auto flex items-center justify-end">
-                <div className="bg-p-blue-6 me-2 rounded-full p-2">
+                <div className="me-2 rounded-full bg-p-blue-6 p-2">
                     <Image
                         src={anonymous}
                         width={24}

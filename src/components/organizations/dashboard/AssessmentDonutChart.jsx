@@ -21,7 +21,7 @@ export default function AssessmentDonutChart({
                 data: [depressionCount, burnoutCount, anxietyCount],
                 backgroundColor: ["#2469F6", "#0A285D", "#ACC8F3"],
                 borderColor: ["#2469F6", "#0A285D", "#ACC8F3"],
-                borderWidth: 30,
+                borderWidth: 26,
             },
         ],
     };
@@ -40,7 +40,7 @@ export default function AssessmentDonutChart({
             },
         },
         aspectRatio: 1 / 1,
-        cutout: 105,
+        cutout: 101,
     };
 
     const gaugeText = {
@@ -53,7 +53,7 @@ export default function AssessmentDonutChart({
 
             ctx.save();
             ctx.fillStyle = "black";
-            ctx.font = "bold 30px Manrope, sans-serif";
+            ctx.font = "bold 40px Manrope, sans-serif";
             ctx.textAlign = "center";
             ctx.fillText(
                 `${
@@ -62,9 +62,10 @@ export default function AssessmentDonutChart({
                     data.datasets[0].data[2]
                 }`,
                 xCenter,
-                yCenter - 10
+                yCenter
             );
-            ctx.fillText(`Taken`, xCenter, yCenter + 20);
+            ctx.font = "24px Manrope, sans-serif";
+            ctx.fillText(`Taken`, xCenter, yCenter + 35);
         },
     };
 
@@ -74,7 +75,10 @@ export default function AssessmentDonutChart({
                 <p className="mb-5 text-center text-b-xl font-bold">
                     Monthly Assessment
                 </p>
-                <div className="chart-js-wrapper" style={{ width: "220px" }}>
+                <div
+                    className="chart-js-wrapper mt-1"
+                    style={{ width: "220px" }}
+                >
                     <Doughnut
                         data={data}
                         options={options}

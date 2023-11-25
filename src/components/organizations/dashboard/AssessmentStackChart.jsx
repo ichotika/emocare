@@ -268,7 +268,7 @@ export default function AssessmentStackChart({
     };
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex h-full flex-col justify-between gap-4">
             <div>
                 <div className=" flex justify-between">
                     <div className="flex items-center">
@@ -276,7 +276,7 @@ export default function AssessmentStackChart({
                             style={{ backgroundColor: "#2469F6" }}
                             className="mr-2 h-4 w-4"
                         ></div>
-                        <p>Depression</p>
+                        <p className="text-b-sm font-semibold">Depression</p>
                     </div>
                     <p
                         style={{
@@ -285,6 +285,7 @@ export default function AssessmentStackChart({
                             borderRadius: "10%",
                             color: "#387AF6",
                         }}
+                        className="text-b-xs font-semibold"
                     >
                         {depressionAssessments.length} emp
                     </p>
@@ -301,7 +302,7 @@ export default function AssessmentStackChart({
                             style={{ backgroundColor: "#ACC8F3" }}
                             className="mr-2 h-4 w-4"
                         ></div>
-                        <p>Anxiety</p>
+                        <p className="text-b-sm font-semibold">Anxiety</p>
                     </div>
                     <p
                         style={{
@@ -310,6 +311,7 @@ export default function AssessmentStackChart({
                             borderRadius: "10%",
                             color: "#387AF6",
                         }}
+                        className="text-b-xs font-semibold"
                     >
                         {anxietyAssessments.length} emp
                     </p>
@@ -326,7 +328,7 @@ export default function AssessmentStackChart({
                             style={{ backgroundColor: "#0A285D" }}
                             className="mr-2 h-4 w-4"
                         ></div>
-                        <p>Burnout</p>
+                        <p className="text-b-sm font-semibold">Burnout</p>
                     </div>
                     <p
                         style={{
@@ -335,6 +337,7 @@ export default function AssessmentStackChart({
                             borderRadius: "10%",
                             color: "#387AF6",
                         }}
+                        className="text-b-xs font-semibold"
                     >
                         {burnoutAssessments.length} emp
                     </p>

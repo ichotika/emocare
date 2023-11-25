@@ -19,7 +19,7 @@ export default function Feedbacks({ feedbacks }) {
         <div className="relative max-h-[286px] basis-5/12 rounded-lg border border-gray-200 bg-white p-6 shadow">
             <div className="embla">
                 <div className="flex justify-between">
-                    <p className="mb-1 text-xl">Feedbacks</p>
+                    <p className="mb-1 text-b-xl font-bold">Feedbacks</p>
                     <div>
                         <button
                             className="embla__prev rounded border border-black px-1.5 py-0"
@@ -44,7 +44,9 @@ export default function Feedbacks({ feedbacks }) {
                             return (
                                 <div className="embla__slide" key={index}>
                                     <FeedbackCard title={feedback.title}>
-                                        <p>{feedback.description}</p>
+                                        <p className="text-b-base">
+                                            {feedback.description}
+                                        </p>
                                     </FeedbackCard>
                                 </div>
                             );

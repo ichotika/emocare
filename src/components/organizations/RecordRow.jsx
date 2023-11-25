@@ -24,7 +24,7 @@ const StyledParagraph = styled.p`
     padding-bottom: 0.75rem;
     text-align: center;
     font-size: 0.875rem;
-    font-weight: 300;
+    font-weight: 600;
 `;
 const handleButtonClick = async (id, assessmentType) => {
     try {
@@ -66,10 +66,10 @@ function OrganizationRow({
                     />
                 </div>
             </div>
-            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-sm font-light">
+            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-sm font-semibold">
                 {title}
             </p>
-            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-center text-sm font-light">
+            <p className="mb-auto mt-auto block border-r-2 border-p-blue-6 py-3 text-center text-sm font-semibold">
                 {assessmentType}
             </p>
             {scoreCur === "Good" ? (

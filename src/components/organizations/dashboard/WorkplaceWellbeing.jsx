@@ -38,6 +38,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
                 borderColor: ["white"],
                 circumference: 270,
                 rotation: 225,
+                borderRadius: [30, { innerEnd: 30, outerEnd: 30 }],
             },
         ],
     };
@@ -69,9 +70,14 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
 
             ctx.save();
             ctx.fillStyle = "black";
-            ctx.font = "bold 30px Manrope, sans-serif";
+            ctx.font = "bold 40px Manrope, sans-serif";
             ctx.textAlign = "center";
-            ctx.fillText(`${data.datasets[0].data[0]}%`, xCenter, yCenter - 10);
+            ctx.fillText(
+                `${data.datasets[0].data[0]}%`,
+                xCenter + 10,
+                yCenter - 10
+            );
+            ctx.font = "24px Manrope, sans-serif";
             ctx.fillText(`Protected`, xCenter, yCenter + 20);
         },
     };
@@ -81,7 +87,7 @@ export default function WorkplaceWellbeing({ assessmentData, employee }) {
             <p className="mb-5 text-center text-b-xl font-bold">
                 Workplace Wellbeing
             </p>
-            <div className="chart-js-wrapper pt-1" style={{ width: "260px" }}>
+            <div className="chart-js-wrapper -mt-2" style={{ width: "260px" }}>
                 <Doughnut data={data} options={options} plugins={[gaugeText]} />
             </div>
         </div>
