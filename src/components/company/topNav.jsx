@@ -85,13 +85,12 @@ export default function TopNav({ routes }) {
                 className={"z-10"}
                 routes={routes}
                 tuckedAway={hiddenHamburgerNav}
-                onClose={handleClose}
             ></HamburgerNav>
         </>
     );
 }
 
-function HamburgerNav({ routes, tuckedAway, onClose }) {
+function HamburgerNav({ routes, tuckedAway}) {
     const pathname = usePathname();
 
     return (
