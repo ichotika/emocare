@@ -31,7 +31,7 @@ export default function Layout({ children }) {
     return (
         <>
             <TopNav routes={routesTop}></TopNav>
-            <div className={"sm:mt-[50px]"}> {children}</div>
+            <div className={"lg:mt-16"}> {children}</div>
             <Footer routes={routesBottom}></Footer>
         </>
     );

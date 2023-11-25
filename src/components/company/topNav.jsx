@@ -26,7 +26,7 @@ export default function TopNav({ routes }) {
         <>
             <nav
                 className={
-                    "z-10 flex h-20 flex-row items-center justify-between bg-white px-20 py-4 shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] sm:fixed sm:left-0 sm:right-0 sm:top-0 sm:h-16"
+                    "z-10 flex h-20 flex-row items-center justify-between bg-white px-20 py-4 shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:h-16"
                 }
             >
                 <Link href={"/company"}>
@@ -35,12 +35,12 @@ export default function TopNav({ routes }) {
                 <button
                     onClick={handleOpen}
                     className={
-                        "hidden rounded-xl bg-blue-600 p-1 text-3xl text-white sm:block"
+                        "hidden rounded-xl bg-blue-600 p-1 text-3xl text-white lg:block"
                     }
                 >
                     =
                 </button>
-                <div className={"flex flex-row gap-6 sm:hidden"}>
+                <div className={"flex flex-row gap-6 lg:hidden"}>
                     <ul className={"flex flex-row items-center gap-4"}>
                         {routes.map((route, index) => (
                             <li key={index}>
