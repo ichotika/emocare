@@ -10,7 +10,7 @@ export default function MediaAndText({ heading, body, src, textRight }) {
         >
             <div
                 className={
-                    textRight ? "order-last sm:order-last" : "sm:order-last"
+                    "flex flex-col gap-11 "+(textRight ? "order-last sm:order-last" : "sm:order-last")
                 }
             >
                 <h2

@@ -53,7 +53,7 @@ export default function Page() {
                         }
                     >
                         We provide the Best{" "}
-                        <strong className={"text-blue-700"}>Solution</strong>
+                        <span className={"text-p-blue-1"}>Solution</span>
                     </h2>
                     <p
                         className={
@@ -114,7 +114,7 @@ export default function Page() {
                             }
                         >
                             <span className={"text-s-orange-1"}>
-                                Transforming Lives:
+                                Transforming Lives:{" "}
                             </span>
                             The Essential Step to a Healthier, Happier You
                         </h2>
