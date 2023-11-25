@@ -124,7 +124,7 @@ const BurnoutQuestionnaire = () => {
                 result.description = burnoutLevel[3].description;
                 break;
 
-            case totalScore >= 75:
+            case totalScore <= 75:
                 result.blevel = burnoutLevel[4].blevel;
                 result.description = burnoutLevel[4].description;
                 break;

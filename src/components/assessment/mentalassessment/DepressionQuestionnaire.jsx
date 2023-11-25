@@ -88,6 +88,8 @@ const Questionnaire = () => {
         },
     ];
 
+    console.log(depressionLevel[0].description);
+
     // const [level, setLevel] = useState("")
 
     const getDepressionLevel = (totalScore) => {
@@ -117,7 +119,7 @@ const Questionnaire = () => {
                 result.description = depressionLevel[3].description;
                 break;
 
-            case totalScore >= 27:
+            case totalScore <= 27:
                 result.dlevel = depressionLevel[4].dlevel;
                 result.description = depressionLevel[4].description;
                 break;
@@ -127,13 +129,15 @@ const Questionnaire = () => {
                 result.description = depressionLevel[5].description;
                 break;
         }
+
+        // console.log("this is result",result);
         return result;
     };
 
     // post data to assessHistory collection in MongoDB.
     const onSubmit = async (data) => {
         // console.log("this is the data from line 119", data);
-        // console.log("my user id => ", user.id)
+        console.log("my user id => ", user.id);
         let i = [];
         async function response() {
             await fetch("/api/assessment", {
@@ -208,7 +212,17 @@ const Questionnaire = () => {
             >
                 <div className="main-container flex flex-col gap-y-6">
                     <div className="">
-                        <TableHeader className="border-collapse rounded-t-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
+                        <TableHeader className="
+                            border-collapse 
+                            rounded-t-lg 
+                            border
+                            border-g-gray-2 
+                            bg-p-blue-5 
+                            xl:rounded-none 
+                            xl:border-x-0 
+                            xl:border-y 
+                            xl:border-g-white-1 
+                            xl:bg-p-blue-5">
                             <div className="px-3">No.</div>
                             <div className="px-3">Questions</div>
                             {options.map((option) => (
@@ -220,7 +234,7 @@ const Questionnaire = () => {
                                 </div>
                             ))}
                         </TableHeader>
-                        <div className="rounded-b-lg xl:rounded-b-none">
+                        <div className="rounded-b-lg bg-g-white-1 xl:rounded-b-none">
                             {depressionQustionnaire?.depressionAssessment?.map(
                                 (question, index, array) => (
                                     <div
@@ -283,9 +297,7 @@ const Questionnaire = () => {
                     <button className=":py-2.5 rounded-lg border-2 border-g-gray-2 px-20 leading-6 xl:border-p-blue-1 xl:px-9 xl:py-4 xl:leading-4 xl:text-p-blue-1">
                         Save
                     </button>
-                    <button
-                        className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4"
-                    >
+                    <button className="rounded-lg bg-p-blue-1 px-[18px] py-2.5 leading-6 text-g-white-1 xl:px-3 xl:py-4 xl:leading-4">
                         Submit Anonymously
                     </button>
                 </div>

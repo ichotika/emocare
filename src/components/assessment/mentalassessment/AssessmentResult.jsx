@@ -125,11 +125,11 @@ const AssessmentResult = () => {
             getAssessmentResult();
         }
     }, [user, assessType]);
-    // console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
+    console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
 
     const latestAssessRecord =
         assessmentDataArry[assessmentDataArry.length - 1];
-    // console.log("this is the latestassessrecord", latestAssessRecord.level);
+    console.log("this is the latestassessrecord", latestAssessRecord);
 
     return (
         <>
@@ -165,7 +165,23 @@ const AssessmentResult = () => {
                             scaling={true}
                         />
                     )}
-                    {latestAssessRecord && (
+                    {latestAssessRecord && assessType === "depression" && (
+                        <div className="flex flex-col justify-center gap-6 pr-10">
+                            <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
+                            <p className="text-b-lg">
+                                {latestAssessRecord.levelDescription}
+                            </p>
+                        </div>
+                    )}
+                    {latestAssessRecord && assessType === "anxiety" && (
+                        <div className="flex flex-col justify-center gap-6 pr-10">
+                            <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
+                            <p className="text-b-lg">
+                                {latestAssessRecord.levelDescription}
+                            </p>
+                        </div>
+                    )}
+                    {latestAssessRecord && assessType === "burnout" && (
                         <div className="flex flex-col justify-center gap-6 pr-10">
                             <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
                             <p className="text-b-lg">

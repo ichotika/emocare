@@ -61,7 +61,6 @@ export default function RootLayout({ children }) {
                     supportRoutes={routesSupport}
                 />
             </div>
-
             <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 p-12 pb-[32px] pt-[65px] xl:ml-0 xl:grow-0 xl:bg-g-gray-5 xl:p-8">
                 {children}
             </div>
