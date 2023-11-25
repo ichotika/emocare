@@ -19,9 +19,9 @@ export default function TopNav({ routes }) {
         setHiddenHamburgerNav(!hiddenHamburgerNav);
     };
 
-    const handleOpen = () => {
-        setHiddenHamburgerNav(false);
-    };
+    // const handleOpen = () => {
+    //     setHiddenHamburgerNav(false);
+    // };
 
     const handleClose = () => {
         setHiddenHamburgerNav(true);
