@@ -212,6 +212,10 @@ img {
     position: relative;
 }
 
+.chart-js-donut-emp {
+    margin-top: -40px;
+}
+
 .max-width-org-mobile {
     max-width: 348px;
 }

@@ -119,7 +119,7 @@ export default function Home() {
                 )}
                 <div className="grid grid-cols-4 sm:flex sm:flex-col">
                     <div className="col-span-3 m-2 flex flex-wrap gap-4">
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 shadow sm:w-[100%]">
                             {deprData.length > 0 ? (
                                 <>
                                     <HalfDoughnutChart
@@ -133,7 +133,9 @@ export default function Home() {
                                     />
                                     <AssessmentButton
                                         link="/employees/assessment/depression"
-                                        btnDisabled={deprData.length > 0 ? true : false}
+                                        btnDisabled={
+                                            deprData.length > 0 ? true : false
+                                        }
                                     />
                                 </>
                             ) : (
@@ -145,7 +147,7 @@ export default function Home() {
                                 </>
                             )}
                         </div>
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 shadow sm:w-[100%]">
                             {anxietyData.length > 0 ? (
                                 <>
                                     <HalfDoughnutChart
@@ -160,7 +162,9 @@ export default function Home() {
                                     <AssessmentButton
                                         link="/employees/assessment/anxiety"
                                         btnDisabled={
-                                            anxietyData.length > 0 ? true : false
+                                            anxietyData.length > 0
+                                                ? true
+                                                : false
                                         }
                                     />
                                 </>
@@ -171,7 +175,7 @@ export default function Home() {
                                 />
                             )}
                         </div>
-                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 sm:w-[100%]">
+                        <div className="flex w-[216px] grow flex-col rounded-lg bg-g-white-1 p-2 shadow sm:w-[100%]">
                             {burnoutData.length > 0 ? (
                                 <>
                                     <HalfDoughnutChart
@@ -186,7 +190,9 @@ export default function Home() {
                                     <AssessmentButton
                                         link="/employees/assessment/burnout"
                                         btnDisabled={
-                                            burnoutData.length > 0 ? true : false
+                                            burnoutData.length > 0
+                                                ? true
+                                                : false
                                         }
                                     />
                                 </>
