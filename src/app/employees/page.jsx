@@ -220,7 +220,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="col-span-3 overflow-auto rounded-lg bg-white p-2">
+                    <div className="col-span-3 overflow-auto rounded-lg bg-white p-4">
                         <div className="flex justify-between">
                             <p className="pb-2 text-b-lg font-bold">
                                 Your Assessment History
@@ -236,7 +236,7 @@ export default function Home() {
                         )}
                     </div>
 
-                    <div className="col-span-3 max-h-[350px] rounded-lg bg-white p-2 xl:col-span-full">
+                    <div className="col-span-3 max-h-[350px] rounded-lg bg-white p-4 xl:col-span-full sm:max-h-full">
                         <div className="flex justify-between pb-4">
                             <p className="text-b-lg font-bold">
                                 Education Progress
