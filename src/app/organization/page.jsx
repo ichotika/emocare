@@ -94,9 +94,7 @@ export default function Home() {
                         <Header headertext={organizations[0]?.orgName} />
                     </div>
 
-                    {/* ) : (
-                        <></>
-                    )} */}
+                  
                 </div>
                 <OverallCard
                     assessmentData={assessmentData}

@@ -24,15 +24,6 @@ const Notification = ({ notification, assessment, color }) => {
     const targetYear = 2023;
     const month10 = 9; // Month 10
 
-    const assessmentsInTargetMY = assessment.assessment?.filter(
-        (assessment) => {
-            const assessmentTimestamp = new Date(assessment.timestamp);
-            return (
-                assessmentTimestamp.getMonth() === month10 &&
-                assessmentTimestamp.getFullYear() === targetYear
-            );
-        }
-    );
 
     const handleNotificationButtonClick = async (id, index) => {
         try {
@@ -60,6 +51,58 @@ const Notification = ({ notification, assessment, color }) => {
             console.error("Error updating notification:", error);
         }
     };
+
+
+    // noti time
+    // ------------------------------------------------------------
+    // let largestUnit = 0; 
+    if (assessment && assessment.assesshistory && assessment.assesshistory.length > 0) {
+        const timestampsWithIds = assessment?.assesshistory?.map(item => ({
+            timestamp: new Date(item.createdAt).getTime(),
+            _id: item._id
+        }));
+        
+
+        const maxTimestamp = Math.max(...timestampsWithIds?.map(item => item.timestamp));
+        
+     
+        const timeDiff = maxTimestamp - new Date();
+
+        const formatTimeDifference = (timeDiff) => {
+            const seconds = Math.abs(Math.floor(timeDiff / 1000) % 60);
+            const minutes = Math.abs(Math.floor(timeDiff / (1000 * 60)) % 60);
+            const hours = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60)) % 24);
+            const days = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60 * 24)));
+            return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        };
+
+
+
+        const timeDiffFormatted = formatTimeDifference(timeDiff);
+        const largestUnit = getLargestNonZeroUnit(timeDiffFormatted);
+        console.log('largestUnit', largestUnit)
+        
+        function getLargestNonZeroUnit(timeDiffFormatted) {
+            const units = timeDiffFormatted.match(/\d+\s\w+/g);
+            if (!units) {
+                return "No time difference";
+            }
+            const unitPriorities = ["days", "hours", "minutes", "seconds"];
+            let largestUnit;
+        
+            for (const priority of unitPriorities) {
+                const unit = units.find(u => u.includes(priority) && parseInt(u) > 0);
+                if (unit) {
+                    largestUnit = unit;
+                    break;
+                }
+            }
+            return largestUnit || "Unknown unit";
+        }
+        console.log('largestUnit inside if:', largestUnit);
+    }
+    // console.log('largestUnit outside if:', largestUnit);
+    // ------------------------------------------------------------
 
     const renderNotification = (index) => {
         const isRead =
@@ -131,7 +174,7 @@ const Notification = ({ notification, assessment, color }) => {
                     </div>
                 )}
 
-                <p className="text-2xl">
+                <p className="text-xl pb-2 font-bold">
                     {notification.notification[index]?.title}
                 </p>
                 <p>{notification.notification[index]?.description}</p>
@@ -197,7 +240,8 @@ const Notification = ({ notification, assessment, color }) => {
                         }}
                         className="rounded-full border px-3 py-1"
                     >
-                        {notification.notification[index]?.time}
+                        {/* {notification.notification[index]?.time} */}
+                        {index === 0 ? 'largestUnit' : 0}
                     </p>
                 </div>
             </div>
