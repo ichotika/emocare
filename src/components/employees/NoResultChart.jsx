@@ -2,10 +2,10 @@ import Link from "next/link";
 
 function NoResultChart({ mainTitle, link }) {
     return (
-        <div className="flex h-[100%] flex-col items-center justify-between gap-4 rounded-lg bg-white text-center text-lg sm:flex-row">
+        <div className="flex h-[100%] flex-col items-center justify-between gap-4 rounded-lg bg-white text-center text-lg">
             <p className="text-center text-b-lg font-bold">{mainTitle}</p>
             <div className="">
-                <p className="flex justify-center font-bold text-g-gray-1 sm:hidden">
+                <p className="flex justify-center font-bold text-g-gray-1">
                     No result
                 </p>
             </div>

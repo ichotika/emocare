@@ -1,7 +1,13 @@
 import EduProgressBar from "../educations/EduProgressBar";
 import NoResultEducation from "../educations/NoResultEducation";
 
-function EmpEduProgress({alleduPercent, resourceEdu, deprEdu, anxietyEdu, burnoutEdu}) {
+function EmpEduProgress({
+    alleduPercent,
+    resourceEdu,
+    deprEdu,
+    anxietyEdu,
+    burnoutEdu,
+}) {
     return (
         <div>
             {alleduPercent > 0 ? (
@@ -9,7 +15,7 @@ function EmpEduProgress({alleduPercent, resourceEdu, deprEdu, anxietyEdu, burnou
             ) : (
                 <NoResultEducation categoryTitle={"All"} />
             )}
-            <div className="flex gap-2 sm:flex-col">
+            <div className="flex gap-4 sm:flex-col">
                 {resourceEdu > 0 ? (
                     <EduProgressBar
                         category={"Resources"}
@@ -24,7 +30,7 @@ function EmpEduProgress({alleduPercent, resourceEdu, deprEdu, anxietyEdu, burnou
                     <NoResultEducation categoryTitle={"Depression"} />
                 )}
             </div>
-            <div className="flex gap-2 sm:flex-col">
+            <div className="flex gap-4 sm:flex-col">
                 {anxietyEdu > 0 ? (
                     <EduProgressBar category={"Anxiety"} percent={anxietyEdu} />
                 ) : (

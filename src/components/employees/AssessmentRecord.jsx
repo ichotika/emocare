@@ -14,7 +14,7 @@ function AssessmentRecord({
         month: "long",
     });
     return (
-        <div className="flex border-b-2 border-p-blue-6 pl-2">
+        <div className="flex border-b-2 border-p-blue-6 pl-2 text-b-sm font-bold sm:text-b-xs">
             <p className="w-1/4 border-r-2 border-p-blue-6 py-3">
                 {createdMonth}
             </p>
