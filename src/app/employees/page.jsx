@@ -214,13 +214,13 @@ export default function Home() {
                         )}
                     </div>
 
-                    <div className="row-span-2">
+                    <div className="row-span-2 shadow">
                         <PersonalityType
                             mypersonality={recentPersonalityType}
                         />
                     </div>
 
-                    <div className="col-span-3 overflow-auto rounded-lg bg-white p-4">
+                    <div className="col-span-3 overflow-auto rounded-lg bg-white p-4 shadow">
                         <div className="flex justify-between">
                             <p className="pb-2 text-b-lg font-bold">
                                 Your Assessment History
@@ -236,7 +236,7 @@ export default function Home() {
                         )}
                     </div>
 
-                    <div className="col-span-3 max-h-[350px] rounded-lg bg-white p-4 xl:col-span-full sm:max-h-full">
+                    <div className="col-span-3 max-h-[350px] rounded-lg bg-white p-4 shadow xl:col-span-full sm:max-h-full">
                         <div className="flex justify-between pb-4">
                             <p className="text-b-lg font-bold">
                                 Education Progress
@@ -251,7 +251,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="z-0 max-h-[350px] rounded-lg bg-white p-2 xl:hidden xl:w-0">
+                    <div className="z-0 max-h-[350px] rounded-lg bg-white p-2 shadow xl:hidden xl:w-0">
                         <Chatbot mypersonality={recentPersonalityType} />
                     </div>
                 </div>
