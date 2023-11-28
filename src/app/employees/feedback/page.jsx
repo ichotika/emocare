@@ -59,10 +59,10 @@ export default function Page() {
                         <textarea
                             name="comment"
                             id=""
-                            cols="120"
                             rows="10"
+                            cols="120"
                             placeholder={"Write your comment here"}
-                            className={"bg-gray-200 p-2 shadow-xl"}
+                            className={"bg-gray-200 p-2 shadow-xl w-full"}
                             required
                         ></textarea>
                     </label>
