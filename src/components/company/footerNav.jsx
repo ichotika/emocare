@@ -14,13 +14,14 @@ export default function Footer({ routes }) {
             </Link>
             <ul className={"flex flex-row gap-6"}>
                 {routes.map((route, index) => (
-                    <Link
-                        key={index}
-                        className={"block px-2 py-3 font-semibold"}
-                        href={`/company/${route.slug}`}
-                    >
-                        {route.name}
-                    </Link>
+                    <li key={index}>
+                        <Link
+                            className={"block px-2 py-3 font-semibold"}
+                            href={`/company/${route.slug}`}
+                        >
+                            {route.name}
+                        </Link>
+                    </li>
                 ))}
             </ul>
             <hr className={"h-0 w-full border-t border-t-[rgb(45,45,45)]"} />
