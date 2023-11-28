@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,20 +10,39 @@ import { BsArrowRight, BsEnvelope } from "react-icons/bs";
 import Link from "next/link";
 import Bell from "@/public/icons/BellOrg";
 
-const Notification = ({ notification, assessment, color }) => {
+const Notification = ({ notification, assessment, color, pendingEmployee }) => {
     const unreadNotifications = notification.notification.filter(
         (notif) => !notif.isRead
     );
     const [notificationCount, setNotificationCount] = useState(
         unreadNotifications.length
     );
-
     const [clearNotification, setClearNotification] = useState(true);
     const [clickedNotifications, setClickedNotifications] = useState([]);
+    const [largestUnit, setLargestUnit] = useState("");
 
     const targetYear = 2023;
     const month10 = 9; // Month 10
 
+    useEffect(() => {
+        if (
+            assessment &&
+            assessment.assesshistory &&
+            assessment.assesshistory.length > 0
+        ) {
+            const sortedHistory = assessment.assesshistory.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+            const latestTimestamp = new Date(
+                sortedHistory[0].createdAt
+            ).getTime();
+            const timeDiff = latestTimestamp - new Date();
+            const formattedTimeDiff = formatTimeDifference(timeDiff);
+            const largestUnitComputed =
+                getLargestNonZeroUnit(formattedTimeDiff);
+            setLargestUnit(largestUnitComputed);
+        }
+    }, [assessment]);
 
     const handleNotificationButtonClick = async (id, index) => {
         try {
@@ -52,57 +71,30 @@ const Notification = ({ notification, assessment, color }) => {
         }
     };
 
-
-    // noti time
-    // ------------------------------------------------------------
-    // let largestUnit = 0; 
-    if (assessment && assessment.assesshistory && assessment.assesshistory.length > 0) {
-        const timestampsWithIds = assessment?.assesshistory?.map(item => ({
-            timestamp: new Date(item.createdAt).getTime(),
-            _id: item._id
-        }));
-        
-
-        const maxTimestamp = Math.max(...timestampsWithIds?.map(item => item.timestamp));
-        
-     
-        const timeDiff = maxTimestamp - new Date();
-
-        const formatTimeDifference = (timeDiff) => {
-            const seconds = Math.abs(Math.floor(timeDiff / 1000) % 60);
-            const minutes = Math.abs(Math.floor(timeDiff / (1000 * 60)) % 60);
-            const hours = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60)) % 24);
-            const days = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60 * 24)));
-            return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-        };
-
-
-
-        const timeDiffFormatted = formatTimeDifference(timeDiff);
-        const largestUnit = getLargestNonZeroUnit(timeDiffFormatted);
-        console.log('largestUnit', largestUnit)
-        
-        function getLargestNonZeroUnit(timeDiffFormatted) {
-            const units = timeDiffFormatted.match(/\d+\s\w+/g);
-            if (!units) {
-                return "No time difference";
-            }
-            const unitPriorities = ["days", "hours", "minutes", "seconds"];
-            let largestUnit;
-        
-            for (const priority of unitPriorities) {
-                const unit = units.find(u => u.includes(priority) && parseInt(u) > 0);
-                if (unit) {
-                    largestUnit = unit;
-                    break;
-                }
-            }
-            return largestUnit || "Unknown unit";
-        }
-        console.log('largestUnit inside if:', largestUnit);
+    function formatTimeDifference(timeDiff) {
+        const seconds = Math.abs(Math.floor(timeDiff / 1000) % 60);
+        const minutes = Math.abs(Math.floor(timeDiff / (1000 * 60)) % 60);
+        const hours = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60)) % 24);
+        const days = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60 * 24)));
+        return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
     }
-    // console.log('largestUnit outside if:', largestUnit);
-    // ------------------------------------------------------------
+
+    function getLargestNonZeroUnit(timeDiffFormatted) {
+        const units = timeDiffFormatted.match(/\d+\s\w+/g);
+        if (!units) {
+            return "No time difference";
+        }
+        const unitPriorities = ["days", "hours", "minutes", "seconds"];
+        for (const priority of unitPriorities) {
+            const unit = units.find(
+                (u) => u.includes(priority) && parseInt(u) > 0
+            );
+            if (unit) {
+                return unit;
+            }
+        }
+        return ""; // In case no unit is found
+    }
 
     const renderNotification = (index) => {
         const isRead =
@@ -174,7 +166,7 @@ const Notification = ({ notification, assessment, color }) => {
                     </div>
                 )}
 
-                <p className="text-xl pb-2 font-bold">
+                <p className="pb-2 text-xl font-bold">
                     {notification.notification[index]?.title}
                 </p>
                 <p>{notification.notification[index]?.description}</p>
@@ -241,7 +233,7 @@ const Notification = ({ notification, assessment, color }) => {
                         className="rounded-full border px-3 py-1"
                     >
                         {/* {notification.notification[index]?.time} */}
-                        {index === 0 ? 'largestUnit' : 0}
+                        {index === 0 ? pendingEmployee : largestUnit}
                     </p>
                 </div>
             </div>
@@ -271,7 +263,12 @@ const Notification = ({ notification, assessment, color }) => {
     return (
         <div className="flex items-center justify-center gap-4 px-12 xl:px-0">
             <UserButton afterSignOutUrl="/" />
-            <div className="relative cursor-pointer" onClick={notify}>
+            <div
+                className="relative cursor-pointer"
+                onClick={() => {
+                    notify();
+                }}
+            >
                 <Bell color={color} />
                 {unreadNotifications.length > 0 ? (
                     <div className="notification absolute">

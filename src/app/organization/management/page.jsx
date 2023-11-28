@@ -6,7 +6,7 @@ export default async function Home() {
 
     return (
         <>
-            <Header headertext={"Management"} />
+            <Header headertext={"Management"} emplist={emplist} />
             <AuthOrganization emplist={emplist} />
         </>
     );

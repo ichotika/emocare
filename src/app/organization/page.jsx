@@ -10,6 +10,7 @@ import Feedbacks from "@/components/organizations/dashboard/Feedbacks";
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
     const [employee, setEmployee] = useState([]);
+    const [pendingEmployee, setPendingEmployee] = useState(0);
     const [feedbacks, setFeedbacks] = useState([]);
     const [organizations, setOrganizations] = useState([]);
     const fetchOrganizations = async () => {
@@ -53,6 +54,15 @@ export default function Home() {
             }
             const data = await response.json();
             setEmployee(data.emplist);
+            const count = data.emplist.reduce((acc, cur) => {
+                console.log(cur.pending);
+                if (cur.pending === false) {
+                    return acc + 1;
+                }
+                return acc;
+            }, 0);
+            console.log(count);
+            setPendingEmployee(count);
         } catch (error) {
             console.error("Could not fetch data", error);
         }
@@ -91,10 +101,11 @@ export default function Home() {
 
                     {/* {notification?.notification?.length >= 0 ? ( */}
                     <div>
-                        <Header headertext={organizations[0]?.orgName} />
+                        <Header
+                            headertext={organizations[0]?.orgName}
+                            emplist={employee}
+                        />
                     </div>
-
-                  
                 </div>
                 <OverallCard
                     assessmentData={assessmentData}
