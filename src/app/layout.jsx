@@ -20,6 +20,9 @@ export default function RootLayout({ children }) {
                 layout: {
                     socialButtonsPlacement: "bottom",
                 },
+                variables: {
+                    colorPrimary: "#0066FF",
+                }
             }}
         >
             <html lang="en">
