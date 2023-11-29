@@ -76,7 +76,12 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
         const minutes = Math.abs(Math.floor(timeDiff / (1000 * 60)) % 60);
         const hours = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60)) % 24);
         const days = Math.abs(Math.floor(timeDiff / (1000 * 60 * 60 * 24)));
-        return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        
+        const dayString = days === 1 ? "day" : "days";
+        const hourString = hours === 1 ? "hour" : "hours";
+        const minuteString = minutes === 1 ? "minute" : "minutes";
+        const secondString = seconds === 1 ? "second" : "seconds";
+        return `${days} ${dayString}, ${hours} ${hourString}, ${minutes} ${minuteString}, ${seconds} ${secondString}`;
     }
 
     function getLargestNonZeroUnit(timeDiffFormatted) {
@@ -93,7 +98,7 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                 return unit;
             }
         }
-        return ""; // In case no unit is found
+        return ""; 
     }
 
     const renderNotification = (index) => {
@@ -232,7 +237,7 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                         }}
                         className="rounded-full border px-3 py-1"
                     >
-                        {/* {notification.notification[index]?.time} */}
+                       
                         {index === 0 ? pendingEmployee : largestUnit}
                     </p>
                 </div>
