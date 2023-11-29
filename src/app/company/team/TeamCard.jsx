@@ -1,4 +1,5 @@
-import { FaLinkedinIn } from "react-icons/fa";
+import Image from "next/image";
+import LinkedInIcon from "/public/company_site/LinkedIn_icon.svg";
 export default function TeamCard({ member }) {
     const { name, designation, personality, imageName, LinkedInURL, hoverBG } =
         member;
@@ -29,10 +30,7 @@ export default function TeamCard({ member }) {
                     </p>
                 </div>
                 <a href={LinkedInURL} className={"text-3xl"}>
-                    <FaLinkedinIn
-                        aria-label={"LinkedIn Profile"}
-                        color={"#0077B5"}
-                    />
+                    <Image src={LinkedInIcon} alt="LinkedIn Profile"/>
                 </a>
             </div>
         </article>
