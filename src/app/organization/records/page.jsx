@@ -67,7 +67,7 @@ export default async function Records() {
     const emplistPromise = getEmployees();
     const assessmentRecordPromise = getRecords();
 
-    const [emplist, assessmentRecord, assessment] = await Promise.all([
+    const [emplist, assessmentRecord] = await Promise.all([
         emplistPromise,
         assessmentRecordPromise,
     ]);
@@ -147,7 +147,10 @@ export default async function Records() {
 
     return (
         <>
-            <Header headertext={"Assessment Record"} />
+            <Header
+                headertext={"Assessment Record"}
+                emplist={emplist.emplist}
+            />
             <AssessmentRecords
                 emplist={mergedEmpList}
                 prevObj={prevObj}

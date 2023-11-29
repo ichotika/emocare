@@ -1,10 +1,30 @@
 "use client";
 import { useState, useEffect } from "react";
 import Notification from "@/components/base/Notification";
-const Header = ({ headertext, isHidden = false, color = "#0066FF" }) => {
+const Header = ({
+    headertext,
+    isHidden = false,
+    color = "#0066FF",
+    emplist,
+}) => {
     const [notification, setNotification] = useState([]);
 
     const [notiAssesment, setNotiAssesment] = useState([]);
+
+    const [pendingEmployee, setPendingEmployee] = useState(0);
+
+    useEffect(() => {
+        if (emplist) {
+            const count = emplist.reduce((acc, cur) => {
+                if (cur.pending === false) {
+                    return acc + 1;
+                }
+                return acc;
+            }, 0);
+            setPendingEmployee(count);
+        }
+    }, [emplist]);
+
     // fetch all assessment record
     const fetchAssessment = async () => {
         const res = await fetch("/api/organization/dashboardAssessment");
@@ -49,6 +69,7 @@ const Header = ({ headertext, isHidden = false, color = "#0066FF" }) => {
                 <Notification
                     notification={notification}
                     assessment={notiAssesment}
+                    pendingEmployee={pendingEmployee}
                     color={color}
                 />
             ) : (
