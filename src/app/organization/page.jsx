@@ -61,8 +61,16 @@ export default function Home() {
                 }
                 return acc;
             }, 0);
-            console.log(count);
+    
+    
             setPendingEmployee(count);
+
+
+            
+
+
+
+
         } catch (error) {
             console.error("Could not fetch data", error);
         }
@@ -99,7 +107,7 @@ export default function Home() {
                         WELCOME
                     </p>
 
-                    {/* {notification?.notification?.length >= 0 ? ( */}
+                   
                     <div>
                         <Header
                             headertext={organizations[0]?.orgName}
