@@ -12,18 +12,31 @@ const Header = ({
     const [notiAssesment, setNotiAssesment] = useState([]);
 
     const [pendingEmployee, setPendingEmployee] = useState(0);
+    const [latestJoinDate, setLatestJoinDate] = useState([]);
 
     useEffect(() => {
         if (emplist) {
-            const count = emplist.reduce((acc, cur) => {
-                if (cur.pending === false) {
-                    return acc + 1;
-                }
-                return acc;
-            }, 0);
+            const { count, latestJoinDate } = emplist.reduce(
+                (result, cur) => {
+                    if (!cur.pending) {
+                        result.count++;
+    
+                        // Find the latest join date
+                        if (!result.latestJoinDate || cur.joinDate > result.latestJoinDate) {
+                            result.latestJoinDate = cur.joinDate;
+                        }
+                    }
+    
+                    return result;
+                },
+                { count: 0, latestJoinDate: null }
+            );
+    
             setPendingEmployee(count);
+            setLatestJoinDate(latestJoinDate);
         }
     }, [emplist]);
+    
 
     // fetch all assessment record
     const fetchAssessment = async () => {
@@ -70,6 +83,7 @@ const Header = ({
                     notification={notification}
                     assessment={notiAssesment}
                     pendingEmployee={pendingEmployee}
+                    latestJoinDate={latestJoinDate}
                     color={color}
                 />
             ) : (

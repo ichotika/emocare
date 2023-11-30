@@ -5,12 +5,13 @@ import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { BsArrowRight, BsEnvelope } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import Bell from "@/public/icons/BellOrg";
+import AiOutlineUserAdd from "@/public/icons/user.svg";
+import BsEnvelope from "@/public/icons/mail.svg";
 
-const Notification = ({ notification, assessment, color, pendingEmployee }) => {
+const Notification = ({ notification, assessment, color, pendingEmployee, latestJoinDate }) => {
     const unreadNotifications = notification.notification.filter(
         (notif) => !notif.isRead
     );
@@ -20,10 +21,20 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
     const [clearNotification, setClearNotification] = useState(true);
     const [clickedNotifications, setClickedNotifications] = useState([]);
     const [largestUnit, setLargestUnit] = useState("");
+    const [pendinglatest, setPendinglatest] = useState("");
 
     const targetYear = 2023;
-    const month10 = 9; // Month 10
+    const month10 = 9; // Month 10 
+    
+    // for latestjoin
+    useEffect(() => {
+        const timeDiff = latestJoinDate - new Date();
+        const formattedTimeDiff = formatTimeDifference(timeDiff);
+        const largestUnitComputed = getLargestNonZeroUnit(formattedTimeDiff);
+        setPendinglatest(largestUnitComputed);
+    }, [latestJoinDate]);
 
+    // for assessment
     useEffect(() => {
         if (
             assessment &&
@@ -38,11 +49,13 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
             ).getTime();
             const timeDiff = latestTimestamp - new Date();
             const formattedTimeDiff = formatTimeDifference(timeDiff);
-            const largestUnitComputed =
-                getLargestNonZeroUnit(formattedTimeDiff);
+            const largestUnitComputed = getLargestNonZeroUnit(formattedTimeDiff);
             setLargestUnit(largestUnitComputed);
         }
     }, [assessment]);
+
+   
+
 
     const handleNotificationButtonClick = async (id, index) => {
         try {
@@ -147,7 +160,7 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                             }}
                             className="flex h-10 w-10 items-center justify-center rounded-full"
                         >
-                            <AiOutlineUserAdd size={30} />
+                            <Image src={AiOutlineUserAdd} alt="user" />
                         </div>
                     </div>
                 ) : (
@@ -166,12 +179,12 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                             }}
                             className="flex h-10 w-10 items-center justify-center rounded-full"
                         >
-                            <BsEnvelope size={25} />
+                            <Image src={BsEnvelope} alt="envelope" />
                         </div>
                     </div>
                 )}
 
-                <p className="pb-2 text-xl font-bold">
+                <p className="pt-2 pb-3 text-xl font-bold">
                     {notification.notification[index]?.title}
                 </p>
                 <p>{notification.notification[index]?.description}</p>
@@ -191,15 +204,16 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                                     style={{
                                         color: isRead ? "lightgrey" : "#2469F6",
                                     }}
-                                    className="pr-2"
+                                    className="pr-2 font-semibold"
                                 >
                                     {notification.notification[index]?.button}
                                 </div>
                                 <BsArrowRight
                                     size={20}
                                     style={{
-                                        color: isRead ? "lightgrey" : "#2469F6",
+                                        color: isRead ? "lightgrey" : "#2469F6", fontWeight: "bold"
                                     }}
+                                    
                                 />
                             </button>
                         </Link>
@@ -218,14 +232,14 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                                     style={{
                                         color: isRead ? "lightgrey" : "#2469F6",
                                     }}
-                                    className="pr-2"
+                                    className="pr-2 font-semibold"
                                 >
                                     {notification.notification[index]?.button}
                                 </div>
                                 <BsArrowRight
                                     size={20}
                                     style={{
-                                        color: isRead ? "lightgrey" : "#2469F6",
+                                        color: isRead ? "lightgrey" : "#2469F6", fontWeight: "bold"
                                     }}
                                 />
                             </button>
@@ -238,7 +252,7 @@ const Notification = ({ notification, assessment, color, pendingEmployee }) => {
                         className="rounded-full border px-3 py-1"
                     >
                        
-                        {index === 0 ? pendingEmployee : largestUnit}
+                        {index === 0 ? pendinglatest : largestUnit}
                     </p>
                 </div>
             </div>
