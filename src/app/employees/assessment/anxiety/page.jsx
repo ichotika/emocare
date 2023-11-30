@@ -6,12 +6,14 @@ const assessHeader = {
     headerText1: "Anxiety Assessment",
     headerText2: "Generalized Anxiety Disorder Assessment (GAD-7)",
     description: "Over the last 2 weeks, how often have you been bothered by any of the following problems? ",
+    isHidden: true,
+    fontSize: "xl:text-b-2xl"
 }
 
 const AnxietyQuestionnaires = () => {
     return (
         <>
-            <div className="flex flex-col grow justify-between gap-y-6">
+            <div className="flex flex-col grow justify-between gap-6">
                 <AssessmentHeader {...assessHeader}></AssessmentHeader>
                 <AnxietyQuestionnaire></AnxietyQuestionnaire>
             </div>

@@ -43,7 +43,7 @@ const Header = ({
     }
 
     return (
-        <header className={`${marginTB} flex w-full justify-between `}>
+        <header className={`${marginTB} flex w-full justify-between items-center`}>
             <h1 className={`${fontSize} font-bold`}>{headertext}</h1>
             <div className={isHidden ? "xl:invisible xl:w-0" : ""}>
                 <NotificationEmployee notification={notification} />

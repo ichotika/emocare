@@ -125,147 +125,196 @@ const AssessmentResult = () => {
             getAssessmentResult();
         }
     }, [user, assessType]);
-    console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
+    // console.log("get assessmentRecord only depression type", assessmentDataArry.length > 0 ? assessmentDataArry : "loading");
 
     const latestAssessRecord =
         assessmentDataArry[assessmentDataArry.length - 1];
-    console.log("this is the latestassessrecord", latestAssessRecord);
+    // console.log("this is the latestassessrecord", latestAssessRecord);
 
     return (
         <>
             {/* <div className=""> */}
-            <div className="w-full gap-10">
-                <div className="grid w-full grid-cols-[40%_60%] gap-x-10 self-stretch rounded-lg bg-g-white-1 px-6 shadow">
+            <div className="w-full flex flex-col gap-10 xl:gap-6">
+                {/* <div className="grid w-full grid-cols-[40%_60%] gap-x-10 self-stretch rounded-lg bg-g-white-1 px-6 shadow"> */}
+                <div className="grid grid-cols-[40%_54%] relative gap-10 xl:gap-5 box-border grow xl:flex xl:flex-col rounded-lg xl:rounded-none bg-g-white-1 xl:bg-p-blue-6 p-6 xl:p-0 xl:pt-6 shadow xl:px-0 xl:shadow-none text-left">
                     {latestAssessRecord && assessType === "depression" && (
-                        <HalfDoughnutChart
-                            headtitle=""
-                            levelText={latestAssessRecord.level}
-                            levelNum={latestAssessRecord.score}
-                            levelPercent={(latestAssessRecord.score * 100) / 27}
-                            percentColor={"#FFC700"}
-                            className="h-[50%] justify-self-center"
-                        />
+                        <>
+                            <div className="flex justify-center items-end grow">
+                                <HalfDoughnutChart
+
+                                    levelText={latestAssessRecord.level}
+                                    levelNum={latestAssessRecord.score}
+                                    levelPercent={(latestAssessRecord.score * 100) / 27}
+                                    percentColor={"#FFC700"}
+                                    className="justify-self-center"
+                                    scaling={true}
+                                />
+                            </div>
+                            <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
+                                <h2 className="text-b-3xl font-bold font-manrope leading-[48px] xl:text-b-lg">{`Your ${assessType} score is ${latestAssessRecord.score}, ${latestAssessRecord.level} `}</h2>
+                                <p className="text-b-lg xl:text-b-sm">
+                                    {latestAssessRecord.levelDescription}
+                                </p>
+                            </div>
+                        </>
                     )}
                     {latestAssessRecord && assessType === "anxiety" && (
-                        <HalfDoughnutChart
-                            headtitle=""
-                            levelText={latestAssessRecord.level}
-                            levelNum={latestAssessRecord.score}
-                            levelPercent={(latestAssessRecord.score * 100) / 21}
-                            percentColor={"#0ECD9E"}
-                        />
+                        <>
+                            <div className="flex justify-center items-end grow">
+                                <HalfDoughnutChart
+                                    headtitle=""
+                                    levelText={latestAssessRecord.level}
+                                    levelNum={latestAssessRecord.score}
+                                    levelPercent={(latestAssessRecord.score * 100) / 21}
+                                    percentColor={"#0ECD9E"}
+                                    className="justify-self-center"
+                                    scaling={true}
+                                />
+                            </div>
+                            <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
+                                <h2 className="text-b-3xl font-bold font-manrope leading-[48px] xl:text-b-lg">{`Your ${assessType} score is ${latestAssessRecord.score}, ${latestAssessRecord.level} `}</h2>
+                                <p className="text-b-lg xl:text-b-sm">
+                                    {latestAssessRecord.levelDescription}
+                                </p>
+                            </div>
+                        </>
                     )}
                     {latestAssessRecord && assessType === "burnout" && (
-                        <HalfDoughnutChart
-                            headtitle=""
-                            levelText={latestAssessRecord.level}
-                            levelNum={latestAssessRecord.score}
-                            levelPercent={(latestAssessRecord.score * 100) / 75}
-                            percentColor={"#FF8C49"}
-                            scaling={true}
-                        />
-                    )}
-                    {latestAssessRecord && assessType === "depression" && (
-                        <div className="flex flex-col justify-center gap-6 pr-10">
-                            <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
-                            <p className="text-b-lg">
-                                {latestAssessRecord.levelDescription}
-                            </p>
-                        </div>
-                    )}
-                    {latestAssessRecord && assessType === "anxiety" && (
-                        <div className="flex flex-col justify-center gap-6 pr-10">
-                            <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
-                            <p className="text-b-lg">
-                                {latestAssessRecord.levelDescription}
-                            </p>
-                        </div>
-                    )}
-                    {latestAssessRecord && assessType === "burnout" && (
-                        <div className="flex flex-col justify-center gap-6 pr-10">
-                            <h2 className="text-b-3xl font-bold leading-[48px]">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
-                            <p className="text-b-lg">
-                                {latestAssessRecord.levelDescription}
-                            </p>
-                        </div>
+                        <>
+                            <div className="flex justify-center items-end grow">
+                                <HalfDoughnutChart
+                                    headtitle=""
+                                    levelText={latestAssessRecord.level}
+                                    levelNum={latestAssessRecord.score}
+                                    levelPercent={(latestAssessRecord.score * 100) / 75}
+                                    percentColor={"#FF8C49"}
+                                    className="justify-self-center"
+                                    scaling={true}
+                                />
+                            </div>
+                            <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
+                                <h2 className="text-b-3xl font-bold font-manrope leading-[48px] xl:text-b-lg">{`Your ${assessType} score is ${latestAssessRecord.score} ,${latestAssessRecord.level} `}</h2>
+                                <p className="text-b-lg xl:text-b-sm">
+                                    {latestAssessRecord.levelDescription}
+                                </p>
+                            </div>
+                        </>
                     )}
                 </div>
-                <div className="block overflow-x-auto overflow-y-hidden rounded-lg">
-                    <table className="w-[1024px] border-collapse border-spacing-0 rounded-lg">
-                        <thead className="border-collapse rounded-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5 ">
-                            <tr className="rounded-lg border-g-gray-2">
-                                <th
-                                    colSpan={1}
-                                    className="rounded-tl-lg border border-r-0 border-g-gray-2 p-3 text-center text-b-sm leading-5"
-                                >
-                                    Score
-                                </th>
-                                <th
-                                    colSpan={1}
-                                    className="border border-x-0 border-g-gray-2 p-3  text-center text-b-sm leading-5"
-                                >{`${assessType} severity`}</th>
-                                <th
-                                    colSpan={4}
-                                    className="border border-l-0 border-g-gray-2 p-3  text-center text-b-sm leading-5"
-                                >
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="rounded-b-lg border border-g-gray-2">
-                            {assessType === "depression" &&
-                                scoreRange[0].map((obj, index) => (
-                                    <tr
-                                        key={index}
-                                        className="border border-g-gray-2 bg-g-white-1"
+
+                {/* table */}
+                <div className="table-container">
+                    <div className="overflow-x-scroll w-[99.99%] first-line:overflow-y-hidden rounded-lg xl:rounded-none border xl:border-g-white-1 border-g-gray-2">
+                        <table className="border-0 w-full">
+                            <thead className="border-0  bg-p-blue-5 xl:rounded-none  xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
+                                <tr className="">
+                                    <th
+                                        className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[14%]"
                                     >
-                                        <td
-                                            colSpan={1}
-                                            className="border border-r-0 border-g-gray-2 p-3 text-center  text-b-sm font-normal leading-5"
+                                        Score
+                                    </th>
+                                    <th
+                                        className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[16%]"
+                                    >{`${assessType[0].toUpperCase() + assessType.slice(1)} severity`}</th>
+                                    <th
+                                        className="border-0 border-b border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[70%]"
+                                    >
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="">
+                                {assessType === "depression" &&
+                                    scoreRange[0].map((obj, index, array) => (
+                                        <tr
+                                            key={index}
+                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                    ? "border-0"
+                                                    : "border-0 border-b "}`}
                                         >
-                                            {obj.range}
-                                        </td>
-                                        <td
-                                            colSpan={1}
-                                            className="border border-x-0 border-g-gray-2 p-3 text-center text-b-sm font-normal leading-5"
+                                            <td
+                                                className="p-3 text-center  text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.range}
+                                            </td>
+                                            <td
+                                                className="p-3 text-center text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.level}
+                                            </td>
+                                            <td
+                                                className="p-3 text-left text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.action}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                {assessType === "anxiety" &&
+                                    scoreRange[1].map((obj, index, array) => (
+                                        <tr
+                                            key={index}
+                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                    ? "border-0"
+                                                    : "border-0 border-b "}`}
                                         >
-                                            {obj.level}
-                                        </td>
-                                        <td
-                                            colSpan={4}
-                                            className="border border-l-0 border-g-gray-2 p-3 text-left text-b-sm font-normal leading-5"
+                                            <td
+                                                className="p-3 text-center  text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.range}
+                                            </td>
+                                            <td
+                                                className="p-3 text-center text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.level}
+                                            </td>
+                                            <td
+                                                className="p-3 text-left text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.action}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                {assessType === "burnout" &&
+                                    scoreRange[2].map((obj, index, array) => (
+                                        <tr
+                                            key={index}
+                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                    ? "border-0"
+                                                    : "border-0 border-b "}`}
                                         >
-                                            {obj.action}
-                                        </td>
-                                    </tr>
-                                ))}
-                            {assessType === "anxiety" &&
-                                scoreRange[1].map((obj, index) => (
-                                    <tr key="index">
-                                        <th colSpan={1}>{obj.range}</th>
-                                        <th colSpan={1}>{obj.level}</th>
-                                        <th colSpan={4}>{obj.action}</th>
-                                    </tr>
-                                ))}
-                            {assessType === "burnout" &&
-                                scoreRange[2].map((obj, index) => (
-                                    <tr key="index">
-                                        <th colSpan={1}>{obj.range}</th>
-                                        <th colSpan={1}>{obj.level}</th>
-                                        <th colSpan={4}>{obj.action}</th>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
+                                            <td
+                                                className="p-3 text-center  text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.range}
+                                            </td>
+                                            <td
+                                                className="p-3 text-center text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.level}
+                                            </td>
+                                            <td
+                                                className="p-3 text-left text-b-sm font-normal leading-5"
+                                            >
+                                                {obj.action}
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
                 {latestAssessRecord &&
-                latestAssessRecord.level ===
+                    latestAssessRecord.level ===
                     (scoreRange[0][scoreRange[0].length - 1]?.level ||
                         scoreRange[0][scoreRange[0].length - 2]?.level ||
                         scoreRange[1][scoreRange[1].length - 1]?.level ||
                         scoreRange[2][scoreRange[2].length - 1]?.level ||
                         scoreRange[2][scoreRange[2].length - 2]?.level) ? (
-                    <div className="flex gap-4 border-l-[3px] border-l-o-error-1 bg-o-error-2">
+                    <div className="flex gap-4 border-l-[3px] border-l-o-error-1 bg-[#FED6D7]">
                         <Image
                             src={alertLogo}
                             alt="alert Logo"
@@ -289,9 +338,9 @@ const AssessmentResult = () => {
             </div>
             {/* </div> */}
 
-            <div className="mt-20 flex justify-end">
+            <div className="mt-20 xl:mt-5 flex text-center justify-end sm:justify-center ">
                 <Link
-                    className="rounded-lg bg-blue-700 p-2 text-white"
+                    className="rounded-lg block bg-blue-700 w-96 sm:w-full xl:font-bold font-semibold p-2 xl:px-3 xl:py-4 text-white"
                     href={"/employees/assessment"}
                 >
                     Take other assessment

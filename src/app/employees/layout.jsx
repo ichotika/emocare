@@ -53,7 +53,7 @@ const routesSupport = [
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <div className="flex xl:flex-col">
+        <div className="flex xl:flex-col xl:bg-p-blue-6">
             {/* navbar(until xl) & sidebar*/}
             <div className="fixed left-0 top-0 flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
                 <EmployeeSidebar
@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                     supportRoutes={routesSupport}
                 />
             </div>
-            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 p-12 pb-[32px] pt-[65px] xl:ml-0 xl:grow-0 xl:bg-g-gray-5 xl:p-8">
+            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 px-12 py-10 xl:ml-0 xl:grow-0 xl:px-6 xl:py-10 xl:max-w-5xl xl:self-center md:py-4 sm:p-4">
                 {children}
             </div>
         </div>
