@@ -5,7 +5,6 @@ import { HiChevronUpDown } from "react-icons/hi2";
 import Logo from "@/public/icons/logo_main.svg";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
-import {Fa0} from "react-icons/fa6";
 
 
 const deptArr = [
