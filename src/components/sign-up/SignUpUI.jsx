@@ -25,7 +25,7 @@ export default function SignUpUI({
             <div className={"flex flex-col gap-3 my-3"}>
                 <Image src={Logo} alt={"EmoCare Logo"} height={40}></Image>
                 <h1 className={"font-archivo text-2xl text-center"}>Select Your Role and Your Organization</h1>
-                <p className={"font-manrope text-base text-center"}>It's important for your company and us to know about you</p>
+                <p className={"font-manrope text-base text-center"}>It&apos;s important for your company and us to know about you</p>
                 <hr className={"h-0 w-full border-t border-t-g-gray-3"} />
             </div>
             <p className={"font-manrope text-xl text-center font-semibold mb-2"}>I am an</p>
