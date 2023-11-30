@@ -19,7 +19,7 @@ export default function Page() {
     const handleDesigDecide = (designName) => {
         setFinalDesig(designName);
     };
-    return pathname !== "/sign-up" || finalOrg ? (
+    return (pathname !== "/sign-up" || finalOrg) ? (
         <FinalSignUpPage
             orgName={finalOrg}
             deptName={finalDept}

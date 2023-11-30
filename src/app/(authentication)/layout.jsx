@@ -1,18 +1,18 @@
-import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
 import Bg from "@/public/assets/loginCard.png";
-export default function Page() {
+
+
+export default function Layout({ children }) {
     return (
         <div className="grid h-screen w-screen grid-cols-2 lg:grid-cols-1">
             <Image
                 src={Bg}
                 alt="Background"
-                objectFit="cover"
                 quality={100}
-                className=" h-full w-full"
+                className="h-full w-full lg:hidden object-cover"
             />
             <div className="flex h-full w-full items-center justify-center">
-                <SignIn />
+                {children}
             </div>
         </div>
     );
