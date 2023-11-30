@@ -1,9 +1,13 @@
 "use client";
-
 import { Combobox, Tab } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";
-import { useRouter } from "next/navigation";
+import Logo from "@/public/icons/logo_main.svg";
+import Image from "next/image";
+import { FaCheck } from "react-icons/fa";
+import {Fa0} from "react-icons/fa6";
+
+
 const deptArr = [
     "Designer",
     "Developer",
@@ -14,30 +18,35 @@ const deptArr = [
 ];
 export default function SignUpUI({
     onOrgDecide,
-    onDeptDeicde,
+    onDeptDecide,
     onDesignDecide,
 }) {
     return (
-        <div className="grid justify-center">
-            <h1>Organizations</h1>
-            <h2>I want to</h2>
+        <div className="grid justify-start max-w-lg rounded-md shadow-2xl p-8">
+            <div className={"flex flex-col gap-3 my-3"}>
+                <Image src={Logo} alt={"EmoCare Logo"} height={40}></Image>
+                <h1 className={"font-archivo text-2xl text-center"}>Select Your Role and Your Organization</h1>
+                <p className={"font-manrope text-base text-center"}>It's important for your company and us to know about you</p>
+                <hr className={"h-0 w-full border-t border-t-g-gray-3"} />
+            </div>
+            <p className={"font-manrope text-xl text-center font-semibold mb-2"}>I am an</p>
             <MyTabs
                 onOrgDecide={onOrgDecide}
-                onDeptDeicde={onDeptDeicde}
+                onDeptDecide={onDeptDecide}
                 onDesignDecide={onDesignDecide}
+                className={"my-5"}
             ></MyTabs>
         </div>
     );
 }
 
 // First Tab UI
-function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
+function SelectOrg({ onOrgDecide, onDeptDecide, onDesignDecide }) {
     const [orgs, setOrgs] = useState([]);
-    const [selectedOrg, setSelectedOrg] = useState("");
     const [query, setQuery] = useState("");
+    const [selectedOrg, setSelectedOrg] = useState("");
     const [department, setDepartment] = useState("");
     const [designation, setDesignation] = useState("");
-    const router = useRouter();
 
     useEffect(() => {
         const fetchOrgs = async () => {
@@ -65,58 +74,83 @@ function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
               });
 
     return (
-        <div className="flex flex-col">
-            <Combobox value={selectedOrg} onChange={setSelectedOrg}>
-                <div className=" relative mb-4 border border-slate-800">
+        <div className="flex flex-col font-manrope text-lg">
+            <p className={"mt-2 mb-7 font-manrope text-xl font-semibold text-center"}>Join Organization to Improve well-being:</p>
+
+            <Combobox as="div" value={selectedOrg} onChange={setSelectedOrg}>
+                <Combobox.Label className="block font-bold leading-6 text-gray-900 mb-1">Assigned to</Combobox.Label>
+                <div className="relative mb-4">
                     <Combobox.Input
                         onChange={(event) => setQuery(event.target.value)}
                         placeholder="Select Organization"
+                        className="w-full rounded border-0 bg-white py-3 px-6 text-gray-900 shadow-sm ring-1 ring-inset ring-g-gray-3 focus:ring-2 focus:ring-inset focus:ring-p-blue-1 sm:text-sm sm:leading-6"
                     />
                     <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                         <HiChevronUpDown></HiChevronUpDown>
                     </Combobox.Button>
-                </div>
-                <Combobox.Options>
-                    {filteredOrg.map((person) => (
-                        <Combobox.Option key={person} value={person}>
-                            {person}
-                        </Combobox.Option>
-                    ))}
-                </Combobox.Options>
-            </Combobox>
-            <Combobox value={department} onChange={setDepartment}>
-                <div className=" relative mb-4 border border-slate-800">
-                    <Combobox.Input
-                        onChange={(event) => setQuery(event.target.value)}
-                        placeholder="Select Department"
-                    />
-                    <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                        <HiChevronUpDown></HiChevronUpDown>
-                    </Combobox.Button>
-                </div>
-                <Combobox.Options>
-                    {deptArr.map((dept) => (
-                        <Combobox.Option key={dept} value={dept}>
-                            {dept}
-                        </Combobox.Option>
-                    ))}
-                </Combobox.Options>
-            </Combobox>
-            <Combobox value={designation} onChange={setDesignation}>
-                <div className=" relative mb-4 border border-slate-800">
-                    <Combobox.Input
-                        onChange={(event) => setDesignation(event.target.value)}
-                        placeholder="Type Designation"
-                    />
+                    <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {filteredOrg.map((person) => (
+                            <Combobox.Option
+                                key={person}
+                                value={person}
+                                className={({ active }) =>
+                                    classNames(
+                                        'relative cursor-default select-none py-2 pl-3 pr-9',
+                                        active ? 'bg-p-blue-1 text-white' : 'text-gray-900'
+                                    )
+                                }
+                            >
+                                {({ active, selected }) => (
+                                    <>
+                  <span
+                      className={classNames(
+                          'block truncate',
+                          selected && 'font-semibold'
+                      )}
+                  >
+                    {person}
+                  </span>
+                                        {selected && (
+                                            <span
+                                                className={classNames(
+                                                    'absolute inset-y-0 right-0 flex items-center pr-4',
+                                                    active ? 'text-white' : 'text-p-blue-1'
+                                                )}
+                                            >
+                      <FaCheck className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                                        )}
+                                    </>
+                                )}
+                            </Combobox.Option>
+                        ))}
+                    </Combobox.Options>
                 </div>
             </Combobox>
 
+            <div className={"flex flex-col gap-1 mb-5"}>
+                <label htmlFor={"department"} className={"font-bold"}>Department</label>
+                <select name="department" id="department" onChange={setDepartment} className={"bg-g-white-1 py-3 px-6 block rounded border border-g-gray-3 border-solid"}>
+                    {deptArr.map((dept) => (
+                        <option key={dept} value={dept}>
+                            {dept}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className={"flex flex-col gap-1"}>
+                <label htmlFor={"designation"} className={"font-bold"}>Designation</label>
+                <input type="text" name="designation" id="designation" className={"bg-g-white-1 py-3 px-6 block rounded border border-g-gray-3 border-solid"} onChange={(event) => setDesignation(event.target.value)}
+                       placeholder="e.g: Lead Developer"/>
+            </div>
+
             <button
-                className="block bg-blue-800 text-white"
+                className="mt-10 block bg-p-blue-1 text-white rounded py-3 px-6 w-full"
                 disabled={!selectedOrg}
                 onClick={() => {
                     onOrgDecide(selectedOrg);
-                    onDeptDeicde(department);
+                    onDeptDecide(department);
                     onDesignDecide(designation);
                 }}
             >
@@ -132,22 +166,26 @@ function SelectOrg({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
 function CreateOrg({ onOrgDecide }) {
     const [createdOrg, setCreatedOrg] = useState("");
 
-    const router = useRouter();
 
     return (
-        <div>
-            <span>
-                My organization will be named{" "}
+        <div className={"text-lg"}>
+            <p className={"mt-2 mb-7 font-manrope text-xl font-semibold text-center"}>Register Organization to Track & Manage:</p>
+            <div className={"flex flex-col gap-1"}>
+                <label htmlFor={"createOrgName"} className={"font-bold"}>New Organization Name</label>
                 <input
+                    id={"createOrgName"}
                     type="text"
-                    className="bg-amber-400 p-2"
+                    className="bg-g-white-1 py-3 px-6 block rounded border border-g-gray-3 border-solid"
                     value={createdOrg}
+                    placeholder={"Acme Corporation"}
                     onChange={(e) => setCreatedOrg(e.target.value)}
                 />
-            </span>
+            </div>
             <button
-                className="block bg-blue-800 text-white"
-                disabled={!createdOrg}
+                className="mt-10 block bg-p-blue-1 text-white rounded py-3 px-6 w-full"
+                // disabled={!createdOrg}
+                // Blocking organization creation for live site
+                disabled
                 onClick={() => {
                     const checkOrgs = async () => {
                         try {
@@ -181,9 +219,10 @@ function CreateOrg({ onOrgDecide }) {
                     checkOrgs();
                 }}
             >
-                {createdOrg
-                    ? `Create Account with ${createdOrg}`
-                    : `Please name your Organization`}
+                {/*{createdOrg*/}
+                {/*    ? `Sign up as Employer of ${createdOrg}`*/}
+                {/*    : `Please name your Organization`}*/}
+                Currently Not Available
             </button>
         </div>
     );
@@ -193,42 +232,40 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-function MyTabs({ onOrgDecide, onDeptDeicde, onDesignDecide }) {
+function MyTabs({ onOrgDecide, onDeptDecide, onDesignDecide }) {
     return (
         <Tab.Group>
-            <Tab.List className="flex space-x-5 rounded-xl p-1">
+            <Tab.List className="flex space-x-2 rounded-xl p-1">
                 <Tab
                     className={({ selected }) =>
                         classNames(
-                            "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-                            "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                            "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
                             selected
-                                ? "bg-white shadow"
-                                : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                                ? "bg-p-blue-1 text-g-white-1"
+                                : "bg-g-white-1 border-2 border-p-blue-1 text-p-blue-1"
                         )
                     }
                 >
-                    Join an existing Organization (Employee)
+                    <h2 className={"font-manrope text-xl font-bold"}>Employee</h2>
                 </Tab>
                 <Tab
                     className={({ selected }) =>
                         classNames(
-                            "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-                            "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                            "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
                             selected
-                                ? "bg-white shadow"
-                                : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                                ? "bg-p-blue-1 text-g-white-1"
+                                : "bg-g-white-1 border-2 border-p-blue-1 text-p-blue-1"
                         )
                     }
                 >
-                    Create a new Organization (Employer)
+                    <h2 className={"font-manrope text-xl font-bold"}>Employer</h2>
                 </Tab>
             </Tab.List>
             <Tab.Panels>
                 <Tab.Panel>
                     <SelectOrg
                         onOrgDecide={onOrgDecide}
-                        onDeptDeicde={onDeptDeicde}
+                        onDeptDecide={onDeptDecide}
                         onDesignDecide={onDesignDecide}
                     ></SelectOrg>
                 </Tab.Panel>

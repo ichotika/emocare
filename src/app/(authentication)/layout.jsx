@@ -8,9 +8,8 @@ export default function Layout({ children }) {
             <Image
                 src={Bg}
                 alt="Background"
-                objectFit="cover"
                 quality={100}
-                className=" h-full w-full"
+                className="h-full w-full lg:hidden object-cover"
             />
             <div className="flex h-full w-full items-center justify-center">
                 {children}
