@@ -53,7 +53,7 @@ function AssessmentHistory({ assessment, total = 3 }) {
                         break;
                     case "burnout":
                         historyEntry.burnoutLevel = assess.level;
-                        historyEntry.scoreBurnoutLevel =
+                        historyEntry.scoreBurnLevel =
                             assess.score >= 15 && assess.score <= 18
                                 ? "good"
                                 : assess.score >= 19 && assess.score <= 49
@@ -65,6 +65,7 @@ function AssessmentHistory({ assessment, total = 3 }) {
                     default:
                     // console.log("Unknown assessment type for:", assess);
                 }
+                historyEntry.score=assess.score
             }
         });
 
@@ -92,7 +93,8 @@ function AssessmentHistory({ assessment, total = 3 }) {
                             burnoutLevel={history.burnoutLevel}
                             deprScore={history.scoreDeprLevel}
                             anxScore={history.scoreAnxLevel}
-                            burnoutScore={history.scoreBurnoutLevel}
+                            burnoutScore={history.scoreBurnLevel}
+                            assessScore={history.score}
                         />
                     </div>
                 ))}

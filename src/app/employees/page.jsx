@@ -144,6 +144,7 @@ export default function Home() {
                                         (deprData[0].score * 100) / 27
                                     }
                                     percentColor={"#FFC700"}
+                                    assessType={"depression"}
                                 />
                                 <AssessmentButton
                                     link="/employees/assessment/depression"
@@ -172,6 +173,7 @@ export default function Home() {
                                         (anxietyData[0].score * 100) / 21
                                     }
                                     percentColor={"#0ECD9E"}
+                                    assessType={"anxiety"}
                                 />
                                 <AssessmentButton
                                     link="/employees/assessment/anxiety"
@@ -198,6 +200,7 @@ export default function Home() {
                                         (burnoutData[0].score * 100) / 75
                                     }
                                     percentColor={"#FF8C49"}
+                                    assessType={"burnout"}
                                 />
                                 <AssessmentButton
                                     link="/employees/assessment/burnout"

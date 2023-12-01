@@ -9,9 +9,50 @@ function HalfDoughnutChart({
     levelText,
     levelNum,
     levelPercent,
-    percentColor,
+    assessType,
     scaling = false,
 }) {
+
+    let percentColor = "";
+
+    switch (assessType) {
+        case "depression":
+            percentColor = 
+            levelNum >= 0 && levelNum <= 4
+            ? "#0ECD9E"
+            : levelNum >= 5 && levelNum <= 14
+            ? "#FFC700"
+            : levelNum >= 15 && levelNum <= 27
+            ? "#F5003D"
+            : "#4D93FB";
+            break;
+        case "anxiety":
+            percentColor = 
+            levelNum >= 0 && levelNum <= 4
+            ? "#0ECD9E"
+            : levelNum >= 5 && levelNum <= 9
+            ? "#FFC700"
+            : levelNum >= 10 && levelNum <= 21
+            ? "#F5003D"
+            : "#4D93FB";
+            break;
+        case "burnout":
+            percentColor = 
+            levelNum >= 15 && levelNum <= 18
+            ? "#0ECD9E"
+            : levelNum >= 19 && levelNum <= 49
+            ? "#FFC700"
+            : levelNum >= 50 && levelNum <= 75
+            ? "#F5003D"
+            : "#4D93FB";
+            break;
+    
+        default:
+            break;
+    }
+
+    console.log("chart:", levelNum, levelText, assessType)
+
     const data = {
         datasets: [
             {
