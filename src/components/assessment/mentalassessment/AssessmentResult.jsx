@@ -203,109 +203,109 @@ const AssessmentResult = () => {
                 </div>
 
                 {/* table */}
-                <div className="table-container">
-                    <div className="overflow-x-scroll w-[99.99%] first-line:overflow-y-hidden rounded-lg xl:rounded-none border xl:border-g-white-1 border-g-gray-2">
-                        <table className="border-0 w-full">
-                            <thead className="border-0  bg-p-blue-5 xl:rounded-none  xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
-                                <tr className="">
-                                    <th
-                                        className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[14%]"
+                {/* <div className="table-container"> */}
+                <div className="overflow-x-scroll w-full box-border overflow-y-hidden rounded-lg xl:rounded-none border xl:border-g-white-1 border-g-gray-2">
+                    <table className="border-0 w-full xl:min-w-[1024px] table-auto">
+                        <thead className="border-0  bg-p-blue-5 xl:rounded-none xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
+                            <tr className="">
+                                <th
+                                    className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[14%]"
+                                >
+                                    Score
+                                </th>
+                                <th
+                                    className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[16%]"
+                                >{`${assessType[0].toUpperCase() + assessType.slice(1)} severity`}</th>
+                                <th
+                                    className="border-0 border-b border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[70%]"
+                                >
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="">
+                            {assessType === "depression" &&
+                                scoreRange[0].map((obj, index, array) => (
+                                    <tr
+                                        key={index}
+                                        className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                ? "border-0"
+                                                : "border-0 border-b "}`}
                                     >
-                                        Score
-                                    </th>
-                                    <th
-                                        className="border-0 border-b rounded-lg border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[16%]"
-                                    >{`${assessType[0].toUpperCase() + assessType.slice(1)} severity`}</th>
-                                    <th
-                                        className="border-0 border-b border-g-gray-2 xl:border-g-white-1 px-3 py-4 text-center text-b-sm leading-5 w-[70%]"
+                                        <td
+                                            className="p-3 text-center  text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.range}
+                                        </td>
+                                        <td
+                                            className="p-3 text-center text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.level}
+                                        </td>
+                                        <td
+                                            className="p-3 text-left text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.action}
+                                        </td>
+                                    </tr>
+                                ))}
+                            {assessType === "anxiety" &&
+                                scoreRange[1].map((obj, index, array) => (
+                                    <tr
+                                        key={index}
+                                        className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                ? "border-0"
+                                                : "border-0 border-b "}`}
                                     >
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="">
-                                {assessType === "depression" &&
-                                    scoreRange[0].map((obj, index, array) => (
-                                        <tr
-                                            key={index}
-                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
-                                                ${index === array.length - 1
-                                                    ? "border-0"
-                                                    : "border-0 border-b "}`}
+                                        <td
+                                            className="p-3 text-center  text-b-sm font-normal leading-5"
                                         >
-                                            <td
-                                                className="p-3 text-center  text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.range}
-                                            </td>
-                                            <td
-                                                className="p-3 text-center text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.level}
-                                            </td>
-                                            <td
-                                                className="p-3 text-left text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.action}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                {assessType === "anxiety" &&
-                                    scoreRange[1].map((obj, index, array) => (
-                                        <tr
-                                            key={index}
-                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
-                                                ${index === array.length - 1
-                                                    ? "border-0"
-                                                    : "border-0 border-b "}`}
+                                            {obj.range}
+                                        </td>
+                                        <td
+                                            className="p-3 text-center text-b-sm font-normal leading-5"
                                         >
-                                            <td
-                                                className="p-3 text-center  text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.range}
-                                            </td>
-                                            <td
-                                                className="p-3 text-center text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.level}
-                                            </td>
-                                            <td
-                                                className="p-3 text-left text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.action}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                {assessType === "burnout" &&
-                                    scoreRange[2].map((obj, index, array) => (
-                                        <tr
-                                            key={index}
-                                            className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
-                                                ${index === array.length - 1
-                                                    ? "border-0"
-                                                    : "border-0 border-b "}`}
+                                            {obj.level}
+                                        </td>
+                                        <td
+                                            className="p-3 text-left text-b-sm font-normal leading-5"
                                         >
-                                            <td
-                                                className="p-3 text-center  text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.range}
-                                            </td>
-                                            <td
-                                                className="p-3 text-center text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.level}
-                                            </td>
-                                            <td
-                                                className="p-3 text-left text-b-sm font-normal leading-5"
-                                            >
-                                                {obj.action}
-                                            </td>
-                                        </tr>
-                                    ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                            {obj.action}
+                                        </td>
+                                    </tr>
+                                ))}
+                            {assessType === "burnout" &&
+                                scoreRange[2].map((obj, index, array) => (
+                                    <tr
+                                        key={index}
+                                        className={`border-g-gray-2 xl:border-g-white-1  bg-g-white-1
+                                                ${index === array.length - 1
+                                                ? "border-0"
+                                                : "border-0 border-b "}`}
+                                    >
+                                        <td
+                                            className="p-3 text-center  text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.range}
+                                        </td>
+                                        <td
+                                            className="p-3 text-center text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.level}
+                                        </td>
+                                        <td
+                                            className="p-3 text-left text-b-sm font-normal leading-5"
+                                        >
+                                            {obj.action}
+                                        </td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </table>
                 </div>
+                {/* </div> */}
 
                 {latestAssessRecord &&
                     latestAssessRecord.level ===
@@ -314,16 +314,18 @@ const AssessmentResult = () => {
                         scoreRange[1][scoreRange[1].length - 1]?.level ||
                         scoreRange[2][scoreRange[2].length - 1]?.level ||
                         scoreRange[2][scoreRange[2].length - 2]?.level) ? (
-                    <div className="flex gap-4 border-l-[3px] border-l-o-error-1 bg-[#FED6D7]">
-                        <Image
-                            src={alertLogo}
-                            alt="alert Logo"
-                            className="ml-4"
-                            width={24}
-                            height={24}
-                        ></Image>
-                        <p className="py-[14px]">
-                            <span className="font-bold">Warning. </span>It seems
+                    <div className="flex gap-4 xl:p-1.5 border-l-[3px] border-l-o-error-1 bg-[#FED6D7]">
+                        <div className="py-[14px] flex self-center">
+                            <Image
+                                src={alertLogo}
+                                alt="alert Logo"
+                                className="ml-4"
+                                width={24}
+                                height={24}
+                            ></Image>
+                            <p className="font-bold">Warning</p>
+                        </div>
+                        <p className="self-center xl:pl-6 xl:text-b-sm">It seems
                             you are struggling with mental health problem. Check
                             out our helpful resources{" "}
                             <Link
@@ -334,18 +336,20 @@ const AssessmentResult = () => {
                             </Link>
                         </p>
                     </div>
+
+
                 ) : null}
-            </div>
+            </div >
             {/* </div> */}
 
-            <div className="mt-20 xl:mt-5 flex text-center justify-end sm:justify-center ">
+            <div div className="mt-20 xl:mt-5 flex text-center justify-end sm:justify-center " >
                 <Link
                     className="rounded-lg block bg-blue-700 w-96 sm:w-full xl:font-bold font-semibold p-2 xl:px-3 xl:py-4 text-white"
                     href={"/employees/assessment"}
                 >
                     Take other assessment
                 </Link>
-            </div>
+            </div >
         </>
     );
 };

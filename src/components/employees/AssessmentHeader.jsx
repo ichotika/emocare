@@ -17,7 +17,7 @@ const AssessmentHeader = ({
                     </p>
                     <Header headertext={headerText2} marginTB="mt-1 mb-1" isHidden={isHidden} fontSize={fontSize} />
                 </div>
-                <p className="basis-4/5 text-justify text-b-lg font-bold xl:grow">
+                <p className="basis-4/5 text-justify text-b-lg xl:text-b-base font-bold xl:grow">
                     {description}
                 </p>
             </div>
