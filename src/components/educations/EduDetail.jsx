@@ -26,7 +26,7 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
     }
 
     return (
-        <div className="m-4 p-4">
+        <div className="m-4 p-4 sm:m-0 sm:p-0">
             <>
                 {eduModule.length > 0 ? <EduModHeader header={eduModule[0].fields.topic} topicId={eduModule[0].fields.topicId} /> : ""}
             </>
@@ -46,7 +46,7 @@ function EduDetail({ recList, eduModule, userId, newEduResponse }) {
                         : ""}
                 </div>
 
-                <div className="col-span-3 pb-4">
+                <div className="col-span-3 pb-4 edu-detail">
                     {eduModule.length > 0 ? (
                         <EduModule
                             eduModule={eduModule}
