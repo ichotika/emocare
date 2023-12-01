@@ -9,7 +9,7 @@ function NoResultChart({ mainTitle, link }) {
                     No result
                 </p>
             </div>
-            <button className="w-[206px] rounded-lg bg-p-blue-1 p-2 font-medium text-white hover:bg-p-blue-2">
+            <button className="w-[206px] h-[44px] rounded-lg bg-p-blue-1 p-2 font-medium text-white hover:bg-p-blue-2">
                 <Link href={link}>Take Assessment</Link>
             </button>
         </div>
