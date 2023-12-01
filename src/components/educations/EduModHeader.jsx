@@ -9,8 +9,8 @@ export default function EduModHeader({header, topicId}) {
     const HeaderImage = topicId === "T01" ? Resource1 : topicId === "T02" ? Resource2 : topicId === "T03" ? Depression : topicId === "T04" ? Anxiety : topicId === "T05" ? Burnout : false ;
     return (
         <div className="relative pb-8">
-            {HeaderImage ? <Image src={HeaderImage} width={`100%`} height={`100%`} alt="Picture" /> : "" }
-            <h1 className="absolute bottom-0 left-0 text-h-2xl pl-4 pb-8 font-bold">{header}</h1>
+            {HeaderImage ? <Image src={HeaderImage} width={`100%`} height={`100%`} alt="Picture" className="w-[100%]" /> : "" }
+            <h1 className="absolute bottom-0 left-0 text-h-2xl pl-4 pb-8 font-bold sm:text-b-xl">{header}</h1>
         </div>
     )
 }

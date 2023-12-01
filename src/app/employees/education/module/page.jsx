@@ -74,6 +74,9 @@ export default function Home() {
 
     return (
         <>
+            <style>
+                { "h2 {font-weight: bold; font-size: 20px; padding: 1rem 0;} .edu-detail li {list-style: lower-alpha; margin-left: 1.5rem;} " }
+            </style>
             <EduDetail
                 recList={eduMod.filter((rec) => rec.topicId !== dataId)}
                 eduModule={eduContent}
