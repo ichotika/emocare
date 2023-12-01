@@ -57,16 +57,15 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
 
             {/* sidebar */}
             <aside
-                className={`mt-16 flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${
-                    isHamburgerOpen
-                        ? "z-10 w-[320px] xl:translate-x-0"
-                        : "xl:-translate-x-full"
-                }`}
+                className={`mt-16 flex h-screen grow flex-col justify-between xl:fixed xl:mt-0 xl:bg-white xl:px-6 xl:pb-12 xl:pt-16 xl:transition-all ${isHamburgerOpen
+                    ? "z-10 w-[320px] xl:translate-x-0"
+                    : "xl:-translate-x-full"
+                    }`}
             >
                 {/* upper group*/}
                 <div className="flex flex-col">
                     {/* user account & notification */}
-                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:items-center">
+                    <div className="hidden items-center justify-center xl:mb-2 xl:flex xl:self-center">
                         <Header
                             headertext={""}
                             marginTB="mb-0 mt-0"
@@ -80,22 +79,16 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                             {menuRoutes.map((menu, index) => (
                                 <li key={index}>
                                     <Link
-                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${
-                                            pathname ===
+                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname ===
                                             `/employees${menu.slug}`
-                                                ? "bg-p-blue-1 text-white"
-                                                : ""
-                                        } `}
+                                            ? "bg-p-blue-1 text-white"
+                                            : ""
+                                            } `}
                                         //
                                         href={`/employees/${menu.slug}`}
                                     >
-                                        <Image
-                                            className="mr-2 fill-blue-500 hover:fill-white"
-                                            src={menu.image}
-                                            alt={menu.name}
-                                            width={24}
-                                            height={24}
-                                        />
+                                        <span className={`icon-${menu.slug ? menu.slug.slice(1) : "dashboard"} align-middle text-b-2xl mr-2`}>
+                                        </span>
                                         {menu.name}
                                     </Link>
                                 </li>
@@ -111,21 +104,16 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                             {supportRoutes.map((support, index) => (
                                 <li key={index}>
                                     <Link
-                                        className={`side-menu flex rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${
-                                            pathname ===
+                                        className={`side-menu flex items-center rounded-lg px-6 py-3 font-bold leading-6 text-p-blue-1 ${pathname ===
                                             `/employees${support.slug}`
-                                                ? "bg-p-blue-1 text-white"
-                                                : ""
-                                        } `}
+                                            ? "bg-p-blue-1 text-white"
+                                            : ""
+                                            } `}
                                         href={`/employees/${support.slug}`}
                                     >
-                                        <Image
-                                            className="mr-2 fill-blue-500"
-                                            src={support.image}
-                                            alt={support.name}
-                                            width={24}
-                                            height={24}
-                                        />
+                                        <span className={`icon-${support.slug ? support.slug.slice(1) : ""} align-middle text-b-2xl mr-2`}>
+
+                                        </span>
                                         {support.name}
                                     </Link>
                                 </li>

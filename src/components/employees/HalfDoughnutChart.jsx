@@ -72,20 +72,46 @@ function HalfDoughnutChart({
                     {headtitle}
                 </p>
             )}
-            {/* <div className="-mt-[80px]"> */}
-            <div
-                className={
-                    !scaling
-                        ? "chart-js-donut-emp"
-                        : "chart-js-donut-emp-result"
-                }
-            >
-                <Doughnut
-                    data={data}
-                    options={options}
-                    plugins={[chartInnerText]}
-                />
-            </div>
+
+            {scaling
+                ? (
+                    <>
+                        {/* <div className="-mt-[80px]"> */}
+                        
+                        <div className="-mt-8 xl:-mt-12 max-h-60 xl:max-h-52  relative w-[328px] h-[328px] xl:w-72 xl:h-72">
+                            <div
+                                className={
+                                    !scaling
+                                        ? "chart-js-donut-emp"
+                                        : "chart-js-donut-emp-result"
+                                }
+                            >
+                                <Doughnut
+                                    data={data}
+                                    options={options}
+                                    plugins={[chartInnerText]}
+                                />
+                            </div>
+                        </div>
+                    </>
+
+                ) : (
+                    <div
+                        className={
+                            !scaling
+                                ? "chart-js-donut-emp"
+                                : "chart-js-donut-emp-result"
+                        }
+                    >
+                        <Doughnut
+                            data={data}
+                            options={options}
+                            plugins={[chartInnerText]}
+                        />
+                    </div>
+                )
+
+            }
         </>
     );
 }

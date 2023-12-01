@@ -1,13 +1,5 @@
 import EmployeeSidebar from "@/components/base/EmployeeSidebar";
 
-// import icons
-import Dashboard from "@/public/assets/Wireframes/dashboard.svg";
-import Assessment from "@/public/assets/Wireframes/assessment.svg";
-import Education from "@/public/assets/Wireframes/education.svg";
-import Support from "@/public/assets/Wireframes/support.svg";
-import FAQ from "@/public/assets/Wireframes/faq.svg";
-import Feedback from "@/public/assets/Wireframes/feedback.svg";
-
 export const metadata = {
     title: "EmoCare",
     description:
@@ -17,51 +9,45 @@ export const metadata = {
 const routesMenu = [
     {
         slug: "",
-        name: "Dashboard",
-        image: Dashboard,
+        name: "Dashboard"
     },
     {
         slug: "/assessment",
-        name: "Assessment",
-        image: Assessment,
+        name: "Assessment"
     },
     {
         slug: "/education",
-        name: "Education",
-        image: Education,
+        name: "Education"
     },
     {
         slug: "/support",
-        name: "Support",
-        image: Support,
+        name: "Support"
     },
 ];
 
 const routesSupport = [
     {
         slug: "/feedback",
-        name: "Feedback",
-        image: Feedback,
+        name: "Feedback"
     },
     {
         slug: "/faq",
-        name: "FAQ",
-        image: FAQ,
+        name: "FAQ"
     },
 ];
 
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <div className="flex xl:flex-col">
+        <div className="flex xl:flex-col box-border xl:bg-p-blue-6">
             {/* navbar(until xl) & sidebar*/}
-            <div className="fixed left-0 top-0 flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
+            <div className="fixed left-0 top-0 flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0 box-border">
                 <EmployeeSidebar
                     menuRoutes={routesMenu}
                     supportRoutes={routesSupport}
                 />
             </div>
-            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen grow rounded-tl-[40px] bg-p-blue-6 p-12 pb-[32px] pt-[65px] xl:ml-0 xl:grow-0 xl:bg-g-gray-5 xl:p-8">
+            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen box-border rounded-tl-[40px] bg-p-blue-6 px-12 py-10 xl:ml-0 grow xl:grow-0 xl:px-6 xl:py-10 w-auto xl:max-w-5xl lg:w-full xl:self-center md:py-4 sm:p-4">
                 {children}
             </div>
         </div>

@@ -33,7 +33,7 @@ const AssessmentCard = ({ title, questions, duration, description, link, src, ty
                     const currentMonthData = data.assessment
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .filter((assessmentData) => {
-                            return new Date (assessmentData.createdAt).getMonth() + 1 === currentMonth && new Date(assessmentData.createdAt).getYear() === currentYear
+                            return new Date(assessmentData.createdAt).getMonth() + 1 === currentMonth && new Date(assessmentData.createdAt).getYear() === currentYear
                         })
                     setLatestAssessResult(currentMonthData)
                 };
@@ -44,7 +44,7 @@ const AssessmentCard = ({ title, questions, duration, description, link, src, ty
         getLatestAssessmentResult();
     }, [user]);
 
-    const hasResult = latestAssessResult.length > 0 && latestAssessResult.some((item)=> item.assessmentType.toLowerCase() === assessType)
+    const hasResult = latestAssessResult.length > 0 && latestAssessResult.some((item) => item.assessmentType.toLowerCase() === assessType)
 
     // const hasAssessType = !latestAssessResult.map((item)=> item.assessmentType === assessType)
     // console.log("this is the latestAssessResult => ",latestAssessResult);
@@ -60,19 +60,23 @@ const AssessmentCard = ({ title, questions, duration, description, link, src, ty
                     className="flex flex-col w-full h-fit rounded-t-2xl"></Image>
                 <div className="description flex grow">
                     <div className="flex flex-col justify-between">
-                        <div className="flex flex-col px-4 py-6">
-                            <p className="text-2xl font-bold">{title}</p>
-                            <p className="qustions mt-4 leading-6"><span className="font-bold">Questions: </span>{questions}</p>
-                            <p className="duration mb-6 leading-6"><span className="font-bold">Duration:</span> {duration} minutes</p>
-                            <p className="description leading-6">{description}</p>
+                        <div className="flex flex-col justify-between px-4 py-6">
+                            <div className="flex flex-col">
+                                <p className="text-2xl font-bold">{title}</p>
+                                <p className="qustions mt-4 leading-6"><span className="font-bold">Questions: </span>{questions}</p>
+                                <p className="duration mb-6 leading-6"><span className="font-bold">Duration:</span> {duration} minutes</p>
+                            </div>
+                            <div className="flex">
+                                <p className="description leading-6">{description}</p>
+                            </div>
                         </div>
                         <div className="flex flex-col justify-center p-4">
-                            <button 
+                            <button
                                 className={`${hasResult ? "bg-p-blue-5 text-p-blue-1" : "bg-blue-500 text-g-white-1"}  font-bold py-3 px-2 rounded-lg grow`}
                                 disabled={hasResult}
                                 onClick={() => router.push(`/employees/assessment/${assessType}`)}
                             >
-                                    Take Assessment
+                                Take Assessment
                             </button>
                         </div>
                     </div>

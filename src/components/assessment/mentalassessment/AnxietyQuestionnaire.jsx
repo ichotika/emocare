@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import useWindowDimensions from "@/components/base/WindsizeChanger";
 
 const TableHeader = styled.div`
     display: grid;
@@ -14,7 +15,11 @@ const TableHeader = styled.div`
     letter-spacing: 0.07px;
     font-weight: 700;
     color: black;
-    padding: 1rem 0;
+    padding: 10px 0;
+
+    @media(max-width: 1280px) {
+        grid-template-columns: 10.7% 89.3%;
+      }
 `;
 
 const AnxietyQuestionnaire = () => {
@@ -25,6 +30,20 @@ const AnxietyQuestionnaire = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const myWindow = useWindowDimensions();
+
+    const [isDesktop, setIsDesktop] = useState();
+
+    useEffect(() => {
+        if (myWindow.width >= 1280) {
+            setIsDesktop(true);
+            // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+        } else {
+            setIsDesktop(false);
+            // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+        }
+    }, [myWindow]);
 
     const options = [
         { label: "Not At All", value: 0 },
@@ -179,67 +198,97 @@ const AnxietyQuestionnaire = () => {
     // console.log(anxietyQustionnaire.anxietyAssessment)
 
     return (
-        <div className="flex">
             <form
                 method="POST"
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-y-16"
+                className="flex flex-col gap-y-16 xl:gap-y-8"
             >
                 <div className="main-container flex flex-col gap-y-6">
-                    <div className=" ">
-                        <TableHeader className="border-collapse rounded-lg border border-g-gray-2 bg-p-blue-5 xl:rounded-none xl:border-x-0 xl:border-y xl:border-g-white-1 xl:bg-p-blue-5">
-                            <div className="px-3">No.</div>
-                            <div className="px-3">Questions</div>
+                    <div className="w-full">
+                        <TableHeader 
+                            className="
+                            border-collapse 
+                            rounded-t-lg 
+                            border 
+                            border-g-gray-2 
+                            bg-p-blue-5 
+                            xl:rounded-none 
+                            xl:border-x-0 
+                            xl:border-y 
+                            xl:border-g-white-1 
+                            xl:bg-p-blue-5
+                            w-full"
+                        >
+                            <div className="px-3 py-4">No.</div>
+                            <div className="px-3 py-4">Questions</div>
                             {options.map((option) => (
                                 <div
-                                    className="justify-center px-3 text-center xl:hidden"
+                                    className="px-3 text-center xl:hidden"
                                     key={option.label}
                                 >
                                     {option.label}
                                 </div>
                             ))}
                         </TableHeader>
-                        <div className="rounded-b-lg xl:rounded-b-none bg-g-white-1">
+                        <div className="rounded-b-lg xl:rounded-b-none bg-g-white-1 xl:bg-p-blue-6">
                             {anxietyQustionnaire?.anxietyAssessment?.map(
                                 (question, index, array) => (
                                     <div
-                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] border border-g-gray-2 text-b-sm leading-5 xl:flex xl:flex-col xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2" ${
+                                        className={`xl:boder-0 grid border-collapse grid-cols-[3.9%_50%_11.5%_11.5%_11.5%_11.5%] xl:grid-cols-[10.7%_89.3%] border border-g-gray-2 text-b-sm leading-5 xl:border-x-0 xl:border-y xl:border-g-white-1 xl:pb-2" ${
                                             index === array.length - 1
                                                 ? "rounded-b-lg xl:rounded-none"
                                                 : ""
                                         }`}
                                         key={question.No}
                                     >
-                                        <div className="col-span-2 flex">
-                                            <div className="self-center justify-self-center px-4 py-4 xl:self-start">
+
+                                        {isDesktop ? (
+                                            <>
+                                                <div className="self-center justify-self-center p-3 xl:self-start"> {question.No}</div>
+                                                <div className="self-center p-3">{question.question}</div>
+                                            </>
+                                            ) : (
+                                 <>
+                                            <div className="self-center justify-self-center p-3 xl:self-start">
                                                 {question.No}
                                             </div>
-                                            <div className="px-4 py-3.5 xl:px-3">
+                                            <div className="self-center p-3">
                                                 {question.question}
-                                            </div>
+
                                         </div>
+                                 </>
+                                        )
+                                        }
                                         {options.map((option) => (
                                             <div
                                                 key={question.No + option.value}
-                                                className="self-center px-3 py-4 pl-[49px] text-center font-bold xl:flex xl:self-start xl:py-2"
+                                                className="flex items-center justify-center px-2.5 py-3.5 text-center font-bold xl:flex-row-reverse xl:col-start-2 xl:justify-end xl:px-3 xl:py-0"
                                             >
+                                                <label
+                                                    // htmlFor={`q${question.No}_${option.value}`}
+                                                    htmlFor={`q${question.No}`}
+                                                    className="hidden py-3.5 xl:block justify-self-start xl:px-2.5"
+                                                >
+                                                    {option.label}
+                                                </label>
                                                 <input
-                                                    className="content-center border-p-blue-1 bg-p-blue-1"
+                                                    className={
+                                                        value[`q${question.No}`] === option.value 
+                                                            ? "border-4 h-4 w-4 m-0.5 appearance-none rounded-full border-g-white-1 bg-p-blue-1 accent-p-blue-1 shadow-[0_0_0_1px_#0066FF]"
+                                                            : "border-4 h-4 w-4 m-0.5 appearance-none rounded-full border-g-white-1 bg-g-white-1 accent-p-blue-1 shadow-[0_0_0_1px_#0066FF]"
+                                                    }
                                                     type="radio"
                                                     {...register(
                                                         `q${question.No}`,
                                                         { required: true }
                                                     )}
-                                                    id={`q${question.No}_${option.value}`}
+                                                    // id={`q${question.No}_${option.value}`}
+                                                    id={`q${question.No}`}
                                                     value={Number(option.value)}
+                                                    checked={value[`q${question.No}`] === option.value}
                                                     onChange={handleRadioChange}
                                                 />
-                                                <label
-                                                    htmlFor={`q${question.No}_${option.value}`}
-                                                    className="hidden py-3.5 xl:block xl:px-2.5"
-                                                >
-                                                    {option.label}
-                                                </label>
+                                                
                                             </div>
                                         ))}
                                         {errors[`q${question.No}`] && (
@@ -252,7 +301,7 @@ const AnxietyQuestionnaire = () => {
                             )}
                         </div>
                     </div>
-                    <p className="self-center xl:hidden">
+                    <p className="self-center text-b-xs xl:hidden">
                         Developed by Drs. Robert L. Spitzer, Janet B.W.
                         Williams, Kurt Kroenke and colleagues, with an
                         educational grant from Pfizer Inc.
@@ -269,7 +318,6 @@ const AnxietyQuestionnaire = () => {
                     </button>
                 </div>
             </form>
-        </div>
     );
 };
 

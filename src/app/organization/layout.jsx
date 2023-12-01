@@ -1,9 +1,6 @@
 import OrganizationSidebar from "@/components/base/OrganizationSidebar";
 
-// import icons
-import Dashboard from "@/public/assets/Wireframes/dashboard.svg";
-import Records from "@/public/assets/Wireframes/assessment.svg";
-import Management from "@/public/assets/Wireframes/education.svg";
+
 
 export const metadata = {
     title: "EmoCare",
@@ -14,18 +11,15 @@ export const metadata = {
 const routesMenu = [
     {
         slug: "",
-        name: "Dashboard",
-        image: Dashboard,
+        name: "Dashboard"
     },
     {
         slug: "/records",
-        name: "Assessment Records",
-        image: Records,
+        name: "Assessment Records"
     },
     {
         slug: "/management",
-        name: "Management",
-        image: Management,
+        name: "Management"
     },
 ];
 

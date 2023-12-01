@@ -91,15 +91,8 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                                             setIsHamburgerOpen(false)
                                         }
                                     >
-                                        <div className="text-white">
-                                            <Image
-                                                className="mr-2"
-                                                src={menu.image}
-                                                alt={menu.name}
-                                                width={24}
-                                                height={24}
-                                            />
-                                        </div>
+                                        <span className={`icon-${menu.slug ? menu.slug.slice(1) : "dashboard"} align-middle text-b-2xl mr-2`}>
+                                        </span>
                                         {menu.name}
                                     </Link>
                                 </li>
