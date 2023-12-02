@@ -141,13 +141,12 @@ const AssessmentResult = () => {
                         <>
                             <div className="flex justify-center items-end grow">
                                 <HalfDoughnutChart
-
                                     levelText={latestAssessRecord.level}
                                     levelNum={latestAssessRecord.score}
                                     levelPercent={(latestAssessRecord.score * 100) / 27}
-                                    percentColor={"#FFC700"}
-                                    className="justify-self-center"
+                                    assessType={assessType}
                                     scaling={true}
+                                    className="justify-self-center"
                                 />
                             </div>
                             <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
@@ -166,9 +165,9 @@ const AssessmentResult = () => {
                                     levelText={latestAssessRecord.level}
                                     levelNum={latestAssessRecord.score}
                                     levelPercent={(latestAssessRecord.score * 100) / 21}
-                                    percentColor={"#0ECD9E"}
-                                    className="justify-self-center"
+                                    assessType={assessType}
                                     scaling={true}
+                                    className="justify-self-center"
                                 />
                             </div>
                             <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
@@ -187,9 +186,9 @@ const AssessmentResult = () => {
                                     levelText={latestAssessRecord.level}
                                     levelNum={latestAssessRecord.score}
                                     levelPercent={(latestAssessRecord.score * 100) / 75}
-                                    percentColor={"#FF8C49"}
-                                    className="justify-self-center"
+                                    assessType={assessType}
                                     scaling={true}
+                                    className="justify-self-center"
                                 />
                             </div>
                             <div className="flex flex-col justify-center items-start gap-6 pr-10 xl:pr-0 xl:gap-0">
