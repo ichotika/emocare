@@ -49,7 +49,7 @@ function Chatbot({ mypersonality }) {
         };
 
         const apiRequestBody = {
-            model: "gpt-3.5-turbo",
+            model: "gpt-4",
             messages: [systemMessage, ...apiMessages], // [message1,2,...0]
         };
         await fetch("https://api.openai.com/v1/chat/completions", {
