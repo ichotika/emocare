@@ -32,7 +32,7 @@ const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
 
     function confirmEmployee(userId, department, title) {
         updateData(userId, department, title);
-        alert("confirm");
+        window.location.reload();
     }
 
     function testDecline() {

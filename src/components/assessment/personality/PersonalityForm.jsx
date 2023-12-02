@@ -33,10 +33,10 @@ const createResponse = async (responseObj, router) => {
 
         if (response.ok) {
             const responseData = await response.json();
-            alert(
-                "Your personality type are " + responseData.data.personalityType
+
+            router.push(
+                `/employees/assessment/personality/detail?type=${responseData.data.personalityType}`
             );
-            router.push("/employees");
         }
     } catch (error) {
         console.log(error);
