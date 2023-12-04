@@ -10,6 +10,9 @@ function AuthOrganization({ emplist }) {
         try {
             const response = await fetch("/api/fetchclerk", {
                 method: "GET",
+                headers: {
+                    "Cache-Control": "no-store",
+                },
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
