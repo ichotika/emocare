@@ -61,7 +61,8 @@ const PersonalityTest = () => {
             description:
                 "This is a personality test that will give you a result equivalent to the Myers-Briggs Type Indicator.",
             link: "/employees/assessment/personality",
-            src: PersonalityPic
+            src: PersonalityPic,
+            type: "personality"
         }
     ];
 
