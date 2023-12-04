@@ -15,7 +15,7 @@ function EmpEduProgress({
             ) : (
                 <NoResultEducation categoryTitle={"All"} />
             )}
-            <div className="flex gap-4 sm:flex-col">
+            <div className="flex gap-4 sm:flex-col sm:gap-0">
                 {resourceEdu > 0 ? (
                     <EduProgressBar
                         category={"Resources"}
@@ -30,7 +30,7 @@ function EmpEduProgress({
                     <NoResultEducation categoryTitle={"Depression"} />
                 )}
             </div>
-            <div className="flex gap-4 sm:flex-col">
+            <div className="flex gap-4 sm:flex-col sm:gap-0">
                 {anxietyEdu > 0 ? (
                     <EduProgressBar category={"Anxiety"} percent={anxietyEdu} />
                 ) : (
