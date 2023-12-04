@@ -25,7 +25,7 @@ function RadioQ({ question }) {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "ArrowDown") {
-                setFieldValue(question.Question.toLowerCase(), "3");
+                setFieldValue(question.Question.toLowerCase(), "2");
             }
         };
 
