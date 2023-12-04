@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
     MainContainer,
@@ -9,8 +9,10 @@ import {
     MessageInput,
     TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
+import useWindowDimensions from "@/components/base/WindsizeChanger";
+import { motion } from "framer-motion";
 
-function Chatbot({ mypersonality }) {
+function Chatbot({ mypersonality, isVisible = false, onClose }) {
     const [typing, setTyping] = useState(false);
     const [messages, setMessages] = useState([
         {
@@ -20,6 +22,17 @@ function Chatbot({ mypersonality }) {
             sender: "EmoCare",
         },
     ]);
+    const [isDesktop, setIsDesktop] = useState(true);
+    const myWindow = useWindowDimensions();
+    useEffect(() => {
+        if (myWindow.width >= 1280) {
+            setIsDesktop(true);
+            // console.log("this is the window.innerWidth from line 28 ==>>", myWindow.width);
+        } else {
+            setIsDesktop(false);
+            // console.log("this is the window.innerWidth from line 31 ==>>", myWindow.width)
+        }
+    }, [myWindow]);
 
     const handleSend = async (message) => {
         const newMessage = {
@@ -76,32 +89,69 @@ function Chatbot({ mypersonality }) {
             });
     }
 
-    return (
-        <div className="flex h-full flex-col justify-between">
-            <MainContainer className="rounded-2xl">
-                <ChatContainer>
-                    <MessageList
-                        className="pt-6"
-                        typingIndicator={
-                            typing ? (
-                                <TypingIndicator content="EmoCare is typing" />
-                            ) : (
-                                ""
-                            )
-                        }
-                    >
-                        {messages.map((message, i) => {
-                            return <Message key={i} model={message} />;
-                        })}
-                    </MessageList>
-                    <MessageInput
-                        attachButton={false}
-                        placeholder="Type message here"
-                        onSend={handleSend}
-                    />
-                </ChatContainer>
-            </MainContainer>
+    return isDesktop ? (
+        <div className={"flex h-full flex-col justify-between"}>
+            <ChatContent
+                typing={typing}
+                messages={messages}
+                handleSend={handleSend}
+            />
         </div>
+    ) : (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
+            <motion.div
+                initial={{ y: "10%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{
+                    transition: { duration: 0.2, ease: "easeInOut" },
+                    opacity: 0,
+                    y: "10%",
+                }}
+                key="chatbot"
+                transition={{
+                    type: "spring",
+                    translate: { duration: 0.5, ease: [0, 1.2, 1, 1] },
+                    opacity: { duration: 0.5, ease: "easeOut" },
+                }}
+                className={
+                    "fixed bottom-[90px] right-[30px] ms-2 h-[85%] min-w-[330px] max-w-full"
+                }
+            >
+                <ChatContent
+                    typing={typing}
+                    messages={messages}
+                    handleSend={handleSend}
+                />
+            </motion.div>
+        </div>
+    );
+}
+
+function ChatContent({ typing, messages, handleSend }) {
+    return (
+        <MainContainer className="rounded-2xl">
+            <ChatContainer>
+                <MessageList
+                    className="pt-6"
+                    typingIndicator={
+                        typing ? (
+                            <TypingIndicator content="EmoCare is typing" />
+                        ) : (
+                            ""
+                        )
+                    }
+                >
+                    {messages.map((message, i) => {
+                        return <Message key={i} model={message} />;
+                    })}
+                </MessageList>
+                <MessageInput
+                    attachButton={false}
+                    placeholder="Type message here"
+                    onSend={handleSend}
+                />
+            </ChatContainer>
+        </MainContainer>
     );
 }
 
