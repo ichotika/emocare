@@ -5,13 +5,13 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 function PersonalityDetail({ personality }) {
     return (
         <>
-            <div className="personality-detail p-4">
+            <div className="personality-detail px-12 py-4">
                 <div className="grid grid-cols-3 sm:flex sm:flex-col sm:pb-6">
                     <div className="flex items-start justify-center">
                         <PersonalityImage
                             personality={personality.personality}
-                            imgWidth={250}
-                            imgHeight={250}
+                            imgWidth={175}
+                            imgHeight={175}
                         />
                     </div>
                     <div className="col-span-2 flex flex-col justify-center">
