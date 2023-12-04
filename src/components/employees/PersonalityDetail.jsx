@@ -5,8 +5,8 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 function PersonalityDetail({ personality }) {
     return (
         <>
-            <div className="personality-detail px-12 py-4">
-                <div className="grid grid-cols-3 sm:flex sm:flex-col sm:pb-6">
+            <div className="personality-detail px-12 py-4 sm:px-6">
+                <div className="grid grid-cols-3 sm:flex sm:flex-col">
                     <div className="flex items-start justify-center">
                         <PersonalityImage
                             personality={personality.personality}
@@ -38,9 +38,11 @@ function PersonalityDetail({ personality }) {
                 </p>
 
                 <div className="flex justify-end pt-6">
-                    <button className="rounded-lg bg-p-blue-1 p-2 text-white hover:bg-p-blue-2">
-                        <Link href={`/employees`}>Go back to dashboard</Link>
-                    </button>
+                    <Link href={`/employees`}>
+                        <button className="rounded-lg bg-p-blue-1 p-2 text-white hover:bg-p-blue-2">
+                            Go back to dashboard
+                        </button>
+                    </Link>
                 </div>
             </div>
         </>

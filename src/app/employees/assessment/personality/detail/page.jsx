@@ -40,7 +40,7 @@ export default function Home() {
         <>
             <style>
                 {
-                    "h2 {font-weight: bold; font-size:30px; margin-top: 40px; margin-bottom: 40px; } h3 {font-weight: bold; font-size:20px; margin-top: 30px; margin-bottom: 10px; } .personality-detail li {list-style: outside; margin-left:20px;}"
+                    "h2 {font-weight: bold; font-size:30px; margin-top: 40px; margin-bottom: 40px; } h3 {font-weight: bold; font-size:20px; margin-top: 30px; margin-bottom: 10px; } .personality-detail li {list-style: outside; margin-left:20px;} p {hyphens: none;}"
                 }
             </style>
             <div>
