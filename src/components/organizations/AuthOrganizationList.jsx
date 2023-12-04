@@ -2,7 +2,7 @@
 import Image from "next/image";
 import MainBtn from "../base/MainBtn";
 import anonymous from "@/public/assets/organization/user-blue.svg";
-
+import { revalidatePath } from "next/cache";
 const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
     async function updateData(userId, department, title) {
         const payload = {
@@ -18,6 +18,7 @@ const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Cache-Control": "no-store",
                 },
                 body: JSON.stringify(payload),
             });
@@ -27,12 +28,12 @@ const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
             onStatusChanged();
         } catch (error) {
             console.error("Could not update data", error);
+        } finally {
         }
     }
 
-    function confirmEmployee(userId, department, title) {
-        updateData(userId, department, title);
-        window.location.reload();
+    async function confirmEmployee(userId, department, title) {
+        await updateData(userId, department, title);
     }
 
     function testDecline() {

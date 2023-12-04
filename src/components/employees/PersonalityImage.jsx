@@ -83,7 +83,7 @@ export default function PersonalityImage({ personality, imgWidth, imgHeight }) {
 
     return (
         <>
-            <div className="flex justify-center">
+            <div className="my-8 flex justify-center">
                 <Image
                     src={personalityImage}
                     width={imgWidth}

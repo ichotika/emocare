@@ -10,8 +10,8 @@ function PersonalityDesc({ personalityDesc }) {
             <div className="px-4 sm:flex">
                 <PersonalityImage
                     personality={personalityDesc.personality}
-                    imgWidth={400}
-                    imgHeight={400}
+                    imgWidth={175}
+                    imgHeight={175}
                 />
                 <div className="sm:flex sm:w-2/3 sm:flex-col sm:justify-center">
                     <p className="py-2 text-b-lg font-bold">

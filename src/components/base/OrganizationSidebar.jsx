@@ -91,8 +91,13 @@ const OrganizationSidebar = ({ menuRoutes }) => {
                                             setIsHamburgerOpen(false)
                                         }
                                     >
-                                        <span className={`icon-${menu.slug ? menu.slug.slice(1) : "dashboard"} align-middle text-b-2xl mr-2`}>
-                                        </span>
+                                        <span
+                                            className={`icon-${
+                                                menu.slug
+                                                    ? menu.slug.slice(1)
+                                                    : "dashboard"
+                                            } mr-2 align-middle text-b-2xl`}
+                                        ></span>
                                         {menu.name}
                                     </Link>
                                 </li>

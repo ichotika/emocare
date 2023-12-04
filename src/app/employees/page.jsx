@@ -12,7 +12,7 @@ import Link from "next/link";
 import Header from "@/components/employees/Header";
 import Chatbot from "@/components/employees/Chatbot";
 import AssessmentButton from "@/components/employees/AssessmentButton";
-
+import ChatBubble from "@/components/employees/ChatBubble";
 export default function Home() {
     const [assessmentData, setAssessmentData] = useState([]);
     const [recentPersonalityType, setRecentPersonalityType] = useState([]);
@@ -20,6 +20,7 @@ export default function Home() {
     const [burnoutData, setBurnoutData] = useState("");
     const [deprData, setDeprData] = useState("");
     const [popup, setPopup] = useState(false);
+    const [chatPopup, setChatPopup] = useState(false);
     // current logged in user
     const { user } = useUser();
     const currentUserId = user ? user.id : null;
@@ -108,10 +109,10 @@ export default function Home() {
     return (
         <>
             {/* <Header headertext={"Employee"} isHidden={true} /> */}
-            <div className="-mt-4 flex flex-col items-stretch pl-1 xl:items-center">
+            <div className="-mt-2 flex flex-col items-stretch pl-1 xl:items-center">
                 <div className="flex w-full grow flex-col">
                     <p
-                        style={{ marginBottom: "-10px" }}
+                        // style={{ marginBottom: "-10px" }}
                         className="text-b-lg font-bold"
                     >
                         WELCOME
@@ -132,7 +133,7 @@ export default function Home() {
                         )}
                     </div>
                 </div>
-                <div className="grid-row grid-height mt-2 grid grid-cols-4 gap-6 xl:flex xl:flex-col">
+                <div className="grid-row grid-height mt-2 grid grid-cols-4 gap-x-5 gap-y-6 xl:flex xl:flex-col">
                     <div className="flex h-[237px] w-[100%] grow flex-col items-center justify-between rounded-lg bg-g-white-1 p-2 shadow">
                         {deprData.length > 0 ? (
                             <>
@@ -255,10 +256,14 @@ export default function Home() {
                     </div>
 
                     <div className="z-0 max-h-[350px] rounded-lg bg-white p-2 shadow xl:hidden xl:w-0">
-                        <Chatbot mypersonality={recentPersonalityType} />
+                        <Chatbot isDesktop={true} />
                     </div>
+                    <ChatBubble
+                        mypersonality={recentPersonalityType}
+                        isVisible={chatPopup}
+                        setPopup={setChatPopup}
+                    />
                 </div>
-
                 <PopUpAssessmentHistory
                     isVisible={popup}
                     onClose={() => setPopup(false)}
