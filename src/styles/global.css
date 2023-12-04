@@ -98,6 +98,11 @@ body {
     line-height: 1.5;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -300,15 +305,16 @@ h1 {
 @font-face {
     font-family: 'icomoon';
     src:
-      url('/fonts/icomoon.ttf?od3dlo') format('truetype'),
-      url('/fonts/icomoon.woff?od3dlo') format('woff'),
-      url('/fonts/icomoon.svg?od3dlo#icomoon') format('svg');
+        url('/fonts/icomoon.ttf?od3dlo') format('truetype'),
+        url('/fonts/icomoon.woff?od3dlo') format('woff'),
+        url('/fonts/icomoon.svg?od3dlo#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
-  }
-  
-  [class^="icon-"], [class*=" icon-"] {
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
     speak: never;
@@ -317,34 +323,40 @@ h1 {
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-  
+
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-assessment:before {
+}
+
+.icon-assessment:before {
     content: "\e900";
-  }
-  .icon-records:before {
+}
+
+.icon-records:before {
     content: "\e900";
-  }
-  .icon-dashboard:before {
+}
+
+.icon-dashboard:before {
     content: "\e901";
-  }
-  .icon-faq:before {
+}
+
+.icon-faq:before {
     content: "\e902";
-  }
-  .icon-feedback:before {
+}
+
+.icon-feedback:before {
     content: "\e903";
-  }
-  .icon-management:before {
+}
+
+.icon-management:before {
     content: "\e904";
-  }
-  .icon-education:before {
+}
+
+.icon-education:before {
     content: "\e904";
-  }
-  .icon-support:before {
+}
+
+.icon-support:before {
     content: "\e905";
-  }
-  
+}
