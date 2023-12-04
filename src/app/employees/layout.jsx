@@ -9,45 +9,45 @@ export const metadata = {
 const routesMenu = [
     {
         slug: "",
-        name: "Dashboard"
+        name: "Dashboard",
     },
     {
         slug: "/assessment",
-        name: "Assessment"
+        name: "Assessment",
     },
     {
         slug: "/education",
-        name: "Education"
+        name: "Education",
     },
     {
         slug: "/support",
-        name: "Support"
+        name: "Support",
     },
 ];
 
 const routesSupport = [
     {
         slug: "/feedback",
-        name: "Feedback"
+        name: "Feedback",
     },
     {
         slug: "/faq",
-        name: "FAQ"
+        name: "FAQ",
     },
 ];
 
 export default function RootLayout({ children }) {
     // Uncomment <ClerkProvider> to enable user account system
     return (
-        <div className="flex xl:flex-col box-border xl:bg-p-blue-6">
+        <div className="box-border flex xl:flex-col xl:bg-p-blue-6">
             {/* navbar(until xl) & sidebar*/}
-            <div className="fixed left-0 top-0 flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0 box-border">
+            <div className="fixed left-0 top-0 box-border flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
                 <EmployeeSidebar
                     menuRoutes={routesMenu}
                     supportRoutes={routesSupport}
                 />
             </div>
-            <div className="xl:rounded-tl-0 z-0 ml-[320px] min-h-screen box-border rounded-tl-[40px] bg-p-blue-6 px-12 py-10 xl:ml-0 grow xl:grow-0 xl:px-6 xl:py-10 w-auto xl:max-w-5xl lg:w-full xl:self-center md:py-4 sm:p-4">
+            <div className="xl:rounded-tl-0 z-0 ml-[320px] box-border min-h-screen w-auto grow rounded-tl-[40px] bg-p-blue-6 px-12 py-[44px] xl:ml-0 xl:max-w-5xl xl:grow-0 xl:self-center xl:px-6 xl:py-10 lg:w-full md:py-4 sm:px-4 sm:py-10">
                 {children}
             </div>
         </div>
