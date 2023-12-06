@@ -6,7 +6,7 @@ const members = [
         designation: "Full Stack Developer",
         personality: "Virtuoso",
         imageName: "Kris.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/krisanaarunya-aa240a7b/",
         hoverBG: "hover:bg-[#80B1FC]",
     },
 
@@ -15,7 +15,7 @@ const members = [
         designation: "UX/UI Designer",
         personality: "Adventurer",
         imageName: "Sejal.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/sejal-more/",
         hoverBG: "hover:bg-[#BDA6FF]",
     },
     {
@@ -23,7 +23,7 @@ const members = [
         designation: "UX/UI Designer",
         personality: "Architect",
         imageName: "Akiko.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/akiko-kato/",
         hoverBG: "hover:bg-[#FFA4E0]",
     },
     {
@@ -31,7 +31,7 @@ const members = [
         designation: "UX/UI Designer",
         personality: "Protagonist",
         imageName: "Hritik.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/hritik-sharma-aa32211b5/",
         hoverBG: "hover:bg-[#FFCB62]",
     },
     {
@@ -39,7 +39,7 @@ const members = [
         designation: "Full Stack Developer",
         personality: "Adventurer",
         imageName: "Hridya.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/hridya-unnikrishnan/",
         hoverBG: "hover:bg-[#FF9E9E]",
     },
     {
@@ -47,7 +47,7 @@ const members = [
         designation: "Full Stack Developer",
         personality: "Protagonist",
         imageName: "Kimi.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/kimitoshi-nakaya/",
         hoverBG: "hover:bg-[#D8F086]",
     },
     {
@@ -55,7 +55,7 @@ const members = [
         designation: "Full Stack Developer",
         personality: "Adventurer",
         imageName: "Anh.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/anh-nguyen-0120011b9/",
         hoverBG: "hover:bg-[#F39561]",
     },
     {
@@ -63,7 +63,7 @@ const members = [
         designation: "Full Stack Developer",
         personality: "Logistician",
         imageName: "Chotika.webp",
-        LinkedInURL: "https://google.com",
+        LinkedInURL: "https://www.linkedin.com/in/margaret-imvimol/",
         hoverBG: "hover:bg-[#70CCA5]",
     },
 ];
