@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 export default function PlanCard({ card }) {
-    const { title, subtitle, basePrice, discountPrice, description, href } =
+    const { title, subtitle, price, description, href } =
         card;
 
     return (
         <article
             className={
-                "flex flex-col items-center justify-evenly gap-10 rounded-lg px-6 py-12 text-center shadow-[0_1px_3px_0_rgba(0,0,0,0.1),0_2px_3px_0_rgba(0,0,0,0.06)]"
+                "flex flex-col items-center gap-10 rounded-lg px-6 py-12 text-center h-full shadow-[0_1px_3px_0_rgba(0,0,0,0.1),0_2px_3px_0_rgba(0,0,0,0.06)]"
             }
         >
             <header>
@@ -17,24 +17,21 @@ export default function PlanCard({ card }) {
                 <h2 className="font-archivo text-4xl font-semibold">{title}</h2>
             </header>
             <div>
-                <p className="font-archivo text-4xl leading-10 text-[#A2A9B0] line-through">
-                    ${basePrice}
+                <p className={`font-archivo text-[3.375rem] font-semibold text-p-blue-1 ${(typeof price == 'number')?"before:content-['$']":""}`}>
+                    {price}
                 </p>
-                <p className="font-archivo text-[3.375rem] font-semibold text-p-blue-1">
-                    ${discountPrice}
-                </p>
-                <p className={"font-manrope font-semibold"}>
-                    Monthly/per employee
+                <p className={"font-manrope font-semibold text-xl"}>
+                    Monthly / Per employee
                 </p>
             </div>
-            <p className={"max-w-[258px] text-lg font-semibold"}>
-                {description}
+            <p className={"max-w-[258px] text-xl font-semibold"}>
+                {description}<br/>Employees
             </p>
             <Link
                 href={href}
-                className="rounded-lg bg-p-blue-1 px-8 py-4 font-sans text-xl text-g-white-1"
+                className="rounded-lg bg-p-blue-1 px-8 py-4 font-sans text-xl text-g-white-1 mt-auto"
             >
-                Get Started
+                {(typeof price == 'number')?"Get Started":"Contact Us"}
             </Link>
         </article>
     );

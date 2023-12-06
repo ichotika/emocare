@@ -4,25 +4,22 @@ const cards = [
     {
         title: "Startup Wellness",
         subtitle: "Small Business",
-        basePrice: 12.99,
-        discountPrice: 11.99,
-        description: "For Companies with 300 or fewer Employees",
+        price: 9.99,
+        description: "For 300 or fewer",
         href: "/company/contact/small"
     },
     {
         title: "Mid-Size Partner",
         subtitle: "Mid-Size Company",
-        basePrice: 11.99,
-        discountPrice: 10.99,
-        description: "For Companies with over 300 to 1000 Employees",
+        price: 6.99,
+        description: "For over 300 to 1000",
         href: "/company/contact/medium"
     },
     {
-        title: "Organization",
+        title: "Enterprise",
         subtitle: "Large Corporation",
-        basePrice: 10.99,
-        discountPrice: 9.99,
-        description: "For Companies with over 1000 Employees",
+        price: "Custom",
+        description: "For over 1000",
         href: "/company/contact/large"
     },
 ];
@@ -40,7 +37,7 @@ export default function Page() {
                 </h1>
             </header>
             <section>
-                <ul className="grid grid-cols-3 content-center gap-8 xl:grid-cols-2 lg:grid-cols-1">
+                <ul className="grid grid-cols-3 content-stretch gap-8 xl:grid-cols-2 lg:grid-cols-1">
                     {cards.map((card, index) => (
                         <li key={index}>
                             <PlanCard card={card}></PlanCard>
