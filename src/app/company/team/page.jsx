@@ -9,15 +9,6 @@ const members = [
         LinkedInURL: "https://www.linkedin.com/in/krisanaarunya-aa240a7b/",
         hoverBG: "hover:bg-[#80B1FC]",
     },
-
-    {
-        name: "Sejal More",
-        designation: "UX/UI Designer",
-        personality: "Adventurer",
-        imageName: "Sejal.webp",
-        LinkedInURL: "https://www.linkedin.com/in/sejal-more/",
-        hoverBG: "hover:bg-[#BDA6FF]",
-    },
     {
         name: "Akiko Kato",
         designation: "UX/UI Designer",
@@ -35,12 +26,12 @@ const members = [
         hoverBG: "hover:bg-[#FFCB62]",
     },
     {
-        name: "Hridya Unnikrishnan",
-        designation: "Full Stack Developer",
+        name: "Sejal More",
+        designation: "UX/UI Designer",
         personality: "Adventurer",
-        imageName: "Hridya.webp",
-        LinkedInURL: "https://www.linkedin.com/in/hridya-unnikrishnan/",
-        hoverBG: "hover:bg-[#FF9E9E]",
+        imageName: "Sejal.webp",
+        LinkedInURL: "https://www.linkedin.com/in/sejal-more/",
+        hoverBG: "hover:bg-[#BDA6FF]",
     },
     {
         name: "Kimitoshi Nakaya",
@@ -49,6 +40,14 @@ const members = [
         imageName: "Kimi.webp",
         LinkedInURL: "https://www.linkedin.com/in/kimitoshi-nakaya/",
         hoverBG: "hover:bg-[#D8F086]",
+    },
+    {
+        name: "Hridya Unnikrishnan",
+        designation: "Full Stack Developer",
+        personality: "Adventurer",
+        imageName: "Hridya.webp",
+        LinkedInURL: "https://www.linkedin.com/in/hridya-unnikrishnan/",
+        hoverBG: "hover:bg-[#FF9E9E]",
     },
     {
         name: "Anh Phan Nguyen",
