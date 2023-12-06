@@ -11,6 +11,8 @@ export default function TeamCard({ member }) {
                 className={"h-full w-full object-cover"}
                 src={`/company_site/team_photos/${imageName}`}
                 alt={name}
+                height={1600}
+                width={1200}
             ></Image>
             <div
                 className={
