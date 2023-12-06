@@ -14,7 +14,7 @@ export default function Page() {
                 <p className={"pl-12"}>Username: <span className={"font-bold"}>pre-filled</span></p>
                 <p className={"pl-12"}>Password: <span className={"font-bold"}>sBDmzn4kjf5pmHW</span></p>
                 <h2 className={"font-bold text-lg pl-6"}>Employee:</h2>
-                <p className={"pl-12"}>Sign up with "WMDD Organization</p>
+                <p className={"pl-12"}>Sign up with &quot;WMDD Organization&quot;</p>
             </article>
         </div>
     );
