@@ -88,10 +88,11 @@ function SelectOrg({ onOrgDecide, onDeptDecide, onDesignDecide }) {
                         <HiChevronUpDown></HiChevronUpDown>
                     </Combobox.Button>
                     <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                        {filteredOrg.map((person) => (
+                        {filteredOrg.map((orgOption) => (
                             <Combobox.Option
-                                key={person}
-                                value={person}
+                                disabled={orgOption!=="WMDD"}
+                                key={orgOption}
+                                value={orgOption}
                                 className={({ active }) =>
                                     classNames(
                                         'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -107,7 +108,7 @@ function SelectOrg({ onOrgDecide, onDeptDecide, onDesignDecide }) {
                           selected && 'font-semibold'
                       )}
                   >
-                    {person}
+                    {orgOption}
                   </span>
                                         {selected && (
                                             <span
