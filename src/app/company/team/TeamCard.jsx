@@ -7,11 +7,11 @@ export default function TeamCard({ member }) {
         <article
             className={`group relative h-[400px] max-w-[300px] rounded-3xl border-4 border-white bg-[#F5F9FF] shadow-sm ${hoverBG} hover:bg-[url('/company_site/teamcard_background.svg')]`}
         >
-            <img
+            <Image
                 className={"h-full w-full object-cover"}
                 src={`/company_site/team_photos/${imageName}`}
                 alt={name}
-            />
+            ></Image>
             <div
                 className={
                     "absolute inset-0 grid grid-cols-6 grid-rows-4 p-4 lg:p-3 sm:p-2"
