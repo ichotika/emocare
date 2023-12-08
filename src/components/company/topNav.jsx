@@ -34,9 +34,11 @@ export default function TopNav({ routes }) {
                     "z-20 flex h-20 flex-row items-center justify-between bg-white px-20 py-4 shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:h-16 lg:px-4"
                 }
             >
-                <Link href={"/company"}>
-                    <Image src={DesktopLogo} alt="Emocare Logo" height={60} />
-                </Link>
+                <div className={"h-[60px] w-[181px] grid content-center justify-center p-[14px]"}>
+                    <Link href={"/company"}>
+                        <Image src={DesktopLogo} alt="Emocare Logo"/>
+                    </Link>
+                </div>
                 <button onClick={handleToggle} className={"hidden lg:block"}>
                     <Image
                         src={Hamburger}
