@@ -50,10 +50,10 @@ export default function Page({params}) {
 
     return (
         <main className={"flex flex-col items-center gap-8 pt-10"}>
-            <p className={"font-manrope text-xl font-bold text-p-blue-1"}>
+            <p className={"font-manrope text-xl font-bold text-p-blue-1 text-center"}>
                 Contact me
             </p>
-            <h1 className={"font-archivo text-5xl font-semibold"}>
+            <h1 className={"font-archivo text-5xl font-semibold text-center"}>
                 Request for <span className={"text-p-blue-1"}>Demo</span>
             </h1>
             <section
@@ -77,7 +77,7 @@ export default function Page({params}) {
                 <form
                     onSubmit={handleSubmit}
                     className={
-                        "px-18 col-span-7 flex flex-col lg:col-span-full"
+                        "px-18 lg:px-12 sm:px-8 col-span-7 flex flex-col lg:col-span-full"
                     }
                 >
                     <div>
