@@ -82,7 +82,7 @@ export default function Page() {
                     }
                 >
                     <Image
-                        src={baseImageURL + "/Anonymity.png"}
+                        src={baseImageURL + "/Anonymity.webp"}
                         alt="Anonymity"
                         width="0"
                         height="0"
