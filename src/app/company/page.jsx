@@ -132,7 +132,7 @@ export default function Page() {
                         </p>
                     </div>
                     <Image
-                        src={baseImageURL + "/TransformingLives.png"}
+                        src={baseImageURL + "/TransformingLives.webp"}
                         alt={"Transforming Lives"}
                         width="2000"
                         height="0"
