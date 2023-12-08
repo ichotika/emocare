@@ -46,6 +46,7 @@ const EmployeeSidebar = ({ menuRoutes, supportRoutes }) => {
                     <Image
                         src={isDesktop ? DesktopLogo : MobileLogo}
                         alt="Emocare-logo"
+                        className="ml-7 xl:ml-0"
                     />
                 </Link>
 

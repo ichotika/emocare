@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
     return (
         <div className="box-border flex xl:flex-col xl:bg-p-blue-6">
             {/* navbar(until xl) & sidebar*/}
-            <div className="fixed left-0 top-0 box-border flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-12 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
+            <div className="fixed left-0 top-0 box-border flex h-screen w-[320px] grow flex-col justify-between px-6 pb-12 pt-16 xl:static xl:h-auto xl:w-auto xl:px-0 xl:pb-0 xl:pt-0">
                 <EmployeeSidebar
                     menuRoutes={routesMenu}
                     supportRoutes={routesSupport}
