@@ -95,7 +95,7 @@ function HamburgerNav({ routes, tuckedAway}) {
 
     return (
         <nav
-            className={`fixed left-0 right-0 top-16 z-10 hidden flex-col items-center gap-5 bg-g-white-1 py-8 transition-all lg:flex shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] ${
+            className={`fixed left-0 right-0 top-16 z-10 hidden flex-col items-center gap-5 bg-g-white-1 py-8 transition-all text-center lg:flex shadow-[0_2px_6px_0_rgba(0,0,0,0.15)] ${
                 tuckedAway ? "-translate-y-full" : "translate-y-0"
             }`}
         >
