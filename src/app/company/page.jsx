@@ -8,7 +8,7 @@ const baseImageURL = "/company_site";
 const employerIntro = {
     heading: "Elevate Your Workforce's Mental Health",
     body: "Mental wellness fuels employee performance and company prosperity. It reduces absenteeism, improves productivity, and fosters a positive workplace culture, leading to long-term success and a competitive edge.",
-    src: "/Employer.png",
+    src: "/Employer.webp",
 };
 
 const employerWidgets = [
@@ -82,10 +82,10 @@ export default function Page() {
                     }
                 >
                     <Image
-                        src={baseImageURL + "/Anonymity.png"}
+                        src={baseImageURL + "/Anonymity.webp"}
                         alt="Anonymity"
-                        width="0"
-                        height="0"
+                        width="1981"
+                        height="1258"
                         sizes="50vw"
                         className="relative bottom-16 -my-4 h-80 w-auto object-contain xl:bottom-8 lg:bottom-0 sm:bottom-24"
                     ></Image>
@@ -132,10 +132,10 @@ export default function Page() {
                         </p>
                     </div>
                     <Image
-                        src={baseImageURL + "/TransformingLives.png"}
+                        src={baseImageURL + "/TransformingLives.webp"}
                         alt={"Transforming Lives"}
-                        width="2000"
-                        height="0"
+                        width="2615"
+                        height="2115"
                         sizes="50vw"
                     ></Image>
                 </article>
@@ -145,10 +145,10 @@ export default function Page() {
                     }
                 >
                     <Image
-                        src={baseImageURL + "/SelfAwareness.png"}
+                        src={baseImageURL + "/SelfAwareness.webp"}
                         alt={"Self-awareness"}
-                        width="2000"
-                        height="0"
+                        width="2545"
+                        height="2547"
                         sizes="50vw"
                     ></Image>
                     <div
