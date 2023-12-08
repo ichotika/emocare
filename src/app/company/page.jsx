@@ -8,7 +8,7 @@ const baseImageURL = "/company_site";
 const employerIntro = {
     heading: "Elevate Your Workforce's Mental Health",
     body: "Mental wellness fuels employee performance and company prosperity. It reduces absenteeism, improves productivity, and fosters a positive workplace culture, leading to long-term success and a competitive edge.",
-    src: "/Employer.png",
+    src: "/Employer.webp",
 };
 
 const employerWidgets = [
