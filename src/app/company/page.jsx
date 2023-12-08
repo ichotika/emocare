@@ -145,7 +145,7 @@ export default function Page() {
                     }
                 >
                     <Image
-                        src={baseImageURL + "/SelfAwareness.png"}
+                        src={baseImageURL + "/SelfAwareness.webp"}
                         alt={"Self-awareness"}
                         width="2000"
                         height="0"
