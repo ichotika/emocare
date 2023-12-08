@@ -28,7 +28,7 @@ export default function Page() {
     ) : (
         <SignUpUI
             onOrgDecide={handleOrgDecide}
-            onDeptDeicde={handleDeptDecide}
+            onDeptDecide={handleDeptDecide}
             onDesignDecide={handleDesigDecide}
         ></SignUpUI>
     );
