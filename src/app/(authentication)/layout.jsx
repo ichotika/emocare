@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Bg from "@/public/assets/loginCard.png";
+import Bg from "/public/authentication/LoginCard.webp";
 
 
 export default function Layout({ children }) {
@@ -8,7 +8,6 @@ export default function Layout({ children }) {
             <Image
                 src={Bg}
                 alt="Background"
-                quality={100}
                 className="h-full w-full lg:hidden object-cover"
             />
             <div className="flex h-full w-full items-center justify-center">

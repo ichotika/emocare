@@ -17,7 +17,7 @@ export default function HeroBanner() {
                     Prosperity
                 </p>
                 <Link
-                    className="rounded-xl bg-blue-700 px-8 py-4 font-extrabold text-white sm:mt-6"
+                    className="rounded-xl bg-p-blue-1 px-8 py-4 font-extrabold text-g-white-1 sm:mt-6"
                     href={"/company/contact"}
                 >
                     Get Started Now
