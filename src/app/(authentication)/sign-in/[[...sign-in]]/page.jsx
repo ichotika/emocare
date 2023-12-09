@@ -12,7 +12,7 @@ export default function Page() {
                     <SignIn initialValues={{emailAddress: "krisanaforico+99@gmail.com"}}/>
                     <article
                         className={
-                            "rounded-lg bg-p-blue-1 p-8 text-g-white-1 shadow-2xl font-manrope flex flex-col gap-5"
+                            "2xl:hidden rounded-lg bg-p-blue-1 p-8 text-g-white-1 shadow-2xl font-manrope flex flex-col gap-5"
                         }
                     >
                         <h2 className={"font-archivo text-xl font-bold"}>Test accounts:</h2>
