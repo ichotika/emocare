@@ -256,7 +256,10 @@ export default function Home() {
                     </div>
 
                     <div className="z-0 max-h-[350px] rounded-lg bg-white p-2 shadow xl:hidden xl:w-0">
-                        <Chatbot isDesktop={true} />
+                        <Chatbot
+                            isDesktop={true}
+                            mypersonality={recentPersonalityType}
+                        />
                     </div>
                     <ChatBubble
                         mypersonality={recentPersonalityType}
