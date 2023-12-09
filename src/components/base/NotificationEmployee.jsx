@@ -64,7 +64,19 @@ const NotificationEmployee = ({ notification }) => {
                                 handleNotificationClick(noti?._id, index)
                             }
                         >
-                            <p>{noti.timestamp}</p>
+                            <p>
+                                {new Date(noti.timestamp).toLocaleString(
+                                    "en-US",
+                                    {
+                                        month: "short",
+                                        day: "numeric",
+                                        year: "numeric",
+                                        hour: "numeric",
+                                        minute: "numeric",
+                                        hour12: true,
+                                    }
+                                )}
+                            </p>
                             <p>{noti.message}</p>
                             <p>
                                 Please take a moment to complete your{" "}
