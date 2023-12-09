@@ -1,4 +1,4 @@
-import { ClerkLoaded, ClerkLoading ,SignIn } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, SignIn } from "@clerk/nextjs";
 import LoadingGif from "@/components/base/Loading";
 
 export default function Page() {
@@ -9,8 +9,12 @@ export default function Page() {
             </ClerkLoading>
             <ClerkLoaded>
                 <div className={"flex flex-col gap-y-10"}>
-                    <SignIn initialValues={{emailAddress: "krisanaforico+99@gmail.com"}}/>
-                    <article
+                    <SignIn
+                        initialValues={{
+                            emailAddress: "krisanaforico+99@gmail.com",
+                        }}
+                    />
+                    {/* <article
                         className={
                             "rounded-lg bg-p-blue-1 p-8 text-g-white-1 shadow-2xl font-manrope flex flex-col gap-5"
                         }
@@ -23,7 +27,7 @@ export default function Page() {
                         <div>                <h2 className={"font-bold text-lg pl-6"}>Employee:</h2>
                             <p className={"pl-12"}>Sign up with &quot;WMDD Organization&quot;</p></div>
 
-                    </article>
+                    </article> */}
                 </div>
             </ClerkLoaded>
         </>
