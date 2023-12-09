@@ -39,7 +39,7 @@ function Splash() {
                         repeat: 4,
                     }}
                 >
-                    <Image src={Logo} alt="logo" />
+                    <Image src={Logo} alt="logo" style={{ width: "900px" }} />
                 </motion.div>
             ) : null}
         </AnimatePresence>

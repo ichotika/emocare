@@ -29,6 +29,7 @@ const AuthOrganizationList = ({ employeeList, onStatusChanged }) => {
         } catch (error) {
             console.error("Could not update data", error);
         } finally {
+            window.location.reload(true);
         }
     }
 
